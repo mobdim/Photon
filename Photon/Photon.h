@@ -11,8 +11,6 @@
 #import <Photon/PXNavigationBar.h>
 #import <Photon/PXNavigationController.h>
 #import <Photon/PXNavigationItem.h>
-#import <Photon/PXNavigationPathCell.h>
-#import <Photon/PXNavigationPathComponentCell.h>
 #import <Photon/PXPreferencePane.h>
 #import <Photon/PXPreferencesController.h>
 #import <Photon/PXTabBar.h>

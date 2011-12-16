@@ -24,8 +24,8 @@
 
 @property (assign) NSArray *viewControllers;
 
-@property (readonly) PXViewController *selectedViewController;
-@property (readonly) NSUInteger selectedIndex;
+@property (strong, readonly) PXViewController *selectedViewController;
+@property (assign, readonly) NSUInteger selectedIndex;
 
 - (void)addViewController:(PXViewController *)viewController;
 - (void)insertViewController:(PXViewController *)viewController atIndex:(NSUInteger)index;

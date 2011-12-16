@@ -18,7 +18,7 @@
 
 @property (weak) id <PXNavigationBarDelegate> delegate;
 @property (copy) NSArray *items;
-@property (readonly) PXNavigationItem *topItem;
+@property (strong, readonly) PXNavigationItem *topItem;
 
 - (void)pushNavigationItem:(PXNavigationItem *)item;
 - (void)popToNavigationItem:(PXNavigationItem *)item;

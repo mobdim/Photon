@@ -39,7 +39,7 @@ typedef NSUInteger PXTabBarStyle;
 - (void)selectItemAtIndex:(NSUInteger)index;
 - (PXTabBarItem *)itemAtIndex:(NSUInteger)index;
 
-- (PXTabBarItem *)selectedItem;
+@property (strong, readonly) PXTabBarItem *selectedItem;
 
 @end
 

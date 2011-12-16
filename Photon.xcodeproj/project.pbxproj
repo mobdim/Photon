@@ -23,13 +23,13 @@
 		EA44B2C4149B23C300C5D440 /* PXTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2BD149B23C300C5D440 /* PXTabBarItem.m */; };
 		EA44B2C5149B23C300C5D440 /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA44B2BE149B23C300C5D440 /* TabBarView.xib */; };
 		EA44B2D4149B254F00C5D440 /* PXNavigationPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2C8149B254F00C5D440 /* PXNavigationPathCell.m */; };
-		EA44B2D5149B254F00C5D440 /* PXNavigationPathComponentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2C9149B254F00C5D440 /* PXNavigationPathComponentCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2D5149B254F00C5D440 /* PXNavigationPathComponentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2C9149B254F00C5D440 /* PXNavigationPathComponentCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA44B2D6149B254F00C5D440 /* PXNavigationPathComponentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2CA149B254F00C5D440 /* PXNavigationPathComponentCell.m */; };
 		EA44B2D7149B254F00C5D440 /* PXPathComponentSeparator.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EA44B2CB149B254F00C5D440 /* PXPathComponentSeparator.pdf */; };
 		EA44B2D8149B254F00C5D440 /* NavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA44B2CC149B254F00C5D440 /* NavigationView.xib */; };
 		EA44B2D9149B254F00C5D440 /* PXNavigationItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2CD149B254F00C5D440 /* PXNavigationItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2DA149B254F00C5D440 /* PXNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2CE149B254F00C5D440 /* PXNavigationItem.m */; };
-		EA44B2DB149B254F00C5D440 /* PXNavigationPathCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2CF149B254F00C5D440 /* PXNavigationPathCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2DB149B254F00C5D440 /* PXNavigationPathCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2CF149B254F00C5D440 /* PXNavigationPathCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA44B2DC149B254F00C5D440 /* PXNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2D0149B254F00C5D440 /* PXNavigationBar.m */; };
 		EA44B2DD149B254F00C5D440 /* PXNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2D1149B254F00C5D440 /* PXNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2DE149B254F00C5D440 /* PXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2D2149B254F00C5D440 /* PXNavigationController.m */; };

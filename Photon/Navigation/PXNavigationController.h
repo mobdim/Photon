@@ -26,7 +26,7 @@
 @property (assign) IBOutlet PXNavigationBar *navigationBar;
 
 @property (copy) NSArray *viewControllers;
-@property (readonly) PXViewController *topViewController;
+@property (strong, readonly) PXViewController *topViewController;
 
 @property (weak) id <PXNavigationControllerDelegate> delegate;
 
