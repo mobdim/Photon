@@ -1,0 +1,458 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA44B295149B21FF00C5D440 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA44B294149B21FF00C5D440 /* Cocoa.framework */; };
+		EA44B29F149B21FF00C5D440 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA44B29D149B21FF00C5D440 /* InfoPlist.strings */; };
+		EA44B2A3149B21FF00C5D440 /* Photon.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2A2149B21FF00C5D440 /* Photon.m */; };
+		EA44B2AE149B222E00C5D440 /* PhotonDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2AD149B222E00C5D440 /* PhotonDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2AF149B22A700C5D440 /* Photon.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2A1149B21FF00C5D440 /* Photon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2B4149B22F800C5D440 /* PXViewController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2B1149B22F800C5D440 /* PXViewController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EA44B2B5149B22F800C5D440 /* PXViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2B2149B22F800C5D440 /* PXViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2B6149B22F800C5D440 /* PXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2B3149B22F800C5D440 /* PXViewController.m */; };
+		EA44B2BF149B23C300C5D440 /* PXTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2B8149B23C300C5D440 /* PXTabBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2C0149B23C300C5D440 /* PXTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2B9149B23C300C5D440 /* PXTabBar.m */; };
+		EA44B2C1149B23C300C5D440 /* PXTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2BA149B23C300C5D440 /* PXTabBarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2C2149B23C300C5D440 /* PXTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2BB149B23C300C5D440 /* PXTabBarController.m */; };
+		EA44B2C3149B23C300C5D440 /* PXTabBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2BC149B23C300C5D440 /* PXTabBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2C4149B23C300C5D440 /* PXTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2BD149B23C300C5D440 /* PXTabBarItem.m */; };
+		EA44B2C5149B23C300C5D440 /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA44B2BE149B23C300C5D440 /* TabBarView.xib */; };
+		EA44B2D4149B254F00C5D440 /* PXNavigationPathCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2C8149B254F00C5D440 /* PXNavigationPathCell.m */; };
+		EA44B2D5149B254F00C5D440 /* PXNavigationPathComponentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2C9149B254F00C5D440 /* PXNavigationPathComponentCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2D6149B254F00C5D440 /* PXNavigationPathComponentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2CA149B254F00C5D440 /* PXNavigationPathComponentCell.m */; };
+		EA44B2D7149B254F00C5D440 /* PXPathComponentSeparator.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EA44B2CB149B254F00C5D440 /* PXPathComponentSeparator.pdf */; };
+		EA44B2D8149B254F00C5D440 /* NavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA44B2CC149B254F00C5D440 /* NavigationView.xib */; };
+		EA44B2D9149B254F00C5D440 /* PXNavigationItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2CD149B254F00C5D440 /* PXNavigationItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2DA149B254F00C5D440 /* PXNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2CE149B254F00C5D440 /* PXNavigationItem.m */; };
+		EA44B2DB149B254F00C5D440 /* PXNavigationPathCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2CF149B254F00C5D440 /* PXNavigationPathCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2DC149B254F00C5D440 /* PXNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2D0149B254F00C5D440 /* PXNavigationBar.m */; };
+		EA44B2DD149B254F00C5D440 /* PXNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2D1149B254F00C5D440 /* PXNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2DE149B254F00C5D440 /* PXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2D2149B254F00C5D440 /* PXNavigationController.m */; };
+		EA44B2DF149B254F00C5D440 /* PXNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2D3149B254F00C5D440 /* PXNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2E4149B255500C5D440 /* PXPreferencePane.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2E0149B255500C5D440 /* PXPreferencePane.m */; };
+		EA44B2E5149B255500C5D440 /* PXPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2E1149B255500C5D440 /* PXPreferencesController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2E6149B255500C5D440 /* PXPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2E2149B255500C5D440 /* PXPreferencesController.m */; };
+		EA44B2E7149B255500C5D440 /* PXPreferencePane.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2E3149B255500C5D440 /* PXPreferencePane.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2E9149B277700C5D440 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA44B2E8149B277700C5D440 /* QuartzCore.framework */; };
+		EA44B2ED149B29FE00C5D440 /* PXGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2EB149B29FE00C5D440 /* PXGradientView.m */; };
+		EA44B2EE149B29FE00C5D440 /* PXGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2EC149B29FE00C5D440 /* PXGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA44B2F2149B2A6F00C5D440 /* NSObject+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */; };
+		EA44B2F3149B2A6F00C5D440 /* NSObject+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EA44B291149B21FF00C5D440 /* Photon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Photon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA44B294149B21FF00C5D440 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		EA44B297149B21FF00C5D440 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		EA44B298149B21FF00C5D440 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		EA44B299149B21FF00C5D440 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EA44B29C149B21FF00C5D440 /* Photon-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Photon-Info.plist"; sourceTree = "<group>"; };
+		EA44B29E149B21FF00C5D440 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA44B2A0149B21FF00C5D440 /* Photon-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Photon-Prefix.pch"; sourceTree = "<group>"; };
+		EA44B2A1149B21FF00C5D440 /* Photon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Photon.h; sourceTree = "<group>"; };
+		EA44B2A2149B21FF00C5D440 /* Photon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photon.m; sourceTree = "<group>"; };
+		EA44B2AD149B222E00C5D440 /* PhotonDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotonDefines.h; sourceTree = "<group>"; };
+		EA44B2B1149B22F800C5D440 /* PXViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXViewController_Private.h; sourceTree = "<group>"; };
+		EA44B2B2149B22F800C5D440 /* PXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXViewController.h; sourceTree = "<group>"; };
+		EA44B2B3149B22F800C5D440 /* PXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXViewController.m; sourceTree = "<group>"; };
+		EA44B2B8149B23C300C5D440 /* PXTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBar.h; sourceTree = "<group>"; };
+		EA44B2B9149B23C300C5D440 /* PXTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTabBar.m; sourceTree = "<group>"; };
+		EA44B2BA149B23C300C5D440 /* PXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBarController.h; sourceTree = "<group>"; };
+		EA44B2BB149B23C300C5D440 /* PXTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTabBarController.m; sourceTree = "<group>"; };
+		EA44B2BC149B23C300C5D440 /* PXTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBarItem.h; sourceTree = "<group>"; };
+		EA44B2BD149B23C300C5D440 /* PXTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTabBarItem.m; sourceTree = "<group>"; };
+		EA44B2BE149B23C300C5D440 /* TabBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarView.xib; sourceTree = "<group>"; };
+		EA44B2C8149B254F00C5D440 /* PXNavigationPathCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXNavigationPathCell.m; sourceTree = "<group>"; };
+		EA44B2C9149B254F00C5D440 /* PXNavigationPathComponentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationPathComponentCell.h; sourceTree = "<group>"; };
+		EA44B2CA149B254F00C5D440 /* PXNavigationPathComponentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXNavigationPathComponentCell.m; sourceTree = "<group>"; };
+		EA44B2CB149B254F00C5D440 /* PXPathComponentSeparator.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PXPathComponentSeparator.pdf; sourceTree = "<group>"; };
+		EA44B2CC149B254F00C5D440 /* NavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationView.xib; sourceTree = "<group>"; };
+		EA44B2CD149B254F00C5D440 /* PXNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationItem.h; sourceTree = "<group>"; };
+		EA44B2CE149B254F00C5D440 /* PXNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXNavigationItem.m; sourceTree = "<group>"; };
+		EA44B2CF149B254F00C5D440 /* PXNavigationPathCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationPathCell.h; sourceTree = "<group>"; };
+		EA44B2D0149B254F00C5D440 /* PXNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXNavigationBar.m; sourceTree = "<group>"; };
+		EA44B2D1149B254F00C5D440 /* PXNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationController.h; sourceTree = "<group>"; };
+		EA44B2D2149B254F00C5D440 /* PXNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXNavigationController.m; sourceTree = "<group>"; };
+		EA44B2D3149B254F00C5D440 /* PXNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationBar.h; sourceTree = "<group>"; };
+		EA44B2E0149B255500C5D440 /* PXPreferencePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPreferencePane.m; sourceTree = "<group>"; };
+		EA44B2E1149B255500C5D440 /* PXPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencesController.h; sourceTree = "<group>"; };
+		EA44B2E2149B255500C5D440 /* PXPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPreferencesController.m; sourceTree = "<group>"; };
+		EA44B2E3149B255500C5D440 /* PXPreferencePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencePane.h; sourceTree = "<group>"; };
+		EA44B2E8149B277700C5D440 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		EA44B2EB149B29FE00C5D440 /* PXGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGradientView.m; sourceTree = "<group>"; };
+		EA44B2EC149B29FE00C5D440 /* PXGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGradientView.h; sourceTree = "<group>"; };
+		EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PhotonAdditions.m"; sourceTree = "<group>"; };
+		EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PhotonAdditions.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA44B28D149B21FF00C5D440 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA44B295149B21FF00C5D440 /* Cocoa.framework in Frameworks */,
+				EA44B2E9149B277700C5D440 /* QuartzCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EA44B285149B21FF00C5D440 = {
+			isa = PBXGroup;
+			children = (
+				EA44B29A149B21FF00C5D440 /* Photon */,
+				EA44B293149B21FF00C5D440 /* Frameworks */,
+				EA44B292149B21FF00C5D440 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EA44B292149B21FF00C5D440 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA44B291149B21FF00C5D440 /* Photon.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA44B293149B21FF00C5D440 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA44B294149B21FF00C5D440 /* Cocoa.framework */,
+				EA44B2E8149B277700C5D440 /* QuartzCore.framework */,
+				EA44B296149B21FF00C5D440 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA44B296149B21FF00C5D440 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA44B297149B21FF00C5D440 /* AppKit.framework */,
+				EA44B298149B21FF00C5D440 /* CoreData.framework */,
+				EA44B299149B21FF00C5D440 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		EA44B29A149B21FF00C5D440 /* Photon */ = {
+			isa = PBXGroup;
+			children = (
+				EA44B2A1149B21FF00C5D440 /* Photon.h */,
+				EA44B2A2149B21FF00C5D440 /* Photon.m */,
+				EA44B2AD149B222E00C5D440 /* PhotonDefines.h */,
+				EA44B2B0149B22E800C5D440 /* View */,
+				EA44B2B7149B23AD00C5D440 /* Tab Bar */,
+				EA44B2C6149B251300C5D440 /* Navigation */,
+				EA44B2C7149B251E00C5D440 /* Preferences */,
+				EA44B2EF149B2A2200C5D440 /* Categories */,
+				EA44B29B149B21FF00C5D440 /* Supporting Files */,
+			);
+			path = Photon;
+			sourceTree = "<group>";
+		};
+		EA44B29B149B21FF00C5D440 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA44B29C149B21FF00C5D440 /* Photon-Info.plist */,
+				EA44B29D149B21FF00C5D440 /* InfoPlist.strings */,
+				EA44B2A0149B21FF00C5D440 /* Photon-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EA44B2B0149B22E800C5D440 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EA44B2B2149B22F800C5D440 /* PXViewController.h */,
+				EA44B2B1149B22F800C5D440 /* PXViewController_Private.h */,
+				EA44B2B3149B22F800C5D440 /* PXViewController.m */,
+				EA44B2EC149B29FE00C5D440 /* PXGradientView.h */,
+				EA44B2EB149B29FE00C5D440 /* PXGradientView.m */,
+			);
+			name = View;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EA44B2B7149B23AD00C5D440 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				EA44B2B8149B23C300C5D440 /* PXTabBar.h */,
+				EA44B2B9149B23C300C5D440 /* PXTabBar.m */,
+				EA44B2BA149B23C300C5D440 /* PXTabBarController.h */,
+				EA44B2BB149B23C300C5D440 /* PXTabBarController.m */,
+				EA44B2BC149B23C300C5D440 /* PXTabBarItem.h */,
+				EA44B2BD149B23C300C5D440 /* PXTabBarItem.m */,
+				EA44B2BE149B23C300C5D440 /* TabBarView.xib */,
+			);
+			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		EA44B2C6149B251300C5D440 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				EA44B2D3149B254F00C5D440 /* PXNavigationBar.h */,
+				EA44B2D0149B254F00C5D440 /* PXNavigationBar.m */,
+				EA44B2D1149B254F00C5D440 /* PXNavigationController.h */,
+				EA44B2D2149B254F00C5D440 /* PXNavigationController.m */,
+				EA44B2CD149B254F00C5D440 /* PXNavigationItem.h */,
+				EA44B2CE149B254F00C5D440 /* PXNavigationItem.m */,
+				EA44B2CF149B254F00C5D440 /* PXNavigationPathCell.h */,
+				EA44B2C8149B254F00C5D440 /* PXNavigationPathCell.m */,
+				EA44B2C9149B254F00C5D440 /* PXNavigationPathComponentCell.h */,
+				EA44B2CA149B254F00C5D440 /* PXNavigationPathComponentCell.m */,
+				EA44B2CC149B254F00C5D440 /* NavigationView.xib */,
+				EA44B2CB149B254F00C5D440 /* PXPathComponentSeparator.pdf */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		EA44B2C7149B251E00C5D440 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				EA44B2E3149B255500C5D440 /* PXPreferencePane.h */,
+				EA44B2E0149B255500C5D440 /* PXPreferencePane.m */,
+				EA44B2E1149B255500C5D440 /* PXPreferencesController.h */,
+				EA44B2E2149B255500C5D440 /* PXPreferencesController.m */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		EA44B2EF149B2A2200C5D440 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */,
+				EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		EA44B28E149B21FF00C5D440 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA44B2AE149B222E00C5D440 /* PhotonDefines.h in Headers */,
+				EA44B2AF149B22A700C5D440 /* Photon.h in Headers */,
+				EA44B2B4149B22F800C5D440 /* PXViewController_Private.h in Headers */,
+				EA44B2B5149B22F800C5D440 /* PXViewController.h in Headers */,
+				EA44B2BF149B23C300C5D440 /* PXTabBar.h in Headers */,
+				EA44B2C1149B23C300C5D440 /* PXTabBarController.h in Headers */,
+				EA44B2C3149B23C300C5D440 /* PXTabBarItem.h in Headers */,
+				EA44B2D5149B254F00C5D440 /* PXNavigationPathComponentCell.h in Headers */,
+				EA44B2D9149B254F00C5D440 /* PXNavigationItem.h in Headers */,
+				EA44B2DB149B254F00C5D440 /* PXNavigationPathCell.h in Headers */,
+				EA44B2DD149B254F00C5D440 /* PXNavigationController.h in Headers */,
+				EA44B2DF149B254F00C5D440 /* PXNavigationBar.h in Headers */,
+				EA44B2E5149B255500C5D440 /* PXPreferencesController.h in Headers */,
+				EA44B2E7149B255500C5D440 /* PXPreferencePane.h in Headers */,
+				EA44B2EE149B29FE00C5D440 /* PXGradientView.h in Headers */,
+				EA44B2F3149B2A6F00C5D440 /* NSObject+PhotonAdditions.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		EA44B290149B21FF00C5D440 /* Photon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA44B2A6149B21FF00C5D440 /* Build configuration list for PBXNativeTarget "Photon" */;
+			buildPhases = (
+				EA44B28C149B21FF00C5D440 /* Sources */,
+				EA44B28D149B21FF00C5D440 /* Frameworks */,
+				EA44B28E149B21FF00C5D440 /* Headers */,
+				EA44B28F149B21FF00C5D440 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Photon;
+			productName = Photon;
+			productReference = EA44B291149B21FF00C5D440 /* Photon.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA44B287149B21FF00C5D440 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Sunflower Softworks";
+			};
+			buildConfigurationList = EA44B28A149B21FF00C5D440 /* Build configuration list for PBXProject "Photon" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EA44B285149B21FF00C5D440;
+			productRefGroup = EA44B292149B21FF00C5D440 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA44B290149B21FF00C5D440 /* Photon */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA44B28F149B21FF00C5D440 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA44B29F149B21FF00C5D440 /* InfoPlist.strings in Resources */,
+				EA44B2C5149B23C300C5D440 /* TabBarView.xib in Resources */,
+				EA44B2D7149B254F00C5D440 /* PXPathComponentSeparator.pdf in Resources */,
+				EA44B2D8149B254F00C5D440 /* NavigationView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA44B28C149B21FF00C5D440 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA44B2A3149B21FF00C5D440 /* Photon.m in Sources */,
+				EA44B2B6149B22F800C5D440 /* PXViewController.m in Sources */,
+				EA44B2C0149B23C300C5D440 /* PXTabBar.m in Sources */,
+				EA44B2C2149B23C300C5D440 /* PXTabBarController.m in Sources */,
+				EA44B2C4149B23C300C5D440 /* PXTabBarItem.m in Sources */,
+				EA44B2D4149B254F00C5D440 /* PXNavigationPathCell.m in Sources */,
+				EA44B2D6149B254F00C5D440 /* PXNavigationPathComponentCell.m in Sources */,
+				EA44B2DA149B254F00C5D440 /* PXNavigationItem.m in Sources */,
+				EA44B2DC149B254F00C5D440 /* PXNavigationBar.m in Sources */,
+				EA44B2DE149B254F00C5D440 /* PXNavigationController.m in Sources */,
+				EA44B2E4149B255500C5D440 /* PXPreferencePane.m in Sources */,
+				EA44B2E6149B255500C5D440 /* PXPreferencesController.m in Sources */,
+				EA44B2ED149B29FE00C5D440 /* PXGradientView.m in Sources */,
+				EA44B2F2149B2A6F00C5D440 /* NSObject+PhotonAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EA44B29D149B21FF00C5D440 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA44B29E149B21FF00C5D440 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA44B2A4149B21FF00C5D440 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		EA44B2A5149B21FF00C5D440 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		EA44B2A7149B21FF00C5D440 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Photon/Photon-Prefix.pch";
+				INFOPLIST_FILE = "Photon/Photon-Info.plist";
+				INSTALL_PATH = "@rpath";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		EA44B2A8149B21FF00C5D440 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Photon/Photon-Prefix.pch";
+				INFOPLIST_FILE = "Photon/Photon-Info.plist";
+				INSTALL_PATH = "@rpath";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA44B28A149B21FF00C5D440 /* Build configuration list for PBXProject "Photon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA44B2A4149B21FF00C5D440 /* Debug */,
+				EA44B2A5149B21FF00C5D440 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA44B2A6149B21FF00C5D440 /* Build configuration list for PBXNativeTarget "Photon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA44B2A7149B21FF00C5D440 /* Debug */,
+				EA44B2A8149B21FF00C5D440 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA44B287149B21FF00C5D440 /* Project object */;
+}
