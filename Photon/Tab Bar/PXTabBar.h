@@ -31,6 +31,8 @@ typedef NSUInteger PXTabBarStyle;
 @property (assign) PXTabBarStyle style;
 @property (assign) BOOL showsBottomSeparator;
 
+@property (strong, readonly) PXTabBarItem *selectedItem;
+
 - (void)addItem:(PXTabBarItem *)item;
 - (void)insertItem:(PXTabBarItem *)item atIndex:(NSUInteger)index;
 - (void)removeItem:(PXTabBarItem *)item;
@@ -38,8 +40,6 @@ typedef NSUInteger PXTabBarStyle;
 - (void)selectItem:(PXTabBarItem *)item;
 - (void)selectItemAtIndex:(NSUInteger)index;
 - (PXTabBarItem *)itemAtIndex:(NSUInteger)index;
-
-@property (strong, readonly) PXTabBarItem *selectedItem;
 
 @end
 
