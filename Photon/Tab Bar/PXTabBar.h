@@ -24,7 +24,7 @@ typedef NSUInteger PXTabBarStyle;
 
 @interface PXTabBar : NSView
 
-@property (assign) id <PXTabBarDelegate> delegate;
+@property (weak) id <PXTabBarDelegate> delegate;
 
 @property (copy) NSArray *items;
 

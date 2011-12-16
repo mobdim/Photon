@@ -20,7 +20,7 @@
 @property (assign) IBOutlet PXTabBar *tabBar;
 @property (assign) IBOutlet NSView *containerView;
 
-@property (assign) id <PXTabBarControllerDelegate> delegate;
+@property (weak) id <PXTabBarControllerDelegate> delegate;
 
 @property (assign) NSArray *viewControllers;
 

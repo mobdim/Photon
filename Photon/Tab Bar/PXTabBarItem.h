@@ -11,9 +11,9 @@
 
 @interface PXTabBarItem : NSObject
 
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSImage *image;
-@property (nonatomic, assign) id representedObject;
-@property (nonatomic, copy) NSString *badgeValue;
+@property (copy) NSString *title;
+@property (copy) NSImage *image;
+@property (weak) id representedObject;
+@property (copy) NSString *badgeValue;
 
 @end

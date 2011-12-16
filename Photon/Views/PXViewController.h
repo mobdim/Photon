@@ -27,7 +27,7 @@
 @property (copy, readwrite) NSImage *image;
 @property (retain, readwrite) NSUndoManager *undoManager;
 
-@property (assign, readonly) PXViewController *parentViewController;
+@property (weak, readonly) PXViewController *parentViewController;
 
 
 - (void)viewDidLoad;
