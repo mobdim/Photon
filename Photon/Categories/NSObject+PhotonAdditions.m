@@ -23,4 +23,10 @@
     }
 }
 
+- (void)removeObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths context:(void *)context {
+    for (NSString *keyPath in keyPaths) {
+        [self removeObserver:observer forKeyPath:keyPath context:context];
+    }
+}
+
 @end
