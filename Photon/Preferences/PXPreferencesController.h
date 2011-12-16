@@ -39,7 +39,7 @@
 
 /*!
  * @property preferencePanes
- * @abtract Gets the array of preference panes.
+ * @abstract Gets the array of preference panes.
  * 
  * @discussion
  * Observable via KVO.
