@@ -10,10 +10,25 @@
 #import <Photon/PXViewController.h>
 
 
-/* An PXPreferencePane object defines an individual preference pane
+/*!
+ * @class PXPreferencePane
+ * @abstract An individual preference pane
+ * 
+ * @discussion
+ * PXPreferencePane is a subclass of PXViewController that defines a pane
+ * managed by a preferences controller.
  */
-@interface PXPreferencePane : PXViewController
+@interface PXPreferencePane : PXViewController <NSUserInterfaceItemIdentification>
 
+/*!
+ * @property identifier
+ * @abstract The unique identifier of the preference pane
+ * 
+ * @discussion
+ * The identifier must be unique within the context of a preference pane controller.
+ * 
+ * @result An NSString object
+ */
 @property (copy) NSString *identifier;
 
 @end

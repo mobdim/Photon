@@ -43,6 +43,7 @@
 		EA44B2EE149B29FE00C5D440 /* PXGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2EC149B29FE00C5D440 /* PXGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2F2149B2A6F00C5D440 /* NSObject+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */; };
 		EA44B2F3149B2A6F00C5D440 /* NSObject+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		EA44B2EC149B29FE00C5D440 /* PXGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGradientView.h; sourceTree = "<group>"; };
 		EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PhotonAdditions.m"; sourceTree = "<group>"; };
 		EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PhotonAdditions.h"; sourceTree = "<group>"; };
+		EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencesController_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,7 @@
 				EA44B2E3149B255500C5D440 /* PXPreferencePane.h */,
 				EA44B2E0149B255500C5D440 /* PXPreferencePane.m */,
 				EA44B2E1149B255500C5D440 /* PXPreferencesController.h */,
+				EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */,
 				EA44B2E2149B255500C5D440 /* PXPreferencesController.m */,
 			);
 			path = Preferences;
@@ -254,6 +257,7 @@
 				EA44B2E7149B255500C5D440 /* PXPreferencePane.h in Headers */,
 				EA44B2EE149B29FE00C5D440 /* PXGradientView.h in Headers */,
 				EA44B2F3149B2A6F00C5D440 /* NSObject+PhotonAdditions.h in Headers */,
+				EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

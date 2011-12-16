@@ -7,19 +7,10 @@
 //
 
 #import "PXPreferencesController.h"
+#import "PXPreferencesController_Private.h"
 #import "PXPreferencePane.h"
 
 #import <QuartzCore/QuartzCore.h>
-
-
-@interface PXPreferencesController ()
-
-- (void)toggleActivePreferenceView:(NSToolbarItem *)item;
-- (void)showPreferencePaneWithIdentifier:(NSString *)identifier animate:(BOOL)shouldAnimate;
-- (void)confirmedShowPreferencePaneWithIdentifier:(NSString *)identifier animate:(BOOL)shouldAnimate;
-- (NSRect)frameForView:(NSView *)view;
-
-@end
 
 
 @implementation PXPreferencesController {
@@ -36,10 +27,18 @@
     static __strong PXPreferencesController *sharedController = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSWindow *window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0.0, 0.0, 510.0, 240.0) styleMask:(NSTitledWindowMask|NSClosableWindowMask) backing:NSBackingStoreBuffered defer:YES];
-        sharedController = [[self alloc] initWithWindow:window];
+        sharedController = [[self alloc] init];
     });
 	return sharedController;
+}
+
+- (id)init {
+    NSWindow *window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0.0, 0.0, 510.0, 240.0) styleMask:(NSTitledWindowMask|NSClosableWindowMask) backing:NSBackingStoreBuffered defer:YES];
+    self = [self initWithWindow:window];
+    if (self) {
+        
+    }
+    return self;
 }
 
 - (id)initWithWindow:(NSWindow *)window {
