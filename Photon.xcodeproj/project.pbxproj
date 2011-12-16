@@ -146,7 +146,7 @@
 				EA44B2A1149B21FF00C5D440 /* Photon.h */,
 				EA44B2A2149B21FF00C5D440 /* Photon.m */,
 				EA44B2AD149B222E00C5D440 /* PhotonDefines.h */,
-				EA44B2B0149B22E800C5D440 /* View */,
+				EA44B2B0149B22E800C5D440 /* Views */,
 				EA44B2B7149B23AD00C5D440 /* Tab Bar */,
 				EA44B2C6149B251300C5D440 /* Navigation */,
 				EA44B2C7149B251E00C5D440 /* Preferences */,
@@ -166,7 +166,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EA44B2B0149B22E800C5D440 /* View */ = {
+		EA44B2B0149B22E800C5D440 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				EA44B2B2149B22F800C5D440 /* PXViewController.h */,
@@ -175,7 +175,6 @@
 				EA44B2EC149B29FE00C5D440 /* PXGradientView.h */,
 				EA44B2EB149B29FE00C5D440 /* PXGradientView.m */,
 			);
-			name = View;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -451,6 +450,7 @@
 				EA44B2A8149B21FF00C5D440 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
