@@ -13,8 +13,8 @@
 
 @property (copy) NSString *title;
 @property (copy) NSImage *image;
-@property (retain) NSMenu *menu;
-@property (retain) NSView *accessoryView;
+@property (strong) NSMenu *menu;
+@property (strong) NSView *accessoryView;
 @property (weak) id representedObject;
 
 @end

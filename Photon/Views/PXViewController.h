@@ -25,7 +25,7 @@
 
 @property (copy, readwrite) NSString *title;
 @property (copy, readwrite) NSImage *image;
-@property (retain, readwrite) NSUndoManager *undoManager;
+@property (strong, readwrite) NSUndoManager *undoManager;
 
 @property (weak, readonly) PXViewController *parentViewController;
 
@@ -40,11 +40,11 @@
 
 
 // Navigation controller
-@property (retain, readonly) PXNavigationController *navigationController;
-@property (retain, readonly) PXNavigationItem *navigationItem;
+@property (strong, readonly) PXNavigationController *navigationController;
+@property (strong, readonly) PXNavigationItem *navigationItem;
 
 // Tab Bar controller
-@property (retain, readonly) PXTabBarController *tabBarController;
-@property (retain, readonly) PXTabBarItem *tabBarItem;
+@property (strong, readonly) PXTabBarController *tabBarController;
+@property (strong, readonly) PXTabBarItem *tabBarItem;
 
 @end

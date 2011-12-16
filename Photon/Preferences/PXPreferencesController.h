@@ -21,10 +21,10 @@
 + (PXPreferencesController *)sharedController;
 
 // Returns an array of current preference panes. Observable via KVO.
-@property (readonly, retain) NSArray *preferencePanes;
+@property (strong, readonly) NSArray *preferencePanes;
 
 // Returns the current preference pane. Observable via KVO.
-@property (readonly, retain) PXPreferencePane *currentPreferencePane;
+@property (strong, readonly) PXPreferencePane *currentPreferencePane;
 
 // Returns the preference pane with a specific identifier (or nil if none exists)
 - (PXPreferencePane *)preferencePaneWithIdentifier:(NSString *)identifier;
