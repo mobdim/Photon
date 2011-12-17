@@ -58,6 +58,4 @@ typedef NSUInteger PXTabBarStyle;
 - (void)tabBar:(PXTabBar *)aTabBar willSelectItem:(PXTabBarItem *)item;
 - (void)tabBar:(PXTabBar *)aTabBar didSelectItem:(PXTabBarItem *)item;
 
-- (NSWindow *)tabBar:(PXTabBar *)aTabBar detachableWindowForItem:(PXTabBarItem *)item;
-
 @end

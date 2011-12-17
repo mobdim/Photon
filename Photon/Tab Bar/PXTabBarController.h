@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Photon/PhotonDefines.h>
 #import <Photon/PXViewController.h>
 #import <Photon/PXTabBar.h>
 
@@ -52,8 +53,6 @@
 - (BOOL)tabBarController:(PXTabBarController *)aTabBarController shouldSelectViewController:(PXViewController *)viewController;
 - (void)tabBarController:(PXTabBarController *)aTabBarController willSelectViewController:(PXViewController *)viewController;
 - (void)tabBarController:(PXTabBarController *)aTabBarController didSelectViewController:(PXViewController *)viewController;
-
-- (NSWindow *)tabBarController:(PXTabBarController *)aTabBarController detachableWindowForViewController:(PXViewController *)viewController;
 
 @end
 
