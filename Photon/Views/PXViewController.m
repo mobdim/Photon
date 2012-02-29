@@ -43,6 +43,10 @@
 	return self;
 }
 
+- (void)dealloc {
+    [self viewDidUnload];
+}
+
 
 #pragma mark -
 #pragma mark Overrides

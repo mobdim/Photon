@@ -21,7 +21,7 @@
 @property (assign) IBOutlet PXTabBar *tabBar;
 @property (assign) IBOutlet NSView *containerView;
 
-@property (weak) id <PXTabBarControllerDelegate> delegate;
+@property (unsafe_unretained) id <PXTabBarControllerDelegate> delegate;
 
 @property (assign) NSArray *viewControllers;
 

@@ -78,7 +78,7 @@
  * 
  * @result A PXViewController object
  */
-@property (weak, readonly) PXViewController *parentViewController;
+@property (assign, readonly) PXViewController *parentViewController;
 
 
 /*!
@@ -91,7 +91,7 @@
  * @method viewDidLoad
  * @abstract Called after the controller's view is unloaded
  */
-- (void)viewDidUnload; // Not currently invoked
+- (void)viewDidUnload;
 
 /*!
  * @method viewWillAppear

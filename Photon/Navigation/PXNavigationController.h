@@ -28,7 +28,7 @@
 @property (copy) NSArray *viewControllers;
 @property (strong, readonly) PXViewController *topViewController;
 
-@property (weak) id <PXNavigationControllerDelegate> delegate;
+@property (unsafe_unretained) id <PXNavigationControllerDelegate> delegate;
 
 @property (assign) BOOL alwaysShowsNavigationBar;
 

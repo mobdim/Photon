@@ -16,7 +16,7 @@
 
 @interface PXNavigationBar : PXGradientView
 
-@property (weak) id <PXNavigationBarDelegate> delegate;
+@property (unsafe_unretained) id <PXNavigationBarDelegate> delegate;
 @property (copy) NSArray *items;
 @property (strong, readonly) PXNavigationItem *topItem;
 

@@ -13,7 +13,7 @@
 
 @property (copy) NSString *title;
 @property (copy) NSImage *image;
-@property (weak) id representedObject;
+@property (unsafe_unretained) id representedObject;
 @property (copy) NSString *badgeValue;
 
 @end

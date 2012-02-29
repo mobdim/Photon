@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA00FB22149C7525002F8A15 /* PXObjectEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA00FB20149C7525002F8A15 /* PXObjectEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA00FB23149C7525002F8A15 /* PXObjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA00FB21149C7525002F8A15 /* PXObjectEditor.m */; };
 		EA44B295149B21FF00C5D440 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA44B294149B21FF00C5D440 /* Cocoa.framework */; };
 		EA44B29F149B21FF00C5D440 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA44B29D149B21FF00C5D440 /* InfoPlist.strings */; };
 		EA44B2A3149B21FF00C5D440 /* Photon.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2A2149B21FF00C5D440 /* Photon.m */; };
@@ -47,6 +49,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA00FB20149C7525002F8A15 /* PXObjectEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXObjectEditor.h; sourceTree = "<group>"; };
+		EA00FB21149C7525002F8A15 /* PXObjectEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXObjectEditor.m; sourceTree = "<group>"; };
 		EA44B291149B21FF00C5D440 /* Photon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Photon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA44B294149B21FF00C5D440 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EA44B297149B21FF00C5D440 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -105,6 +109,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA00FB1E149C750F002F8A15 /* Object Editors */ = {
+			isa = PBXGroup;
+			children = (
+				EA00FB20149C7525002F8A15 /* PXObjectEditor.h */,
+				EA00FB21149C7525002F8A15 /* PXObjectEditor.m */,
+			);
+			path = "Object Editors";
+			sourceTree = "<group>";
+		};
 		EA44B285149B21FF00C5D440 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +164,7 @@
 				EA44B2B0149B22E800C5D440 /* Views */,
 				EA44B2B7149B23AD00C5D440 /* Tab Bar */,
 				EA44B2C6149B251300C5D440 /* Navigation */,
+				EA00FB1E149C750F002F8A15 /* Object Editors */,
 				EA44B2C7149B251E00C5D440 /* Preferences */,
 				EA44B2EF149B2A2200C5D440 /* Categories */,
 				EA44B29B149B21FF00C5D440 /* Supporting Files */,
@@ -258,6 +272,7 @@
 				EA44B2EE149B29FE00C5D440 /* PXGradientView.h in Headers */,
 				EA44B2F3149B2A6F00C5D440 /* NSObject+PhotonAdditions.h in Headers */,
 				EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */,
+				EA00FB22149C7525002F8A15 /* PXObjectEditor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +303,7 @@
 		EA44B287149B21FF00C5D440 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0440;
 				ORGANIZATIONNAME = "Sunflower Softworks";
 			};
 			buildConfigurationList = EA44B28A149B21FF00C5D440 /* Build configuration list for PBXProject "Photon" */;
@@ -341,6 +356,7 @@
 				EA44B2E6149B255500C5D440 /* PXPreferencesController.m in Sources */,
 				EA44B2ED149B29FE00C5D440 /* PXGradientView.m in Sources */,
 				EA44B2F2149B2A6F00C5D440 /* NSObject+PhotonAdditions.m in Sources */,
+				EA00FB23149C7525002F8A15 /* PXObjectEditor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

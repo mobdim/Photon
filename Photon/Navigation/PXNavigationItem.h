@@ -15,6 +15,6 @@
 @property (copy) NSImage *image;
 @property (strong) NSMenu *menu;
 @property (strong) NSView *accessoryView;
-@property (weak) id representedObject;
+@property (unsafe_unretained) id representedObject;
 
 @end
