@@ -1,0 +1,8 @@
+# Photon
+### User interface toolkit for Mac OS X
+
+Photon is a user interface toolkit for Mac OS X, with classes for common user interface idioms, such as iOS-style navigation and tab bars.
+
+## License
+
+Photon is Apache 2.0 licensed.
