@@ -58,12 +58,12 @@
 
 
 // Notifications
-PHOTON_EXPORT NSString * const PXTabBarControllerWillAddViewControllerNotification;
-PHOTON_EXPORT NSString * const PXTabBarControllerDidAddViewControllerNotification;
+PHOTON_EXTERN NSString * const PXTabBarControllerWillAddViewControllerNotification;
+PHOTON_EXTERN NSString * const PXTabBarControllerDidAddViewControllerNotification;
 
-PHOTON_EXPORT NSString * const PXTabBarControllerWillRemoveViewControllerNotification;
-PHOTON_EXPORT NSString * const PXTabBarControllerDidRemoveViewControllerNotification;
+PHOTON_EXTERN NSString * const PXTabBarControllerWillRemoveViewControllerNotification;
+PHOTON_EXTERN NSString * const PXTabBarControllerDidRemoveViewControllerNotification;
 
-PHOTON_EXPORT NSString * const PXTabBarControllerWillSelectViewControllerNotification;
-PHOTON_EXPORT NSString * const PXTabBarControllerDidSelectViewControllerNotification;
+PHOTON_EXTERN NSString * const PXTabBarControllerWillSelectViewControllerNotification;
+PHOTON_EXTERN NSString * const PXTabBarControllerDidSelectViewControllerNotification;
 
