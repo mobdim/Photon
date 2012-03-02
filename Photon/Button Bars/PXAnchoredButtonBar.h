@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface PXAnchoredButtonBar : NSView {
-
-}
+@interface PXAnchoredButtonBar : NSView
 
 @end
