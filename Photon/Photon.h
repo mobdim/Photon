@@ -7,6 +7,10 @@
 //
 
 #import <Photon/PhotonDefines.h>
+#import <Photon/PXAnchoredButton.h>
+#import <Photon/PXAnchoredButtonBar.h>
+#import <Photon/PXAnchoredMenuButtonCell.h>
+#import <Photon/PXAnchoredPopUpButton.h>
 #import <Photon/PXGradientView.h>
 #import <Photon/PXNavigationBar.h>
 #import <Photon/PXNavigationController.h>
@@ -17,6 +21,7 @@
 #import <Photon/PXTabBar.h>
 #import <Photon/PXTabBarController.h>
 #import <Photon/PXTabBarItem.h>
+#import <Photon/PXTableViewCell.h>
 #import <Photon/PXViewController.h>
 #import <Photon/NSObject+PhotonAdditions.h>
 

@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		EA00FB22149C7525002F8A15 /* PXObjectEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA00FB20149C7525002F8A15 /* PXObjectEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA00FB23149C7525002F8A15 /* PXObjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA00FB21149C7525002F8A15 /* PXObjectEditor.m */; };
+		EA30301814FFFA6A0062D399 /* PXTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301614FFFA6A0062D399 /* PXTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA30301914FFFA6A0062D399 /* PXTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30301714FFFA6A0062D399 /* PXTableViewCell.m */; };
+		EA30302315001F5A0062D399 /* PXAnchoredButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301B15001F5A0062D399 /* PXAnchoredButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA30302415001F5A0062D399 /* PXAnchoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30301C15001F5A0062D399 /* PXAnchoredButton.m */; };
+		EA30302515001F5A0062D399 /* PXAnchoredButtonBar.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301D15001F5A0062D399 /* PXAnchoredButtonBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA30302615001F5A0062D399 /* PXAnchoredButtonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30301E15001F5A0062D399 /* PXAnchoredButtonBar.m */; };
+		EA30302715001F5A0062D399 /* PXAnchoredMenuButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301F15001F5A0062D399 /* PXAnchoredMenuButtonCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA30302815001F5A0062D399 /* PXAnchoredMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30302015001F5A0062D399 /* PXAnchoredMenuButtonCell.m */; };
+		EA30302915001F5A0062D399 /* PXAnchoredPopUpButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30302115001F5A0062D399 /* PXAnchoredPopUpButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA30302A15001F5A0062D399 /* PXAnchoredPopUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30302215001F5A0062D399 /* PXAnchoredPopUpButton.m */; };
 		EA44B295149B21FF00C5D440 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA44B294149B21FF00C5D440 /* Cocoa.framework */; };
 		EA44B29F149B21FF00C5D440 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA44B29D149B21FF00C5D440 /* InfoPlist.strings */; };
 		EA44B2A3149B21FF00C5D440 /* Photon.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2A2149B21FF00C5D440 /* Photon.m */; };
@@ -51,6 +61,16 @@
 /* Begin PBXFileReference section */
 		EA00FB20149C7525002F8A15 /* PXObjectEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXObjectEditor.h; sourceTree = "<group>"; };
 		EA00FB21149C7525002F8A15 /* PXObjectEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXObjectEditor.m; sourceTree = "<group>"; };
+		EA30301614FFFA6A0062D399 /* PXTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTableViewCell.h; sourceTree = "<group>"; };
+		EA30301714FFFA6A0062D399 /* PXTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTableViewCell.m; sourceTree = "<group>"; };
+		EA30301B15001F5A0062D399 /* PXAnchoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAnchoredButton.h; sourceTree = "<group>"; };
+		EA30301C15001F5A0062D399 /* PXAnchoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAnchoredButton.m; sourceTree = "<group>"; };
+		EA30301D15001F5A0062D399 /* PXAnchoredButtonBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAnchoredButtonBar.h; sourceTree = "<group>"; };
+		EA30301E15001F5A0062D399 /* PXAnchoredButtonBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAnchoredButtonBar.m; sourceTree = "<group>"; };
+		EA30301F15001F5A0062D399 /* PXAnchoredMenuButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAnchoredMenuButtonCell.h; sourceTree = "<group>"; };
+		EA30302015001F5A0062D399 /* PXAnchoredMenuButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAnchoredMenuButtonCell.m; sourceTree = "<group>"; };
+		EA30302115001F5A0062D399 /* PXAnchoredPopUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAnchoredPopUpButton.h; sourceTree = "<group>"; };
+		EA30302215001F5A0062D399 /* PXAnchoredPopUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAnchoredPopUpButton.m; sourceTree = "<group>"; };
 		EA44B291149B21FF00C5D440 /* Photon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Photon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA44B294149B21FF00C5D440 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EA44B297149B21FF00C5D440 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -118,6 +138,30 @@
 			path = "Object Editors";
 			sourceTree = "<group>";
 		};
+		EA30301414FFFA5D0062D399 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EA30301614FFFA6A0062D399 /* PXTableViewCell.h */,
+				EA30301714FFFA6A0062D399 /* PXTableViewCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		EA30301A15001F360062D399 /* Button Bars */ = {
+			isa = PBXGroup;
+			children = (
+				EA30301B15001F5A0062D399 /* PXAnchoredButton.h */,
+				EA30301C15001F5A0062D399 /* PXAnchoredButton.m */,
+				EA30301D15001F5A0062D399 /* PXAnchoredButtonBar.h */,
+				EA30301E15001F5A0062D399 /* PXAnchoredButtonBar.m */,
+				EA30301F15001F5A0062D399 /* PXAnchoredMenuButtonCell.h */,
+				EA30302015001F5A0062D399 /* PXAnchoredMenuButtonCell.m */,
+				EA30302115001F5A0062D399 /* PXAnchoredPopUpButton.h */,
+				EA30302215001F5A0062D399 /* PXAnchoredPopUpButton.m */,
+			);
+			path = "Button Bars";
+			sourceTree = "<group>";
+		};
 		EA44B285149B21FF00C5D440 = {
 			isa = PBXGroup;
 			children = (
@@ -162,8 +206,10 @@
 				EA44B2A2149B21FF00C5D440 /* Photon.m */,
 				EA44B2AD149B222E00C5D440 /* PhotonDefines.h */,
 				EA44B2B0149B22E800C5D440 /* Views */,
+				EA30301414FFFA5D0062D399 /* Cells */,
 				EA44B2B7149B23AD00C5D440 /* Tab Bar */,
 				EA44B2C6149B251300C5D440 /* Navigation */,
+				EA30301A15001F360062D399 /* Button Bars */,
 				EA00FB1E149C750F002F8A15 /* Object Editors */,
 				EA44B2C7149B251E00C5D440 /* Preferences */,
 				EA44B2EF149B2A2200C5D440 /* Categories */,
@@ -273,6 +319,11 @@
 				EA44B2F3149B2A6F00C5D440 /* NSObject+PhotonAdditions.h in Headers */,
 				EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */,
 				EA00FB22149C7525002F8A15 /* PXObjectEditor.h in Headers */,
+				EA30301814FFFA6A0062D399 /* PXTableViewCell.h in Headers */,
+				EA30302315001F5A0062D399 /* PXAnchoredButton.h in Headers */,
+				EA30302515001F5A0062D399 /* PXAnchoredButtonBar.h in Headers */,
+				EA30302715001F5A0062D399 /* PXAnchoredMenuButtonCell.h in Headers */,
+				EA30302915001F5A0062D399 /* PXAnchoredPopUpButton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +408,11 @@
 				EA44B2ED149B29FE00C5D440 /* PXGradientView.m in Sources */,
 				EA44B2F2149B2A6F00C5D440 /* NSObject+PhotonAdditions.m in Sources */,
 				EA00FB23149C7525002F8A15 /* PXObjectEditor.m in Sources */,
+				EA30301914FFFA6A0062D399 /* PXTableViewCell.m in Sources */,
+				EA30302415001F5A0062D399 /* PXAnchoredButton.m in Sources */,
+				EA30302615001F5A0062D399 /* PXAnchoredButtonBar.m in Sources */,
+				EA30302815001F5A0062D399 /* PXAnchoredMenuButtonCell.m in Sources */,
+				EA30302A15001F5A0062D399 /* PXAnchoredPopUpButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

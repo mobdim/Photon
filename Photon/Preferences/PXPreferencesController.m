@@ -23,6 +23,8 @@
 	NSToolbar *toolbar;
 }
 
+@synthesize autosaveIdentifier=_autosaveIdentifier;
+
 + (PXPreferencesController *)sharedController {
     static __strong PXPreferencesController *sharedController = nil;
     static dispatch_once_t onceToken;
@@ -33,7 +35,7 @@
 }
 
 - (id)init {
-    NSWindow *window = [[NSWindow alloc] initWithContentRect:NSMakeRect(0.0, 0.0, 510.0, 240.0) styleMask:(NSTitledWindowMask|NSClosableWindowMask) backing:NSBackingStoreBuffered defer:YES];
+    NSPanel *window = [[NSPanel alloc] initWithContentRect:NSMakeRect(0.0, 0.0, 510.0, 240.0) styleMask:(NSTitledWindowMask|NSClosableWindowMask) backing:NSBackingStoreBuffered defer:YES];
     self = [self initWithWindow:window];
     if (self) {
         
@@ -82,9 +84,16 @@
 		[toolbar setDelegate:self];
 		[[self window] setToolbar:toolbar];
 		
-		NSString *firstIdentifier = [preferencePaneIdentifiers objectAtIndex:0];
-		[[[self window] toolbar] setSelectedItemIdentifier:firstIdentifier];
-		[self showPreferencePaneWithIdentifier:firstIdentifier animate:NO];
+		NSString *identifier = nil;
+        if ([self autosaveIdentifier] != nil) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            identifier = [defaults stringForKey:[self autosaveIdentifier]];
+        }
+        if (identifier == nil) {
+            identifier= [preferencePaneIdentifiers objectAtIndex:0];
+        }
+		[[[self window] toolbar] setSelectedItemIdentifier:identifier];
+		[self showPreferencePaneWithIdentifier:identifier animate:NO];
 	}
 	
 	[super showWindow:sender];
@@ -258,6 +267,11 @@
 	[toolbar setSelectedItemIdentifier:[currentPane identifier]];
 	
 	[currentPane addObserver:self forKeyPath:@"view" options:(NSKeyValueObservingOptionNew) context:nil];
+    
+    if ([self autosaveIdentifier] != nil) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:identifier forKey:[self autosaveIdentifier]];
+    }
 	
 	[self didChangeValueForKey:@"currentPane"];
 }

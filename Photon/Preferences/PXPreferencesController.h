@@ -38,6 +38,14 @@
 - (id)init;
 
 /*!
+ * @property autosaveIdentifier
+ * @abstract Gets the autosave identifier for the preference pane
+ * 
+ * @result An NSString object
+ */
+@property (copy) NSString *autosaveIdentifier;
+
+/*!
  * @property preferencePanes
  * @abstract Gets the array of preference panes.
  * 
