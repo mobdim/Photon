@@ -9,15 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface PXAnchoredButton : NSButton {
-
-}
+@interface PXAnchoredButton : NSButton
 
 @end
 
 
-@interface PXAnchoredButtonCell : NSButtonCell {
-
-}
+@interface PXAnchoredButtonCell : NSButtonCell
 
 @end

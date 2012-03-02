@@ -11,6 +11,12 @@
 
 @implementation PXAnchoredPopUpButton
 
++ (void)initialize {
+    if (self == [PXAnchoredPopUpButton class]) {
+        [self setCellClass:[PXAnchoredPopUpButtonCell class]];
+    }
+}
+
 @end
 
 
