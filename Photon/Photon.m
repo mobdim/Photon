@@ -8,3 +8,5 @@
 
 #import "Photon.h"
 
+
+NSString * const PXPhotonErrorDomain = @"PXPhotonErrorDomain";
