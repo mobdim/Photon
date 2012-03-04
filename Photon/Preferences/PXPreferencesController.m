@@ -36,6 +36,7 @@
 
 - (id)init {
     NSPanel *window = [[NSPanel alloc] initWithContentRect:NSMakeRect(0.0, 0.0, 510.0, 240.0) styleMask:(NSTitledWindowMask|NSClosableWindowMask) backing:NSBackingStoreBuffered defer:YES];
+    [window setHidesOnDeactivate:NO];
     self = [self initWithWindow:window];
     if (self) {
         
