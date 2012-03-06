@@ -19,6 +19,7 @@
 		EA30302815001F5A0062D399 /* PXAnchoredMenuButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30302015001F5A0062D399 /* PXAnchoredMenuButtonCell.m */; };
 		EA30302915001F5A0062D399 /* PXAnchoredPopUpButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30302115001F5A0062D399 /* PXAnchoredPopUpButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA30302A15001F5A0062D399 /* PXAnchoredPopUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30302215001F5A0062D399 /* PXAnchoredPopUpButton.m */; };
+		EA41D8111506882700C48503 /* PXAnchoredPopUpButtonPullDownArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EA41D8101506882700C48503 /* PXAnchoredPopUpButtonPullDownArrow.pdf */; };
 		EA44B295149B21FF00C5D440 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA44B294149B21FF00C5D440 /* Cocoa.framework */; };
 		EA44B29F149B21FF00C5D440 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA44B29D149B21FF00C5D440 /* InfoPlist.strings */; };
 		EA44B2A3149B21FF00C5D440 /* Photon.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2A2149B21FF00C5D440 /* Photon.m */; };
@@ -71,6 +72,7 @@
 		EA30302015001F5A0062D399 /* PXAnchoredMenuButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAnchoredMenuButtonCell.m; sourceTree = "<group>"; };
 		EA30302115001F5A0062D399 /* PXAnchoredPopUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAnchoredPopUpButton.h; sourceTree = "<group>"; };
 		EA30302215001F5A0062D399 /* PXAnchoredPopUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAnchoredPopUpButton.m; sourceTree = "<group>"; };
+		EA41D8101506882700C48503 /* PXAnchoredPopUpButtonPullDownArrow.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PXAnchoredPopUpButtonPullDownArrow.pdf; sourceTree = "<group>"; };
 		EA44B291149B21FF00C5D440 /* Photon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Photon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA44B294149B21FF00C5D440 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EA44B297149B21FF00C5D440 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -158,6 +160,7 @@
 				EA30302015001F5A0062D399 /* PXAnchoredMenuButtonCell.m */,
 				EA30302115001F5A0062D399 /* PXAnchoredPopUpButton.h */,
 				EA30302215001F5A0062D399 /* PXAnchoredPopUpButton.m */,
+				EA41D8101506882700C48503 /* PXAnchoredPopUpButtonPullDownArrow.pdf */,
 			);
 			path = "Button Bars";
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				EA44B2C5149B23C300C5D440 /* TabBarView.xib in Resources */,
 				EA44B2D7149B254F00C5D440 /* PXPathComponentSeparator.pdf in Resources */,
 				EA44B2D8149B254F00C5D440 /* NavigationView.xib in Resources */,
+				EA41D8111506882700C48503 /* PXAnchoredPopUpButtonPullDownArrow.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

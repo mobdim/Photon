@@ -17,6 +17,39 @@
 	}
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)viewWillMoveToWindow:(NSWindow *)newWindow {
+    [super viewWillMoveToWindow:newWindow];
+    
+    if ([self window]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidUpdateNotification object:[self window]];
+    }
+    
+    if (newWindow != nil) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidUpdate:) name:NSWindowDidUpdateNotification object:newWindow];
+    }
+}
+
+- (void)windowDidUpdate:(NSNotification*)notification {
+    id validator = [NSApp targetForAction:[self action] to:[self target] from:self];
+
+    if ((validator == nil) || ![validator respondsToSelector:[self action]]) {
+        [self setEnabled:NO];
+    }
+    else if ([validator respondsToSelector:@selector(validateAnchoredButton:)]) {
+        [self setEnabled:[validator validateAnchoredButton:self]];
+    }
+    else if ([validator respondsToSelector:@selector(validateUserInterfaceItem:)]) {
+        [self setEnabled:[validator validateUserInterfaceItem:self]];
+    }
+    else {
+        [self setEnabled:YES];
+    }
+}
+
 @end
 
 

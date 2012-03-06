@@ -9,11 +9,18 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface PXAnchoredButton : NSButton
+@interface PXAnchoredButton : NSButton <NSValidatedUserInterfaceItem>
 
 @end
 
 
 @interface PXAnchoredButtonCell : NSButtonCell
+
+@end
+
+
+@interface NSObject (PXAnchoredButtonValidation)
+
+- (BOOL)validateAnchoredButton:(PXAnchoredButton *)anchoredButton;
 
 @end
