@@ -31,7 +31,7 @@
 										  clickCount:[theEvent clickCount]
 											pressure:[theEvent pressure]];
 	
-	[NSMenu popUpContextMenu:([self menu] ? [self menu] : [controlView menu]) withEvent:menuEvent forView:controlView];
+	[NSMenu popUpContextMenu:([self menu] ? [self menu] : [controlView menu]) withEvent:menuEvent forView:controlView withFont:[NSFont menuFontOfSize:[NSFont systemFontSizeForControlSize:[self controlSize]]]];
 }
 
 - (BOOL)trackMouse:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(NSView *)controlView untilMouseUp:(BOOL)untilMouseUp {
