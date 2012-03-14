@@ -10,10 +10,8 @@
 
 
 enum {
-	PXTabBarStyleDefault = 0,
-	PXTabBarStyleSourceList,
-    PXTabBarStylePopover,
-    PXTabBarStylePopoverHUD,
+    PXTabBarStyleLight = 0,
+    PXTabBarStyleDark,
 };
 typedef NSUInteger PXTabBarStyle;
 
