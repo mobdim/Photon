@@ -731,4 +731,8 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 	return [items objectAtIndex:index];
 }
 
+- (NSUInteger)indexOfItem:(PXTabBarItem *)item {
+    return [items indexOfObjectIdenticalTo:item];
+}
+
 @end

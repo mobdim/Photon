@@ -261,6 +261,10 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 	return [viewControllers objectAtIndex:index];
 }
 
+- (NSUInteger)indexOfViewController:(PXViewController *)viewController {
+    return [viewControllers indexOfObjectIdenticalTo:viewController];
+}
+
 - (void)selectViewController:(PXViewController *)viewController {
 	NSUInteger index = [viewControllers indexOfObjectIdenticalTo:viewController];
 	[self selectViewControllerAtIndex:index];

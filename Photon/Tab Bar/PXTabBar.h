@@ -40,6 +40,7 @@ typedef NSUInteger PXTabBarStyle;
 - (void)selectItem:(PXTabBarItem *)item;
 - (void)selectItemAtIndex:(NSUInteger)index;
 - (PXTabBarItem *)itemAtIndex:(NSUInteger)index;
+- (NSUInteger)indexOfItem:(PXTabBarItem *)item;
 
 @end
 

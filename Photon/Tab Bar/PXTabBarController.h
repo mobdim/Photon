@@ -33,6 +33,7 @@
 - (void)removeViewController:(PXViewController *)viewController;
 - (void)removeViewControllerAtIndex:(NSUInteger)index;
 - (PXViewController *)viewControllerAtIndex:(NSUInteger)index;
+- (NSUInteger)indexOfViewController:(PXViewController *)viewController;
 
 - (void)selectViewController:(PXViewController *)viewController;
 - (void)selectViewControllerAtIndex:(NSUInteger)index;
