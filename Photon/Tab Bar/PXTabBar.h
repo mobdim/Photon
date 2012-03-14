@@ -26,21 +26,11 @@ typedef NSUInteger PXTabBarStyle;
 
 @property (unsafe_unretained) id <PXTabBarDelegate> delegate;
 
-@property (copy) NSArray *items;
-
 @property (assign) PXTabBarStyle style;
-@property (assign) BOOL showsBottomSeparator;
 
-@property (strong, readonly) PXTabBarItem *selectedItem;
-
-- (void)addItem:(PXTabBarItem *)item;
-- (void)insertItem:(PXTabBarItem *)item atIndex:(NSUInteger)index;
-- (void)removeItem:(PXTabBarItem *)item;
-- (void)removeItemAtIndex:(NSUInteger)index;
-- (void)selectItem:(PXTabBarItem *)item;
-- (void)selectItemAtIndex:(NSUInteger)index;
-- (PXTabBarItem *)itemAtIndex:(NSUInteger)index;
-- (NSUInteger)indexOfItem:(PXTabBarItem *)item;
+@property (copy) NSArray *items;
+@property (strong) PXTabBarItem *selectedItem;
+@property (assign) NSUInteger selectedIndex;
 
 @end
 
@@ -48,12 +38,6 @@ typedef NSUInteger PXTabBarStyle;
 @protocol PXTabBarDelegate <NSObject>
 
 @optional
-
-- (void)tabBar:(PXTabBar *)aTabBar willAddItem:(PXTabBarItem *)item;
-- (void)tabBar:(PXTabBar *)aTabBar didAddItem:(PXTabBarItem *)item;
-
-- (void)tabBar:(PXTabBar *)aTabBar willRemoveItem:(PXTabBarItem *)item;
-- (void)tabBar:(PXTabBar *)aTabBar didRemoveItem:(PXTabBarItem *)item;
 
 - (BOOL)tabBar:(PXTabBar *)aTabBar shouldSelectItem:(PXTabBarItem *)item;
 - (void)tabBar:(PXTabBar *)aTabBar willSelectItem:(PXTabBarItem *)item;

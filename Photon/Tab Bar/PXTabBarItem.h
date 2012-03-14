@@ -15,5 +15,6 @@
 @property (copy) NSImage *image;
 @property (unsafe_unretained) id representedObject;
 @property (copy) NSString *badgeValue;
+@property (assign) NSUInteger tag;
 
 @end

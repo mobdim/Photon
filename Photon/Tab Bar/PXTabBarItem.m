@@ -15,5 +15,6 @@
 @synthesize image;
 @synthesize representedObject;
 @synthesize badgeValue;
+@synthesize tag;
 
 @end

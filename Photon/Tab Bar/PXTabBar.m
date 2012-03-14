@@ -7,21 +7,11 @@
 //
 
 #import "PXTabBar.h"
+#import "PXTabBar_Private.h"
 #import "PXTabBarItem.h"
 
 
 NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemPropertyObservationContext";
-
-
-@interface PXTabBar ()
-
-- (void)update;
-- (void)setSelectedItem:(PXTabBarItem *)item;
-- (PXTabBarItem *)itemAtPoint:(NSPoint)thePoint;
-- (NSRect)itemsRect;
-- (CGFloat)widthOfItem:(PXTabBarItem *)item;
-
-@end
 
 
 @implementation PXTabBar {
@@ -35,13 +25,11 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 
 @synthesize delegate;
 @synthesize style;
-@synthesize showsBottomSeparator;
 
 - (id)initWithFrame:(NSRect)frameRect {
 	self = [super initWithFrame:frameRect];
 	if (self) {
 		items = [[NSMutableArray alloc] init];
-        showsBottomSeparator = YES;
 		
 		[self updateTrackingAreas];
 	}
@@ -218,7 +206,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     
 	for (PXTabBarItem *item in items) {
         CGFloat itemWidth = [self widthOfItem:item];
-		NSRect itemRect = NSMakeRect(xPos, 0.0, itemWidth, [self bounds].size.height - 1.0);
+		NSRect itemRect = NSMakeRect(xPos, 0.0, itemWidth, [self bounds].size.height);
         
         if ([items lastObject] != item) {
             itemRect.size.width -= 1.0;
@@ -241,12 +229,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                 if ([[self window] isMainWindow]) {
                     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.8 alpha:1.0]
                                                                          endingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]];
-                    if (showsBottomSeparator) {
-                        [gradient drawInRect:itemRect angle:90.0];
-                    }
-                    else {
-                        [gradient drawInRect:NSMakeRect(NSMinX(itemRect), NSMinY(itemRect), NSWidth(itemRect), NSHeight(itemRect) + 1.0) angle:90.0];
-                    }
+                    [gradient drawInRect:itemRect angle:90.0];
                     
                     if (self.style == PXTabBarStylePopover) {
                         [[NSColor colorWithCalibratedWhite:1.0 alpha:0.2] set];
@@ -270,12 +253,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                 else {
                     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]
                                                                          endingColor:[NSColor colorWithCalibratedWhite:1.0 alpha:1.0]];
-                    if (showsBottomSeparator) {
-                        [gradient drawInRect:itemRect angle:90.0];
-                    }
-                    else {
-                        [gradient drawInRect:NSMakeRect(NSMinX(itemRect), NSMinY(itemRect), NSWidth(itemRect), NSHeight(itemRect) + 1.0) angle:90.0];
-                    }
+                    [gradient drawInRect:itemRect angle:90.0];
                     
                     [[NSColor colorWithCalibratedWhite:1.0 alpha:0.2] set];
                     [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMinY([self bounds]) + 0.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMinY([self bounds]) + 0.5)];
@@ -310,12 +288,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
             else if (self.style == PXTabBarStylePopoverHUD) {
                 NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.15 alpha:1.0]
                                                                      endingColor:[NSColor colorWithCalibratedWhite:0.25 alpha:1.0]];
-                if (showsBottomSeparator) {
-                    [gradient drawInRect:itemRect angle:90.0];
-                }
-                else {
-                    [gradient drawInRect:NSMakeRect(NSMinX(itemRect), NSMinY(itemRect), NSWidth(itemRect), NSHeight(itemRect) + 1.0) angle:90.0];
-                }
+                [gradient drawInRect:itemRect angle:90.0];
                 
                 [[NSColor colorWithCalibratedWhite:0.0 alpha:0.2] set];
                 [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMinY([self bounds]) + 0.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMinY([self bounds]) + 0.5)];
@@ -628,6 +601,10 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 	}
 }
 
++ (NSSet *)keyPathsForValuesAffectingSelectedIndex {
+    return [NSSet setWithObjects:@"selectedItem", nil];
+}
+
 - (PXTabBarItem *)selectedItem {
 	return selectedItem;
 }
@@ -641,25 +618,25 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 	}
 }
 
+- (NSUInteger)selectedIndex {
+    return [items indexOfObjectIdenticalTo:selectedItem];
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    [self selectItemAtIndex:selectedIndex];
+}
+
 - (void)addItem:(PXTabBarItem *)item {
 	[self insertItem:item atIndex:[items count]];
 }
 
 - (void)insertItem:(PXTabBarItem *)item atIndex:(NSUInteger)index {
-	if (([self delegate]) && ([[self delegate] respondsToSelector:@selector(tabBar:willAddItem:)])) {
-		[[self delegate] tabBar:self willAddItem:item];
-	}
-	
 	[item addObserver:self forKeyPath:@"image" options:(NSKeyValueObservingOptionNew) context:(__bridge void *)PXTabBarItemPropertyObservationContext];
 	[item addObserver:self forKeyPath:@"badgeValue" options:(NSKeyValueObservingOptionNew) context:(__bridge void *)PXTabBarItemPropertyObservationContext];
 	
 	[items insertObject:item atIndex:index];
 	
 	[self update];
-	
-	if (([self delegate]) && ([[self delegate] respondsToSelector:@selector(tabBar:didAddItem:)])) {
-		[[self delegate] tabBar:self didAddItem:item];
-	}
 }
 
 - (void)removeItem:(PXTabBarItem *)item {
@@ -671,10 +648,6 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 
 - (void)removeItemAtIndex:(NSUInteger)index {
 	PXTabBarItem *item = [items objectAtIndex:index];
-	
-	if (([self delegate]) && ([[self delegate] respondsToSelector:@selector(tabBar:willRemoveItem:)])) {
-		[[self delegate] tabBar:self willRemoveItem:item];
-	}
 	
 	if (item == selectedItem) {
 		if (index < [items count]-1) {
@@ -697,10 +670,6 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 	[items removeObjectAtIndex:index];
 	
 	[self update];
-	
-	if (([self delegate]) && ([[self delegate] respondsToSelector:@selector(tabBar:didRemoveItem:)])) {
-		[[self delegate] tabBar:self didRemoveItem:item];
-	}
 }
 
 - (void)selectItem:(PXTabBarItem *)item {

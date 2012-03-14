@@ -57,6 +57,8 @@
 		EA44B2F2149B2A6F00C5D440 /* NSObject+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */; };
 		EA44B2F3149B2A6F00C5D440 /* NSObject+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EACC7CC01510446300072989 /* PXTabBarController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CBF1510446200072989 /* PXTabBarController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EACC7CC31510447D00072989 /* PXTabBar_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CC21510447D00072989 /* PXTabBar_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +118,8 @@
 		EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PhotonAdditions.m"; sourceTree = "<group>"; };
 		EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PhotonAdditions.h"; sourceTree = "<group>"; };
 		EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencesController_Private.h; sourceTree = "<group>"; };
+		EACC7CBF1510446200072989 /* PXTabBarController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBarController_Private.h; sourceTree = "<group>"; };
+		EACC7CC21510447D00072989 /* PXTabBar_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBar_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,8 +251,10 @@
 			isa = PBXGroup;
 			children = (
 				EA44B2B8149B23C300C5D440 /* PXTabBar.h */,
+				EACC7CC21510447D00072989 /* PXTabBar_Private.h */,
 				EA44B2B9149B23C300C5D440 /* PXTabBar.m */,
 				EA44B2BA149B23C300C5D440 /* PXTabBarController.h */,
+				EACC7CBF1510446200072989 /* PXTabBarController_Private.h */,
 				EA44B2BB149B23C300C5D440 /* PXTabBarController.m */,
 				EA44B2BC149B23C300C5D440 /* PXTabBarItem.h */,
 				EA44B2BD149B23C300C5D440 /* PXTabBarItem.m */,
@@ -327,6 +333,8 @@
 				EA30302515001F5A0062D399 /* PXAnchoredButtonBar.h in Headers */,
 				EA30302715001F5A0062D399 /* PXAnchoredMenuButtonCell.h in Headers */,
 				EA30302915001F5A0062D399 /* PXAnchoredPopUpButton.h in Headers */,
+				EACC7CC01510446300072989 /* PXTabBarController_Private.h in Headers */,
+				EACC7CC31510447D00072989 /* PXTabBar_Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
