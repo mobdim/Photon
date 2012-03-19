@@ -79,22 +79,26 @@
 }
 
 - (void)commitEditingWithDelegate:(id)delegate didCommitSelector:(SEL)didCommitSelector contextInfo:(void *)contextInfo {
-	NSInvocation *originalDelegateInvocation = [NSInvocation invocationWithMethodSignature:[delegate methodSignatureForSelector:didCommitSelector]];
-	[originalDelegateInvocation setTarget:delegate];
-	[originalDelegateInvocation setSelector:didCommitSelector];
-    PXObjectEditor *editor = self;
-	[originalDelegateInvocation setArgument:&editor atIndex:2];
-	[originalDelegateInvocation setArgument:&contextInfo atIndex:4];
-	
-	NSObject *topEditor = [self _topEditor];
-	if (topEditor) {
-		[topEditor commitEditingWithDelegate:self didCommitSelector:@selector(_editor:didCommit:withOriginalDelegateInvocation:) contextInfo:(__bridge_retained void *)originalDelegateInvocation];
-	}
-	else {
-		BOOL kYES = YES;
-		[originalDelegateInvocation setArgument:&kYES atIndex:3];
-		[originalDelegateInvocation invoke];
-	}
+    NSInvocation *originalDelegateInvocation = nil;
+    NSMethodSignature *methodSignature = [delegate methodSignatureForSelector:didCommitSelector];
+    if (methodSignature != nil) {
+        originalDelegateInvocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+        [originalDelegateInvocation setTarget:delegate];
+        [originalDelegateInvocation setSelector:didCommitSelector];
+        PXObjectEditor *editor = self;
+        [originalDelegateInvocation setArgument:&editor atIndex:2];
+        [originalDelegateInvocation setArgument:&contextInfo atIndex:4];
+    }
+    
+    NSObject *topEditor = [self _topEditor];
+    if (topEditor) {
+        [topEditor commitEditingWithDelegate:self didCommitSelector:@selector(_editor:didCommit:withOriginalDelegateInvocation:) contextInfo:(__bridge_retained void *)originalDelegateInvocation];
+    }
+    else {
+        BOOL kYES = YES;
+        [originalDelegateInvocation setArgument:&kYES atIndex:3];
+        [originalDelegateInvocation invoke];
+    }
 }
 
 - (void)_editor:(id)inEditor didCommit:(BOOL)inDidCommit context:(void *)context {
