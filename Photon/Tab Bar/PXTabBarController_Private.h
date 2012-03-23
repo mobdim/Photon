@@ -9,7 +9,7 @@
 #import <Photon/PXTabBarController.h>
 
 
-@interface PXTabBarController ()
+@interface PXTabBarController () <NSAnimationDelegate>
 
 - (void)addViewController:(PXViewController *)viewController;
 - (void)insertViewController:(PXViewController *)viewController atIndex:(NSUInteger)index;
@@ -20,5 +20,7 @@
 
 - (void)selectViewController:(PXViewController *)viewController;
 - (void)selectViewControllerAtIndex:(NSUInteger)index;
+
+- (void)replaceView:(NSView *)oldView withView:(NSView *)newView push:(BOOL)shouldPush animated:(BOOL)isAnimated;
 
 @end

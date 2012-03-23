@@ -29,10 +29,13 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 @implementation PXTabBarController {
 	NSMutableArray *viewControllers;
 	PXTabBar *tabBar;
+    NSView *disappearingView;
+    NSAnimation *currentAnimation;
 }
 
 @synthesize delegate;
 @synthesize containerView;
+@synthesize animates;
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
@@ -246,6 +249,10 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 }
 
 - (void)selectViewControllerAtIndex:(NSUInteger)index {
+    if (index == self.selectedIndex) {
+        return;
+    }
+    
 	if (index != NSNotFound) {
         [self willChangeValueForKey:@"selectedViewController"];
         
@@ -262,15 +269,14 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 		[oldController viewWillDisappear];
 		[viewController viewWillAppear];
 		
-		NSView *aView = [viewController view];
-		if (aView) {
-            [aView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
-			[aView setFrame:[containerView bounds]];
-			[containerView setSubviews:[NSArray arrayWithObject:aView]];
-		}
-		else {
-			[containerView setSubviews:[NSArray array]];
-		}
+        if ([self animates]) {
+            BOOL shouldPush = NO;
+            NSUInteger oldIndex = [viewControllers indexOfObjectIdenticalTo:oldController];
+            if (oldIndex < index) {
+                shouldPush = YES;
+            }
+            [self replaceView:[oldController view] withView:[viewController view] push:shouldPush animated:YES];
+        }
 		
 		[[self tabBar] setSelectedItem:[viewController tabBarItem]];
 		
@@ -285,6 +291,77 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
         
         [self didChangeValueForKey:@"selectedViewController"];
 	}
+}
+
+- (void)replaceView:(NSView *)oldView withView:(NSView *)newView push:(BOOL)shouldPush animated:(BOOL)isAnimated {
+    if ([[[oldView window] firstResponder] isKindOfClass:[NSView class]] && [(NSView *)[[oldView window] firstResponder] isDescendantOf:oldView]) {
+        [[oldView window] makeFirstResponder:nil];
+    }
+    
+    if (isAnimated) {
+        disappearingView = oldView;
+        
+        NSRect oldViewFrameResult = [oldView frame];
+        if (shouldPush) {
+            oldViewFrameResult.origin.x -= oldViewFrameResult.size.width;
+        }
+        else {
+            oldViewFrameResult.origin.x += oldViewFrameResult.size.width;
+        }
+        
+        
+        NSRect newViewTempRect = [oldView frame];
+        if (shouldPush) {
+            newViewTempRect.origin.x += newViewTempRect.size.width;
+        }
+        else {
+            newViewTempRect.origin.x -= newViewTempRect.size.width;
+        }
+        [newView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
+        [newView setFrame:newViewTempRect];
+        [containerView addSubview:newView];
+        
+        
+        NSDictionary *oldViewDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                           oldView, NSViewAnimationTargetKey,
+                                           [NSValue valueWithRect:[oldView frame]], NSViewAnimationStartFrameKey,
+                                           [NSValue valueWithRect:oldViewFrameResult], NSViewAnimationEndFrameKey,
+                                           nil];
+        
+        NSRect newViewFrameResult = [oldView frame];
+        
+        NSDictionary *newViewDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
+                                           newView, NSViewAnimationTargetKey,
+                                           [NSValue valueWithRect:[newView frame]], NSViewAnimationStartFrameKey,
+                                           [NSValue valueWithRect:newViewFrameResult], NSViewAnimationEndFrameKey,
+                                           nil];
+        
+        NSArray *animations = [NSArray arrayWithObjects:oldViewDictionary, newViewDictionary, nil];
+        
+        currentAnimation = [[NSViewAnimation alloc] initWithViewAnimations:animations];
+        [currentAnimation setDelegate:self];
+        [currentAnimation setAnimationBlockingMode:NSAnimationBlocking];
+        [currentAnimation setDuration:0.25];
+        [currentAnimation setAnimationCurve:NSAnimationEaseInOut];
+        [currentAnimation startAnimation];
+    }
+    else {
+        [newView setFrame:[oldView frame]];
+        [oldView removeFromSuperview];
+        [containerView addSubview:newView];
+    }
+}
+
+- (void)animationDidStop:(NSAnimation *)animation {
+    [disappearingView removeFromSuperview];
+    disappearingView = nil;
+    currentAnimation = nil;
+}
+
+- (void)animationDidEnd:(NSAnimation*)animation {
+    [disappearingView removeFromSuperview];
+    disappearingView = nil;
+    currentAnimation = nil;
 }
 
 

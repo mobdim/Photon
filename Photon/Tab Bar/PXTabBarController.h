@@ -28,6 +28,8 @@
 @property (strong) PXViewController *selectedViewController;
 @property (assign) NSUInteger selectedIndex;
 
+@property (assign) BOOL animates;
+
 @end
 
 
