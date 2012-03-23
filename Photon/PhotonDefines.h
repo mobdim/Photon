@@ -7,3 +7,5 @@
 //
 
 #define PHOTON_EXTERN extern __attribute__((visibility("default")))
+#define PHOTON_STATIC static __attribute__((visibility("default")))
+#define PHOTON_STATIC_INLINE static inline __attribute__((visibility("default")))

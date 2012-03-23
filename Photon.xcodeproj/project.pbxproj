@@ -56,6 +56,11 @@
 		EA44B2EE149B29FE00C5D440 /* PXGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2EC149B29FE00C5D440 /* PXGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2F2149B2A6F00C5D440 /* NSObject+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */; };
 		EA44B2F3149B2A6F00C5D440 /* NSObject+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EA76D4D0151D32930049443D /* PXAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4CF151D32930049443D /* PXAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA76D4D3151D32B20049443D /* PXResizableImage.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4D1151D32B20049443D /* PXResizableImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA76D4D4151D32B20049443D /* PXResizableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D4D2151D32B20049443D /* PXResizableImage.m */; };
+		EA76D4D7151D33070049443D /* PXGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4D5151D33070049443D /* PXGeometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA76D4D8151D33070049443D /* PXGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D4D6151D33070049443D /* PXGeometry.m */; };
 		EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EACC7CC01510446300072989 /* PXTabBarController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CBF1510446200072989 /* PXTabBarController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EACC7CC31510447D00072989 /* PXTabBar_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CC21510447D00072989 /* PXTabBar_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -117,6 +122,11 @@
 		EA44B2EC149B29FE00C5D440 /* PXGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGradientView.h; sourceTree = "<group>"; };
 		EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PhotonAdditions.m"; sourceTree = "<group>"; };
 		EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PhotonAdditions.h"; sourceTree = "<group>"; };
+		EA76D4CF151D32930049443D /* PXAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAppearance.h; sourceTree = "<group>"; };
+		EA76D4D1151D32B20049443D /* PXResizableImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXResizableImage.h; sourceTree = "<group>"; };
+		EA76D4D2151D32B20049443D /* PXResizableImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXResizableImage.m; sourceTree = "<group>"; };
+		EA76D4D5151D33070049443D /* PXGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGeometry.h; sourceTree = "<group>"; };
+		EA76D4D6151D33070049443D /* PXGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGeometry.m; sourceTree = "<group>"; };
 		EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencesController_Private.h; sourceTree = "<group>"; };
 		EACC7CBF1510446200072989 /* PXTabBarController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBarController_Private.h; sourceTree = "<group>"; };
 		EACC7CC21510447D00072989 /* PXTabBar_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBar_Private.h; sourceTree = "<group>"; };
@@ -212,6 +222,7 @@
 				EA44B2A1149B21FF00C5D440 /* Photon.h */,
 				EA44B2A2149B21FF00C5D440 /* Photon.m */,
 				EA44B2AD149B222E00C5D440 /* PhotonDefines.h */,
+				EA76D4CD151D32810049443D /* Appearance */,
 				EA44B2B0149B22E800C5D440 /* Views */,
 				EA30301414FFFA5D0062D399 /* Cells */,
 				EA44B2B7149B23AD00C5D440 /* Tab Bar */,
@@ -303,6 +314,18 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		EA76D4CD151D32810049443D /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				EA76D4CF151D32930049443D /* PXAppearance.h */,
+				EA76D4D5151D33070049443D /* PXGeometry.h */,
+				EA76D4D6151D33070049443D /* PXGeometry.m */,
+				EA76D4D1151D32B20049443D /* PXResizableImage.h */,
+				EA76D4D2151D32B20049443D /* PXResizableImage.m */,
+			);
+			path = Appearance;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -335,6 +358,9 @@
 				EA30302915001F5A0062D399 /* PXAnchoredPopUpButton.h in Headers */,
 				EACC7CC01510446300072989 /* PXTabBarController_Private.h in Headers */,
 				EACC7CC31510447D00072989 /* PXTabBar_Private.h in Headers */,
+				EA76D4D0151D32930049443D /* PXAppearance.h in Headers */,
+				EA76D4D3151D32B20049443D /* PXResizableImage.h in Headers */,
+				EA76D4D7151D33070049443D /* PXGeometry.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +451,8 @@
 				EA30302615001F5A0062D399 /* PXAnchoredButtonBar.m in Sources */,
 				EA30302815001F5A0062D399 /* PXAnchoredMenuButtonCell.m in Sources */,
 				EA30302A15001F5A0062D399 /* PXAnchoredPopUpButton.m in Sources */,
+				EA76D4D4151D32B20049443D /* PXResizableImage.m in Sources */,
+				EA76D4D8151D33070049443D /* PXGeometry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

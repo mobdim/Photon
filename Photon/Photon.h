@@ -11,6 +11,8 @@
 #import <Photon/PXAnchoredButtonBar.h>
 #import <Photon/PXAnchoredMenuButtonCell.h>
 #import <Photon/PXAnchoredPopUpButton.h>
+#import <Photon/PXAppearance.h>
+#import <Photon/PXGeometry.h>
 #import <Photon/PXGradientView.h>
 #import <Photon/PXNavigationBar.h>
 #import <Photon/PXNavigationController.h>
@@ -18,6 +20,7 @@
 #import <Photon/PXObjectEditor.h>
 #import <Photon/PXPreferencePane.h>
 #import <Photon/PXPreferencesController.h>
+#import <Photon/PXResizableImage.h>
 #import <Photon/PXTabBar.h>
 #import <Photon/PXTabBarController.h>
 #import <Photon/PXTabBarItem.h>
