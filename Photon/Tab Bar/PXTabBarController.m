@@ -269,7 +269,7 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 		[oldController viewWillDisappear];
 		[viewController viewWillAppear];
 		
-        if (oldController == nil || viewController == nil) {
+        if (oldController == nil || viewController == nil || [[self view] window] == nil) {
             NSView *aView = [viewController view];
             if (aView) {
                 [aView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
