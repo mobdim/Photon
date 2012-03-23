@@ -269,15 +269,7 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 		[oldController viewWillDisappear];
 		[viewController viewWillAppear];
 		
-        if (oldController != nil) {
-            BOOL shouldPush = NO;
-            NSUInteger oldIndex = [viewControllers indexOfObjectIdenticalTo:oldController];
-            if (oldIndex < index) {
-                shouldPush = YES;
-            }
-            [self replaceView:[oldController view] withView:[viewController view] push:shouldPush animated:[self animates]];
-        }
-        else {
+        if (oldController == nil || viewController == nil) {
             NSView *aView = [viewController view];
             if (aView) {
                 [aView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
@@ -287,6 +279,14 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
             else {
                 [containerView setSubviews:[NSArray array]];
             }
+        }
+        else {
+            BOOL shouldPush = NO;
+            NSUInteger oldIndex = [viewControllers indexOfObjectIdenticalTo:oldController];
+            if (oldIndex < index) {
+                shouldPush = YES;
+            }
+            [self replaceView:[oldController view] withView:[viewController view] push:shouldPush animated:[self animates]];
         }
 		
 		[[self tabBar] setSelectedItem:[viewController tabBarItem]];
