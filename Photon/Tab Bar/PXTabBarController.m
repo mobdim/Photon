@@ -32,6 +32,7 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
     NSView *disappearingView;
     NSAnimation *currentAnimation;
     NSUInteger selectedIndex;
+    PXViewController *selectedViewController;
 }
 
 @synthesize delegate;
@@ -104,12 +105,11 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 #pragma mark View Controllers
 
 - (PXViewController *)selectedViewController {
-    PXTabBarItem *item = [tabBar selectedItem];
-	return [item representedObject];
+    return selectedViewController;
 }
 
-- (void)setSelectedViewController:(PXViewController *)selectedViewController {
-    [viewControllers objectAtIndex:selectedIndex];
+- (void)setSelectedViewController:(PXViewController *)viewController {
+    [self setSelectedIndex:[viewControllers indexOfObjectIdenticalTo:viewController]];
 }
 
 + (NSSet *)keyPathsForValuesAffectingSelectedIndex {
@@ -291,6 +291,7 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 		
 		[[self tabBar] setSelectedItem:[viewController tabBarItem]];
         selectedIndex = index;
+        selectedViewController = viewController;
 		
 		[oldController viewDidDisappear];
 		[viewController viewDidAppear];
