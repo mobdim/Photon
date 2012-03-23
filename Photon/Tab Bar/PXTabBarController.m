@@ -357,6 +357,7 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
         [currentAnimation startAnimation];
     }
     else {
+        [newView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
         [newView setFrame:[oldView frame]];
         [oldView removeFromSuperview];
         [containerView addSubview:newView];
