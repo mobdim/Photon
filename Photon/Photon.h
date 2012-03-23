@@ -27,6 +27,7 @@
 #import <Photon/PXTableViewCell.h>
 #import <Photon/PXViewController.h>
 #import <Photon/NSObject+PhotonAdditions.h>
+#import <Photon/NSValue+PhotonAdditions.h>
 
 
 /*!
