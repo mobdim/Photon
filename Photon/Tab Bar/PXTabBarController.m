@@ -62,6 +62,7 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	if (self) {
 		viewControllers = [[NSMutableArray alloc] init];
+        selectedIndex = NSNotFound;
 	}
 	return self;
 }
