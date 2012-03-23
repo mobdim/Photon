@@ -269,14 +269,12 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 		[oldController viewWillDisappear];
 		[viewController viewWillAppear];
 		
-        if ([self animates]) {
-            BOOL shouldPush = NO;
-            NSUInteger oldIndex = [viewControllers indexOfObjectIdenticalTo:oldController];
-            if (oldIndex < index) {
-                shouldPush = YES;
-            }
-            [self replaceView:[oldController view] withView:[viewController view] push:shouldPush animated:YES];
+        BOOL shouldPush = NO;
+        NSUInteger oldIndex = [viewControllers indexOfObjectIdenticalTo:oldController];
+        if (oldIndex < index) {
+            shouldPush = YES;
         }
+        [self replaceView:[oldController view] withView:[viewController view] push:shouldPush animated:[self animates]];
 		
 		[[self tabBar] setSelectedItem:[viewController tabBarItem]];
 		
