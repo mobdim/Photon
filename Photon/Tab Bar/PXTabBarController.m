@@ -249,15 +249,15 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 }
 
 - (void)selectViewControllerAtIndex:(NSUInteger)index {
-    if (index == self.selectedIndex) {
-        return;
-    }
-    
 	if (index != NSNotFound) {
-        [self willChangeValueForKey:@"selectedViewController"];
-        
 		PXViewController *oldController = [self selectedViewController];
 		PXViewController *viewController = [viewControllers objectAtIndex:index];
+        
+        if (oldController == viewController) {
+            return;
+        }
+        
+        [self willChangeValueForKey:@"selectedViewController"];
 		
 		if ([[self delegate] respondsToSelector:@selector(tabBarController:willSelectViewController:)]) {
 			[[self delegate] tabBarController:self willSelectViewController:viewController];
