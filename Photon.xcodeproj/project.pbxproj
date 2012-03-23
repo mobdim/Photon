@@ -56,6 +56,8 @@
 		EA44B2EE149B29FE00C5D440 /* PXGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2EC149B29FE00C5D440 /* PXGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2F2149B2A6F00C5D440 /* NSObject+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */; };
 		EA44B2F3149B2A6F00C5D440 /* NSObject+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EA55FA56151D37800088F053 /* NSValue+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA55FA54151D37800088F053 /* NSValue+PhotonAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA55FA57151D37800088F053 /* NSValue+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA55FA55151D37800088F053 /* NSValue+PhotonAdditions.m */; };
 		EA76D4D0151D32930049443D /* PXAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4CF151D32930049443D /* PXAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA76D4D3151D32B20049443D /* PXResizableImage.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4D1151D32B20049443D /* PXResizableImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA76D4D4151D32B20049443D /* PXResizableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D4D2151D32B20049443D /* PXResizableImage.m */; };
@@ -122,6 +124,8 @@
 		EA44B2EC149B29FE00C5D440 /* PXGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGradientView.h; sourceTree = "<group>"; };
 		EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PhotonAdditions.m"; sourceTree = "<group>"; };
 		EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PhotonAdditions.h"; sourceTree = "<group>"; };
+		EA55FA54151D37800088F053 /* NSValue+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+PhotonAdditions.h"; sourceTree = "<group>"; };
+		EA55FA55151D37800088F053 /* NSValue+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+PhotonAdditions.m"; sourceTree = "<group>"; };
 		EA76D4CF151D32930049443D /* PXAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAppearance.h; sourceTree = "<group>"; };
 		EA76D4D1151D32B20049443D /* PXResizableImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXResizableImage.h; sourceTree = "<group>"; };
 		EA76D4D2151D32B20049443D /* PXResizableImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXResizableImage.m; sourceTree = "<group>"; };
@@ -310,6 +314,8 @@
 			children = (
 				EA44B2F1149B2A6F00C5D440 /* NSObject+PhotonAdditions.h */,
 				EA44B2F0149B2A6F00C5D440 /* NSObject+PhotonAdditions.m */,
+				EA55FA54151D37800088F053 /* NSValue+PhotonAdditions.h */,
+				EA55FA55151D37800088F053 /* NSValue+PhotonAdditions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 				EA76D4D0151D32930049443D /* PXAppearance.h in Headers */,
 				EA76D4D3151D32B20049443D /* PXResizableImage.h in Headers */,
 				EA76D4D7151D33070049443D /* PXGeometry.h in Headers */,
+				EA55FA56151D37800088F053 /* NSValue+PhotonAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,6 +460,7 @@
 				EA30302A15001F5A0062D399 /* PXAnchoredPopUpButton.m in Sources */,
 				EA76D4D4151D32B20049443D /* PXResizableImage.m in Sources */,
 				EA76D4D8151D33070049443D /* PXGeometry.m in Sources */,
+				EA55FA57151D37800088F053 /* NSValue+PhotonAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
