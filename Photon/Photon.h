@@ -12,6 +12,8 @@
 #import <Photon/PXAnchoredMenuButtonCell.h>
 #import <Photon/PXAnchoredPopUpButton.h>
 #import <Photon/PXAppearance.h>
+#import <Photon/PXFormatBar.h>
+#import <Photon/PXFormatBarItem.h>
 #import <Photon/PXGeometry.h>
 #import <Photon/PXGradientView.h>
 #import <Photon/PXNavigationBar.h>

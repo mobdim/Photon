@@ -66,6 +66,12 @@
 		EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EACC7CC01510446300072989 /* PXTabBarController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CBF1510446200072989 /* PXTabBarController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EACC7CC31510447D00072989 /* PXTabBar_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CC21510447D00072989 /* PXTabBar_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADFB0E1151FC6C500019165 /* PXFormatBar.h in Headers */ = {isa = PBXBuildFile; fileRef = EADFB0DF151FC6C500019165 /* PXFormatBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADFB0E2151FC6C500019165 /* PXFormatBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EADFB0E0151FC6C500019165 /* PXFormatBar.m */; };
+		EADFB0E5151FC7D200019165 /* PXFormatBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EADFB0E3151FC7D200019165 /* PXFormatBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADFB0E6151FC7D200019165 /* PXFormatBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EADFB0E4151FC7D200019165 /* PXFormatBarItem.m */; };
+		EADFB0E8151FC82900019165 /* PXFormatBarItem_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EADFB0E7151FC82900019165 /* PXFormatBarItem_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADFB0EA151FC9CA00019165 /* PXFormatBar_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EADFB0E9151FC9C900019165 /* PXFormatBar_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +140,12 @@
 		EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencesController_Private.h; sourceTree = "<group>"; };
 		EACC7CBF1510446200072989 /* PXTabBarController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBarController_Private.h; sourceTree = "<group>"; };
 		EACC7CC21510447D00072989 /* PXTabBar_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBar_Private.h; sourceTree = "<group>"; };
+		EADFB0DF151FC6C500019165 /* PXFormatBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBar.h; sourceTree = "<group>"; };
+		EADFB0E0151FC6C500019165 /* PXFormatBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXFormatBar.m; sourceTree = "<group>"; };
+		EADFB0E3151FC7D200019165 /* PXFormatBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBarItem.h; sourceTree = "<group>"; };
+		EADFB0E4151FC7D200019165 /* PXFormatBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXFormatBarItem.m; sourceTree = "<group>"; };
+		EADFB0E7151FC82900019165 /* PXFormatBarItem_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBarItem_Private.h; sourceTree = "<group>"; };
+		EADFB0E9151FC9C900019165 /* PXFormatBar_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBar_Private.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +244,7 @@
 				EA44B2B7149B23AD00C5D440 /* Tab Bar */,
 				EA44B2C6149B251300C5D440 /* Navigation */,
 				EA30301A15001F360062D399 /* Button Bars */,
+				EADFB0DD151FC69200019165 /* Format Bars */,
 				EA00FB1E149C750F002F8A15 /* Object Editors */,
 				EA44B2C7149B251E00C5D440 /* Preferences */,
 				EA44B2EF149B2A2200C5D440 /* Categories */,
@@ -332,6 +345,19 @@
 			path = Appearance;
 			sourceTree = "<group>";
 		};
+		EADFB0DD151FC69200019165 /* Format Bars */ = {
+			isa = PBXGroup;
+			children = (
+				EADFB0DF151FC6C500019165 /* PXFormatBar.h */,
+				EADFB0E9151FC9C900019165 /* PXFormatBar_Private.h */,
+				EADFB0E0151FC6C500019165 /* PXFormatBar.m */,
+				EADFB0E3151FC7D200019165 /* PXFormatBarItem.h */,
+				EADFB0E7151FC82900019165 /* PXFormatBarItem_Private.h */,
+				EADFB0E4151FC7D200019165 /* PXFormatBarItem.m */,
+			);
+			path = "Format Bars";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -368,6 +394,10 @@
 				EA76D4D3151D32B20049443D /* PXResizableImage.h in Headers */,
 				EA76D4D7151D33070049443D /* PXGeometry.h in Headers */,
 				EA55FA56151D37800088F053 /* NSValue+PhotonAdditions.h in Headers */,
+				EADFB0E1151FC6C500019165 /* PXFormatBar.h in Headers */,
+				EADFB0E5151FC7D200019165 /* PXFormatBarItem.h in Headers */,
+				EADFB0E8151FC82900019165 /* PXFormatBarItem_Private.h in Headers */,
+				EADFB0EA151FC9CA00019165 /* PXFormatBar_Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +491,8 @@
 				EA76D4D4151D32B20049443D /* PXResizableImage.m in Sources */,
 				EA76D4D8151D33070049443D /* PXGeometry.m in Sources */,
 				EA55FA57151D37800088F053 /* NSValue+PhotonAdditions.m in Sources */,
+				EADFB0E2151FC6C500019165 /* PXFormatBar.m in Sources */,
+				EADFB0E6151FC7D200019165 /* PXFormatBarItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
