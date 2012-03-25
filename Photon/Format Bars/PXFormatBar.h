@@ -19,7 +19,7 @@ extern NSString * const PXFormatBarFlexibleSpaceItemIdentifier;
 
 @interface PXFormatBar : NSView
 
-@property (assign) id <PXFormatBarDelegate> delegate;
+@property (assign) IBOutlet id <PXFormatBarDelegate> delegate;
 
 @property (copy, readonly) NSArray *items;
 @property (copy, readonly) NSArray *visibleItems;
