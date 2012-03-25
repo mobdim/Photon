@@ -155,10 +155,6 @@ NSString * const PXFormatBarFlexibleSpaceItemIdentifier = @"PXFormatBarFlexibleS
 	return YES;
 }
 
-- (BOOL)isOpaque {
-	return YES;
-}
-
 
 #pragma mark -
 #pragma mark Items
