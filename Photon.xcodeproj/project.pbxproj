@@ -63,6 +63,20 @@
 		EA76D4D4151D32B20049443D /* PXResizableImage.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D4D2151D32B20049443D /* PXResizableImage.m */; };
 		EA76D4D7151D33070049443D /* PXGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4D5151D33070049443D /* PXGeometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA76D4D8151D33070049443D /* PXGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D4D6151D33070049443D /* PXGeometry.m */; };
+		EA9C52E415211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EA9C52DA15211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf */; };
+		EA9C52E515211D3100F767C9 /* PXFormatBar-SingleArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EA9C52DB15211D3100F767C9 /* PXFormatBar-SingleArrow.pdf */; };
+		EA9C52E615211D3100F767C9 /* PXFormatBarColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52DC15211D3100F767C9 /* PXFormatBarColorWell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA9C52E715211D3100F767C9 /* PXFormatBarColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52DD15211D3100F767C9 /* PXFormatBarColorWell.m */; };
+		EA9C52E815211D3100F767C9 /* PXFormatBarComboBox.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52DE15211D3100F767C9 /* PXFormatBarComboBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA9C52E915211D3100F767C9 /* PXFormatBarComboBox.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52DF15211D3100F767C9 /* PXFormatBarComboBox.m */; };
+		EA9C52EA15211D3100F767C9 /* PXFormatBarPopUpButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52E015211D3100F767C9 /* PXFormatBarPopUpButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA9C52EB15211D3100F767C9 /* PXFormatBarPopUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52E115211D3100F767C9 /* PXFormatBarPopUpButton.m */; };
+		EA9C52EC15211D3100F767C9 /* PXFormatBarSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52E215211D3100F767C9 /* PXFormatBarSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA9C52ED15211D3100F767C9 /* PXFormatBarSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52E315211D3100F767C9 /* PXFormatBarSegmentedControl.m */; };
+		EA9C52F315211DC400F767C9 /* PXColorPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52EF15211DC400F767C9 /* PXColorPickerView.h */; };
+		EA9C52F415211DC400F767C9 /* PXColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52F015211DC400F767C9 /* PXColorPickerView.m */; };
+		EA9C52F515211DC400F767C9 /* PXColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52F115211DC400F767C9 /* PXColorWell.h */; };
+		EA9C52F615211DC400F767C9 /* PXColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52F215211DC400F767C9 /* PXColorWell.m */; };
 		EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EACC7CC01510446300072989 /* PXTabBarController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CBF1510446200072989 /* PXTabBarController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EACC7CC31510447D00072989 /* PXTabBar_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CC21510447D00072989 /* PXTabBar_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -137,6 +151,20 @@
 		EA76D4D2151D32B20049443D /* PXResizableImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXResizableImage.m; sourceTree = "<group>"; };
 		EA76D4D5151D33070049443D /* PXGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGeometry.h; sourceTree = "<group>"; };
 		EA76D4D6151D33070049443D /* PXGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGeometry.m; sourceTree = "<group>"; };
+		EA9C52DA15211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "PXFormatBar-DoubleArrow.pdf"; sourceTree = "<group>"; };
+		EA9C52DB15211D3100F767C9 /* PXFormatBar-SingleArrow.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "PXFormatBar-SingleArrow.pdf"; sourceTree = "<group>"; };
+		EA9C52DC15211D3100F767C9 /* PXFormatBarColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBarColorWell.h; sourceTree = "<group>"; };
+		EA9C52DD15211D3100F767C9 /* PXFormatBarColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXFormatBarColorWell.m; sourceTree = "<group>"; };
+		EA9C52DE15211D3100F767C9 /* PXFormatBarComboBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBarComboBox.h; sourceTree = "<group>"; };
+		EA9C52DF15211D3100F767C9 /* PXFormatBarComboBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXFormatBarComboBox.m; sourceTree = "<group>"; };
+		EA9C52E015211D3100F767C9 /* PXFormatBarPopUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBarPopUpButton.h; sourceTree = "<group>"; };
+		EA9C52E115211D3100F767C9 /* PXFormatBarPopUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXFormatBarPopUpButton.m; sourceTree = "<group>"; };
+		EA9C52E215211D3100F767C9 /* PXFormatBarSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBarSegmentedControl.h; sourceTree = "<group>"; };
+		EA9C52E315211D3100F767C9 /* PXFormatBarSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXFormatBarSegmentedControl.m; sourceTree = "<group>"; };
+		EA9C52EF15211DC400F767C9 /* PXColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXColorPickerView.h; sourceTree = "<group>"; };
+		EA9C52F015211DC400F767C9 /* PXColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXColorPickerView.m; sourceTree = "<group>"; };
+		EA9C52F115211DC400F767C9 /* PXColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXColorWell.h; sourceTree = "<group>"; };
+		EA9C52F215211DC400F767C9 /* PXColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXColorWell.m; sourceTree = "<group>"; };
 		EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencesController_Private.h; sourceTree = "<group>"; };
 		EACC7CBF1510446200072989 /* PXTabBarController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBarController_Private.h; sourceTree = "<group>"; };
 		EACC7CC21510447D00072989 /* PXTabBar_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBar_Private.h; sourceTree = "<group>"; };
@@ -241,6 +269,7 @@
 				EA76D4CD151D32810049443D /* Appearance */,
 				EA44B2B0149B22E800C5D440 /* Views */,
 				EA30301414FFFA5D0062D399 /* Cells */,
+				EA9C52EE15211DB700F767C9 /* Controls */,
 				EA44B2B7149B23AD00C5D440 /* Tab Bar */,
 				EA44B2C6149B251300C5D440 /* Navigation */,
 				EA30301A15001F360062D399 /* Button Bars */,
@@ -345,6 +374,34 @@
 			path = Appearance;
 			sourceTree = "<group>";
 		};
+		EA9C52D815211D1F00F767C9 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				EA9C52DA15211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf */,
+				EA9C52DB15211D3100F767C9 /* PXFormatBar-SingleArrow.pdf */,
+				EA9C52DC15211D3100F767C9 /* PXFormatBarColorWell.h */,
+				EA9C52DD15211D3100F767C9 /* PXFormatBarColorWell.m */,
+				EA9C52DE15211D3100F767C9 /* PXFormatBarComboBox.h */,
+				EA9C52DF15211D3100F767C9 /* PXFormatBarComboBox.m */,
+				EA9C52E015211D3100F767C9 /* PXFormatBarPopUpButton.h */,
+				EA9C52E115211D3100F767C9 /* PXFormatBarPopUpButton.m */,
+				EA9C52E215211D3100F767C9 /* PXFormatBarSegmentedControl.h */,
+				EA9C52E315211D3100F767C9 /* PXFormatBarSegmentedControl.m */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		EA9C52EE15211DB700F767C9 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				EA9C52EF15211DC400F767C9 /* PXColorPickerView.h */,
+				EA9C52F015211DC400F767C9 /* PXColorPickerView.m */,
+				EA9C52F115211DC400F767C9 /* PXColorWell.h */,
+				EA9C52F215211DC400F767C9 /* PXColorWell.m */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		EADFB0DD151FC69200019165 /* Format Bars */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +411,7 @@
 				EADFB0E3151FC7D200019165 /* PXFormatBarItem.h */,
 				EADFB0E7151FC82900019165 /* PXFormatBarItem_Private.h */,
 				EADFB0E4151FC7D200019165 /* PXFormatBarItem.m */,
+				EA9C52D815211D1F00F767C9 /* Controls */,
 			);
 			path = "Format Bars";
 			sourceTree = "<group>";
@@ -398,6 +456,12 @@
 				EADFB0E5151FC7D200019165 /* PXFormatBarItem.h in Headers */,
 				EADFB0E8151FC82900019165 /* PXFormatBarItem_Private.h in Headers */,
 				EADFB0EA151FC9CA00019165 /* PXFormatBar_Private.h in Headers */,
+				EA9C52E615211D3100F767C9 /* PXFormatBarColorWell.h in Headers */,
+				EA9C52E815211D3100F767C9 /* PXFormatBarComboBox.h in Headers */,
+				EA9C52EA15211D3100F767C9 /* PXFormatBarPopUpButton.h in Headers */,
+				EA9C52EC15211D3100F767C9 /* PXFormatBarSegmentedControl.h in Headers */,
+				EA9C52F315211DC400F767C9 /* PXColorPickerView.h in Headers */,
+				EA9C52F515211DC400F767C9 /* PXColorWell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +522,8 @@
 				EA44B2D7149B254F00C5D440 /* PXPathComponentSeparator.pdf in Resources */,
 				EA44B2D8149B254F00C5D440 /* NavigationView.xib in Resources */,
 				EA41D8111506882700C48503 /* PXAnchoredPopUpButtonPullDownArrow.pdf in Resources */,
+				EA9C52E415211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf in Resources */,
+				EA9C52E515211D3100F767C9 /* PXFormatBar-SingleArrow.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +559,12 @@
 				EA55FA57151D37800088F053 /* NSValue+PhotonAdditions.m in Sources */,
 				EADFB0E2151FC6C500019165 /* PXFormatBar.m in Sources */,
 				EADFB0E6151FC7D200019165 /* PXFormatBarItem.m in Sources */,
+				EA9C52E715211D3100F767C9 /* PXFormatBarColorWell.m in Sources */,
+				EA9C52E915211D3100F767C9 /* PXFormatBarComboBox.m in Sources */,
+				EA9C52EB15211D3100F767C9 /* PXFormatBarPopUpButton.m in Sources */,
+				EA9C52ED15211D3100F767C9 /* PXFormatBarSegmentedControl.m in Sources */,
+				EA9C52F415211DC400F767C9 /* PXColorPickerView.m in Sources */,
+				EA9C52F615211DC400F767C9 /* PXColorWell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

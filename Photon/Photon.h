@@ -14,6 +14,10 @@
 #import <Photon/PXAppearance.h>
 #import <Photon/PXFormatBar.h>
 #import <Photon/PXFormatBarItem.h>
+#import <Photon/PXFormatBarColorWell.h>
+#import <Photon/PXFormatBarComboBox.h>
+#import <Photon/PXFormatBarPopUpButton.h>
+#import <Photon/PXFormatBarSegmentedControl.h>
 #import <Photon/PXGeometry.h>
 #import <Photon/PXGradientView.h>
 #import <Photon/PXNavigationBar.h>
