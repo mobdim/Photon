@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "PXColorWell.h"
+#import <Photon/PXColorWell.h>
 
 
 @interface PXFormatBarColorWell : PXColorWell
