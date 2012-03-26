@@ -12,6 +12,7 @@
 #import <Photon/PXAnchoredMenuButtonCell.h>
 #import <Photon/PXAnchoredPopUpButton.h>
 #import <Photon/PXAppearance.h>
+#import <Photon/PXColorWell.h>
 #import <Photon/PXFormatBar.h>
 #import <Photon/PXFormatBarItem.h>
 #import <Photon/PXFormatBarColorWell.h>

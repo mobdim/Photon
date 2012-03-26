@@ -73,9 +73,9 @@
 		EA9C52EB15211D3100F767C9 /* PXFormatBarPopUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52E115211D3100F767C9 /* PXFormatBarPopUpButton.m */; };
 		EA9C52EC15211D3100F767C9 /* PXFormatBarSegmentedControl.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52E215211D3100F767C9 /* PXFormatBarSegmentedControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA9C52ED15211D3100F767C9 /* PXFormatBarSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52E315211D3100F767C9 /* PXFormatBarSegmentedControl.m */; };
-		EA9C52F315211DC400F767C9 /* PXColorPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52EF15211DC400F767C9 /* PXColorPickerView.h */; };
+		EA9C52F315211DC400F767C9 /* PXColorPickerView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52EF15211DC400F767C9 /* PXColorPickerView.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA9C52F415211DC400F767C9 /* PXColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52F015211DC400F767C9 /* PXColorPickerView.m */; };
-		EA9C52F515211DC400F767C9 /* PXColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52F115211DC400F767C9 /* PXColorWell.h */; };
+		EA9C52F515211DC400F767C9 /* PXColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52F115211DC400F767C9 /* PXColorWell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA9C52F615211DC400F767C9 /* PXColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52F215211DC400F767C9 /* PXColorWell.m */; };
 		EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EACC7CC01510446300072989 /* PXTabBarController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CBF1510446200072989 /* PXTabBarController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
