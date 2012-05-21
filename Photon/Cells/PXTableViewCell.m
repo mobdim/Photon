@@ -97,7 +97,7 @@
 		[super selectWithFrame:NSInsetRect(textFrame, 0.0, 3.0) inView:controlView editor:textObj delegate:anObject start:selStart length:selLength];
 	}
     else {
-		[super selectWithFrame:NSInsetRect(aRect, 4.0, 3.0) inView:controlView editor:textObj delegate:anObject start:selStart length:selLength];
+		[super selectWithFrame:NSInsetRect(aRect, 2.0, 2.0) inView:controlView editor:textObj delegate:anObject start:selStart length:selLength];
 	}
 }
 
