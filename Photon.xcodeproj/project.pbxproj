@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 02714F7215AA31BE001FA6A1 /* PXTreeNode.h */; };
+		02714F7515AA31BE001FA6A1 /* PXTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 02714F7315AA31BE001FA6A1 /* PXTreeNode.m */; };
 		EA00FB22149C7525002F8A15 /* PXObjectEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA00FB20149C7525002F8A15 /* PXObjectEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA00FB23149C7525002F8A15 /* PXObjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA00FB21149C7525002F8A15 /* PXObjectEditor.m */; };
 		EA30301814FFFA6A0062D399 /* PXTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301614FFFA6A0062D399 /* PXTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,6 +91,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02714F7215AA31BE001FA6A1 /* PXTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTreeNode.h; sourceTree = "<group>"; };
+		02714F7315AA31BE001FA6A1 /* PXTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTreeNode.m; sourceTree = "<group>"; };
 		EA00FB20149C7525002F8A15 /* PXObjectEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXObjectEditor.h; sourceTree = "<group>"; };
 		EA00FB21149C7525002F8A15 /* PXObjectEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXObjectEditor.m; sourceTree = "<group>"; };
 		EA30301614FFFA6A0062D399 /* PXTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTableViewCell.h; sourceTree = "<group>"; };
@@ -189,6 +193,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02714F7015AA3171001FA6A1 /* Trees */ = {
+			isa = PBXGroup;
+			children = (
+				02714F7215AA31BE001FA6A1 /* PXTreeNode.h */,
+				02714F7315AA31BE001FA6A1 /* PXTreeNode.m */,
+			);
+			path = Trees;
+			sourceTree = "<group>";
+		};
 		EA00FB1E149C750F002F8A15 /* Object Editors */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +283,7 @@
 				EA44B2B0149B22E800C5D440 /* Views */,
 				EA30301414FFFA5D0062D399 /* Cells */,
 				EA9C52EE15211DB700F767C9 /* Controls */,
+				02714F7015AA3171001FA6A1 /* Trees */,
 				EA44B2B7149B23AD00C5D440 /* Tab Bar */,
 				EA44B2C6149B251300C5D440 /* Navigation */,
 				EA30301A15001F360062D399 /* Button Bars */,
@@ -462,6 +476,7 @@
 				EA9C52EC15211D3100F767C9 /* PXFormatBarSegmentedControl.h in Headers */,
 				EA9C52F315211DC400F767C9 /* PXColorPickerView.h in Headers */,
 				EA9C52F515211DC400F767C9 /* PXColorWell.h in Headers */,
+				02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +580,7 @@
 				EA9C52ED15211D3100F767C9 /* PXFormatBarSegmentedControl.m in Sources */,
 				EA9C52F415211DC400F767C9 /* PXColorPickerView.m in Sources */,
 				EA9C52F615211DC400F767C9 /* PXColorWell.m in Sources */,
+				02714F7515AA31BE001FA6A1 /* PXTreeNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
