@@ -28,7 +28,7 @@
 
 @optional
 
-@property (copy, readonly) NSStirng *persistenceString;     /* A unique string representation of the receiver, or nil */
+@property (copy, readonly) NSString *persistenceString;     /* A unique string representation of the receiver, or nil */
 
 @end
 
@@ -44,8 +44,8 @@
 @property NSUInteger order;
 
 @property (copy) NSSet *children;
-- (void)addChild:(id <LCSourceListItem>)child;
-- (void)removeChild:(id <LCSourceListItem>)child;
+- (void)addChild:(id <PXTreeNode>)child;
+- (void)removeChild:(id <PXTreeNode>)child;
 
 @property (getter=isSelectable) BOOL selectable;
 @property (getter=isEditable) BOOL editable;

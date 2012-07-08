@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 02714F7215AA31BE001FA6A1 /* PXTreeNode.h */; };
+		02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 02714F7215AA31BE001FA6A1 /* PXTreeNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02714F7515AA31BE001FA6A1 /* PXTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 02714F7315AA31BE001FA6A1 /* PXTreeNode.m */; };
 		EA00FB22149C7525002F8A15 /* PXObjectEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA00FB20149C7525002F8A15 /* PXObjectEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA00FB23149C7525002F8A15 /* PXObjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA00FB21149C7525002F8A15 /* PXObjectEditor.m */; };

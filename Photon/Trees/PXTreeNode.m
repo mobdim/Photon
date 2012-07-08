@@ -38,28 +38,28 @@
 }
 
 - (void)setChildren:(NSSet *)children {
-    if (![children isEqualToSet:newChildren]) {
+    if (![children isEqualToSet:children]) {
 		NSSet *objects = [NSSet setWithSet:children];
 		[self willChangeValueForKey:@"children" withSetMutation:NSKeyValueSetSetMutation usingObjects:objects];
-		[children setSet:children];
+		[_children setSet:children];
 		[self didChangeValueForKey:@"children" withSetMutation:NSKeyValueSetSetMutation usingObjects:objects];
 	}
 }
 
-- (void)addChild:(id <LCSourceListItem>)child {
-    if (![children containsObject:child]) {
+- (void)addChild:(id <PXTreeNode>)child {
+    if (![_children containsObject:child]) {
 		NSSet *objects = [NSSet setWithObject:child];
 		[self willChangeValueForKey:@"children" withSetMutation:NSKeyValueUnionSetMutation usingObjects:objects];
-		[children addObject:child];
+		[_children addObject:child];
 		[self didChangeValueForKey:@"children" withSetMutation:NSKeyValueUnionSetMutation usingObjects:objects];
 	}
 }
 
-- (void)removeChild:(id <LCSourceListItem>)child {
-    if ([children containsObject:child]) {
+- (void)removeChild:(id <PXTreeNode>)child {
+    if ([_children containsObject:child]) {
 		NSSet *objects = [NSSet setWithObject:child];
 		[self willChangeValueForKey:@"children" withSetMutation:NSKeyValueMinusSetMutation usingObjects:objects];
-		[children removeObject:child];
+		[_children removeObject:child];
 		[self didChangeValueForKey:@"children" withSetMutation:NSKeyValueMinusSetMutation usingObjects:objects];
 	}
 }

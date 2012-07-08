@@ -32,6 +32,7 @@
 #import <Photon/PXTabBarController.h>
 #import <Photon/PXTabBarItem.h>
 #import <Photon/PXTableViewCell.h>
+#import <Photon/PXTreeNode.h>
 #import <Photon/PXViewController.h>
 #import <Photon/NSObject+PhotonAdditions.h>
 #import <Photon/NSValue+PhotonAdditions.h>
