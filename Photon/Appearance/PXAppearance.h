@@ -58,6 +58,15 @@ typedef NSUInteger PXAppearanceState;
 
 
 /*!
+ * @protocol PXAppearance
+ * @abstract Implemented by objects that can customize their appearance
+ */
+@protocol PXAppearance <NSObject>
+
+@end
+
+
+/*!
  * @protocol PXAppearanceFactory
  * @abstract Implemented by objects able to generate appearance resources
  */

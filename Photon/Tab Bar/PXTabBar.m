@@ -23,8 +23,10 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 	NSEvent *lastMouseDownEvent;
 }
 
-@synthesize delegate;
-@synthesize style;
+@synthesize delegate=_delegate;
+@synthesize style=_style;
+@synthesize cornerRadius=_cornerRadius;
+@synthesize border=_border;
 
 - (id)initWithFrame:(NSRect)frameRect {
 	self = [super initWithFrame:frameRect];
@@ -95,29 +97,45 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 #pragma mark -
 #pragma mark Drawing
 
+- (NSRect)borderRect {
+    NSRect borderRect = NSInsetRect([self bounds], -0.5, -0.5);
+    if (self.border != PXAppearanceBorderNone) {
+        if (self.border & PXAppearanceBorderLeft) {
+            borderRect.size.width -= 1.0;
+            borderRect.origin.x += 1.0;
+        }
+        if (self.border & PXAppearanceBorderRight) {
+            borderRect.size.width -= 1.0;
+        }
+        if (self.border & PXAppearanceBorderTop) {
+            borderRect.size.height -= 1.0;
+            borderRect.origin.y += 1.0;
+        }
+        if (self.border & PXAppearanceBorderBottom) {
+            borderRect.size.height -= 1.0;
+        }
+    }
+    return borderRect;
+}
+
 - (void)drawBackgroundInRect:(NSRect)dirtyRect {
+    [[NSGraphicsContext currentContext] saveGraphicsState];
+    
+    NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:self.cornerRadius yRadius:self.cornerRadius];
+    [bezierPath addClip];
+    
+    NSRect borderRect = [self borderRect];
+    
     if (self.style == PXTabBarStyleLight) {
-        [[NSColor colorWithCalibratedWhite:0.9 alpha:1.0] set];
-        NSRectFill([self bounds]);
-        
-        [[NSGraphicsContext currentContext] saveGraphicsState];
-        
-        NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:3.0 yRadius:3.0];
-        [bezierPath addClip];
-        
         if ([[self window] isMainWindow]) {
             NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]
                                                                  endingColor:[NSColor colorWithCalibratedWhite:0.8 alpha:1.0]];
             [gradient drawInRect:[self bounds] angle:90.0];
             
-            if (self.style == PXTabBarStyleLight) {
+            if (self.border != PXAppearanceBorderNone) {
                 [[NSColor colorWithCalibratedWhite:0.6 alpha:1.0] set];
-                NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect([self bounds], 0.5, 0.5) xRadius:3.0 yRadius:3.0];
+                NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
                 [bezierPath stroke];
-            }
-            else {
-                [[NSColor colorWithCalibratedWhite:0.6 alpha:1.0] set];
-                [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMaxY([self bounds]) - 0.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMaxY([self bounds]) - 0.5)];
             }
         }
         else {
@@ -125,30 +143,30 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                                                                  endingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]];
             [gradient drawInRect:[self bounds] angle:90.0];
             
-            [[NSColor colorWithCalibratedWhite:0.7 alpha:1.0] set];
-            [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMaxY([self bounds]) - 0.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMaxY([self bounds]) - 0.5)];
+            if (self.border != PXAppearanceBorderNone) {
+                [[NSColor colorWithCalibratedWhite:0.7 alpha:1.0] set];
+                NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
+                [bezierPath stroke];
+            }
         }
         
+        // Emboss
         [[NSColor colorWithCalibratedWhite:1.0 alpha:0.3] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMinY([self bounds]) + 1.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMinY([self bounds]) + 1.5)];
-        
-        [[NSGraphicsContext currentContext] restoreGraphicsState];
+        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(borderRect), NSMinY(borderRect) + 1.0) toPoint:NSMakePoint(NSMaxX(borderRect), NSMinY(borderRect) + 1.0)];
 	}
     else if (self.style == PXTabBarStyleDark) {
-        [[NSGraphicsContext currentContext] saveGraphicsState];
-        
-        NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:3.0 yRadius:3.0];
-        [bezierPath addClip];
-        
         NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.25 alpha:1.0]
                                                              endingColor:[NSColor colorWithCalibratedWhite:0.15 alpha:1.0]];
         [gradient drawInRect:[self bounds] angle:90.0];
         
-        [[NSColor colorWithCalibratedWhite:0.0 alpha:0.2] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMaxY([self bounds]) - 0.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMaxY([self bounds]) - 0.5)];
-        
-        [[NSGraphicsContext currentContext] restoreGraphicsState];
+        if (self.border != PXAppearanceBorderNone) {
+            [[NSColor colorWithCalibratedWhite:0.0 alpha:0.2] set];
+            NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
+            [bezierPath stroke];
+        }
     }
+    
+    [[NSGraphicsContext currentContext] restoreGraphicsState];
 }
 
 - (void)drawItemsInRect:(NSRect)dirtyRect {
@@ -160,14 +178,16 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     NSMutableParagraphStyle *para = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [para setAlignment:NSCenterTextAlignment];
     [para setLineBreakMode:NSLineBreakByTruncatingMiddle];
+    
+    
+    NSRect borderRect = [self borderRect];
 	
     
     [[NSGraphicsContext currentContext] saveGraphicsState];
     
-    //if (self.style == PXTabBarStyleDark) {
-        NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:3.0 yRadius:3.0];
-        [bezierPath addClip];
-    //}
+    // Corner radius clipping mask
+    NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:self.cornerRadius yRadius:self.cornerRadius];
+    [bezierPath addClip];
     
 	for (PXTabBarItem *item in items) {
         CGFloat itemWidth = [self widthOfItem:item];
@@ -177,40 +197,23 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
             itemRect.size.width -= 1.0;
         }
         
-        BOOL isSelected = (selectedItem == item && !drawMouseDownItemSelection) || (mouseDownItem == item && drawMouseDownItemSelection == YES);
-        
         // Draw selection
+        BOOL isSelected = (selectedItem == item && !drawMouseDownItemSelection) || (mouseDownItem == item && drawMouseDownItemSelection == YES);
         if (isSelected) {
+            [[NSGraphicsContext currentContext] saveGraphicsState];
+            
+            NSRectClip(itemRect);
+            
             if (self.style == PXTabBarStyleLight) {
-                [[NSGraphicsContext currentContext] saveGraphicsState];
-                
-                NSRectClip(itemRect);
-                
-                NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:3.0 yRadius:3.0];
-                [bezierPath addClip];
-                
                 if ([[self window] isMainWindow]) {
                     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.8 alpha:1.0]
                                                                          endingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]];
                     [gradient drawInRect:itemRect angle:90.0];
                     
-                    if (self.style == PXTabBarStyleLight) {
-                        [[NSColor colorWithCalibratedWhite:1.0 alpha:0.2] set];
-                        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMinY([self bounds]) + 1.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMinY([self bounds]) + 1.5)];
-                    }
-                    else {
-                        [[NSColor colorWithCalibratedWhite:1.0 alpha:0.2] set];
-                        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMinY([self bounds]) + 0.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMinY([self bounds]) + 0.5)];
-                    }
-                    
-                    if (self.style == PXTabBarStyleLight) {
+                    if (self.border != PXAppearanceBorderNone) {
                         [[NSColor colorWithCalibratedWhite:0.6 alpha:1.0] set];
-                        NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:NSInsetRect([self bounds], 0.5, 0.5) xRadius:3.0 yRadius:3.0];
+                        NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
                         [bezierPath stroke];
-                    }
-                    else {
-                        [[NSColor colorWithCalibratedWhite:0.6 alpha:1.0] set];
-                        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMaxY([self bounds]) - 0.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMaxY([self bounds]) - 0.5)];
                     }
                 }
                 else {
@@ -218,20 +221,30 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                                                                          endingColor:[NSColor colorWithCalibratedWhite:1.0 alpha:1.0]];
                     [gradient drawInRect:itemRect angle:90.0];
                     
-                    [[NSColor colorWithCalibratedWhite:1.0 alpha:0.2] set];
-                    [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMinY([self bounds]) + 0.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMinY([self bounds]) + 0.5)];
+                    if (self.border != PXAppearanceBorderNone) {
+                        [[NSColor colorWithCalibratedWhite:0.7 alpha:1.0] set];
+                        NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
+                        [bezierPath stroke];
+                    }
                 }
                 
-                [[NSGraphicsContext currentContext] restoreGraphicsState];
+                // Emboss
+                [[NSColor colorWithCalibratedWhite:1.0 alpha:0.3] set];
+                [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(borderRect), NSMinY(borderRect) + 1.0) toPoint:NSMakePoint(NSMaxX(borderRect), NSMinY(borderRect) + 1.0)];
             }
             else if (self.style == PXTabBarStyleDark) {
                 NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.15 alpha:1.0]
                                                                      endingColor:[NSColor colorWithCalibratedWhite:0.25 alpha:1.0]];
                 [gradient drawInRect:itemRect angle:90.0];
                 
-                [[NSColor colorWithCalibratedWhite:0.0 alpha:0.2] set];
-                [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX([self bounds]), NSMinY([self bounds]) + 0.5) toPoint:NSMakePoint(NSMaxX([self bounds]), NSMinY([self bounds]) + 0.5)];
+                if (self.border != PXAppearanceBorderNone) {
+                    [[NSColor colorWithCalibratedWhite:0.0 alpha:0.3] set];
+                    NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
+                    [bezierPath stroke];
+                }
             }
+            
+            [[NSGraphicsContext currentContext] restoreGraphicsState];
         }
         
         // Draw divider
@@ -356,13 +369,6 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 	}
     
     [[NSGraphicsContext currentContext] restoreGraphicsState];
-    
-    
-    // Bottom border
-    if (self.style == PXTabBarStyleLight) {
-        [[NSColor colorWithCalibratedWhite:1.0 alpha:0.2] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(0.0, 0.5) toPoint:NSMakePoint([self bounds].size.width, 0.5)];
-    }
 }
 
 - (void)drawRect:(NSRect)dirtyRect {

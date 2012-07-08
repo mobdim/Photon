@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Photon/PXAppearance.h>
 
 
 enum {
@@ -20,15 +21,17 @@ typedef NSUInteger PXTabBarStyle;
 @protocol PXTabBarDelegate;
 
 
-@interface PXTabBar : NSView
+@interface PXTabBar : NSView <PXAppearance>
 
 @property (unsafe_unretained) id <PXTabBarDelegate> delegate;
 
-@property (assign) PXTabBarStyle style;
+@property PXTabBarStyle style;
+@property CGFloat cornerRadius;
+@property PXAppearanceBorder border;
 
 @property (copy) NSArray *items;
 @property (strong) PXTabBarItem *selectedItem;
-@property (assign) NSUInteger selectedIndex;
+@property NSUInteger selectedIndex;
 
 @end
 
