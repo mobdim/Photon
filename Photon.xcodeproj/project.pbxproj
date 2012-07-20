@@ -492,7 +492,7 @@
 		EA44B287149B21FF00C5D440 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Sunflower Softworks";
 			};
 			buildConfigurationList = EA44B28A149B21FF00C5D440 /* Build configuration list for PBXProject "Photon" */;
@@ -632,6 +632,7 @@
 		EA44B2A7149B21FF00C5D440 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
@@ -647,6 +648,7 @@
 		EA44B2A8149B21FF00C5D440 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				FRAMEWORK_VERSION = A;
