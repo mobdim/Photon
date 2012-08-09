@@ -39,29 +39,29 @@
 
 - (void)setChildren:(NSSet *)children {
     if (![children isEqualToSet:children]) {
-		NSSet *objects = [NSSet setWithSet:children];
-		[self willChangeValueForKey:@"children" withSetMutation:NSKeyValueSetSetMutation usingObjects:objects];
-		[_children setSet:children];
-		[self didChangeValueForKey:@"children" withSetMutation:NSKeyValueSetSetMutation usingObjects:objects];
-	}
+        NSSet *objects = [NSSet setWithSet:children];
+        [self willChangeValueForKey:@"children" withSetMutation:NSKeyValueSetSetMutation usingObjects:objects];
+        [_children setSet:children];
+        [self didChangeValueForKey:@"children" withSetMutation:NSKeyValueSetSetMutation usingObjects:objects];
+    }
 }
 
 - (void)addChild:(id <PXTreeNode>)child {
     if (![_children containsObject:child]) {
-		NSSet *objects = [NSSet setWithObject:child];
-		[self willChangeValueForKey:@"children" withSetMutation:NSKeyValueUnionSetMutation usingObjects:objects];
-		[_children addObject:child];
-		[self didChangeValueForKey:@"children" withSetMutation:NSKeyValueUnionSetMutation usingObjects:objects];
-	}
+        NSSet *objects = [NSSet setWithObject:child];
+        [self willChangeValueForKey:@"children" withSetMutation:NSKeyValueUnionSetMutation usingObjects:objects];
+        [_children addObject:child];
+        [self didChangeValueForKey:@"children" withSetMutation:NSKeyValueUnionSetMutation usingObjects:objects];
+    }
 }
 
 - (void)removeChild:(id <PXTreeNode>)child {
     if ([_children containsObject:child]) {
-		NSSet *objects = [NSSet setWithObject:child];
-		[self willChangeValueForKey:@"children" withSetMutation:NSKeyValueMinusSetMutation usingObjects:objects];
-		[_children removeObject:child];
-		[self didChangeValueForKey:@"children" withSetMutation:NSKeyValueMinusSetMutation usingObjects:objects];
-	}
+        NSSet *objects = [NSSet setWithObject:child];
+        [self willChangeValueForKey:@"children" withSetMutation:NSKeyValueMinusSetMutation usingObjects:objects];
+        [_children removeObject:child];
+        [self didChangeValueForKey:@"children" withSetMutation:NSKeyValueMinusSetMutation usingObjects:objects];
+    }
 }
 
 @end

@@ -11,8 +11,8 @@
 
 
 typedef struct {
-	NSInteger x;
-	NSInteger y;
+    NSInteger x;
+    NSInteger y;
 } PXColorPickerLocation;
 
 
@@ -21,11 +21,11 @@ typedef struct {
 
 @interface PXColorPickerView : NSView {
 @private
-	NSTrackingArea *boundsTrackingArea;
-	PXColorPickerLocation hoverLocation;
-	BOOL hoverShowColors;
-	PXColorWellCell *_colorWellCell;
-	BOOL _allowsTransparent;
+    NSTrackingArea *boundsTrackingArea;
+    PXColorPickerLocation hoverLocation;
+    BOOL hoverShowColors;
+    PXColorWellCell *_colorWellCell;
+    BOOL _allowsTransparent;
 }
 
 @property (retain) PXColorWellCell *colorWellCell;

@@ -13,7 +13,7 @@
 @implementation PXNavigationPathCell
 
 + (Class)pathComponentCellClass {
-	return [PXNavigationPathComponentCell class];
+    return [PXNavigationPathComponentCell class];
 }
 
 @end

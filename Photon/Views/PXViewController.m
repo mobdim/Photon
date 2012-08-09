@@ -15,12 +15,12 @@
 
 @implementation PXViewController {
     PXViewController *parentViewController;
-	
-	PXNavigationController *navigationController;
-	PXNavigationItem *navigationItem;
-	
-	PXTabBarController *tabBarController;
-	PXTabBarItem *tabBarItem;
+    
+    PXNavigationController *navigationController;
+    PXNavigationItem *navigationItem;
+    
+    PXTabBarController *tabBarController;
+    PXTabBarItem *tabBarItem;
 }
 
 @dynamic title;
@@ -28,19 +28,19 @@
 @synthesize undoManager;
 
 - (id)initWithView:(NSView *)aView {
-	self = [self initWithNibName:nil bundle:nil];
-	if (self) {
-		[self setView:aView];
-	}
-	return self;
+    self = [self initWithNibName:nil bundle:nil];
+    if (self) {
+        [self setView:aView];
+    }
+    return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	if (self) {
-		
-	}
-	return self;
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        
+    }
+    return self;
 }
 
 - (void)dealloc {
@@ -72,19 +72,19 @@
 }
 
 - (void)viewWillAppear {
-	// Overridden by subclasses
+    // Overridden by subclasses
 }
 
 - (void)viewDidAppear {
-	// Overridden by subclasses
+    // Overridden by subclasses
 }
 
 - (void)viewWillDisappear {
-	// Overridden by subclasses
+    // Overridden by subclasses
 }
 
 - (void)viewDidDisappear {
-	// Overridden by subclasses
+    // Overridden by subclasses
 }
 
 
@@ -113,54 +113,54 @@
             controller = parent.navigationController;
         }
     }
-	return controller;
+    return controller;
 }
 
 - (void)setNavigationController:(PXNavigationController *)controller {
-	if (navigationController != controller) {
-		[self willChangeValueForKey:@"navigationController"];
-		navigationController = controller;
-		[self didChangeValueForKey:@"navigationController"];
-	}
+    if (navigationController != controller) {
+        [self willChangeValueForKey:@"navigationController"];
+        navigationController = controller;
+        [self didChangeValueForKey:@"navigationController"];
+    }
 }
 
 - (PXNavigationItem *)navigationItem {
-	if (navigationItem == nil) {
-		navigationItem = [[PXNavigationItem alloc] init];
-		[navigationItem bind:NSTitleBinding toObject:self withKeyPath:@"title" options:nil];
-		[navigationItem bind:NSImageBinding toObject:self withKeyPath:@"image" options:nil];
-		[navigationItem setRepresentedObject:self];
-	}
-	return navigationItem;
+    if (navigationItem == nil) {
+        navigationItem = [[PXNavigationItem alloc] init];
+        [navigationItem bind:NSTitleBinding toObject:self withKeyPath:@"title" options:nil];
+        [navigationItem bind:NSImageBinding toObject:self withKeyPath:@"image" options:nil];
+        [navigationItem setRepresentedObject:self];
+    }
+    return navigationItem;
 }
 
 - (PXTabBarController *)tabBarController {
-	PXTabBarController *controller = tabBarController;
+    PXTabBarController *controller = tabBarController;
     if (controller == nil) {
         PXViewController *parent = self.parentViewController;
         while (parent != nil && controller == nil) {
             controller = parent.tabBarController;
         }
     }
-	return controller;
+    return controller;
 }
 
 - (void)setTabBarController:(PXTabBarController *)controller {
-	if (tabBarController != controller) {
-		[self willChangeValueForKey:@"tabBarController"];
-		tabBarController = controller;
-		[self didChangeValueForKey:@"tabBarController"];
-	}
+    if (tabBarController != controller) {
+        [self willChangeValueForKey:@"tabBarController"];
+        tabBarController = controller;
+        [self didChangeValueForKey:@"tabBarController"];
+    }
 }
 
 - (PXTabBarItem *)tabBarItem {
-	if (tabBarItem == nil) {
-		tabBarItem = [[PXTabBarItem alloc] init];
-		[tabBarItem bind:NSTitleBinding toObject:self withKeyPath:@"title" options:nil];
-		[tabBarItem bind:NSImageBinding toObject:self withKeyPath:@"image" options:nil];
-		[tabBarItem setRepresentedObject:self];
-	}
-	return tabBarItem;
+    if (tabBarItem == nil) {
+        tabBarItem = [[PXTabBarItem alloc] init];
+        [tabBarItem bind:NSTitleBinding toObject:self withKeyPath:@"title" options:nil];
+        [tabBarItem bind:NSImageBinding toObject:self withKeyPath:@"image" options:nil];
+        [tabBarItem setRepresentedObject:self];
+    }
+    return tabBarItem;
 }
 
 @end

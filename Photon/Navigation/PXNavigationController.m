@@ -25,11 +25,11 @@
 
 
 @implementation PXNavigationController {
-	NSMutableArray *viewControllers;
-	
-	IBOutlet NSView *containerView;
-	PXNavigationBar *navigationBar;
-	
+    NSMutableArray *viewControllers;
+    
+    IBOutlet NSView *containerView;
+    PXNavigationBar *navigationBar;
+    
     NSAnimation *currentAnimation;
     NSView *disappearingView;
     
@@ -39,39 +39,39 @@
 @synthesize delegate;
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
-	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
-	
-	if ([key isEqualToString:@"topViewController"]) {
-		NSSet *affectingKeys = [NSSet setWithObjects:@"viewControllers", nil];
+    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
+    
+    if ([key isEqualToString:@"topViewController"]) {
+        NSSet *affectingKeys = [NSSet setWithObjects:@"viewControllers", nil];
         keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKeys];
-	}
-	
-	return keyPaths;
+    }
+    
+    return keyPaths;
 }
 
 - (id)init {
-	self = [self initWithNibName:@"NavigationView" bundle:[NSBundle bundleForClass:[PXNavigationController class]]];
-	if (self) {
-		
-	}
-	return self;
+    self = [self initWithNibName:@"NavigationView" bundle:[NSBundle bundleForClass:[PXNavigationController class]]];
+    if (self) {
+        
+    }
+    return self;
 }
 
 - (id)initWithRootViewController:(PXViewController *)viewController {
-	self = [self initWithNibName:@"NavigationView" bundle:[NSBundle bundleForClass:[PXNavigationController class]]];
-	if (self) {
-		viewController.navigationController = self;
-		[viewControllers addObject:viewController];
-	}
-	return self;
+    self = [self initWithNibName:@"NavigationView" bundle:[NSBundle bundleForClass:[PXNavigationController class]]];
+    if (self) {
+        viewController.navigationController = self;
+        [viewControllers addObject:viewController];
+    }
+    return self;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-	if (self) {
-		viewControllers = [[NSMutableArray alloc] init];
-	}
-	return self;
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        viewControllers = [[NSMutableArray alloc] init];
+    }
+    return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -83,28 +83,28 @@
 }
 
 - (void)loadView {
-	[super loadView];
-	
-	
-	// Set up navigation bar
-	[navigationBar setDelegate:self];
-	
-	for (PXViewController *viewController in self.viewControllers) {
-		[navigationBar pushNavigationItem:[viewController navigationItem]];
-	}
-	
-	
-	// Set up views and animations
-    [self adjustNavigationBarPosition];
-	
+    [super loadView];
     
-	// Load root view controller
-	if ([viewControllers count] > 0) {
-		PXViewController *rootViewController = [viewControllers objectAtIndex:0];
-		NSView *newView = [rootViewController view];
-		[newView setFrame:[containerView bounds]];
-		[containerView setSubviews:[NSArray arrayWithObject:newView]];
-	}
+    
+    // Set up navigation bar
+    [navigationBar setDelegate:self];
+    
+    for (PXViewController *viewController in self.viewControllers) {
+        [navigationBar pushNavigationItem:[viewController navigationItem]];
+    }
+    
+    
+    // Set up views and animations
+    [self adjustNavigationBarPosition];
+    
+    
+    // Load root view controller
+    if ([viewControllers count] > 0) {
+        PXViewController *rootViewController = [viewControllers objectAtIndex:0];
+        NSView *newView = [rootViewController view];
+        [newView setFrame:[containerView bounds]];
+        [containerView setSubviews:[NSArray arrayWithObject:newView]];
+    }
 }
 
 - (void)adjustNavigationBarPosition {
@@ -135,27 +135,27 @@
 #pragma mark Overrides
 
 - (void)viewWillAppear {
-	[[self topViewController] viewWillAppear];
+    [[self topViewController] viewWillAppear];
 }
 
 - (void)viewDidAppear {
-	[[self topViewController] viewDidAppear];
+    [[self topViewController] viewDidAppear];
 }
 
 - (void)viewWillDisappear {
-	[[self topViewController] viewWillDisappear];
+    [[self topViewController] viewWillDisappear];
 }
 
 - (void)viewDidDisappear {
-	[[self topViewController] viewDidDisappear];
+    [[self topViewController] viewDidDisappear];
 }
 
 - (PXNavigationController *)navigationController {
-	return self;
+    return self;
 }
 
 - (void)setNavigationController:(PXNavigationController *)controller {
-	// no-op
+    // no-op
 }
 
 
@@ -163,18 +163,18 @@
 #pragma mark Accessors
 
 - (PXNavigationBar *)navigationBar {
-	if (navigationBar == nil) {
-		[self view];
-	}
-	return navigationBar;
+    if (navigationBar == nil) {
+        [self view];
+    }
+    return navigationBar;
 }
 
 - (void)setNavigationBar:(PXNavigationBar *)newNavigationBar {
-	if (navigationBar != newNavigationBar) {
-		[self willChangeValueForKey:@"navigationBar"];
-		navigationBar = newNavigationBar;
-		[self didChangeValueForKey:@"navigationBar"];
-	}
+    if (navigationBar != newNavigationBar) {
+        [self willChangeValueForKey:@"navigationBar"];
+        navigationBar = newNavigationBar;
+        [self didChangeValueForKey:@"navigationBar"];
+    }
 }
 
 - (BOOL)alwaysShowsNavigationBar {
@@ -198,74 +198,74 @@
 #pragma mark View Controllers
 
 - (NSArray *)viewControllers {
-	return [viewControllers copy];
+    return [viewControllers copy];
 }
 
 - (void)setViewControllers:(NSArray *)newArray {
-	[self setViewControllers:newArray animated:NO];
+    [self setViewControllers:newArray animated:NO];
 }
 
 - (void)setViewControllers:(NSArray *)array animated:(BOOL)isAnimated {
-	if (![viewControllers isEqualToArray:array]) {
-		[self willChangeValueForKey:@"viewControllers"];
-		
-		PXViewController *currentTopController = [viewControllers lastObject];
-		PXViewController *newTopController = [array lastObject];
-		
-		[currentTopController viewWillDisappear];
-		[newTopController viewWillAppear];
-		
-		[self adjustNavigationBarPosition];
-		
-		if (currentTopController != nil && newTopController != nil) {
-			[self replaceView:[currentTopController view] withView:[newTopController view] push:NO animated:isAnimated];
-		}
-		else if (currentTopController != nil) {
-			if (isAnimated) {
-				[[[currentTopController view] animator] removeFromSuperview];
-			}
-			else {
-				[[currentTopController view] removeFromSuperview];
-			}
-		}
-		else if (newTopController != nil) {
-			[[newTopController view] setFrame:[containerView bounds]];
-			if (isAnimated) {
-				[[containerView animator] setSubviews:[NSArray arrayWithObject:[newTopController view]]];
-			}
-			else {
-				[containerView setSubviews:[NSArray arrayWithObject:[newTopController view]]];
-			}
-		}
-		
-		for (PXViewController *controller in viewControllers) {
-			[controller setNavigationController:nil];
+    if (![viewControllers isEqualToArray:array]) {
+        [self willChangeValueForKey:@"viewControllers"];
+        
+        PXViewController *currentTopController = [viewControllers lastObject];
+        PXViewController *newTopController = [array lastObject];
+        
+        [currentTopController viewWillDisappear];
+        [newTopController viewWillAppear];
+        
+        [self adjustNavigationBarPosition];
+        
+        if (currentTopController != nil && newTopController != nil) {
+            [self replaceView:[currentTopController view] withView:[newTopController view] push:NO animated:isAnimated];
+        }
+        else if (currentTopController != nil) {
+            if (isAnimated) {
+                [[[currentTopController view] animator] removeFromSuperview];
+            }
+            else {
+                [[currentTopController view] removeFromSuperview];
+            }
+        }
+        else if (newTopController != nil) {
+            [[newTopController view] setFrame:[containerView bounds]];
+            if (isAnimated) {
+                [[containerView animator] setSubviews:[NSArray arrayWithObject:[newTopController view]]];
+            }
+            else {
+                [containerView setSubviews:[NSArray arrayWithObject:[newTopController view]]];
+            }
+        }
+        
+        for (PXViewController *controller in viewControllers) {
+            [controller setNavigationController:nil];
             [controller setParentViewController:nil];
-		}
-		
-		[viewControllers removeAllObjects];
-		[viewControllers setArray:array];
-		
-		for (PXViewController *controller in viewControllers) {
-			[controller setNavigationController:self];
+        }
+        
+        [viewControllers removeAllObjects];
+        [viewControllers setArray:array];
+        
+        for (PXViewController *controller in viewControllers) {
+            [controller setNavigationController:self];
             [controller setParentViewController:self];
-		}
-		
-		NSMutableArray *navigationBarItems = [NSMutableArray array];
-		for (PXViewController *viewController in array) {
-			[navigationBarItems addObject:[viewController navigationItem]];
-		}
-		[navigationBar setItems:navigationBarItems];
-		
-		[currentTopController viewDidDisappear];
-		[newTopController viewDidAppear];
-		
-		[self didChangeValueForKey:@"viewControllers"];
-	}
+        }
+        
+        NSMutableArray *navigationBarItems = [NSMutableArray array];
+        for (PXViewController *viewController in array) {
+            [navigationBarItems addObject:[viewController navigationItem]];
+        }
+        [navigationBar setItems:navigationBarItems];
+        
+        [currentTopController viewDidDisappear];
+        [newTopController viewDidAppear];
+        
+        [self didChangeValueForKey:@"viewControllers"];
+    }
 }
 
 - (PXViewController *)topViewController {
-	return [viewControllers lastObject];
+    return [viewControllers lastObject];
 }
 
 - (void)replaceView:(NSView *)oldView withView:(NSView *)newView push:(BOOL)shouldPush animated:(BOOL)isAnimated {
@@ -343,29 +343,29 @@
         [[self delegate] navigationController:self willPushViewController:viewController animated:isAnimated];
     }
     
-	[self willChangeValueForKey:@"viewControllers"];
-	
-	PXViewController *currentViewController = [self topViewController];
-	
-	[currentViewController viewWillDisappear];
-	[viewController viewWillAppear];
-	
-	[viewControllers addObject:viewController];
-	
-	[viewController setNavigationController:self];
+    [self willChangeValueForKey:@"viewControllers"];
+    
+    PXViewController *currentViewController = [self topViewController];
+    
+    [currentViewController viewWillDisappear];
+    [viewController viewWillAppear];
+    
+    [viewControllers addObject:viewController];
+    
+    [viewController setNavigationController:self];
     [viewController setParentViewController:self];
-	
-	[navigationBar pushNavigationItem:[viewController navigationItem]];
+    
+    [navigationBar pushNavigationItem:[viewController navigationItem]];
     
     [self adjustNavigationBarPosition];
-	
-	NSView *oldView = [[containerView subviews] lastObject];
-	[self replaceView:oldView withView:[viewController view] push:YES animated:isAnimated];
     
-	[currentViewController viewDidDisappear];
-	[viewController viewDidAppear];
-	
-	[self didChangeValueForKey:@"viewControllers"];
+    NSView *oldView = [[containerView subviews] lastObject];
+    [self replaceView:oldView withView:[viewController view] push:YES animated:isAnimated];
+    
+    [currentViewController viewDidDisappear];
+    [viewController viewDidAppear];
+    
+    [self didChangeValueForKey:@"viewControllers"];
     
     if ([[self delegate] respondsToSelector:@selector(navigationController:didPushViewController:animated:)]) {
         [[self delegate] navigationController:self didPushViewController:viewController animated:isAnimated];
@@ -373,55 +373,55 @@
 }
 
 - (void)popViewControllerAnimated:(BOOL)isAnimated {
-	if ([viewControllers count] > 1) {
-		PXViewController *nextController = [viewControllers objectAtIndex:[viewControllers count]-2];
-		
-		PXViewController *topController = [self topViewController];
-		
+    if ([viewControllers count] > 1) {
+        PXViewController *nextController = [viewControllers objectAtIndex:[viewControllers count]-2];
+        
+        PXViewController *topController = [self topViewController];
+        
         if ([[self delegate] respondsToSelector:@selector(navigationController:willPopViewController:animated:)]) {
             [[self delegate] navigationController:self willPopViewController:topController animated:isAnimated];
         }
         
-		if ([[self delegate] respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
-			[[self delegate] navigationController:self willShowViewController:nextController animated:isAnimated];
-		}
-		
-		[self willChangeValueForKey:@"viewControllers"];
-		
-		[topController viewWillDisappear];
-		[nextController viewWillAppear];
+        if ([[self delegate] respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
+            [[self delegate] navigationController:self willShowViewController:nextController animated:isAnimated];
+        }
+        
+        [self willChangeValueForKey:@"viewControllers"];
+        
+        [topController viewWillDisappear];
+        [nextController viewWillAppear];
         
         [topController setNavigationController:nil];
         [topController setParentViewController:nil];
-		
-		[viewControllers removeObjectAtIndex:[viewControllers count]-1];
-		
+        
+        [viewControllers removeObjectAtIndex:[viewControllers count]-1];
+        
         [self adjustNavigationBarPosition];
-		
-		[self replaceView:[topController view] withView:[nextController view] push:NO animated:isAnimated];
-		
-		[navigationBar popNavigationItem];
-		
-		[topController viewDidDisappear];
-		[nextController viewDidAppear];
-		
-		[self didChangeValueForKey:@"viewControllers"];
-		
+        
+        [self replaceView:[topController view] withView:[nextController view] push:NO animated:isAnimated];
+        
+        [navigationBar popNavigationItem];
+        
+        [topController viewDidDisappear];
+        [nextController viewDidAppear];
+        
+        [self didChangeValueForKey:@"viewControllers"];
+        
         if ([[self delegate] respondsToSelector:@selector(navigationController:didPopViewController:animated:)]) {
             [[self delegate] navigationController:self didPopViewController:topController animated:isAnimated];
         }
         
-		if ([[self delegate] respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
-			[[self delegate] navigationController:self didShowViewController:nextController animated:isAnimated];
-		}
-	}
+        if ([[self delegate] respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
+            [[self delegate] navigationController:self didShowViewController:nextController animated:isAnimated];
+        }
+    }
 }
 
 - (void)popToRootViewControllerAnimated:(BOOL)isAnimated {
-	PXViewController *rootController = (([viewControllers count] > 0) ? [viewControllers objectAtIndex:0] : nil);
-	PXViewController *topController = [viewControllers lastObject];
-	
-	if (rootController != nil && rootController != topController) {
+    PXViewController *rootController = (([viewControllers count] > 0) ? [viewControllers objectAtIndex:0] : nil);
+    PXViewController *topController = [viewControllers lastObject];
+    
+    if (rootController != nil && rootController != topController) {
         NSArray *viewControllersToPop = [viewControllers subarrayWithRange:NSMakeRange(1, [viewControllers count]-1)];
         for (PXViewController *viewController in viewControllersToPop) {
             if ([[self delegate] respondsToSelector:@selector(navigationController:willPopViewController:animated:)]) {
@@ -429,50 +429,50 @@
             }
         }
         
-		if ([[self delegate] respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
-			[[self delegate] navigationController:self willShowViewController:rootController animated:isAnimated];
-		}
-		
-		[self willChangeValueForKey:@"viewControllers"];
-		
-		[topController viewWillDisappear];
-		[rootController viewWillAppear];
+        if ([[self delegate] respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
+            [[self delegate] navigationController:self willShowViewController:rootController animated:isAnimated];
+        }
+        
+        [self willChangeValueForKey:@"viewControllers"];
+        
+        [topController viewWillDisappear];
+        [rootController viewWillAppear];
         
         for (PXViewController *viewController in viewControllersToPop) {
             [viewController setNavigationController:nil];
             [viewController setParentViewController:self];
         }
-		
-		[viewControllers removeObjectsInRange:NSMakeRange(1, [viewControllers count]-1)];
-		
-		[self replaceView:[topController view] withView:[rootController view] push:NO animated:isAnimated];
-		
-		[navigationBar popToRootNavigationItem];
-		
+        
+        [viewControllers removeObjectsInRange:NSMakeRange(1, [viewControllers count]-1)];
+        
+        [self replaceView:[topController view] withView:[rootController view] push:NO animated:isAnimated];
+        
+        [navigationBar popToRootNavigationItem];
+        
         [self adjustNavigationBarPosition];
-		
-		[topController viewDidDisappear];
-		[rootController viewDidAppear];
-		
-		[self didChangeValueForKey:@"viewControllers"];
-		
+        
+        [topController viewDidDisappear];
+        [rootController viewDidAppear];
+        
+        [self didChangeValueForKey:@"viewControllers"];
+        
         for (PXViewController *viewController in viewControllersToPop) {
             if ([[self delegate] respondsToSelector:@selector(navigationController:didPopViewController:animated:)]) {
                 [[self delegate] navigationController:self didPopViewController:viewController animated:isAnimated];
             }
         }
         
-		if ([[self delegate] respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
-			[[self delegate] navigationController:self didShowViewController:rootController animated:isAnimated];
-		}
-	}
+        if ([[self delegate] respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
+            [[self delegate] navigationController:self didShowViewController:rootController animated:isAnimated];
+        }
+    }
 }
 
 - (void)popToViewController:(PXViewController *)viewController animated:(BOOL)isAnimated updateNavigationBar:(BOOL)updateNavigationBar {
-	PXViewController *topController = [viewControllers lastObject];
-	
-	NSInteger index = [viewControllers indexOfObjectIdenticalTo:viewController];
-	if (index != NSNotFound && viewController != nil && viewController != topController) {
+    PXViewController *topController = [viewControllers lastObject];
+    
+    NSInteger index = [viewControllers indexOfObjectIdenticalTo:viewController];
+    if (index != NSNotFound && viewController != nil && viewController != topController) {
         NSArray *viewControllersToPop = [viewControllers subarrayWithRange:NSMakeRange(index+1, [viewControllers count]-(index+1))];
         for (PXViewController *viewController in viewControllersToPop) {
             if ([[self delegate] respondsToSelector:@selector(navigationController:willPopViewController:animated:)]) {
@@ -480,49 +480,49 @@
             }
         }
         
-		if ([[self delegate] respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
-			[[self delegate] navigationController:self willShowViewController:viewController animated:isAnimated];
-		}
-		
-		[self willChangeValueForKey:@"viewControllers"];
-		
-		[topController viewWillDisappear];
-		[viewController viewWillAppear];
+        if ([[self delegate] respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
+            [[self delegate] navigationController:self willShowViewController:viewController animated:isAnimated];
+        }
+        
+        [self willChangeValueForKey:@"viewControllers"];
+        
+        [topController viewWillDisappear];
+        [viewController viewWillAppear];
         
         for (PXViewController *viewController in viewControllersToPop) {
             [viewController setNavigationController:nil];
             [viewController setParentViewController:self];
         }
-		
-		[viewControllers removeObjectsInRange:NSMakeRange(index+1, [viewControllers count]-(index+1))];
-		
-		[self replaceView:[topController view] withView:[viewController view] push:NO animated:isAnimated];
-		
-		if (updateNavigationBar) {
-			[navigationBar popToNavigationItem:[viewController navigationItem]];
-		}
-		
+        
+        [viewControllers removeObjectsInRange:NSMakeRange(index+1, [viewControllers count]-(index+1))];
+        
+        [self replaceView:[topController view] withView:[viewController view] push:NO animated:isAnimated];
+        
+        if (updateNavigationBar) {
+            [navigationBar popToNavigationItem:[viewController navigationItem]];
+        }
+        
         [self adjustNavigationBarPosition];
         
-		[topController viewDidDisappear];
-		[viewController viewDidAppear];
-		
-		[self didChangeValueForKey:@"viewControllers"];
+        [topController viewDidDisappear];
+        [viewController viewDidAppear];
         
-		for (PXViewController *viewController in viewControllersToPop) {
+        [self didChangeValueForKey:@"viewControllers"];
+        
+        for (PXViewController *viewController in viewControllersToPop) {
             if ([[self delegate] respondsToSelector:@selector(navigationController:didPopViewController:animated:)]) {
                 [[self delegate] navigationController:self didPopViewController:viewController animated:isAnimated];
             }
         }
         
-		if ([[self delegate] respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
-			[[self delegate] navigationController:self didShowViewController:viewController animated:isAnimated];
-		}
-	}
+        if ([[self delegate] respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
+            [[self delegate] navigationController:self didShowViewController:viewController animated:isAnimated];
+        }
+    }
 }
 
 - (void)popToViewController:(PXViewController *)viewController animated:(BOOL)isAnimated {
-	[self popToViewController:viewController animated:isAnimated updateNavigationBar:YES];
+    [self popToViewController:viewController animated:isAnimated updateNavigationBar:YES];
 }
 
 
@@ -530,20 +530,20 @@
 #pragma mark Navigation Bar delegate
 
 - (BOOL)navigationBar:(PXNavigationBar *)bar shouldPushItem:(PXNavigationItem *)item {
-	return YES;
+    return YES;
 }
 
 - (void)navigationBar:(PXNavigationBar *)bar didPushItem:(PXNavigationItem *)item {
-	
+    
 }
 
 - (BOOL)navigationBar:(PXNavigationBar *)bar shouldPopToItem:(PXNavigationItem *)item {
-	return YES;
+    return YES;
 }
 
 - (void)navigationBar:(PXNavigationBar *)bar didPopToItem:(PXNavigationItem *)item {
-	PXViewController *viewController = [item representedObject];
-	[self popToViewController:viewController animated:YES updateNavigationBar:NO];
+    PXViewController *viewController = [item representedObject];
+    [self popToViewController:viewController animated:YES updateNavigationBar:NO];
 }
 
 @end

@@ -42,7 +42,7 @@
 
 - (void)dealloc {
     [self removeObserver:self forKeyPaths:[NSSet setWithObjects:@"gradient", @"inactiveGradient", @"hasTopBorder", @"hasBottomBorder", @"topBorderColor", @"bottomBorderColor", @"inactiveTopBorderColor", @"inactiveBottomBorderColor", @"topInsetAlpha", @"bottomInsetAlpha", nil]];
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
@@ -53,19 +53,19 @@
 }
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
-	if ([self window] != nil) {
-		[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidBecomeMainNotification object:[self window]];
-		[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignMainNotification object:[self window]];
-	}
-	
-	if (newWindow != nil) {
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMain:) name:NSWindowDidBecomeMainNotification object:newWindow];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMain:) name:NSWindowDidResignMainNotification object:newWindow];
-	}
+    if ([self window] != nil) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidBecomeMainNotification object:[self window]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignMainNotification object:[self window]];
+    }
+    
+    if (newWindow != nil) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMain:) name:NSWindowDidBecomeMainNotification object:newWindow];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMain:) name:NSWindowDidResignMainNotification object:newWindow];
+    }
 }
 
 - (void)windowDidChangeMain:(NSNotification *)notification {
-	[self setNeedsDisplay:YES];
+    [self setNeedsDisplay:YES];
 }
 
 - (void)drawRect:(NSRect)dirtyRect {

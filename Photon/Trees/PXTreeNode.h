@@ -22,9 +22,9 @@
 @property (readonly) NSUInteger order;                      /* The order of the item, 0 is lowest */
 @property (copy, readonly) NSSet *children;                 /* The set of child items */
 
-@property (readonly, getter=isSelectable) BOOL selectable;	/* If the item is selectable by the user */
-@property (readonly, getter=isEditable) BOOL editable;		/* If the item is editable by the user */
-@property (readonly, getter=isGroupItem) BOOL groupItem;	/* If the item is a group heading */
+@property (readonly, getter=isSelectable) BOOL selectable;    /* If the item is selectable by the user */
+@property (readonly, getter=isEditable) BOOL editable;        /* If the item is editable by the user */
+@property (readonly, getter=isGroupItem) BOOL groupItem;    /* If the item is a group heading */
 
 @optional
 

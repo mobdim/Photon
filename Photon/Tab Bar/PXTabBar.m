@@ -15,12 +15,12 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 
 
 @implementation PXTabBar {
-	NSMutableArray *items;
-	NSTrackingArea *trackingArea;
-	PXTabBarItem *selectedItem;
-	PXTabBarItem *mouseDownItem;
-	BOOL drawMouseDownItemSelection;
-	NSEvent *lastMouseDownEvent;
+    NSMutableArray *items;
+    NSTrackingArea *trackingArea;
+    PXTabBarItem *selectedItem;
+    PXTabBarItem *mouseDownItem;
+    BOOL drawMouseDownItemSelection;
+    NSEvent *lastMouseDownEvent;
 }
 
 @synthesize delegate=_delegate;
@@ -29,68 +29,68 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 @synthesize border=_border;
 
 - (id)initWithFrame:(NSRect)frameRect {
-	self = [super initWithFrame:frameRect];
-	if (self) {
-		items = [[NSMutableArray alloc] init];
-		
-		[self updateTrackingAreas];
-	}
-	return self;
+    self = [super initWithFrame:frameRect];
+    if (self) {
+        items = [[NSMutableArray alloc] init];
+        
+        [self updateTrackingAreas];
+    }
+    return self;
 }
 
 - (void)update {
-	NSRect itemsRect = [self itemsRect];
-	CGFloat xPos = itemsRect.origin.x;
-	BOOL overflow = NO;
-	NSMenu *overflowMenu = nil;
-	
-	for (PXTabBarItem *item in items) {
+    NSRect itemsRect = [self itemsRect];
+    CGFloat xPos = itemsRect.origin.x;
+    BOOL overflow = NO;
+    NSMenu *overflowMenu = nil;
+    
+    for (PXTabBarItem *item in items) {
         CGFloat itemWidth = [self widthOfItem:item];
-		if (overflow == NO && xPos + itemWidth <= itemsRect.origin.x + itemsRect.size.width) {
-			xPos += itemWidth;
-		}
-		else {
-			if (overflow == NO) {
-				overflow = YES;
-				overflowMenu = [[NSMenu alloc] init];
-			}
-			
-			NSMenuItem *menuItem = [[NSMenuItem alloc] init];
-			[menuItem bind:NSTitleBinding toObject:item withKeyPath:@"title" options:nil];
-			[menuItem bind:NSImageBinding toObject:item withKeyPath:@"image" options:nil];
-			
-			if (selectedItem == item) {
-				[menuItem setState:NSOnState];
-			}
-			
-			[overflowMenu addItem:menuItem];
-		}
-	}
-	
-	[self setNeedsDisplay:YES];
+        if (overflow == NO && xPos + itemWidth <= itemsRect.origin.x + itemsRect.size.width) {
+            xPos += itemWidth;
+        }
+        else {
+            if (overflow == NO) {
+                overflow = YES;
+                overflowMenu = [[NSMenu alloc] init];
+            }
+            
+            NSMenuItem *menuItem = [[NSMenuItem alloc] init];
+            [menuItem bind:NSTitleBinding toObject:item withKeyPath:@"title" options:nil];
+            [menuItem bind:NSImageBinding toObject:item withKeyPath:@"image" options:nil];
+            
+            if (selectedItem == item) {
+                [menuItem setState:NSOnState];
+            }
+            
+            [overflowMenu addItem:menuItem];
+        }
+    }
+    
+    [self setNeedsDisplay:YES];
 }
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
-	if ([self window] != nil) {
-		[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidBecomeMainNotification object:[self window]];
-		[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignMainNotification object:[self window]];
-	}
-	
-	if (newWindow != nil) {
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMain:) name:NSWindowDidBecomeMainNotification object:newWindow];
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMain:) name:NSWindowDidResignMainNotification object:newWindow];
-	}
+    if ([self window] != nil) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidBecomeMainNotification object:[self window]];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidResignMainNotification object:[self window]];
+    }
+    
+    if (newWindow != nil) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMain:) name:NSWindowDidBecomeMainNotification object:newWindow];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidChangeMain:) name:NSWindowDidResignMainNotification object:newWindow];
+    }
 }
 
 - (void)windowDidChangeMain:(NSNotification *)notification {
-	[self setNeedsDisplay:YES];
+    [self setNeedsDisplay:YES];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-	if (context == (__bridge void *)PXTabBarItemPropertyObservationContext) {
-		[self setNeedsDisplay:YES];
-	}
-	else [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    if (context == (__bridge void *)PXTabBarItemPropertyObservationContext) {
+        [self setNeedsDisplay:YES];
+    }
+    else [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
 
@@ -153,7 +153,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
         // Emboss
         [[NSColor colorWithCalibratedWhite:1.0 alpha:0.3] set];
         [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(borderRect), NSMinY(borderRect) + 1.0) toPoint:NSMakePoint(NSMaxX(borderRect), NSMinY(borderRect) + 1.0)];
-	}
+    }
     else if (self.style == PXTabBarStyleDark) {
         NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.25 alpha:1.0]
                                                              endingColor:[NSColor colorWithCalibratedWhite:0.15 alpha:1.0]];
@@ -170,10 +170,10 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (void)drawItemsInRect:(NSRect)dirtyRect {
-	// Draw items
-	NSRect itemsRect = [self itemsRect];
-	
-	CGFloat xPos = itemsRect.origin.x;
+    // Draw items
+    NSRect itemsRect = [self itemsRect];
+    
+    CGFloat xPos = itemsRect.origin.x;
     
     NSMutableParagraphStyle *para = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [para setAlignment:NSCenterTextAlignment];
@@ -181,7 +181,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     
     
     NSRect borderRect = [self borderRect];
-	
+    
     
     [[NSGraphicsContext currentContext] saveGraphicsState];
     
@@ -189,9 +189,9 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:[self bounds] xRadius:self.cornerRadius yRadius:self.cornerRadius];
     [bezierPath addClip];
     
-	for (PXTabBarItem *item in items) {
+    for (PXTabBarItem *item in items) {
         CGFloat itemWidth = [self widthOfItem:item];
-		NSRect itemRect = NSMakeRect(xPos, 0.0, itemWidth, [self bounds].size.height);
+        NSRect itemRect = NSMakeRect(xPos, 0.0, itemWidth, [self bounds].size.height);
         
         if ([items lastObject] != item) {
             itemRect.size.width -= 1.0;
@@ -366,18 +366,18 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
         [[NSGraphicsContext currentContext] restoreGraphicsState];
     
         xPos += itemWidth;
-	}
+    }
     
     [[NSGraphicsContext currentContext] restoreGraphicsState];
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
-	[self drawBackgroundInRect:dirtyRect];
-	[self drawItemsInRect:dirtyRect];
+    [self drawBackgroundInRect:dirtyRect];
+    [self drawItemsInRect:dirtyRect];
 }
 
 - (BOOL)isFlipped {
-	return YES;
+    return YES;
 }
 
 
@@ -385,81 +385,81 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 #pragma mark Events
 
 - (void)updateTrackingAreas {
-	if (trackingArea != nil) {
-		[self removeTrackingArea:trackingArea];
-		trackingArea = nil;
-	}
-	
-	trackingArea = [[NSTrackingArea alloc] initWithRect:[self visibleRect] options:(NSTrackingActiveInKeyWindow|NSTrackingMouseEnteredAndExited) owner:self userInfo:nil];
-	[self addTrackingArea:trackingArea];
+    if (trackingArea != nil) {
+        [self removeTrackingArea:trackingArea];
+        trackingArea = nil;
+    }
+    
+    trackingArea = [[NSTrackingArea alloc] initWithRect:[self visibleRect] options:(NSTrackingActiveInKeyWindow|NSTrackingMouseEnteredAndExited) owner:self userInfo:nil];
+    [self addTrackingArea:trackingArea];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
-	NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
-	lastMouseDownEvent = theEvent;
-	
-	PXTabBarItem *item = [self itemAtPoint:thePoint];
-	if (item) {
-		mouseDownItem = item;
-		drawMouseDownItemSelection = YES;
-	}
-	
-	[self setNeedsDisplay:YES];
+    NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
+    lastMouseDownEvent = theEvent;
+    
+    PXTabBarItem *item = [self itemAtPoint:thePoint];
+    if (item) {
+        mouseDownItem = item;
+        drawMouseDownItemSelection = YES;
+    }
+    
+    [self setNeedsDisplay:YES];
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent {
-	NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
-	
-	if (mouseDownItem) {
-		PXTabBarItem *item = [self itemAtPoint:thePoint];
-		if (item == mouseDownItem) {
-			drawMouseDownItemSelection = YES;
-		}
-		else {
-			drawMouseDownItemSelection = NO;
-		}
-	}
-	
-	[self setNeedsDisplay:YES];
+    NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
+    
+    if (mouseDownItem) {
+        PXTabBarItem *item = [self itemAtPoint:thePoint];
+        if (item == mouseDownItem) {
+            drawMouseDownItemSelection = YES;
+        }
+        else {
+            drawMouseDownItemSelection = NO;
+        }
+    }
+    
+    [self setNeedsDisplay:YES];
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
-	NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
-	
-	if (mouseDownItem) {
-		PXTabBarItem *item = [self itemAtPoint:thePoint];
-		if (item == mouseDownItem) {
-			[self selectItem:item];
-		}
-	}
-	
-	lastMouseDownEvent = nil;
-	mouseDownItem = nil;
-	drawMouseDownItemSelection = NO;
-	
-	[self setNeedsDisplay:YES];
+    NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
+    
+    if (mouseDownItem) {
+        PXTabBarItem *item = [self itemAtPoint:thePoint];
+        if (item == mouseDownItem) {
+            [self selectItem:item];
+        }
+    }
+    
+    lastMouseDownEvent = nil;
+    mouseDownItem = nil;
+    drawMouseDownItemSelection = NO;
+    
+    [self setNeedsDisplay:YES];
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {
-	NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
-	
-	if (mouseDownItem) {
-		PXTabBarItem *item = [self itemAtPoint:thePoint];
-		if (item == mouseDownItem) {
-			drawMouseDownItemSelection = YES;
-		}
-		else {
-			drawMouseDownItemSelection = NO;
-		}
-	}
-	
-	[self setNeedsDisplay:YES];
+    NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
+    
+    if (mouseDownItem) {
+        PXTabBarItem *item = [self itemAtPoint:thePoint];
+        if (item == mouseDownItem) {
+            drawMouseDownItemSelection = YES;
+        }
+        else {
+            drawMouseDownItemSelection = NO;
+        }
+    }
+    
+    [self setNeedsDisplay:YES];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
-	drawMouseDownItemSelection = NO;
-	
-	[self setNeedsDisplay:YES];
+    drawMouseDownItemSelection = NO;
+    
+    [self setNeedsDisplay:YES];
 }
 
 
@@ -467,8 +467,8 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 #pragma mark Items
 
 - (NSRect)itemsRect {
-	NSRect itemsRect = [self bounds];
-	return itemsRect;
+    NSRect itemsRect = [self bounds];
+    return itemsRect;
 }
 
 - (CGFloat)widthOfItem:(PXTabBarItem *)item {
@@ -483,55 +483,55 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (PXTabBarItem *)itemAtPoint:(NSPoint)thePoint {
-	NSRect itemsRect = [self itemsRect];
-	
-	CGFloat totalWidth = 0.0;
-	BOOL overflow = NO;
-	for (PXTabBarItem *item in items) {
+    NSRect itemsRect = [self itemsRect];
+    
+    CGFloat totalWidth = 0.0;
+    BOOL overflow = NO;
+    for (PXTabBarItem *item in items) {
         CGFloat itemWidth = [self widthOfItem:item];
-		if (totalWidth + itemWidth <= itemsRect.size.width) {
-			totalWidth += itemWidth;
-		}
-		else {
-			overflow = YES;
-			break;
-		}
-	}
-	
-	
-	CGFloat xPos = itemsRect.origin.x;
-	
-	if (!overflow) {
-		// Not overflowing
-		xPos = itemsRect.origin.x + round((itemsRect.size.width - totalWidth) / 2.0);
-	}
-	
-	for (PXTabBarItem *item in items) {
+        if (totalWidth + itemWidth <= itemsRect.size.width) {
+            totalWidth += itemWidth;
+        }
+        else {
+            overflow = YES;
+            break;
+        }
+    }
+    
+    
+    CGFloat xPos = itemsRect.origin.x;
+    
+    if (!overflow) {
+        // Not overflowing
+        xPos = itemsRect.origin.x + round((itemsRect.size.width - totalWidth) / 2.0);
+    }
+    
+    for (PXTabBarItem *item in items) {
         CGFloat itemWidth = [self widthOfItem:item];
         NSRect itemRect = NSMakeRect(xPos, 0.0, itemWidth, [self bounds].size.height - 1.0);
         if (NSPointInRect(thePoint, itemRect)) {
             return item;
         }
         xPos += itemWidth;
-	}
-	
-	return nil;
+    }
+    
+    return nil;
 }
 
 - (NSArray *)items {
-	return [items copy];
+    return [items copy];
 }
 
 - (void)setItems:(NSArray *)newItems {
-	if (![items isEqualToArray:newItems]) {
-		while ([[self items] count] > 0) {
-			[self removeItemAtIndex:0];
-		}
-		
-		for (PXTabBarItem *item in newItems) {
-			[self addItem:item];
-		}
-	}
+    if (![items isEqualToArray:newItems]) {
+        while ([[self items] count] > 0) {
+            [self removeItemAtIndex:0];
+        }
+        
+        for (PXTabBarItem *item in newItems) {
+            [self addItem:item];
+        }
+    }
 }
 
 + (NSSet *)keyPathsForValuesAffectingSelectedIndex {
@@ -539,16 +539,16 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (PXTabBarItem *)selectedItem {
-	return selectedItem;
+    return selectedItem;
 }
 
 - (void)setSelectedItem:(PXTabBarItem *)item {
-	if (selectedItem != item) {
-		[self willChangeValueForKey:@"selectedItem"];
-		selectedItem = item;
-		[self didChangeValueForKey:@"selectedItem"];
-		[self update];
-	}
+    if (selectedItem != item) {
+        [self willChangeValueForKey:@"selectedItem"];
+        selectedItem = item;
+        [self didChangeValueForKey:@"selectedItem"];
+        [self update];
+    }
 }
 
 - (NSUInteger)selectedIndex {
@@ -560,77 +560,77 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (void)addItem:(PXTabBarItem *)item {
-	[self insertItem:item atIndex:[items count]];
+    [self insertItem:item atIndex:[items count]];
 }
 
 - (void)insertItem:(PXTabBarItem *)item atIndex:(NSUInteger)index {
-	[item addObserver:self forKeyPath:@"image" options:(NSKeyValueObservingOptionNew) context:(__bridge void *)PXTabBarItemPropertyObservationContext];
-	[item addObserver:self forKeyPath:@"badgeValue" options:(NSKeyValueObservingOptionNew) context:(__bridge void *)PXTabBarItemPropertyObservationContext];
-	
-	[items insertObject:item atIndex:index];
-	
-	[self update];
+    [item addObserver:self forKeyPath:@"image" options:(NSKeyValueObservingOptionNew) context:(__bridge void *)PXTabBarItemPropertyObservationContext];
+    [item addObserver:self forKeyPath:@"badgeValue" options:(NSKeyValueObservingOptionNew) context:(__bridge void *)PXTabBarItemPropertyObservationContext];
+    
+    [items insertObject:item atIndex:index];
+    
+    [self update];
 }
 
 - (void)removeItem:(PXTabBarItem *)item {
-	NSUInteger index = [items indexOfObject:item];
-	if (index != NSNotFound) {
-		[self removeItemAtIndex:index];
-	}
+    NSUInteger index = [items indexOfObject:item];
+    if (index != NSNotFound) {
+        [self removeItemAtIndex:index];
+    }
 }
 
 - (void)removeItemAtIndex:(NSUInteger)index {
-	PXTabBarItem *item = [items objectAtIndex:index];
-	
-	if (item == selectedItem) {
-		if (index < [items count]-1) {
-			// Select next tab
-			[self selectItemAtIndex:index+1];
-		}
-		else if (index > 0) {
-			// Select previous tab
-			[self selectItemAtIndex:index-1];
-		}
-		else {
-			// Select nothing
-			[self setSelectedItem:nil];
-		}
-	}
-	
-	[item removeObserver:self forKeyPath:@"image"];
-	[item removeObserver:self forKeyPath:@"badgeValue"];
-	
-	[items removeObjectAtIndex:index];
-	
-	[self update];
+    PXTabBarItem *item = [items objectAtIndex:index];
+    
+    if (item == selectedItem) {
+        if (index < [items count]-1) {
+            // Select next tab
+            [self selectItemAtIndex:index+1];
+        }
+        else if (index > 0) {
+            // Select previous tab
+            [self selectItemAtIndex:index-1];
+        }
+        else {
+            // Select nothing
+            [self setSelectedItem:nil];
+        }
+    }
+    
+    [item removeObserver:self forKeyPath:@"image"];
+    [item removeObserver:self forKeyPath:@"badgeValue"];
+    
+    [items removeObjectAtIndex:index];
+    
+    [self update];
 }
 
 - (void)selectItem:(PXTabBarItem *)item {
-	if ([[self delegate] respondsToSelector:@selector(tabBar:shouldSelectItem:)]) {
-		if (![[self delegate] tabBar:self shouldSelectItem:item]) {
-			return;
-		}
-	}
-	
-	if ([[self delegate] respondsToSelector:@selector(tabBar:willSelectItem:)]) {
-		[[self delegate] tabBar:self willSelectItem:item];
-	}
-	
-	[self setSelectedItem:item];
-	[self update];
-	
-	if ([[self delegate] respondsToSelector:@selector(tabBar:didSelectItem:)]) {
-		[[self delegate] tabBar:self didSelectItem:item];
-	}
+    if ([[self delegate] respondsToSelector:@selector(tabBar:shouldSelectItem:)]) {
+        if (![[self delegate] tabBar:self shouldSelectItem:item]) {
+            return;
+        }
+    }
+    
+    if ([[self delegate] respondsToSelector:@selector(tabBar:willSelectItem:)]) {
+        [[self delegate] tabBar:self willSelectItem:item];
+    }
+    
+    [self setSelectedItem:item];
+    [self update];
+    
+    if ([[self delegate] respondsToSelector:@selector(tabBar:didSelectItem:)]) {
+        [[self delegate] tabBar:self didSelectItem:item];
+    }
 }
 
 - (void)selectItemAtIndex:(NSUInteger)index {
-	PXTabBarItem *item = [items objectAtIndex:index];
-	[self selectItem:item];
+    PXTabBarItem *item = [items objectAtIndex:index];
+    [self selectItem:item];
 }
 
 - (PXTabBarItem *)itemAtIndex:(NSUInteger)index {
-	return [items objectAtIndex:index];
+    return [items objectAtIndex:index];
 }
 
 - (NSUInteger)indexOfItem:(PXTabBarItem *)item {

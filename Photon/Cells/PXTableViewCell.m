@@ -24,20 +24,20 @@
 @synthesize badgeMenu;
 
 - (id)initTextCell:(NSString *)string {
-	self = [super initTextCell:string];
-	if (self) {
+    self = [super initTextCell:string];
+    if (self) {
         iconSize = NSMakeSize(16.0, 16.0);
         iconAlpha = 1.0;
         badgeStyle = PXTableViewCellBadgeStyleCapsule;
-	}
-	return self;
+    }
+    return self;
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
-	self = [super initWithCoder:coder];
-	if (self) {
-		icon = [coder decodeObjectForKey:@"icon"];
-		selectedIcon = [coder decodeObjectForKey:@"selectedIcon"];
+    self = [super initWithCoder:coder];
+    if (self) {
+        icon = [coder decodeObjectForKey:@"icon"];
+        selectedIcon = [coder decodeObjectForKey:@"selectedIcon"];
         if ([coder containsValueForKey:@"iconSize"]) {
             iconSize = [coder decodeSizeForKey:@"iconSize"];
         }
@@ -53,52 +53,52 @@
         subtitle = [coder decodeObjectForKey:@"subtitle"];
         subtitleFont = [coder decodeObjectForKey:@"subtitleFont"];
         subtitleColor = [coder decodeObjectForKey:@"subtitleColor"];
-		badgeString = [coder decodeObjectForKey:@"badgeString"];
+        badgeString = [coder decodeObjectForKey:@"badgeString"];
         badgeColor = [coder decodeObjectForKey:@"badgeColor"];
         badgeStyle = [coder decodeIntegerForKey:@"badgeStyle"];
-	}
-	return self;
+    }
+    return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-	[super encodeWithCoder:coder];
-	[coder encodeObject:icon forKey:@"icon"];
-	[coder encodeObject:selectedIcon forKey:@"selectedIcon"];
+    [super encodeWithCoder:coder];
+    [coder encodeObject:icon forKey:@"icon"];
+    [coder encodeObject:selectedIcon forKey:@"selectedIcon"];
     [coder encodeSize:iconSize forKey:@"iconSize"];
     [coder encodeDouble:iconAlpha forKey:@"iconAlpha"];
     [coder encodeObject:subtitle forKey:@"subtitle"];
     [coder encodeObject:subtitleFont forKey:@"subtitleFont"];
     [coder encodeObject:subtitleColor forKey:@"subtitleColor"];
-	[coder encodeObject:badgeString forKey:@"badgeString"];
+    [coder encodeObject:badgeString forKey:@"badgeString"];
     [coder encodeObject:badgeColor forKey:@"badgeColor"];
     [coder encodeInteger:badgeStyle forKey:@"badgeStyle"];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-	PXTableViewCell *cell = [super copyWithZone:zone];
-	cell->icon = [icon copyWithZone:zone];
-	cell->selectedIcon = [selectedIcon copyWithZone:zone];
+    PXTableViewCell *cell = [super copyWithZone:zone];
+    cell->icon = [icon copyWithZone:zone];
+    cell->selectedIcon = [selectedIcon copyWithZone:zone];
     cell->iconSize = iconSize;
     cell->iconAlpha = iconAlpha;
     cell->subtitle = [subtitle copyWithZone:zone];
     cell->subtitleFont = [subtitleFont copyWithZone:zone];
     cell->subtitleColor = [subtitleColor copyWithZone:zone];
-	cell->badgeString = [badgeString copyWithZone:zone];
+    cell->badgeString = [badgeString copyWithZone:zone];
     cell->badgeColor = [badgeColor copyWithZone:zone];
     cell->badgeStyle = badgeStyle;
     cell->badgeMenu = badgeMenu;
-	return cell;
+    return cell;
 }
 
 - (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(NSInteger)selStart length:(NSInteger)selLength {
-	if (icon != nil) {
-		NSRect textFrame, imageFrame;
-		NSDivideRect(aRect, &imageFrame, &textFrame, (iconSize.width ? iconSize.width : [icon size].width) + 8.0, NSMinXEdge);
-		[super selectWithFrame:NSInsetRect(textFrame, 0.0, 3.0) inView:controlView editor:textObj delegate:anObject start:selStart length:selLength];
-	}
+    if (icon != nil) {
+        NSRect textFrame, imageFrame;
+        NSDivideRect(aRect, &imageFrame, &textFrame, (iconSize.width ? iconSize.width : [icon size].width) + 8.0, NSMinXEdge);
+        [super selectWithFrame:NSInsetRect(textFrame, 0.0, 3.0) inView:controlView editor:textObj delegate:anObject start:selStart length:selLength];
+    }
     else {
-		[super selectWithFrame:NSInsetRect(aRect, 2.0, 2.0) inView:controlView editor:textObj delegate:anObject start:selStart length:selLength];
-	}
+        [super selectWithFrame:NSInsetRect(aRect, 2.0, 2.0) inView:controlView editor:textObj delegate:anObject start:selStart length:selLength];
+    }
 }
 
 - (BOOL)startTrackingAt:(NSPoint)startPoint inView:(NSView *)controlView {
@@ -116,10 +116,10 @@
 }
 
 - (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-	CGFloat xMinOffset = 2.0;
-	CGFloat xMaxOffset = 2.0;
-	
-	if (icon != nil) {
+    CGFloat xMinOffset = 2.0;
+    CGFloat xMaxOffset = 2.0;
+    
+    if (icon != nil) {
         xMinOffset += 2.0;
         
         NSImage *theImage = nil;
@@ -135,16 +135,16 @@
             imageSize = [theImage size];
         }
         
-		NSRect iconRect = NSMakeRect(cellFrame.origin.x + xMinOffset, cellFrame.origin.y + round((cellFrame.size.height - imageSize.height) / 2.0), imageSize.width, imageSize.height);
-		
+        NSRect iconRect = NSMakeRect(cellFrame.origin.x + xMinOffset, cellFrame.origin.y + round((cellFrame.size.height - imageSize.height) / 2.0), imageSize.width, imageSize.height);
+        
         NSImageCell *imageCell = [[NSImageCell alloc] initImageCell:theImage];
         [imageCell setBackgroundStyle:NSBackgroundStyleLight];
         [imageCell drawWithFrame:iconRect inView:controlView];
-		
-		xMinOffset += imageSize.width + 2.0;
-	}
-	
-	if (badgeString != nil || badgeMenu != nil) {
+        
+        xMinOffset += imageSize.width + 2.0;
+    }
+    
+    if (badgeString != nil || badgeMenu != nil) {
         if (badgeStyle == PXTableViewCellBadgeStyleCapsule) {
             CGFloat badgeWidth = 0.0;
             
@@ -303,11 +303,11 @@
             
             xMaxOffset += NSWidth(displayRect) + 6.0;
         }
-	}
+    }
     
-	NSSize titleSize = [[self attributedStringValue] size];
-	NSRect titleRect = NSMakeRect(cellFrame.origin.x + xMinOffset, cellFrame.origin.y + round((cellFrame.size.height - titleSize.height) / 2.0), cellFrame.size.width - (xMinOffset + xMaxOffset), titleSize.height);
-	
+    NSSize titleSize = [[self attributedStringValue] size];
+    NSRect titleRect = NSMakeRect(cellFrame.origin.x + xMinOffset, cellFrame.origin.y + round((cellFrame.size.height - titleSize.height) / 2.0), cellFrame.size.width - (xMinOffset + xMaxOffset), titleSize.height);
+    
     if (self.subtitle) {
         NSMutableParagraphStyle *para = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
         [para setLineBreakMode:NSLineBreakByTruncatingMiddle];
@@ -341,7 +341,7 @@
         titleRect.origin.y = bothLabelsRect.origin.y;
     }
     
-	[super drawInteriorWithFrame:titleRect inView:controlView];
+    [super drawInteriorWithFrame:titleRect inView:controlView];
 }
 
 @end
