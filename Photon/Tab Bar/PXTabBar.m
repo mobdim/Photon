@@ -395,7 +395,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
-    NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
+    NSPoint thePoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     lastMouseDownEvent = theEvent;
     
     PXTabBarItem *item = [self itemAtPoint:thePoint];
@@ -408,7 +408,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent {
-    NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
+    NSPoint thePoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     
     if (mouseDownItem) {
         PXTabBarItem *item = [self itemAtPoint:thePoint];
@@ -424,7 +424,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
-    NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
+    NSPoint thePoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     
     if (mouseDownItem) {
         PXTabBarItem *item = [self itemAtPoint:thePoint];
@@ -441,7 +441,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (void)mouseEntered:(NSEvent *)theEvent {
-    NSPoint thePoint = [self convertPointFromBase:[theEvent locationInWindow]];
+    NSPoint thePoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     
     if (mouseDownItem) {
         PXTabBarItem *item = [self itemAtPoint:thePoint];
