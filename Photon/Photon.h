@@ -36,6 +36,7 @@
 #import <Photon/PXViewController.h>
 #import <Photon/NSObject+PhotonAdditions.h>
 #import <Photon/NSValue+PhotonAdditions.h>
+#import <Photon/NSObject+PXKeyValueBinding.h>
 
 
 /*!
