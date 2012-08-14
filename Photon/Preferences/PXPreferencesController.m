@@ -2,7 +2,7 @@
 //  PXPreferencesController.m
 //  Photon
 //
-//  Created by Logan Collins on 12/15/11.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2011 Sunflower Softworks. All rights reserved.
 //
 
@@ -25,13 +25,13 @@
 
 @synthesize autosaveIdentifier=_autosaveIdentifier;
 
-+ (PXPreferencesController *)sharedController {
-    static __strong PXPreferencesController *sharedController = nil;
++ (PXPreferencesController *)defaultController {
+    static __strong PXPreferencesController *defaultController = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedController = [[self alloc] init];
+        defaultController = [[self alloc] init];
     });
-    return sharedController;
+    return defaultController;
 }
 
 - (id)init {

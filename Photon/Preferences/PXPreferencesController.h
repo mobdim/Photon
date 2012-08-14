@@ -2,7 +2,7 @@
 //  PXPreferencesController.h
 //  Photon
 //
-//  Created by Logan Collins on 12/15/11.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2011 Sunflower Softworks. All rights reserved.
 //
 
@@ -23,19 +23,11 @@
 
 /*!
  * @method sharedController
- * @abstract The shared instance
+ * @abstract Gets the default preferences controller
  * 
- * @result A global PXPreferencesController object
+ * @result A PXPreferencesController object
  */
-+ (PXPreferencesController *)sharedController;
-
-/*!
- * @method init
- * @abstract Create a new instance
- * 
- * @result A new PXPreferencesController object
- */
-- (id)init;
++ (PXPreferencesController *)defaultController;
 
 /*!
  * @property autosaveIdentifier

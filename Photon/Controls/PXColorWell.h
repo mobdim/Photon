@@ -2,7 +2,7 @@
 //  PXColorWell.h
 //  Photon
 //
-//  Created by Logan Collins on 3/25/12.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2012 Sunflower Softworks. All rights reserved.
 //
 
@@ -16,7 +16,7 @@
 
 @property (copy) NSColor *color;
 @property (strong) PXColorWell *textColorWell;
-@property (assign) BOOL allowsTransparent;
+@property BOOL allowsTransparent;
 
 @end
 
@@ -25,6 +25,6 @@
 
 @property (copy) NSColor *color;
 @property (strong) PXColorWell *textColorWell;
-@property (assign) BOOL allowsTransparent;
+@property BOOL allowsTransparent;
 
 @end

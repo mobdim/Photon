@@ -2,7 +2,7 @@
 //  PXTabBarController.h
 //  Photon
 //
-//  Created by Logan Collins on 12/15/11.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2011 Sunflower Softworks. All rights reserved.
 //
 
@@ -18,17 +18,17 @@
 
 @interface PXTabBarController : PXViewController <PXTabBarDelegate>
 
-@property (assign) IBOutlet PXTabBar *tabBar;
-@property (assign) IBOutlet NSView *containerView;
+@property IBOutlet PXTabBar *tabBar;
+@property IBOutlet NSView *containerView;
 
-@property (unsafe_unretained) id <PXTabBarControllerDelegate> delegate;
+@property (weak) id <PXTabBarControllerDelegate> delegate;
 
-@property (assign) NSArray *viewControllers;
+@property NSArray *viewControllers;
 
 @property (strong) PXViewController *selectedViewController;
-@property (assign) NSUInteger selectedIndex;
+@property NSUInteger selectedIndex;
 
-@property (assign) BOOL animates;
+@property BOOL animates;
 
 @end
 

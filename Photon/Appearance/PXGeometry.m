@@ -2,7 +2,7 @@
 //  PXGeometry.m
 //  Photon
 //
-//  Created by Logan Collins on 3/23/12.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2012 Sunflower Softworks. All rights reserved.
 //
 

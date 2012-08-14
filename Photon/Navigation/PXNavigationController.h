@@ -2,7 +2,7 @@
 //  PXNavigationController.h
 //  Photon
 //
-//  Created by Logan Collins on 12/15/11.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2011 Sunflower Softworks. All rights reserved.
 //
 
@@ -23,14 +23,14 @@
 
 - (id)initWithRootViewController:(PXViewController *)viewController;
 
-@property (assign) IBOutlet PXNavigationBar *navigationBar;
+@property IBOutlet PXNavigationBar *navigationBar;
 
 @property (copy) NSArray *viewControllers;
 @property (strong, readonly) PXViewController *topViewController;
 
 @property (unsafe_unretained) id <PXNavigationControllerDelegate> delegate;
 
-@property (assign) BOOL alwaysShowsNavigationBar;
+@property BOOL alwaysShowsNavigationBar;
 
 - (void)setViewControllers:(NSArray *)array animated:(BOOL)isAnimated;
 

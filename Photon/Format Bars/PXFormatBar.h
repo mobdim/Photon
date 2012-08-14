@@ -2,7 +2,7 @@
 //  PXFormatBar.h
 //  Photon
 //
-//  Created by Logan Collins on 3/25/12.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2012 Sunflower Softworks. All rights reserved.
 //
 
@@ -19,7 +19,7 @@ extern NSString * const PXFormatBarFlexibleSpaceItemIdentifier;
 
 @interface PXFormatBar : NSView
 
-@property (assign) IBOutlet id <PXFormatBarDelegate> delegate;
+@property IBOutlet id <PXFormatBarDelegate> delegate;
 
 @property (copy, readonly) NSArray *items;
 @property (copy, readonly) NSArray *visibleItems;

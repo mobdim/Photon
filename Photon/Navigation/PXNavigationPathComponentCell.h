@@ -2,7 +2,7 @@
 //  PXNavigationPathComponentCell.h
 //  Photon
 //
-//  Created by Logan Collins on 12/15/11.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2011 Sunflower Softworks. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 @interface PXNavigationPathComponentCell : NSPathComponentCell
 
-@property (assign, getter=isFirstItem) BOOL firstItem;
-@property (assign, getter=isLastItem) BOOL lastItem;
+@property (getter=isFirstItem) BOOL firstItem;
+@property (getter=isLastItem) BOOL lastItem;
 
 @end

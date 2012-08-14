@@ -2,7 +2,7 @@
 //  PXAppearance.h
 //  Photon
 //
-//  Created by Logan Collins on 3/23/12.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2012 Sunflower Softworks. All rights reserved.
 //
 
@@ -25,7 +25,7 @@ typedef struct PXEdgeInsets {
 #endif
 
 
-PHOTON_STATIC_INLINE PXEdgeInsets PXEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right) {
+PHOTON_INLINE PXEdgeInsets PXEdgeInsetsMake(CGFloat top, CGFloat left, CGFloat bottom, CGFloat right) {
 #if TARGET_OS_IPHONE
     return UIEdgeInsetsMake(top, left, bottom, right);
 #elif TARGET_OS_MAC
@@ -35,7 +35,7 @@ PHOTON_STATIC_INLINE PXEdgeInsets PXEdgeInsetsMake(CGFloat top, CGFloat left, CG
 }
 
 
-PHOTON_STATIC_INLINE BOOL PXEdgeInsetsEqualToEdgeInsets(PXEdgeInsets insets1, PXEdgeInsets insets2) {
+PHOTON_INLINE BOOL PXEdgeInsetsEqualToEdgeInsets(PXEdgeInsets insets1, PXEdgeInsets insets2) {
 #if TARGET_OS_IPHONE
     return UIEdgeInsetsEqualToEdgeInsets((UIEdgeInsets)insets1, (UIEdgeInsets)insets2);
 #elif TARGET_OS_MAC

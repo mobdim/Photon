@@ -2,7 +2,7 @@
 //  PXTableViewCell.h
 //  Photon
 //
-//  Created by Logan Collins on 3/1/12.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2012 Sunflower Softworks. All rights reserved.
 //
 
@@ -20,8 +20,8 @@ typedef NSUInteger PXTableViewCellBadgeStyle;
 
 @property (copy) NSImage *icon;
 @property (copy) NSImage *selectedIcon;
-@property (assign) NSSize iconSize;
-@property (assign) CGFloat iconAlpha;
+@property NSSize iconSize;
+@property CGFloat iconAlpha;
 
 @property (copy) NSString *subtitle;
 @property (copy) NSFont *subtitleFont;
@@ -29,7 +29,7 @@ typedef NSUInteger PXTableViewCellBadgeStyle;
 
 @property (copy) NSString *badgeString;
 @property (copy) NSColor *badgeColor;
-@property (assign) PXTableViewCellBadgeStyle badgeStyle;
+@property PXTableViewCellBadgeStyle badgeStyle;
 @property (strong) NSMenu *badgeMenu;
 
 @end

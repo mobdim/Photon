@@ -2,7 +2,7 @@
 //  PXViewController.h
 //  Photon
 //
-//  Created by Logan Collins on 12/15/11.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2011 Sunflower Softworks. All rights reserved.
 //
 
@@ -78,7 +78,7 @@
  * 
  * @result A PXViewController object
  */
-@property (assign, readonly) PXViewController *parentViewController;
+@property (readonly) PXViewController *parentViewController;
 
 
 /*!

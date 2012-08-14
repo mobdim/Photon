@@ -2,7 +2,7 @@
 //  PXTabBarItem.h
 //  Photon
 //
-//  Created by Logan Collins on 12/15/11.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2011 Sunflower Softworks. All rights reserved.
 //
 
@@ -15,6 +15,6 @@
 @property (copy) NSImage *image;
 @property (unsafe_unretained) id representedObject;
 @property (copy) NSString *badgeValue;
-@property (assign) NSUInteger tag;
+@property NSUInteger tag;
 
 @end

@@ -2,7 +2,7 @@
 //  PXResizableImage.m
 //  Photon
 //
-//  Created by Logan Collins on 3/23/12.
+//  Created by Logan Collins on 8/14/12.
 //  Copyright (c) 2012 Sunflower Softworks. All rights reserved.
 //
 
@@ -17,7 +17,7 @@
 - (id)initWithImage:(NSImage *)image capInsets:(PXEdgeInsets)capInsets;
 #endif
 
-@property (assign, readwrite) PXEdgeInsets capInsets;
+@property (readwrite) PXEdgeInsets capInsets;
 
 @end
 
