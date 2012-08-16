@@ -473,7 +473,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 
 - (CGFloat)widthOfItem:(PXTabBarItem *)item {
     NSRect itemsRect = [self itemsRect];
-    CGFloat width = itemsRect.size.width / (CGFloat)[items count];
+    CGFloat width = round(itemsRect.size.width / (CGFloat)[items count]);
     NSUInteger remainder = (NSUInteger)itemsRect.size.width % [items count];
     NSUInteger index = [items indexOfObjectIdenticalTo:item];
     if (remainder > index) {

@@ -82,8 +82,8 @@
     return self;
 }
 
-- (void)loadView {
-    [super loadView];
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
     
     // Set up navigation bar

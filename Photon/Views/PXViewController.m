@@ -27,10 +27,15 @@
 @synthesize image;
 @synthesize undoManager;
 
+- (id)init {
+    return [self initWithView:[[NSView alloc] initWithFrame:NSMakeRect(0.0, 0.0, 100.0, 100.0)]];
+}
+
 - (id)initWithView:(NSView *)aView {
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
         [self setView:aView];
+        [self viewDidLoad];
     }
     return self;
 }

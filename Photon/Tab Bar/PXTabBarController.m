@@ -75,8 +75,8 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
     return self;
 }
 
-- (void)loadView {
-    [super loadView];
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
     // Set up navigation bar
     [tabBar setDelegate:self];
