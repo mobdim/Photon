@@ -30,8 +30,8 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     PXTabBarItem *_mouseDownItem;
     BOOL _drawMouseDownItemSelection;
     NSEvent *_lastMouseDownEvent;
-	NSMutableArray *_accessibilityItems;
-	NSMapTable *_itemsToAccessibilityItems;
+    NSMutableArray *_accessibilityItems;
+    NSMapTable *_itemsToAccessibilityItems;
 }
 
 @synthesize delegate=_delegate;
@@ -43,8 +43,8 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     self = [super initWithFrame:frameRect];
     if (self) {
         _items = [NSMutableArray array];
-		_accessibilityItems = [NSMutableArray array];
-		_itemsToAccessibilityItems = [NSMapTable mapTableWithStrongToStrongObjects];
+        _accessibilityItems = [NSMutableArray array];
+        _itemsToAccessibilityItems = [NSMapTable mapTableWithStrongToStrongObjects];
         
         [self setPostsFrameChangedNotifications:YES];
         
@@ -64,23 +64,23 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     CGFloat xPos = itemsRect.origin.x;
     BOOL overflow = NO;
     NSMenu *overflowMenu = nil;
-	
-	[_accessibilityItems removeAllObjects];
-	[_itemsToAccessibilityItems removeAllObjects];
+    
+    [_accessibilityItems removeAllObjects];
+    [_itemsToAccessibilityItems removeAllObjects];
     
     for (PXTabBarItem *item in _items) {
         CGFloat itemWidth = [self widthOfItem:item];
-		
+        
         if (overflow == NO && xPos + itemWidth <= itemsRect.origin.x + itemsRect.size.width) {
-			NSRect itemRect = NSMakeRect(xPos, itemsRect.origin.y, itemWidth, itemsRect.size.height);
-			
-			PXTabBarAccessibilityItem *accessibilityItem = [[PXTabBarAccessibilityItem alloc] init];
-			accessibilityItem.tabBar = self;
-			accessibilityItem.tabBarItem = item;
-			accessibilityItem.frame = itemRect;
-			[_accessibilityItems addObject:accessibilityItem];
-			[_itemsToAccessibilityItems setObject:accessibilityItem forKey:item];
-			
+            NSRect itemRect = NSMakeRect(xPos, itemsRect.origin.y, itemWidth, itemsRect.size.height);
+            
+            PXTabBarAccessibilityItem *accessibilityItem = [[PXTabBarAccessibilityItem alloc] init];
+            accessibilityItem.tabBar = self;
+            accessibilityItem.tabBarItem = item;
+            accessibilityItem.frame = itemRect;
+            [_accessibilityItems addObject:accessibilityItem];
+            [_itemsToAccessibilityItems setObject:accessibilityItem forKey:item];
+            
             xPos += itemWidth;
         }
         else {
@@ -684,36 +684,36 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (id)accessibilityAttributeValue:(NSString *)attribute {
-	if ([attribute isEqualToString:NSAccessibilityRoleAttribute]) {
-		return NSAccessibilityRadioGroupRole;
-	}
-	else if ([attribute isEqualToString:NSAccessibilityChildrenAttribute]) {
-		return _accessibilityItems;
-	}
-	else if ([attribute isEqualToString:NSAccessibilityVisibleChildrenAttribute]) {
-		return _accessibilityItems;
-	}
-	else if ([attribute isEqualToString:NSAccessibilitySelectedChildrenAttribute]) {
-		PXTabBarAccessibilityItem *selectedAccessibilityItem = [_itemsToAccessibilityItems objectForKey:_selectedItem];
-		if (selectedAccessibilityItem != nil) {
-			return [NSArray arrayWithObject:selectedAccessibilityItem];
-		}
-		else {
-			return [NSArray array];
-		}
-	}
-	return [super accessibilityAttributeValue:attribute];
+    if ([attribute isEqualToString:NSAccessibilityRoleAttribute]) {
+        return NSAccessibilityRadioGroupRole;
+    }
+    else if ([attribute isEqualToString:NSAccessibilityChildrenAttribute]) {
+        return _accessibilityItems;
+    }
+    else if ([attribute isEqualToString:NSAccessibilityVisibleChildrenAttribute]) {
+        return _accessibilityItems;
+    }
+    else if ([attribute isEqualToString:NSAccessibilitySelectedChildrenAttribute]) {
+        PXTabBarAccessibilityItem *selectedAccessibilityItem = [_itemsToAccessibilityItems objectForKey:_selectedItem];
+        if (selectedAccessibilityItem != nil) {
+            return [NSArray arrayWithObject:selectedAccessibilityItem];
+        }
+        else {
+            return [NSArray array];
+        }
+    }
+    return [super accessibilityAttributeValue:attribute];
 }
 
 - (id)accessibilityHitTest:(NSPoint)point {
     NSPoint thePoint = [[self window] convertRectFromScreen:NSMakeRect(point.x, point.y, 0.0, 0.0)].origin;
     thePoint = [self convertPoint:thePoint fromView:nil];
-	for (PXTabBarAccessibilityItem *accessibilityItem in _accessibilityItems) {
-		if (NSPointInRect(thePoint, accessibilityItem.frame)) {
-			id value = [accessibilityItem accessibilityHitTest:point];
-			return value;
-		}
-	}
+    for (PXTabBarAccessibilityItem *accessibilityItem in _accessibilityItems) {
+        if (NSPointInRect(thePoint, accessibilityItem.frame)) {
+            id value = [accessibilityItem accessibilityHitTest:point];
+            return value;
+        }
+    }
     return self;
 }
 
@@ -731,65 +731,65 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (NSArray *)accessibilityAttributeNames {
-	return [NSArray arrayWithObjects:
-			NSAccessibilityParentAttribute,
-			NSAccessibilityTitleAttribute,
-			NSAccessibilityRoleAttribute,
-			NSAccessibilityPositionAttribute,
-			NSAccessibilitySizeAttribute,
-			nil];
+    return [NSArray arrayWithObjects:
+            NSAccessibilityParentAttribute,
+            NSAccessibilityTitleAttribute,
+            NSAccessibilityRoleAttribute,
+            NSAccessibilityPositionAttribute,
+            NSAccessibilitySizeAttribute,
+            nil];
 }
 
 - (id)accessibilityAttributeValue:(NSString *)attribute {
-	if ([attribute isEqualToString:NSAccessibilityParentAttribute]) {
-		return [self tabBar];
-	}
-	else if ([attribute isEqualToString:NSAccessibilityTitleAttribute]) {
-		return [[self tabBarItem] title];
-	}
-	else if ([attribute isEqualToString:NSAccessibilityRoleAttribute]) {
-		return NSAccessibilityRadioButtonRole;
-	}
-	else if ([attribute isEqualToString:NSAccessibilityPositionAttribute]) {
-		NSRect frame = [self frame];
-		frame = [[self tabBar] convertRect:frame toView:nil];
-		frame = [[[self tabBar] window] convertRectToScreen:frame];
-		return [NSValue valueWithPoint:frame.origin];
-	}
-	else if ([attribute isEqualToString:NSAccessibilitySizeAttribute]) {
-		NSRect frame = [self frame];
-		frame = [[self tabBar] convertRect:frame toView:nil];
-		frame = [[[self tabBar] window] convertRectToScreen:frame];
-		return [NSValue valueWithSize:frame.size];
-	}
-	return nil;
+    if ([attribute isEqualToString:NSAccessibilityParentAttribute]) {
+        return [self tabBar];
+    }
+    else if ([attribute isEqualToString:NSAccessibilityTitleAttribute]) {
+        return [[self tabBarItem] title];
+    }
+    else if ([attribute isEqualToString:NSAccessibilityRoleAttribute]) {
+        return NSAccessibilityRadioButtonRole;
+    }
+    else if ([attribute isEqualToString:NSAccessibilityPositionAttribute]) {
+        NSRect frame = [self frame];
+        frame = [[self tabBar] convertRect:frame toView:nil];
+        frame = [[[self tabBar] window] convertRectToScreen:frame];
+        return [NSValue valueWithPoint:frame.origin];
+    }
+    else if ([attribute isEqualToString:NSAccessibilitySizeAttribute]) {
+        NSRect frame = [self frame];
+        frame = [[self tabBar] convertRect:frame toView:nil];
+        frame = [[[self tabBar] window] convertRectToScreen:frame];
+        return [NSValue valueWithSize:frame.size];
+    }
+    return nil;
 }
 
 - (BOOL)accessibilityIsAttributeSettable:(NSString *)attribute {
-	return NO;
+    return NO;
 }
 
 - (NSArray *)accessibilityActionNames {
-	return [NSArray arrayWithObjects:
-			NSAccessibilityPressAction,
-			nil];
+    return [NSArray arrayWithObjects:
+            NSAccessibilityPressAction,
+            nil];
 }
 
 - (void)accessibilityPerformAction:(NSString *)action {
-	if ([action isEqualToString:NSAccessibilityPressAction]) {
-		[[self tabBar] selectItem:[self tabBarItem]];
-	}
+    if ([action isEqualToString:NSAccessibilityPressAction]) {
+        [[self tabBar] selectItem:[self tabBarItem]];
+    }
 }
 
 - (NSString *)accessibilityActionDescription:(NSString *)action {
-	if ([action isEqualToString:NSAccessibilityPressAction]) {
-		return NSAccessibilityActionDescription(action);
-	}
-	return nil;
+    if ([action isEqualToString:NSAccessibilityPressAction]) {
+        return NSAccessibilityActionDescription(action);
+    }
+    return nil;
 }
 
 - (id)accessibilityHitTest:(NSPoint)point {
-	return self;
+    return self;
 }
 
 @end

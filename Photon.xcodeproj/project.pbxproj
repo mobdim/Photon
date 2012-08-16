@@ -257,6 +257,7 @@
 				EA44B292149B21FF00C5D440 /* Products */,
 			);
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		EA44B292149B21FF00C5D440 /* Products */ = {
 			isa = PBXGroup;
