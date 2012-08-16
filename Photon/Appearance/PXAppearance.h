@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Photon/PhotonDefines.h>
 
 
 @class PXResizableImage;
@@ -23,7 +24,7 @@
  * @constant PXAppearanceBorderRight     Right border
  * @constant PXAppearanceBorderAll       All borders
  */
-enum {
+typedef PHOTON_ENUM(NSUInteger, PXAppearanceBorder) {
     PXAppearanceBorderNone = 0,
     
     PXAppearanceBorderTop = (1 << 0),
@@ -33,7 +34,6 @@ enum {
     
     PXAppearanceBorderAll = (PXAppearanceBorderTop|PXAppearanceBorderBottom|PXAppearanceBorderLeft|PXAppearanceBorderRight),
 };
-typedef NSUInteger PXAppearanceBorder;
 
 
 /*!
@@ -46,7 +46,7 @@ typedef NSUInteger PXAppearanceBorder;
  * @constant PXAppearanceStateSelected      The UI element is selected (as in a selected segmented control segment)
  * @constant PXAppearanceStateHovered       The UI element is hovered (through a mouse hover or drag hover)
  */
-enum {
+typedef PHOTON_ENUM(NSUInteger, PXAppearanceState) {
     PXAppearanceStateNormal = 0,
     
     PXAppearanceStateHighlighted = (1 << 0),
@@ -54,7 +54,6 @@ enum {
     PXAppearanceStateSelected = (1 << 2),
     PXAppearanceStateHovered = (1 << 3),
 };
-typedef NSUInteger PXAppearanceState;
 
 
 /*!

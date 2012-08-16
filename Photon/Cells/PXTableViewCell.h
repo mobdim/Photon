@@ -7,13 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Photon/PhotonDefines.h>
 
 
-enum {
+typedef PHOTON_ENUM(NSUInteger, PXTableViewCellBadgeStyle) {
     PXTableViewCellBadgeStyleCapsule = 0,
     PXTableViewCellBadgeStyleBox,
 };
-typedef NSUInteger PXTableViewCellBadgeStyle;
 
 
 @interface PXTableViewCell : NSTextFieldCell

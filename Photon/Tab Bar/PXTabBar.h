@@ -7,14 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Photon/PhotonDefines.h>
 #import <Photon/PXAppearance.h>
 
 
-enum {
+typedef PHOTON_ENUM(NSUInteger, PXTabBarStyle) {
     PXTabBarStyleLight = 0,
     PXTabBarStyleDark,
 };
-typedef NSUInteger PXTabBarStyle;
 
 
 @class PXTabBarItem;
