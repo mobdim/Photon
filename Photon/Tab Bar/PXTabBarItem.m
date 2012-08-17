@@ -18,4 +18,11 @@
 @synthesize tag;
 @synthesize toolTip;
 
+#pragma mark -
+#pragma mark Tool Tips
+
+- (NSString *)view:(NSView *)view stringForToolTip:(NSToolTipTag)tag point:(NSPoint)point userData:(void *)userData {
+    return [self toolTip];
+}
+
 @end

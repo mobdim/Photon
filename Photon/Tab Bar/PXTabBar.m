@@ -65,6 +65,8 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     BOOL overflow = NO;
     NSMenu *overflowMenu = nil;
     
+    [self removeAllToolTips];
+    
     [_accessibilityItems removeAllObjects];
     [_itemsToAccessibilityItems removeAllObjects];
     
@@ -80,6 +82,8 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
             accessibilityItem.frame = itemRect;
             [_accessibilityItems addObject:accessibilityItem];
             [_itemsToAccessibilityItems setObject:accessibilityItem forKey:item];
+            
+            [self addToolTipRect:itemRect owner:item userData:nil];
             
             xPos += itemWidth;
         }
