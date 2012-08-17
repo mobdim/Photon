@@ -51,10 +51,8 @@
 		EA44B2DD149B254F00C5D440 /* PXNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2D1149B254F00C5D440 /* PXNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2DE149B254F00C5D440 /* PXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2D2149B254F00C5D440 /* PXNavigationController.m */; };
 		EA44B2DF149B254F00C5D440 /* PXNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2D3149B254F00C5D440 /* PXNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA44B2E4149B255500C5D440 /* PXPreferencePane.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2E0149B255500C5D440 /* PXPreferencePane.m */; };
 		EA44B2E5149B255500C5D440 /* PXPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2E1149B255500C5D440 /* PXPreferencesController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2E6149B255500C5D440 /* PXPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2E2149B255500C5D440 /* PXPreferencesController.m */; };
-		EA44B2E7149B255500C5D440 /* PXPreferencePane.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2E3149B255500C5D440 /* PXPreferencePane.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2E9149B277700C5D440 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA44B2E8149B277700C5D440 /* QuartzCore.framework */; };
 		EA44B2ED149B29FE00C5D440 /* PXGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2EB149B29FE00C5D440 /* PXGradientView.m */; };
 		EA44B2EE149B29FE00C5D440 /* PXGradientView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2EC149B29FE00C5D440 /* PXGradientView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -143,10 +141,8 @@
 		EA44B2D1149B254F00C5D440 /* PXNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationController.h; sourceTree = "<group>"; };
 		EA44B2D2149B254F00C5D440 /* PXNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXNavigationController.m; sourceTree = "<group>"; };
 		EA44B2D3149B254F00C5D440 /* PXNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationBar.h; sourceTree = "<group>"; };
-		EA44B2E0149B255500C5D440 /* PXPreferencePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPreferencePane.m; sourceTree = "<group>"; };
 		EA44B2E1149B255500C5D440 /* PXPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencesController.h; sourceTree = "<group>"; };
 		EA44B2E2149B255500C5D440 /* PXPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPreferencesController.m; sourceTree = "<group>"; };
-		EA44B2E3149B255500C5D440 /* PXPreferencePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencePane.h; sourceTree = "<group>"; };
 		EA44B2E8149B277700C5D440 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EA44B2EB149B29FE00C5D440 /* PXGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGradientView.m; sourceTree = "<group>"; };
 		EA44B2EC149B29FE00C5D440 /* PXGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGradientView.h; sourceTree = "<group>"; };
@@ -371,8 +367,6 @@
 		EA44B2C7149B251E00C5D440 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				EA44B2E3149B255500C5D440 /* PXPreferencePane.h */,
-				EA44B2E0149B255500C5D440 /* PXPreferencePane.m */,
 				EA44B2E1149B255500C5D440 /* PXPreferencesController.h */,
 				EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */,
 				EA44B2E2149B255500C5D440 /* PXPreferencesController.m */,
@@ -465,7 +459,6 @@
 				EA44B2DD149B254F00C5D440 /* PXNavigationController.h in Headers */,
 				EA44B2DF149B254F00C5D440 /* PXNavigationBar.h in Headers */,
 				EA44B2E5149B255500C5D440 /* PXPreferencesController.h in Headers */,
-				EA44B2E7149B255500C5D440 /* PXPreferencePane.h in Headers */,
 				EA44B2EE149B29FE00C5D440 /* PXGradientView.h in Headers */,
 				EA44B2F3149B2A6F00C5D440 /* NSObject+PhotonAdditions.h in Headers */,
 				EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */,
@@ -575,7 +568,6 @@
 				EA44B2DA149B254F00C5D440 /* PXNavigationItem.m in Sources */,
 				EA44B2DC149B254F00C5D440 /* PXNavigationBar.m in Sources */,
 				EA44B2DE149B254F00C5D440 /* PXNavigationController.m in Sources */,
-				EA44B2E4149B255500C5D440 /* PXPreferencePane.m in Sources */,
 				EA44B2E6149B255500C5D440 /* PXPreferencesController.m in Sources */,
 				EA44B2ED149B29FE00C5D440 /* PXGradientView.m in Sources */,
 				EA44B2F2149B2A6F00C5D440 /* NSObject+PhotonAdditions.m in Sources */,

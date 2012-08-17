@@ -24,6 +24,7 @@
 }
 
 @dynamic title;
+@synthesize identifier;
 @synthesize image;
 @synthesize undoManager;
 

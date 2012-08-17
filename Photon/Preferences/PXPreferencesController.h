@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@class PXPreferencePane;
+@class PXViewController;
 
 
 /*!
@@ -44,7 +44,7 @@
  * @discussion
  * Observable via KVO.
  * 
- * @result An NSArray of PXPreferencePane objects
+ * @result An NSArray of PXViewController objects
  */
 @property (strong, readonly) NSArray *preferencePanes;
 
@@ -55,9 +55,9 @@
  * @discussion
  * Observable via KVO.
  * 
- * @result A PXPreferencePane object
+ * @result A PXViewController object
  */
-@property (strong, readonly) PXPreferencePane *currentPreferencePane;
+@property (strong, readonly) PXViewController *currentPreferencePane;
 
 /*!
  * @method preferencePaneWithIdentifier:
@@ -66,9 +66,9 @@
  * @param identifier
  * The identifier of the preference pane to get
  * 
- * @result A PXPreferencePane object
+ * @result A PXViewController object
  */
-- (PXPreferencePane *)preferencePaneWithIdentifier:(NSString *)identifier;
+- (PXViewController *)preferencePaneWithIdentifier:(NSString *)identifier;
 
 /*!
  * @method preferencePaneAtIndex:
@@ -77,9 +77,9 @@
  * @param index
  * The index of the preference pane to get
  * 
- * @result A PXPreferencePane object
+ * @result A PXViewController object
  */
-- (PXPreferencePane *)preferencePaneAtIndex:(NSUInteger)index;
+- (PXViewController *)preferencePaneAtIndex:(NSUInteger)index;
 
 /*!
  * @method addPreferencePane:
@@ -88,7 +88,7 @@
  * @param preferencePane
  * The preference pane to add
  */
-- (void)addPreferencePane:(PXPreferencePane *)preferencePane;
+- (void)addPreferencePane:(PXViewController *)preferencePane;
 
 /*!
  * @method insertPreferencePane:atIndex:
@@ -100,7 +100,7 @@
  * @param index
  * The index at which to insert the preference pane
  */
-- (void)insertPreferencePane:(PXPreferencePane *)preferencePane atIndex:(NSUInteger)index;
+- (void)insertPreferencePane:(PXViewController *)preferencePane atIndex:(NSUInteger)index;
 
 /*!
  * @method removePreferencePaneAtIndex:
@@ -118,7 +118,7 @@
  * @param preferencePane
  * The preference pane to remove
  */
-- (void)removePreferencePane:(PXPreferencePane *)preferencePane;
+- (void)removePreferencePane:(PXViewController *)preferencePane;
 
 /*!
  * @method showPreferencePaneWithIdentifier:

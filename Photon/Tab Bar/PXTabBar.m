@@ -736,7 +736,6 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 
 - (NSArray *)accessibilityAttributeNames {
     return [NSArray arrayWithObjects:
-            NSAccessibilityParentAttribute,
             NSAccessibilityTitleAttribute,
             NSAccessibilityRoleAttribute,
             NSAccessibilityRoleDescriptionAttribute,
@@ -744,6 +743,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
             NSAccessibilityFocusedAttribute,
             NSAccessibilityPositionAttribute,
             NSAccessibilitySizeAttribute,
+            NSAccessibilityParentAttribute,
             NSAccessibilityWindowAttribute,
             NSAccessibilityTopLevelUIElementAttribute,
             NSAccessibilityValueAttribute,
@@ -753,10 +753,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (id)accessibilityAttributeValue:(NSString *)attribute {
-    if ([attribute isEqualToString:NSAccessibilityParentAttribute]) {
-        return [self tabBar];
-    }
-    else if ([attribute isEqualToString:NSAccessibilityTitleAttribute]) {
+    if ([attribute isEqualToString:NSAccessibilityTitleAttribute]) {
         return [[self tabBarItem] title];
     }
     else if ([attribute isEqualToString:NSAccessibilityRoleAttribute]) {
@@ -786,11 +783,14 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
         frame = [[[self tabBar] window] convertRectToScreen:frame];
         return [NSValue valueWithSize:frame.size];
     }
+    else if ([attribute isEqualToString:NSAccessibilityParentAttribute]) {
+        return [self tabBar];
+    }
     else if ([attribute isEqualToString:NSAccessibilityWindowAttribute]) {
-        return [[self tabBar] window];
+        return [[self tabBar] accessibilityAttributeValue:attribute];
     }
     else if ([attribute isEqualToString:NSAccessibilityTopLevelUIElementAttribute]) {
-        return [[self tabBar] window];
+        return [[self tabBar] accessibilityAttributeValue:attribute];
     }
     else if ([attribute isEqualToString:NSAccessibilityValueAttribute]) {
         return [NSNumber numberWithInteger:([self tabBarItem] == [[self tabBar] selectedItem] ? 1 : 0)];

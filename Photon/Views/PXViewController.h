@@ -22,7 +22,7 @@
  * such as support for will/didAppear and will/didDisappear, navigation
  * and tab bars.
  */
-@interface PXViewController : NSViewController
+@interface PXViewController : NSViewController <NSUserInterfaceItemIdentification>
 
 /*!
  * @method initWithNibName:bundle:
@@ -46,6 +46,14 @@
  */
 - (id)initWithView:(NSView *)aView;
 
+
+/*!
+ * @property identifier
+ * @abstract The unique identifier of the view controller
+ *
+ * @result An NSString object
+ */
+@property (copy) NSString *identifier;
 
 /*!
  * @property title
