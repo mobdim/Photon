@@ -16,5 +16,6 @@
 @synthesize representedObject;
 @synthesize badgeValue;
 @synthesize tag;
+@synthesize toolTip;
 
 @end

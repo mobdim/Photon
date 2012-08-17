@@ -16,5 +16,6 @@
 @property (unsafe_unretained) id representedObject;
 @property (copy) NSString *badgeValue;
 @property NSUInteger tag;
+@property (copy) NSString *toolTip;
 
 @end

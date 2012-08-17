@@ -735,8 +735,16 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
             NSAccessibilityParentAttribute,
             NSAccessibilityTitleAttribute,
             NSAccessibilityRoleAttribute,
+            NSAccessibilityRoleDescriptionAttribute,
+            NSAccessibilityEnabledAttribute,
+            NSAccessibilityFocusedAttribute,
             NSAccessibilityPositionAttribute,
             NSAccessibilitySizeAttribute,
+            NSAccessibilityWindowAttribute,
+            NSAccessibilityTopLevelUIElementAttribute,
+            NSAccessibilityValueAttribute,
+            NSAccessibilityDescriptionAttribute,
+            NSAccessibilityHelpAttribute,
             nil];
 }
 
@@ -750,6 +758,18 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     else if ([attribute isEqualToString:NSAccessibilityRoleAttribute]) {
         return NSAccessibilityRadioButtonRole;
     }
+    else if ([attribute isEqualToString:NSAccessibilityRoleDescriptionAttribute]) {
+        return NSAccessibilityRoleDescription(NSAccessibilityRadioButtonRole, nil);
+    }
+    else if ([attribute isEqualToString:NSAccessibilityRoleDescriptionAttribute]) {
+        return NSAccessibilityRoleDescription(NSAccessibilityRadioButtonRole, nil);
+    }
+    else if ([attribute isEqualToString:NSAccessibilityEnabledAttribute]) {
+        return [NSNumber numberWithBool:YES];
+    }
+    else if ([attribute isEqualToString:NSAccessibilityFocusedAttribute]) {
+        return [NSNumber numberWithBool:YES];
+    }
     else if ([attribute isEqualToString:NSAccessibilityPositionAttribute]) {
         NSRect frame = [self frame];
         frame = [[self tabBar] convertRect:frame toView:nil];
@@ -761,6 +781,21 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
         frame = [[self tabBar] convertRect:frame toView:nil];
         frame = [[[self tabBar] window] convertRectToScreen:frame];
         return [NSValue valueWithSize:frame.size];
+    }
+    else if ([attribute isEqualToString:NSAccessibilityWindowAttribute]) {
+        return [[self tabBar] window];
+    }
+    else if ([attribute isEqualToString:NSAccessibilityTopLevelUIElementAttribute]) {
+        return [[self tabBar] window];
+    }
+    else if ([attribute isEqualToString:NSAccessibilityValueAttribute]) {
+        return [NSNumber numberWithInteger:([self tabBarItem] == [[self tabBar] selectedItem] ? 1 : 0)];
+    }
+    else if ([attribute isEqualToString:NSAccessibilityDescriptionAttribute]) {
+        return [[self tabBarItem] title];
+    }
+    else if ([attribute isEqualToString:NSAccessibilityHelpAttribute]) {
+        return [[self tabBarItem] toolTip];
     }
     return nil;
 }
