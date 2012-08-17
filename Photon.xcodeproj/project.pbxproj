@@ -232,10 +232,10 @@
 		EA30301A15001F360062D399 /* Button Bars */ = {
 			isa = PBXGroup;
 			children = (
-				EA30301B15001F5A0062D399 /* PXAnchoredButton.h */,
-				EA30301C15001F5A0062D399 /* PXAnchoredButton.m */,
 				EA30301D15001F5A0062D399 /* PXAnchoredButtonBar.h */,
 				EA30301E15001F5A0062D399 /* PXAnchoredButtonBar.m */,
+				EA30301B15001F5A0062D399 /* PXAnchoredButton.h */,
+				EA30301C15001F5A0062D399 /* PXAnchoredButton.m */,
 				EA30301F15001F5A0062D399 /* PXAnchoredMenuButtonCell.h */,
 				EA30302015001F5A0062D399 /* PXAnchoredMenuButtonCell.m */,
 				EA30302115001F5A0062D399 /* PXAnchoredPopUpButton.h */,
