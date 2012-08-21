@@ -169,15 +169,26 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     NSRect borderRect = [self borderRect];
     
     if (self.style == PXTabBarStyleLight) {
+        NSShadow *strokeShadow = [[NSShadow alloc] init];
+        [strokeShadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.3]];
+        [strokeShadow setShadowBlurRadius:0.0];
+        [strokeShadow setShadowOffset:NSMakeSize(0.0, -1.0)];
+        
         if ([[self window] isMainWindow]) {
             NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]
                                                                  endingColor:[NSColor colorWithCalibratedWhite:0.8 alpha:1.0]];
             [gradient drawInRect:[self bounds] angle:90.0];
             
             if (self.border != PXAppearanceBorderNone) {
+                [[NSGraphicsContext currentContext] saveGraphicsState];
+                
+                [strokeShadow set];
+                
                 [[NSColor colorWithCalibratedWhite:0.6 alpha:1.0] set];
                 NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
                 [bezierPath stroke];
+                
+                [[NSGraphicsContext currentContext] restoreGraphicsState];
             }
         }
         else {
@@ -186,15 +197,17 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
             [gradient drawInRect:[self bounds] angle:90.0];
             
             if (self.border != PXAppearanceBorderNone) {
+                [[NSGraphicsContext currentContext] saveGraphicsState];
+                
+                [strokeShadow set];
+                
                 [[NSColor colorWithCalibratedWhite:0.7 alpha:1.0] set];
                 NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
                 [bezierPath stroke];
+                
+                [[NSGraphicsContext currentContext] restoreGraphicsState];
             }
         }
-        
-        // Emboss
-        [[NSColor colorWithCalibratedWhite:1.0 alpha:0.3] set];
-        [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(borderRect), NSMinY(borderRect) + 1.0) toPoint:NSMakePoint(NSMaxX(borderRect), NSMinY(borderRect) + 1.0)];
     }
     else if (self.style == PXTabBarStyleDark) {
         NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.25 alpha:1.0]
@@ -247,15 +260,26 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
             NSRectClip(itemRect);
             
             if (self.style == PXTabBarStyleLight) {
+                NSShadow *strokeShadow = [[NSShadow alloc] init];
+                [strokeShadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.3]];
+                [strokeShadow setShadowBlurRadius:0.0];
+                [strokeShadow setShadowOffset:NSMakeSize(0.0, -1.0)];
+                
                 if ([[self window] isMainWindow]) {
                     NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.8 alpha:1.0]
                                                                          endingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]];
                     [gradient drawInRect:itemRect angle:90.0];
                     
                     if (self.border != PXAppearanceBorderNone) {
+                        [[NSGraphicsContext currentContext] saveGraphicsState];
+                        
+                        [strokeShadow set];
+                        
                         [[NSColor colorWithCalibratedWhite:0.6 alpha:1.0] set];
                         NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
                         [bezierPath stroke];
+                        
+                        [[NSGraphicsContext currentContext] restoreGraphicsState];
                     }
                 }
                 else {
@@ -264,15 +288,17 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                     [gradient drawInRect:itemRect angle:90.0];
                     
                     if (self.border != PXAppearanceBorderNone) {
+                        [[NSGraphicsContext currentContext] saveGraphicsState];
+                        
+                        [strokeShadow set];
+                        
                         [[NSColor colorWithCalibratedWhite:0.7 alpha:1.0] set];
                         NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
                         [bezierPath stroke];
+                        
+                        [[NSGraphicsContext currentContext] restoreGraphicsState];
                     }
                 }
-                
-                // Emboss
-                [[NSColor colorWithCalibratedWhite:1.0 alpha:0.3] set];
-                [NSBezierPath strokeLineFromPoint:NSMakePoint(NSMinX(borderRect), NSMinY(borderRect) + 1.0) toPoint:NSMakePoint(NSMaxX(borderRect), NSMinY(borderRect) + 1.0)];
             }
             else if (self.style == PXTabBarStyleDark) {
                 NSGradient *gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.15 alpha:1.0]
