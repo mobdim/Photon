@@ -11,7 +11,7 @@
 
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
-#elif TARGET_OS_MAC
+#else
 #import <Cocoa/Cocoa.h>
 #endif
 
@@ -19,7 +19,7 @@
 @interface PXResizableImage : NSObject {
 #if TARGET_OS_IPHONE
     UIImage *_image;
-#elif TARGET_OS_MAC
+#else
     NSImage *_image;
 #endif
     PXEdgeInsets _capInsets;
@@ -36,7 +36,7 @@
 
 @property (retain, readonly) UIImage *image;
 
-#elif TARGET_OS_MAC
+#else
 
 + (PXResizableImage *)resizableImageWithImage:(NSImage *)image;
 + (PXResizableImage *)resizableImageWithImage:(NSImage *)image capInsets:(PXEdgeInsets)capInsets;

@@ -21,9 +21,15 @@
 @synthesize editable=_editable;
 @synthesize groupItem=_groupItem;
 
+@synthesize persistenceIdentifier=_persistenceIdentifier;
+
 - (id)init {
     self = [super init];
     if (self) {
+        self.selectable = YES;
+        self.editable = NO;
+        self.groupItem = NO;
+        
         _children = [NSMutableSet set];
     }
     return self;
@@ -38,7 +44,7 @@
 }
 
 - (void)setChildren:(NSSet *)children {
-    if (![children isEqualToSet:children]) {
+    if (![_children isEqualToSet:children]) {
         NSSet *objects = [NSSet setWithSet:children];
         [self willChangeValueForKey:@"children" withSetMutation:NSKeyValueSetSetMutation usingObjects:objects];
         [_children setSet:children];

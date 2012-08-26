@@ -13,7 +13,7 @@
 
 #if TARGET_OS_IPHONE
 - (id)initWithImage:(UIImage *)image capInsets:(PXEdgeInsets)capInsets;
-#elif TARGET_OS_MAC
+#else
 - (id)initWithImage:(NSImage *)image capInsets:(PXEdgeInsets)capInsets;
 #endif
 
@@ -38,7 +38,7 @@
         return [self resizableImageWithImage:image];
     }
     return nil;
-#elif TARGET_OS_MAC
+#else
     NSImage *image = [NSImage imageNamed:imageName];
     if (image != nil) {
         return [self resizableImageWithImage:image];
@@ -67,7 +67,7 @@
     return self;
 }
 
-#elif TARGET_OS_MAC
+#else
 
 + (PXResizableImage *)resizableImageWithImage:(NSImage *)image {
     return [self resizableImageWithImage:image capInsets:PXEdgeInsetsZero];
@@ -98,7 +98,7 @@
     [_image drawInRect:rect blendMode:blendMode alpha:alpha];
 }
 
-#elif TARGET_OS_MAC
+#else
 
 - (void)drawInRect:(CGRect)rect {
     [self drawInRect:rect blendMode:kCGBlendModeNormal alpha:1.0];
