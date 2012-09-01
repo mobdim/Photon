@@ -35,13 +35,13 @@
         self.topBorderColor = [NSColor colorWithCalibratedWhite:0.6 alpha:1.0];
         self.bottomBorderColor = [NSColor colorWithCalibratedWhite:0.5 alpha:1.0];
         
-        [self addObserver:self forKeyPaths:[NSSet setWithObjects:@"gradient", @"inactiveGradient", @"hasTopBorder", @"hasBottomBorder", @"topBorderColor", @"bottomBorderColor", @"inactiveTopBorderColor", @"inactiveBottomBorderColor", @"topInsetAlpha", @"bottomInsetAlpha", nil] options:NSKeyValueObservingOptionNew context:nil];
+        [self px_addObserver:self forKeyPaths:[NSSet setWithObjects:@"gradient", @"inactiveGradient", @"hasTopBorder", @"hasBottomBorder", @"topBorderColor", @"bottomBorderColor", @"inactiveTopBorderColor", @"inactiveBottomBorderColor", @"topInsetAlpha", @"bottomInsetAlpha", nil] options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
 
 - (void)dealloc {
-    [self removeObserver:self forKeyPaths:[NSSet setWithObjects:@"gradient", @"inactiveGradient", @"hasTopBorder", @"hasBottomBorder", @"topBorderColor", @"bottomBorderColor", @"inactiveTopBorderColor", @"inactiveBottomBorderColor", @"topInsetAlpha", @"bottomInsetAlpha", nil]];
+    [self px_removeObserver:self forKeyPaths:[NSSet setWithObjects:@"gradient", @"inactiveGradient", @"hasTopBorder", @"hasBottomBorder", @"topBorderColor", @"bottomBorderColor", @"inactiveTopBorderColor", @"inactiveBottomBorderColor", @"topInsetAlpha", @"bottomInsetAlpha", nil]];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 

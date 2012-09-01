@@ -11,19 +11,19 @@
 
 @implementation NSObject (PhotonAdditions)
 
-- (void)addObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths options:(NSKeyValueObservingOptions)options context:(void *)context {
+- (void)px_addObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths options:(NSKeyValueObservingOptions)options context:(void *)context {
     for (NSString *keyPath in keyPaths) {
         [self addObserver:observer forKeyPath:keyPath options:options context:context];
     }
 }
 
-- (void)removeObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths {
+- (void)px_removeObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths {
     for (NSString *keyPath in keyPaths) {
         [self removeObserver:observer forKeyPath:keyPath];
     }
 }
 
-- (void)removeObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths context:(void *)context {
+- (void)px_removeObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths context:(void *)context {
     for (NSString *keyPath in keyPaths) {
         [self removeObserver:observer forKeyPath:keyPath context:context];
     }

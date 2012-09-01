@@ -11,28 +11,28 @@
 
 @interface NSObject (PhotonAdditions)
 
-/* @method addObserver:forKeyPaths:options:context:
+/* @method px_addObserver:forKeyPaths:options:context:
  * @abstract Add a KVO observer for multiple key paths
  * 
  * @discussion
  * This is a convenience wrapper for adding a KVO observer for multiple key paths simultaneously
  */
-- (void)addObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths options:(NSKeyValueObservingOptions)options context:(void *)context;
+- (void)px_addObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths options:(NSKeyValueObservingOptions)options context:(void *)context;
 
-/* @method removeObserver:forKeyPaths:
+/* @method px_removeObserver:forKeyPaths:
  * @abstract Remove a KVO observer for multiple key paths
  * 
  * @discussion
  * This is a convenience wrapper for removing a KVO observer for multiple key paths simultaneously
  */
-- (void)removeObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths;
+- (void)px_removeObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths;
 
-/* @method removeObserver:forKeyPaths:context:
+/* @method px_removeObserver:forKeyPaths:context:
  * @abstract Remove a KVO observer for multiple key paths
  * 
  * @discussion
  * This is a convenience wrapper for removing a KVO observer for multiple key paths simultaneously
  */
-- (void)removeObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths context:(void *)context;
+- (void)px_removeObserver:(NSObject *)observer forKeyPaths:(NSSet *)keyPaths context:(void *)context;
 
 @end
