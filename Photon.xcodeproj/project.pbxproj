@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 02714F7215AA31BE001FA6A1 /* PXTreeNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02714F7515AA31BE001FA6A1 /* PXTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 02714F7315AA31BE001FA6A1 /* PXTreeNode.m */; };
-		027A9C3015D5791300E0C9EA /* NSObject+PXKeyValueBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 027A9C2E15D5791300E0C9EA /* NSObject+PXKeyValueBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		027A9C3115D5791300E0C9EA /* NSObject+PXKeyValueBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 027A9C2F15D5791300E0C9EA /* NSObject+PXKeyValueBinding.m */; };
 		EA00FB22149C7525002F8A15 /* PXObjectEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA00FB20149C7525002F8A15 /* PXObjectEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA00FB23149C7525002F8A15 /* PXObjectEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = EA00FB21149C7525002F8A15 /* PXObjectEditor.m */; };
 		EA30301814FFFA6A0062D399 /* PXTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301614FFFA6A0062D399 /* PXTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -93,8 +91,6 @@
 /* Begin PBXFileReference section */
 		02714F7215AA31BE001FA6A1 /* PXTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTreeNode.h; sourceTree = "<group>"; };
 		02714F7315AA31BE001FA6A1 /* PXTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTreeNode.m; sourceTree = "<group>"; };
-		027A9C2E15D5791300E0C9EA /* NSObject+PXKeyValueBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PXKeyValueBinding.h"; sourceTree = "<group>"; };
-		027A9C2F15D5791300E0C9EA /* NSObject+PXKeyValueBinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PXKeyValueBinding.m"; sourceTree = "<group>"; };
 		EA00FB20149C7525002F8A15 /* PXObjectEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXObjectEditor.h; sourceTree = "<group>"; };
 		EA00FB21149C7525002F8A15 /* PXObjectEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXObjectEditor.m; sourceTree = "<group>"; };
 		EA30301614FFFA6A0062D399 /* PXTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTableViewCell.h; sourceTree = "<group>"; };
@@ -205,8 +201,6 @@
 		027A9C2D15D578DA00E0C9EA /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				027A9C2E15D5791300E0C9EA /* NSObject+PXKeyValueBinding.h */,
-				027A9C2F15D5791300E0C9EA /* NSObject+PXKeyValueBinding.m */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -485,7 +479,6 @@
 				EA9C52F315211DC400F767C9 /* PXColorPickerView.h in Headers */,
 				EA9C52F515211DC400F767C9 /* PXColorWell.h in Headers */,
 				02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */,
-				027A9C3015D5791300E0C9EA /* NSObject+PXKeyValueBinding.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,7 +582,6 @@
 				EA9C52F415211DC400F767C9 /* PXColorPickerView.m in Sources */,
 				EA9C52F615211DC400F767C9 /* PXColorWell.m in Sources */,
 				02714F7515AA31BE001FA6A1 /* PXTreeNode.m in Sources */,
-				027A9C3115D5791300E0C9EA /* NSObject+PXKeyValueBinding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
