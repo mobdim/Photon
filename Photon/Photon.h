@@ -24,9 +24,7 @@
 #import <Photon/PXNavigationBar.h>
 #import <Photon/PXNavigationController.h>
 #import <Photon/PXNavigationItem.h>
-#import <Photon/PXObjectEditor.h>
 #import <Photon/PXPreferencesController.h>
-#import <Photon/PXResizableImage.h>
 #import <Photon/PXTabBar.h>
 #import <Photon/PXTabBarController.h>
 #import <Photon/PXTabBarItem.h>
@@ -35,10 +33,3 @@
 #import <Photon/PXViewController.h>
 #import <Photon/NSObject+PhotonAdditions.h>
 #import <Photon/NSValue+PhotonAdditions.h>
-
-
-/*!
- * @constant PXPhotonErrorDomain
- * @abstract The Photon error domain
- */
-PHOTON_EXTERN NSString * const PXPhotonErrorDomain;
