@@ -16,9 +16,6 @@
 @implementation PXViewController {
     PXViewController *_parentViewController;
     
-    PXNavigationController *_navigationController;
-    PXNavigationItem *_navigationItem;
-    
     PXTabBarController *_tabBarController;
     PXTabBarItem *_tabBarItem;
 }
@@ -106,35 +103,6 @@
         [self setNextResponder:_parentViewController];
         [self didChangeValueForKey:@"parentViewController"];
     }
-}
-
-- (PXNavigationController *)navigationController {
-    PXNavigationController *controller = _navigationController;
-    if (controller == nil) {
-        PXViewController *parent = self.parentViewController;
-        while (parent != nil && controller == nil) {
-            controller = parent.navigationController;
-        }
-    }
-    return controller;
-}
-
-- (void)setNavigationController:(PXNavigationController *)controller {
-    if (_navigationController != controller) {
-        [self willChangeValueForKey:@"navigationController"];
-        _navigationController = controller;
-        [self didChangeValueForKey:@"navigationController"];
-    }
-}
-
-- (PXNavigationItem *)navigationItem {
-    if (_navigationItem == nil) {
-        _navigationItem = [[PXNavigationItem alloc] init];
-        [_navigationItem bind:NSTitleBinding toObject:self withKeyPath:@"title" options:nil];
-        [_navigationItem bind:NSImageBinding toObject:self withKeyPath:@"image" options:nil];
-        [_navigationItem setRepresentedObject:self];
-    }
-    return _navigationItem;
 }
 
 - (PXTabBarController *)tabBarController {

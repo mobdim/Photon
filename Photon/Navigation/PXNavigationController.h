@@ -58,3 +58,24 @@
 - (void)navigationController:(PXNavigationController *)aNavigationController didPopViewController:(PXViewController *)viewController animated:(BOOL)isAnimated;
 
 @end
+
+
+@interface PXViewController (PXNavigationController)
+
+/*!
+ * @property navigationController
+ * @abstract Gets the navigation controller containing the receiver
+ *
+ * @result A PXNavigationController object
+ */
+@property (nonatomic, strong, readonly) PXNavigationController *navigationController;
+
+/*!
+ * @property navigationItem
+ * @abstract Gets the navigation item representing the receiver
+ *
+ * @result A PXNavigationItem object
+ */
+@property (nonatomic, strong, readonly) PXNavigationItem *navigationItem;
+
+@end

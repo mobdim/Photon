@@ -15,11 +15,20 @@
 
 #import "PXNavigationPathComponentCell.h"
 
+#import <objc/runtime.h>
+
 
 @interface PXNavigationController () <NSAnimationDelegate>
 
 - (void)adjustNavigationBarPositionAnimated:(BOOL)isAnimated;
 - (void)replaceView:(NSView *)oldView withView:(NSView *)newView push:(BOOL)shouldPush animated:(BOOL)isAnimated;
+
+@end
+
+
+@interface PXViewController (PXNavigationControllerPrivate)
+
+@property (nonatomic, strong, readwrite) PXNavigationController *navigationController;
 
 @end
 
@@ -563,6 +572,46 @@
 - (void)navigationBar:(PXNavigationBar *)bar didPopToItem:(PXNavigationItem *)item {
     PXViewController *viewController = [item representedObject];
     [self popToViewController:viewController animated:YES updateNavigationBar:NO];
+}
+
+@end
+
+
+@implementation PXViewController (PXNavigationController)
+
+static NSString * const PXViewControllerNavigationControllerKey = @"PXViewControllerNavigationControllerKey";
+static NSString * const PXViewControllerNavigationItemKey = @"PXViewControllerNavigationItemKey";
+
+- (PXNavigationController *)navigationController {
+    PXNavigationController *controller = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerNavigationControllerKey);
+    if (controller == nil) {
+        PXViewController *parent = self.parentViewController;
+        while (parent != nil && controller == nil) {
+            controller = parent.navigationController;
+        }
+    }
+    return controller;
+}
+
+- (void)setNavigationController:(PXNavigationController *)controller {
+    PXNavigationController *currentNavigationController = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerNavigationControllerKey);
+    if (currentNavigationController != controller) {
+        [self willChangeValueForKey:@"navigationController"];
+        objc_setAssociatedObject(self, (__bridge void *)PXViewControllerNavigationControllerKey, controller, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self didChangeValueForKey:@"navigationController"];
+    }
+}
+
+- (PXNavigationItem *)navigationItem {
+    PXNavigationItem *navigationItem = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerNavigationItemKey);
+    if (navigationItem == nil) {
+        navigationItem = [[PXNavigationItem alloc] init];
+        [navigationItem bind:NSTitleBinding toObject:self withKeyPath:@"title" options:nil];
+        [navigationItem bind:NSImageBinding toObject:self withKeyPath:@"image" options:nil];
+        [navigationItem setRepresentedObject:self];
+        objc_setAssociatedObject(self, (__bridge void *)PXViewControllerNavigationItemKey, navigationItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return navigationItem;
 }
 
 @end

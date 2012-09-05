@@ -127,23 +127,6 @@
 
 
 /*!
- * @property navigationController
- * @abstract Gets the navigation controller containing the receiver
- * 
- * @result A PXNavigationController object
- */
-@property (strong, readonly) PXNavigationController *navigationController;
-
-/*!
- * @property navigationItem
- * @abstract Gets the navigation item representing the receiver
- * 
- * @result A PXNavigationItem object
- */
-@property (strong, readonly) PXNavigationItem *navigationItem;
-
-
-/*!
  * @property tabBarController
  * @abstract Gets the tab bar controller containing the receiver
  * 

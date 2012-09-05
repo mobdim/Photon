@@ -12,7 +12,6 @@
 @interface PXViewController ()
 
 - (void)setParentViewController:(PXViewController *)aViewController;
-- (void)setNavigationController:(PXNavigationController *)controller;
 - (void)setTabBarController:(PXTabBarController *)controller;
 
 @end
