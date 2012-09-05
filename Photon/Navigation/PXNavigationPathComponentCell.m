@@ -11,9 +11,6 @@
 
 @implementation PXNavigationPathComponentCell
 
-@synthesize firstItem;
-@synthesize lastItem;
-
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     CGFloat xMinOffset = 0.0;
     

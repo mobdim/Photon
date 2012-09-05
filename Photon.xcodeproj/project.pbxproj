@@ -39,7 +39,6 @@
 		EA44B2D5149B254F00C5D440 /* PXNavigationPathComponentCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2C9149B254F00C5D440 /* PXNavigationPathComponentCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA44B2D6149B254F00C5D440 /* PXNavigationPathComponentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2CA149B254F00C5D440 /* PXNavigationPathComponentCell.m */; };
 		EA44B2D7149B254F00C5D440 /* PXPathComponentSeparator.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EA44B2CB149B254F00C5D440 /* PXPathComponentSeparator.pdf */; };
-		EA44B2D8149B254F00C5D440 /* NavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA44B2CC149B254F00C5D440 /* NavigationView.xib */; };
 		EA44B2D9149B254F00C5D440 /* PXNavigationItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2CD149B254F00C5D440 /* PXNavigationItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2DA149B254F00C5D440 /* PXNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2CE149B254F00C5D440 /* PXNavigationItem.m */; };
 		EA44B2DB149B254F00C5D440 /* PXNavigationPathCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2CF149B254F00C5D440 /* PXNavigationPathCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -123,7 +122,6 @@
 		EA44B2C9149B254F00C5D440 /* PXNavigationPathComponentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationPathComponentCell.h; sourceTree = "<group>"; };
 		EA44B2CA149B254F00C5D440 /* PXNavigationPathComponentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXNavigationPathComponentCell.m; sourceTree = "<group>"; };
 		EA44B2CB149B254F00C5D440 /* PXPathComponentSeparator.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = PXPathComponentSeparator.pdf; sourceTree = "<group>"; };
-		EA44B2CC149B254F00C5D440 /* NavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationView.xib; sourceTree = "<group>"; };
 		EA44B2CD149B254F00C5D440 /* PXNavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationItem.h; sourceTree = "<group>"; };
 		EA44B2CE149B254F00C5D440 /* PXNavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXNavigationItem.m; sourceTree = "<group>"; };
 		EA44B2CF149B254F00C5D440 /* PXNavigationPathCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationPathCell.h; sourceTree = "<group>"; };
@@ -326,7 +324,6 @@
 				EA44B2C8149B254F00C5D440 /* PXNavigationPathCell.m */,
 				EA44B2C9149B254F00C5D440 /* PXNavigationPathComponentCell.h */,
 				EA44B2CA149B254F00C5D440 /* PXNavigationPathComponentCell.m */,
-				EA44B2CC149B254F00C5D440 /* NavigationView.xib */,
 				EA44B2CB149B254F00C5D440 /* PXPathComponentSeparator.pdf */,
 			);
 			path = Navigation;
@@ -507,7 +504,6 @@
 				EA44B29F149B21FF00C5D440 /* InfoPlist.strings in Resources */,
 				EA44B2C5149B23C300C5D440 /* TabBarView.xib in Resources */,
 				EA44B2D7149B254F00C5D440 /* PXPathComponentSeparator.pdf in Resources */,
-				EA44B2D8149B254F00C5D440 /* NavigationView.xib in Resources */,
 				EA41D8111506882700C48503 /* PXAnchoredPopUpButtonPullDownArrow.pdf in Resources */,
 				EA9C52E415211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf in Resources */,
 				EA9C52E515211D3100F767C9 /* PXFormatBar-SingleArrow.pdf in Resources */,

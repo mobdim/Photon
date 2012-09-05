@@ -11,10 +11,4 @@
 
 @implementation PXNavigationItem
 
-@synthesize title;
-@synthesize image;
-@synthesize menu;
-@synthesize accessoryView;
-@synthesize representedObject;
-
 @end

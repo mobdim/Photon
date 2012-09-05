@@ -13,16 +13,6 @@
     NSMutableSet *_children;
 }
 
-@synthesize title=_title;
-@synthesize image=_image;
-@synthesize order=_order;
-
-@synthesize selectable=_selectable;
-@synthesize editable=_editable;
-@synthesize groupItem=_groupItem;
-
-@synthesize persistenceIdentifier=_persistenceIdentifier;
-
 - (id)init {
     self = [super init];
     if (self) {
