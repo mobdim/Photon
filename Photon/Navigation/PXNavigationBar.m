@@ -20,40 +20,31 @@
 
 
 @implementation PXNavigationBar {
-    NSMutableArray *items;
-    NSPathControl *pathControl;
+    NSMutableArray *_items;
+    NSPathControl *_pathControl;
 }
-
-@synthesize delegate;
 
 - (id)initWithFrame:(NSRect)frameRect {
     self = [super initWithFrame:frameRect];
     if (self) {
-        items = [[NSMutableArray alloc] init];
+        _items = [[NSMutableArray alloc] init];
         
-        pathControl = [[NSPathControl alloc] initWithFrame:NSMakeRect(0.0, 0.0, frameRect.size.width, frameRect.size.height)];
-        [pathControl setAutoresizingMask:(NSViewWidthSizable|NSViewMinYMargin|NSViewMaxYMargin)];
+        _pathControl = [[NSPathControl alloc] initWithFrame:NSMakeRect(0.0, 0.0, frameRect.size.width, frameRect.size.height)];
+        [_pathControl setAutoresizingMask:(NSViewWidthSizable|NSViewMinYMargin|NSViewMaxYMargin)];
         
         PXNavigationPathCell *pathCell = [[PXNavigationPathCell alloc] initTextCell:@"/"];
         [pathCell setPathStyle:NSPathStyleNavigationBar];
         [pathCell setControlSize:NSSmallControlSize];
         [pathCell setFont:[NSFont controlContentFontOfSize:[NSFont systemFontSizeForControlSize:NSSmallControlSize]]];
-        [pathControl setCell:pathCell];
+        [_pathControl setCell:pathCell];
         
-        [pathControl setFocusRingType:NSFocusRingTypeNone];
-        [pathControl setTarget:self];
-        [pathControl setAction:@selector(pathControlAction:)];
+        [_pathControl setFocusRingType:NSFocusRingTypeNone];
+        [_pathControl setTarget:self];
+        [_pathControl setAction:@selector(pathControlAction:)];
         
-        self.gradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]
-                                                      endingColor:[NSColor colorWithCalibratedWhite:0.8 alpha:1.0]];
-        self.inactiveGradient = [[NSGradient alloc] initWithStartingColor:[NSColor colorWithCalibratedWhite:1.0 alpha:1.0]
-                                                              endingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]];
-        self.hasTopBorder = NO;
-        self.hasBottomBorder = YES;
-        self.bottomBorderColor = [NSColor colorWithCalibratedWhite:0.6 alpha:1.0];
-        self.inactiveBottomBorderColor = [NSColor colorWithCalibratedWhite:0.8 alpha:1.0];
+        self.style = PXNavigationBarStyleLight;
         
-        [self addSubview:pathControl];
+        [self addSubview:_pathControl];
         
         [self addObserver:self forKeyPath:@"items" options:(NSKeyValueObservingOptionInitial) context:nil];
     }
@@ -105,7 +96,7 @@
 - (void)rebuildPathComponentCells {
     NSMutableArray *cells = [NSMutableArray array];
     
-    for (PXNavigationItem *item in items) {
+    for (PXNavigationItem *item in _items) {
         NSString *title = [item title];
         if (title == nil) {
             title = @"Untitled";
@@ -115,15 +106,15 @@
         [cell setRepresentedObject:item];
         [cell setImage:[item image]];
         
-        if ([items objectAtIndex:0] == item)
+        if ([_items objectAtIndex:0] == item)
             cell.firstItem = YES;
-        if ([items lastObject] == item)
+        if ([_items lastObject] == item)
             cell.lastItem = YES;
         
         [cells addObject:cell];
     }
     
-    [pathControl setPathComponentCells:cells];
+    [_pathControl setPathComponentCells:cells];
 }
 
 
@@ -131,20 +122,35 @@
 #pragma mark Items
 
 - (NSArray *)items {
-    return [items copy];
+    return [_items copy];
 }
 
 - (void)setItems:(NSArray *)newItems {
-    if (![items isEqualToArray:newItems]) {
-        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [items count])];
+    if (![_items isEqualToArray:newItems]) {
+        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [_items count])];
         [self willChange:NSKeyValueChangeSetting valuesAtIndexes:indexes forKey:@"items"];
-        [items setArray:newItems];
+        [_items setArray:newItems];
         [self didChange:NSKeyValueChangeSetting valuesAtIndexes:indexes forKey:@"items"];
     }
 }
 
++ (NSSet *)keyPathsForValuesAffectingTopItem {
+    return [NSSet setWithObjects:@"items", nil];
+}
+
 - (PXNavigationItem *)topItem {
-    return [items lastObject];
+    return [_items lastObject];
+}
+
++ (NSSet *)keyPathsForValuesAffectingBackItem {
+    return [NSSet setWithObjects:@"items", nil];
+}
+
+- (PXNavigationItem *)backItem {
+    if ([_items count] > 1) {
+        return [_items objectAtIndex:([_items count] - 2)];
+    }
+    return nil;
 }
 
 - (void)pushNavigationItem:(PXNavigationItem *)item {
@@ -154,9 +160,9 @@
         }
     }
     
-    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange([items count], 1)];
+    NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange([_items count], 1)];
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"items"];
-    [items addObject:item];
+    [_items addObject:item];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"items"];
     
     if ([[self delegate] respondsToSelector:@selector(navigationBar:didPushItem:)]) {
@@ -165,9 +171,9 @@
 }
 
 - (void)popToNavigationItem:(PXNavigationItem *)item {
-    NSUInteger index = [items indexOfObjectIdenticalTo:item];
-    if ([items count] > 1 && index < [items count]-1) {
-        PXNavigationItem *item = [items objectAtIndex:index];
+    NSUInteger index = [_items indexOfObjectIdenticalTo:item];
+    if ([_items count] > 1 && index < [_items count]-1) {
+        PXNavigationItem *item = [_items objectAtIndex:index];
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopToItem:)]) {
             if (![[self delegate] navigationBar:self shouldPopToItem:item]) {
@@ -175,9 +181,9 @@
             }
         }
         
-        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(index+1, [items count]-(index+1))];
+        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(index+1, [_items count]-(index+1))];
         [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
-        [items removeObjectsInRange:NSMakeRange(index+1, [items count]-(index+1))];
+        [_items removeObjectsInRange:NSMakeRange(index+1, [_items count]-(index+1))];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopToItem:)]) {
@@ -187,8 +193,8 @@
 }
 
 - (void)popToRootNavigationItem {
-    if ([items count] > 1) {
-        PXNavigationItem *item = [items objectAtIndex:0];
+    if ([_items count] > 1) {
+        PXNavigationItem *item = [_items objectAtIndex:0];
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopToItem:)]) {
             if (![[self delegate] navigationBar:self shouldPopToItem:item]) {
@@ -196,9 +202,9 @@
             }
         }
         
-        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [items count]-2)];
+        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [_items count]-2)];
         [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
-        [items removeObjectsInRange:NSMakeRange(1, [items count]-2)];
+        [_items removeObjectsInRange:NSMakeRange(1, [_items count]-2)];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopToItem:)]) {
@@ -208,8 +214,8 @@
 }
 
 - (void)popNavigationItem {
-    if ([items count] > 1) {
-        PXNavigationItem *item = [items lastObject];
+    if ([_items count] > 1) {
+        PXNavigationItem *item = [_items lastObject];
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopToItem:)]) {
             if (![[self delegate] navigationBar:self shouldPopToItem:item]) {
@@ -217,9 +223,9 @@
             }
         }
         
-        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange([items count]-1, 1)];
+        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange([_items count]-1, 1)];
         [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
-        [items removeObjectAtIndex:[items count]-1];
+        [_items removeObjectAtIndex:[_items count]-1];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopToItem:)]) {

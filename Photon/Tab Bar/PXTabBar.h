@@ -23,15 +23,15 @@ typedef PHOTON_ENUM(NSUInteger, PXTabBarStyle) {
 
 @interface PXTabBar : NSView <PXAppearance>
 
-@property (unsafe_unretained) id <PXTabBarDelegate> delegate;
+@property (nonatomic, weak) id <PXTabBarDelegate> delegate;
 
-@property PXTabBarStyle style;
-@property CGFloat cornerRadius;
-@property PXAppearanceBorder border;
+@property (nonatomic) PXTabBarStyle style;
+@property (nonatomic) CGFloat cornerRadius;
+@property (nonatomic) PXAppearanceBorder border;
 
-@property (copy) NSArray *items;
-@property (strong) PXTabBarItem *selectedItem;
-@property NSUInteger selectedIndex;
+@property (nonatomic, copy) NSArray *items;
+@property (nonatomic, strong) PXTabBarItem *selectedItem;
+@property (nonatomic) NSUInteger selectedIndex;
 
 @end
 

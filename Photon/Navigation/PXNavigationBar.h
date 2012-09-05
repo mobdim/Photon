@@ -7,18 +7,29 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <Photon/PXGradientView.h>
+#import <Photon/PhotonDefines.h>
+#import <Photon/PXAppearance.h>
+
+
+typedef PHOTON_ENUM(NSUInteger, PXNavigationBarStyle) {
+    PXNavigationBarStyleLight = 0,
+    PXNavigationBarStyleDark,
+};
 
 
 @class PXNavigationItem;
 @protocol PXNavigationBarDelegate;
 
 
-@interface PXNavigationBar : PXGradientView
+@interface PXNavigationBar : NSView <PXAppearance>
 
-@property (unsafe_unretained) id <PXNavigationBarDelegate> delegate;
-@property (copy) NSArray *items;
-@property (strong, readonly) PXNavigationItem *topItem;
+@property (nonatomic, weak) id <PXNavigationBarDelegate> delegate;
+
+@property (nonatomic) PXNavigationBarStyle style;
+
+@property (nonatomic, copy) NSArray *items;
+@property (nonatomic, strong, readonly) PXNavigationItem *topItem;
+@property (nonatomic, strong, readonly) PXNavigationItem *backItem;
 
 - (void)pushNavigationItem:(PXNavigationItem *)item;
 - (void)popToNavigationItem:(PXNavigationItem *)item;

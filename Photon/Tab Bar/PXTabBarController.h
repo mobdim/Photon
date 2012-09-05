@@ -16,19 +16,23 @@
 @protocol PXTabBarControllerDelegate, PXTabBarDelegate;
 
 
+/*!
+ * @class PXTabBarController
+ * @abstract Coordinates a tabbed set of view controllers
+ */
 @interface PXTabBarController : PXViewController <PXTabBarDelegate>
 
 @property IBOutlet PXTabBar *tabBar;
 @property IBOutlet NSView *containerView;
 
-@property (weak) id <PXTabBarControllerDelegate> delegate;
+@property (nonatomic, weak) id <PXTabBarControllerDelegate> delegate;
 
-@property NSArray *viewControllers;
+@property (nonatomic) NSArray *viewControllers;
 
-@property (strong) PXViewController *selectedViewController;
-@property NSUInteger selectedIndex;
+@property (nonatomic, strong) PXViewController *selectedViewController;
+@property (nonatomic) NSUInteger selectedIndex;
 
-@property BOOL animates;
+@property (nonatomic) BOOL animates;
 
 @end
 

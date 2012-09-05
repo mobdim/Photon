@@ -15,24 +15,28 @@
 @protocol PXNavigationControllerDelegate;
 
 
-/* PXNavigationController is an NSViewController subclass that manages
- * a stack of child view controllers, allowing navigation between them
- * similar to the UIKit's UIViewController.
+/*!
+ * @class PXNavigationController
+ * @abstract Coordinates a stack of view controllers
  */
-@interface PXNavigationController : PXViewController <PXNavigationBarDelegate, NSAnimationDelegate>
+@interface PXNavigationController : PXViewController <PXNavigationBarDelegate>
 
 - (id)initWithRootViewController:(PXViewController *)viewController;
 
-@property IBOutlet PXNavigationBar *navigationBar;
+@property (nonatomic, readonly) PXNavigationBar *navigationBar;
 
-@property (copy) NSArray *viewControllers;
-@property (strong, readonly) PXViewController *topViewController;
-
-@property (unsafe_unretained) id <PXNavigationControllerDelegate> delegate;
-
-@property BOOL alwaysShowsNavigationBar;
-
+@property (nonatomic, copy) NSArray *viewControllers;
 - (void)setViewControllers:(NSArray *)array animated:(BOOL)isAnimated;
+
+@property (nonatomic, strong, readonly) PXViewController *topViewController;
+
+@property (nonatomic, weak) id <PXNavigationControllerDelegate> delegate;
+
+@property (nonatomic) BOOL automaticallyHidesNavigationBar;
+- (void)setAutomaticallyHidesNavigationBar:(BOOL)automaticallyHidesNavigationBar animated:(BOOL)isAnimated;
+
+@property (nonatomic, getter=isNavigationBarHidden) BOOL navigationBarHidden;
+- (void)setNavigationBarHidden:(BOOL)navigationBarHidden animated:(BOOL)isAnimated;
 
 - (void)pushViewController:(PXViewController *)viewController animated:(BOOL)isAnimated;
 - (void)popViewControllerAnimated:(BOOL)isAnimated;

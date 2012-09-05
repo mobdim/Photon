@@ -11,7 +11,7 @@
 
 @interface PXNavigationPathComponentCell : NSPathComponentCell
 
-@property (getter=isFirstItem) BOOL firstItem;
-@property (getter=isLastItem) BOOL lastItem;
+@property (nonatomic, getter=isFirstItem) BOOL firstItem;
+@property (nonatomic, getter=isLastItem) BOOL lastItem;
 
 @end

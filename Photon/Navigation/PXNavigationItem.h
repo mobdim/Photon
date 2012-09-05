@@ -11,10 +11,10 @@
 
 @interface PXNavigationItem : NSObject
 
-@property (copy) NSString *title;
-@property (copy) NSImage *image;
-@property (strong) NSMenu *menu;
-@property (strong) NSView *accessoryView;
-@property (unsafe_unretained) id representedObject;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSImage *image;
+@property (nonatomic, strong) NSMenu *menu;
+@property (nonatomic, strong) NSView *accessoryView;
+@property (nonatomic, weak) id representedObject;
 
 @end
