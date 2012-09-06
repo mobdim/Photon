@@ -13,8 +13,6 @@
 #import "PXViewController.h"
 #import "PXViewController_Private.h"
 
-#import "PXNavigationPathComponentCell.h"
-
 #import <objc/runtime.h>
 
 

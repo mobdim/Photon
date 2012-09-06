@@ -8,8 +8,6 @@
 
 #import "PXNavigationBar.h"
 #import "PXNavigationItem.h"
-#import "PXNavigationPathCell.h"
-#import "PXNavigationPathComponentCell.h"
 
 
 @implementation PXNavigationBar {
