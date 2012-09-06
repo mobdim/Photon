@@ -92,7 +92,7 @@
     [_navigationBar setDelegate:self];
     
     for (PXViewController *viewController in self.viewControllers) {
-        [_navigationBar pushNavigationItem:[viewController navigationItem]];
+        [_navigationBar pushNavigationItem:[viewController navigationItem] animated:NO];
     }
     
     
@@ -383,7 +383,7 @@
     [viewController setNavigationController:self];
     [viewController setParentViewController:self];
     
-    [_navigationBar pushNavigationItem:[viewController navigationItem]];
+    [_navigationBar pushNavigationItem:[viewController navigationItem] animated:isAnimated];
     
     [self adjustNavigationBarPositionAnimated:isAnimated];
     
@@ -428,7 +428,7 @@
         
         [self replaceView:[topController view] withView:[nextController view] push:NO animated:isAnimated];
         
-        [_navigationBar popNavigationItem];
+        [_navigationBar popNavigationItemAnimated:isAnimated];
         
         [topController viewDidDisappear];
         [nextController viewDidAppear];
@@ -475,7 +475,7 @@
         
         [self replaceView:[topController view] withView:[rootController view] push:NO animated:isAnimated];
         
-        [_navigationBar popToRootNavigationItem];
+        [_navigationBar popToRootNavigationItemAnimated:isAnimated];
         
         [self adjustNavigationBarPositionAnimated:isAnimated];
         
@@ -527,7 +527,7 @@
         [self replaceView:[topController view] withView:[viewController view] push:NO animated:isAnimated];
         
         if (updateNavigationBar) {
-            [_navigationBar popToNavigationItem:[viewController navigationItem]];
+            [_navigationBar popToNavigationItem:[viewController navigationItem] animated:isAnimated];
         }
         
         [self adjustNavigationBarPositionAnimated:isAnimated];
@@ -565,12 +565,13 @@
     
 }
 
-- (BOOL)navigationBar:(PXNavigationBar *)bar shouldPopToItem:(PXNavigationItem *)item {
+- (BOOL)navigationBar:(PXNavigationBar *)bar shouldPopItem:(PXNavigationItem *)item {
     return YES;
 }
 
-- (void)navigationBar:(PXNavigationBar *)bar didPopToItem:(PXNavigationItem *)item {
-    PXViewController *viewController = [item representedObject];
+- (void)navigationBar:(PXNavigationBar *)bar didPopItem:(PXNavigationItem *)item {
+    PXNavigationItem *newItem = [bar topItem];
+    PXViewController *viewController = [newItem representedObject];
     [self popToViewController:viewController animated:YES updateNavigationBar:NO];
 }
 

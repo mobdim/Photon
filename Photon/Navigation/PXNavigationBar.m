@@ -12,49 +12,22 @@
 #import "PXNavigationPathComponentCell.h"
 
 
-@interface PXNavigationBar ()
-
-- (void)rebuildPathComponentCells;
-
-@end
-
-
 @implementation PXNavigationBar {
     NSMutableArray *_items;
-    NSPathControl *_pathControl;
 }
 
 - (id)initWithFrame:(NSRect)frameRect {
     self = [super initWithFrame:frameRect];
     if (self) {
-        _items = [[NSMutableArray alloc] init];
-        
-        _pathControl = [[NSPathControl alloc] initWithFrame:NSMakeRect(0.0, 0.0, frameRect.size.width, frameRect.size.height)];
-        [_pathControl setAutoresizingMask:(NSViewWidthSizable|NSViewMinYMargin|NSViewMaxYMargin)];
-        
-        PXNavigationPathCell *pathCell = [[PXNavigationPathCell alloc] initTextCell:@"/"];
-        [pathCell setPathStyle:NSPathStyleNavigationBar];
-        [pathCell setControlSize:NSSmallControlSize];
-        [pathCell setFont:[NSFont controlContentFontOfSize:[NSFont systemFontSizeForControlSize:NSSmallControlSize]]];
-        [_pathControl setCell:pathCell];
-        
-        [_pathControl setFocusRingType:NSFocusRingTypeNone];
-        [_pathControl setTarget:self];
-        [_pathControl setAction:@selector(pathControlAction:)];
+        _items = [NSMutableArray array];
         
         self.style = PXNavigationBarStyleLight;
-        
-        [self addSubview:_pathControl];
-        
-        [self addObserver:self forKeyPath:@"items" options:(NSKeyValueObservingOptionInitial) context:nil];
     }
     return self;
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
-    [self removeObserver:self forKeyPath:@"items"];
 }
 
 - (void)viewWillMoveToWindow:(NSWindow *)newWindow {
@@ -73,66 +46,9 @@
     [self setNeedsDisplay:YES];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"items"]) {
-        [self rebuildPathComponentCells];
-    }
-    else [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-}
-
-
-#pragma mark -
-#pragma mark Path Control
-
-- (IBAction)pathControlAction:(NSPathControl *)sender {
-    NSPathComponentCell *pathComponentCell = [[sender cell] clickedPathComponentCell];
-    id object = [pathComponentCell representedObject];
-    
-    if ([object isKindOfClass:[PXNavigationItem class]]) {
-        [self popToNavigationItem:(PXNavigationItem *)object];
-    }
-}
-
-- (void)rebuildPathComponentCells {
-    NSMutableArray *cells = [NSMutableArray array];
-    
-    for (PXNavigationItem *item in _items) {
-        NSString *title = [item title];
-        if (title == nil) {
-            title = @"Untitled";
-        }
-        
-        PXNavigationPathComponentCell *cell = [[PXNavigationPathComponentCell alloc] initTextCell:title];
-        [cell setRepresentedObject:item];
-        [cell setImage:[item image]];
-        
-        if ([_items objectAtIndex:0] == item)
-            cell.firstItem = YES;
-        if ([_items lastObject] == item)
-            cell.lastItem = YES;
-        
-        [cells addObject:cell];
-    }
-    
-    [_pathControl setPathComponentCells:cells];
-}
-
 
 #pragma mark -
 #pragma mark Items
-
-- (NSArray *)items {
-    return [_items copy];
-}
-
-- (void)setItems:(NSArray *)newItems {
-    if (![_items isEqualToArray:newItems]) {
-        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [_items count])];
-        [self willChange:NSKeyValueChangeSetting valuesAtIndexes:indexes forKey:@"items"];
-        [_items setArray:newItems];
-        [self didChange:NSKeyValueChangeSetting valuesAtIndexes:indexes forKey:@"items"];
-    }
-}
 
 + (NSSet *)keyPathsForValuesAffectingTopItem {
     return [NSSet setWithObjects:@"items", nil];
@@ -153,7 +69,53 @@
     return nil;
 }
 
-- (void)pushNavigationItem:(PXNavigationItem *)item {
+- (NSArray *)items {
+    return [_items copy];
+}
+
+- (void)setItems:(NSArray *)items {
+    [self setItems:items animated:NO];
+}
+
+- (void)setItems:(NSArray *)items animated:(BOOL)isAnimated {
+    if (![_items isEqualToArray:items]) {
+        PXNavigationItem *newItem = [items lastObject];
+        BOOL shouldPop = (newItem != nil ? [_items containsObject:newItem] : YES);
+        PXNavigationItem *currentItem = [self topItem];
+        
+        if (shouldPop) {
+            if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopItem:)]) {
+                if (![[self delegate] navigationBar:self shouldPopItem:currentItem]) {
+                    return;
+                }
+            }
+        }
+        else {
+            if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPushItem:)]) {
+                if (![[self delegate] navigationBar:self shouldPushItem:newItem]) {
+                    return;
+                }
+            }
+        }
+        
+        [self willChangeValueForKey:@"items"];
+        [_items setArray:items];
+        [self didChangeValueForKey:@"items"];
+        
+        if (shouldPop) {
+            if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
+                [[self delegate] navigationBar:self didPopItem:currentItem];
+            }
+        }
+        else {
+            if ([[self delegate] respondsToSelector:@selector(navigationBar:didPushItem:)]) {
+                [[self delegate] navigationBar:self didPushItem:newItem];
+            }
+        }
+    }
+}
+
+- (void)pushNavigationItem:(PXNavigationItem *)item animated:(BOOL)isAnimated {
     if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPushItem:)]) {
         if (![[self delegate] navigationBar:self shouldPushItem:item]) {
             return;
@@ -170,13 +132,13 @@
     }
 }
 
-- (void)popToNavigationItem:(PXNavigationItem *)item {
+- (void)popToNavigationItem:(PXNavigationItem *)item animated:(BOOL)isAnimated {
     NSUInteger index = [_items indexOfObjectIdenticalTo:item];
     if ([_items count] > 1 && index < [_items count]-1) {
-        PXNavigationItem *item = [_items objectAtIndex:index];
+        PXNavigationItem *currentItem = [self topItem];
         
-        if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopToItem:)]) {
-            if (![[self delegate] navigationBar:self shouldPopToItem:item]) {
+        if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopItem:)]) {
+            if (![[self delegate] navigationBar:self shouldPopItem:currentItem]) {
                 return;
             }
         }
@@ -186,50 +148,50 @@
         [_items removeObjectsInRange:NSMakeRange(index+1, [_items count]-(index+1))];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         
-        if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopToItem:)]) {
-            [[self delegate] navigationBar:self didPopToItem:item];
+        if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
+            [[self delegate] navigationBar:self didPopItem:currentItem];
         }
     }
 }
 
-- (void)popToRootNavigationItem {
+- (void)popToRootNavigationItemAnimated:(BOOL)isAnimated {
     if ([_items count] > 1) {
-        PXNavigationItem *item = [_items objectAtIndex:0];
+        PXNavigationItem *currentItem = [self topItem];
         
-        if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopToItem:)]) {
-            if (![[self delegate] navigationBar:self shouldPopToItem:item]) {
+        if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopItem:)]) {
+            if (![[self delegate] navigationBar:self shouldPopItem:currentItem]) {
                 return;
             }
         }
         
-        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [_items count]-2)];
+        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [_items count] - 2)];
         [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         [_items removeObjectsInRange:NSMakeRange(1, [_items count]-2)];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         
-        if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopToItem:)]) {
-            [[self delegate] navigationBar:self didPopToItem:item];
+        if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
+            [[self delegate] navigationBar:self didPopItem:currentItem];
         }
     }
 }
 
-- (void)popNavigationItem {
+- (void)popNavigationItemAnimated:(BOOL)isAnimated {
     if ([_items count] > 1) {
-        PXNavigationItem *item = [_items lastObject];
+        PXNavigationItem *currentItem = [self topItem];
         
-        if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopToItem:)]) {
-            if (![[self delegate] navigationBar:self shouldPopToItem:item]) {
+        if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopItem:)]) {
+            if (![[self delegate] navigationBar:self shouldPopItem:currentItem]) {
                 return;
             }
         }
         
-        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange([_items count]-1, 1)];
+        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange([_items count] - 1, 1)];
         [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         [_items removeObjectAtIndex:[_items count]-1];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         
-        if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopToItem:)]) {
-            [[self delegate] navigationBar:self didPopToItem:item];
+        if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
+            [[self delegate] navigationBar:self didPopItem:currentItem];
         }
     }
 }

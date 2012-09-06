@@ -12,9 +12,7 @@
 @interface PXNavigationItem : NSObject
 
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSImage *image;
-@property (nonatomic, strong) NSMenu *menu;
-@property (nonatomic, strong) NSView *accessoryView;
+@property (nonatomic, strong) NSView *titleView;
 @property (nonatomic, weak) id representedObject;
 
 @end

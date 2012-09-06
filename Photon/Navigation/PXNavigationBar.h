@@ -28,13 +28,15 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationBarStyle) {
 @property (nonatomic) PXNavigationBarStyle style;
 
 @property (nonatomic, copy) NSArray *items;
+- (void)setItems:(NSArray *)items animated:(BOOL)isAnimated;
+
 @property (nonatomic, strong, readonly) PXNavigationItem *topItem;
 @property (nonatomic, strong, readonly) PXNavigationItem *backItem;
 
-- (void)pushNavigationItem:(PXNavigationItem *)item;
-- (void)popToNavigationItem:(PXNavigationItem *)item;
-- (void)popToRootNavigationItem;
-- (void)popNavigationItem;
+- (void)pushNavigationItem:(PXNavigationItem *)item animated:(BOOL)isAnimated;
+- (void)popToNavigationItem:(PXNavigationItem *)item animated:(BOOL)isAnimated;
+- (void)popToRootNavigationItemAnimated:(BOOL)isAnimated;
+- (void)popNavigationItemAnimated:(BOOL)isAnimated;
 
 @end
 
@@ -45,7 +47,8 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationBarStyle) {
 
 - (BOOL)navigationBar:(PXNavigationBar *)navigationBar shouldPushItem:(PXNavigationItem *)item;
 - (void)navigationBar:(PXNavigationBar *)navigationBar didPushItem:(PXNavigationItem *)item;
-- (BOOL)navigationBar:(PXNavigationBar *)navigationBar shouldPopToItem:(PXNavigationItem *)item;
-- (void)navigationBar:(PXNavigationBar *)navigationBar didPopToItem:(PXNavigationItem *)item;
+
+- (BOOL)navigationBar:(PXNavigationBar *)navigationBar shouldPopItem:(PXNavigationItem *)item;
+- (void)navigationBar:(PXNavigationBar *)navigationBar didPopItem:(PXNavigationItem *)item;
 
 @end
