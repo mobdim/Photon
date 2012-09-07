@@ -14,6 +14,7 @@
 
 
 @implementation PXViewController {
+    BOOL _viewLoaded;
     PXViewController *_parentViewController;
     
     PXTabBarController *_tabBarController;
@@ -30,7 +31,6 @@
     self = [self initWithNibName:nil bundle:nil];
     if (self) {
         [self setView:aView];
-        [self viewDidLoad];
     }
     return self;
 }
@@ -51,6 +51,15 @@
 #pragma mark -
 #pragma mark Overrides
 
+- (NSView *)view {
+    NSView *view = [super view];
+    if (!_viewLoaded) {
+        _viewLoaded = YES;
+        [self viewDidLoad];
+    }
+    return view;
+}
+
 - (void)loadView {
     [super loadView];
     
@@ -60,6 +69,7 @@
     [view setNextResponder:self];
     [self setNextResponder:responder];
     
+    _viewLoaded = YES;
     [self viewDidLoad];
 }
 

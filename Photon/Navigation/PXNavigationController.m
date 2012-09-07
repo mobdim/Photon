@@ -47,11 +47,14 @@
 - (id)init {
     self = [super init];
     if (self) {
-        _viewControllers = [[NSMutableArray alloc] init];
+        _viewControllers = [NSMutableArray array];
+        
+        [[self view] setFrameSize:NSMakeSize(280.0, 360.0)];
         
         NSRect bounds = [[self view] bounds];
         _navigationBar = [[PXNavigationBar alloc] initWithFrame:NSMakeRect(0.0, NSMaxY(bounds) - 25.0, NSWidth(bounds), 25.0)];
         _navigationBar.autoresizingMask = (NSViewWidthSizable|NSViewMinYMargin);
+        _navigationBar.delegate = self;
         [[self view] addSubview:_navigationBar];
         
         _containerView = [[NSView alloc] initWithFrame:NSMakeRect(0.0, 0.0, NSWidth(bounds), NSHeight(bounds) - 25.0)];
@@ -66,45 +69,18 @@
     if (self) {
         viewController.navigationController = self;
         [_viewControllers addObject:viewController];
-    }
-    return self;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"PXNavigationController cannot be instantiated with %@", NSStringFromSelector(_cmd)] userInfo:nil];
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        _viewControllers = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    
-    // Set up navigation bar
-    [_navigationBar setDelegate:self];
-    
-    for (PXViewController *viewController in self.viewControllers) {
+        
         [_navigationBar pushNavigationItem:[viewController navigationItem] animated:NO];
-    }
-    
-    
-    // Set up views and animations
-    [self adjustNavigationBarPositionAnimated:NO];
-    
-    
-    // Load root view controller
-    if ([_viewControllers count] > 0) {
-        PXViewController *rootViewController = [_viewControllers objectAtIndex:0];
-        NSView *newView = [rootViewController view];
+        
+        NSView *newView = [viewController view];
         [newView setFrame:[_containerView bounds]];
-        [_containerView setSubviews:[NSArray arrayWithObject:newView]];
+        newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+        [_containerView setSubviews:@[newView]];
+        
+        // Set up views and animations
+        [self adjustNavigationBarPositionAnimated:NO];
     }
+    return self;
 }
 
 - (void)adjustNavigationBarPositionAnimated:(BOOL)isAnimated {
@@ -319,6 +295,7 @@
             newViewTempRect.origin.x -= newViewTempRect.size.width;
         }
         [newView setFrame:newViewTempRect];
+        newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
         [_containerView addSubview:newView];
         
         
@@ -606,7 +583,7 @@ static NSString * const PXViewControllerNavigationItemKey = @"PXViewControllerNa
     if (navigationItem == nil) {
         navigationItem = [[PXNavigationItem alloc] init];
         [navigationItem bind:NSTitleBinding toObject:self withKeyPath:@"title" options:nil];
-        [navigationItem bind:NSImageBinding toObject:self withKeyPath:@"image" options:nil];
+        //[navigationItem bind:NSImageBinding toObject:self withKeyPath:@"image" options:nil];
         [navigationItem setRepresentedObject:self];
         objc_setAssociatedObject(self, (__bridge void *)PXViewControllerNavigationItemKey, navigationItem, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }

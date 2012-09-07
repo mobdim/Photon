@@ -7,7 +7,8 @@
 //
 
 #import "PXNavigationBar.h"
-#import "PXNavigationItem.h"
+#import "PXNavigationItem_Private.h"
+#import "PXBarButtonItem.h"
 
 
 @implementation PXNavigationBar {
@@ -42,6 +43,124 @@
 
 - (void)windowDidChangeMain:(NSNotification *)notification {
     [self setNeedsDisplay:YES];
+}
+
+
+#pragma mark -
+#pragma mark Layout
+
++ (BOOL)requiresConstraintBasedLayout {
+    return YES;
+}
+
+- (void)positionViewsAnimated:(BOOL)isAnimated {
+    for (NSView *view in [[self subviews] copy]) {
+        [view removeFromSuperview];
+    }
+    [self removeConstraints:[self constraints]];
+    
+    
+    PXNavigationItem *backItem = [self backItem];
+    PXNavigationItem *navigationItem = [self topItem];
+    NSRect bounds = [self bounds];
+    
+    
+    // Back button
+    NSButton *backButton = [backItem backButton];
+    if (backButton != nil) {
+        [backButton sizeToFit];
+        
+        [backButton setTarget:self];
+        [backButton setAction:@selector(popAction:)];
+        
+        [backButton setFrameOrigin:NSMakePoint(6.0, 2.0)];
+        [backButton setContentCompressionResistancePriority:750.0 forOrientation:NSLayoutConstraintOrientationHorizontal];
+        [self addSubview:backButton];
+        
+        [self addConstraints:@[
+         [NSLayoutConstraint constraintWithItem:backButton attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:2.0],
+         [NSLayoutConstraint constraintWithItem:backButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:2.0],
+        ]];
+    }
+    
+    // Right accessory view
+    PXBarButtonItem *rightBarButtonItem = [navigationItem rightBarButtonItem];
+    NSButton *rightButton = nil;
+    if (rightBarButtonItem != nil) {
+        rightButton = [navigationItem rightButton];
+        if (rightButton != nil) {
+            [rightButton sizeToFit];
+            
+            [rightButton setTarget:[rightBarButtonItem target]];
+            [rightButton setAction:[rightBarButtonItem action]];
+            
+            [rightButton setFrameOrigin:NSMakePoint(NSMaxX(bounds) - ([rightButton frame].size.width + 6.0), 2.0)];
+            [rightButton setContentCompressionResistancePriority:750.0 forOrientation:NSLayoutConstraintOrientationHorizontal];
+            [self addSubview:rightButton];
+            
+            [self addConstraints:@[
+             [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:rightButton attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:2.0],
+             [NSLayoutConstraint constraintWithItem:rightButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:2.0],
+             ]];
+        }
+    }
+    
+    // Title View
+    id titleView = [navigationItem titleView];
+    if (titleView == nil) {
+        titleView = [navigationItem titleField];
+        [titleView setFont:[NSFont systemFontOfSize:12.0]];
+        [titleView setTextColor:[NSColor colorWithCalibratedWhite:0.5 alpha:1.0]];
+        [titleView setAlignment:NSCenterTextAlignment];
+        [titleView setContentCompressionResistancePriority:250.0 forOrientation:NSLayoutConstraintOrientationHorizontal];
+        [[titleView cell] setLineBreakMode:NSLineBreakByTruncatingMiddle];
+    }
+    
+    if ([titleView respondsToSelector:@selector(sizeToFit)]) {
+        [titleView sizeToFit];
+    }
+    
+    NSMutableArray *constraints = [NSMutableArray array];
+    
+    // Center
+    NSLayoutConstraint *centeringConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
+    [centeringConstraint setPriority:750];
+    [constraints addObject:centeringConstraint];
+    
+    // Leading
+    if (backButton != nil) {
+        NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:backButton attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:8.0];
+        [constraints addObject:leadingConstraint];
+    }
+    else {
+        NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:2.0];
+        [constraints addObject:leadingConstraint];
+    }
+    
+    // Trailing
+    if (rightButton != nil) {
+        NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem:rightButton attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:titleView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:8.0];
+        [constraints addObject:trailingConstraint];
+    }
+    else {
+        NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:2.0];
+        [constraints addObject:trailingConstraint];
+    }
+    
+    // Top
+    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:5.0];
+    [constraints addObject:topConstraint];
+    
+    [self addSubview:titleView];
+    [self addConstraints:constraints];
+}
+
+- (BOOL)isFlipped {
+    return YES;
+}
+
+- (IBAction)popAction:(id)sender {
+    [self popNavigationItemAnimated:YES];
 }
 
 
@@ -100,6 +219,8 @@
         [_items setArray:items];
         [self didChangeValueForKey:@"items"];
         
+        [self positionViewsAnimated:isAnimated];
+        
         if (shouldPop) {
             if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
                 [[self delegate] navigationBar:self didPopItem:currentItem];
@@ -125,6 +246,8 @@
     [_items addObject:item];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"items"];
     
+    [self positionViewsAnimated:isAnimated];
+    
     if ([[self delegate] respondsToSelector:@selector(navigationBar:didPushItem:)]) {
         [[self delegate] navigationBar:self didPushItem:item];
     }
@@ -145,6 +268,8 @@
         [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         [_items removeObjectsInRange:NSMakeRange(index+1, [_items count]-(index+1))];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
+        
+        [self positionViewsAnimated:isAnimated];
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
             [[self delegate] navigationBar:self didPopItem:currentItem];
@@ -167,6 +292,8 @@
         [_items removeObjectsInRange:NSMakeRange(1, [_items count]-2)];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         
+        [self positionViewsAnimated:isAnimated];
+        
         if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
             [[self delegate] navigationBar:self didPopItem:currentItem];
         }
@@ -187,6 +314,8 @@
         [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         [_items removeObjectAtIndex:[_items count]-1];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
+        
+        [self positionViewsAnimated:isAnimated];
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
             [[self delegate] navigationBar:self didPopItem:currentItem];

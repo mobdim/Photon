@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021B1DCE15FA98FB0086B303 /* PXNavigationItem_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 021B1DCD15FA98FB0086B303 /* PXNavigationItem_Private.h */; };
+		021B1DD215FAA74A0086B303 /* PXBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 021B1DD015FAA74A0086B303 /* PXBarButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		021B1DD315FAA74A0086B303 /* PXBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 021B1DD115FAA74A0086B303 /* PXBarButtonItem.m */; };
 		024C649315F961A60064D8DF /* PXSwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 024C649115F961A60064D8DF /* PXSwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		024C649415F961A60064D8DF /* PXSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 024C649215F961A60064D8DF /* PXSwitch.m */; };
 		02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 02714F7215AA31BE001FA6A1 /* PXTreeNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -81,6 +84,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		021B1DCD15FA98FB0086B303 /* PXNavigationItem_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationItem_Private.h; sourceTree = "<group>"; };
+		021B1DD015FAA74A0086B303 /* PXBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXBarButtonItem.h; sourceTree = "<group>"; };
+		021B1DD115FAA74A0086B303 /* PXBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXBarButtonItem.m; sourceTree = "<group>"; };
 		024C649115F961A60064D8DF /* PXSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXSwitch.h; sourceTree = "<group>"; };
 		024C649215F961A60064D8DF /* PXSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSwitch.m; sourceTree = "<group>"; };
 		02714F7215AA31BE001FA6A1 /* PXTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTreeNode.h; sourceTree = "<group>"; };
@@ -194,6 +200,8 @@
 		EA30301A15001F360062D399 /* Button Bars */ = {
 			isa = PBXGroup;
 			children = (
+				021B1DD015FAA74A0086B303 /* PXBarButtonItem.h */,
+				021B1DD115FAA74A0086B303 /* PXBarButtonItem.m */,
 				EA30301D15001F5A0062D399 /* PXAnchoredButtonBar.h */,
 				EA30301E15001F5A0062D399 /* PXAnchoredButtonBar.m */,
 				EA30301B15001F5A0062D399 /* PXAnchoredButton.h */,
@@ -313,6 +321,7 @@
 				EA44B2D1149B254F00C5D440 /* PXNavigationController.h */,
 				EA44B2D2149B254F00C5D440 /* PXNavigationController.m */,
 				EA44B2CD149B254F00C5D440 /* PXNavigationItem.h */,
+				021B1DCD15FA98FB0086B303 /* PXNavigationItem_Private.h */,
 				EA44B2CE149B254F00C5D440 /* PXNavigationItem.m */,
 			);
 			path = Navigation;
@@ -436,6 +445,8 @@
 				EA9C52F515211DC400F767C9 /* PXColorWell.h in Headers */,
 				02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */,
 				024C649315F961A60064D8DF /* PXSwitch.h in Headers */,
+				021B1DCE15FA98FB0086B303 /* PXNavigationItem_Private.h in Headers */,
+				021B1DD215FAA74A0086B303 /* PXBarButtonItem.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +545,7 @@
 				EA9C52F615211DC400F767C9 /* PXColorWell.m in Sources */,
 				02714F7515AA31BE001FA6A1 /* PXTreeNode.m in Sources */,
 				024C649415F961A60064D8DF /* PXSwitch.m in Sources */,
+				021B1DD315FAA74A0086B303 /* PXBarButtonItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
