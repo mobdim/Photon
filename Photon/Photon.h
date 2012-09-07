@@ -21,7 +21,6 @@
 #import <Photon/PXFormatBarPopUpButton.h>
 #import <Photon/PXFormatBarSegmentedControl.h>
 #import <Photon/PXGeometry.h>
-#import <Photon/PXGradientView.h>
 #import <Photon/PXNavigationBar.h>
 #import <Photon/PXNavigationController.h>
 #import <Photon/PXNavigationItem.h>
@@ -33,5 +32,4 @@
 #import <Photon/PXTableViewCell.h>
 #import <Photon/PXTreeNode.h>
 #import <Photon/PXViewController.h>
-#import <Photon/NSObject+PhotonAdditions.h>
 #import <Photon/NSValue+PhotonAdditions.h>
