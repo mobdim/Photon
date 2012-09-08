@@ -140,28 +140,35 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
     }
     
     {
-        [titleView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//        [titleView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [(NSView *)titleView setAutoresizingMask:(NSViewMinXMargin|NSViewMaxXMargin|NSViewMinYMargin)];
         if ([titleView respondsToSelector:@selector(sizeToFit)]) {
             [titleView sizeToFit];
         }
         
-        [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0), 8.0)];
-        
         if (isAnimated) {
+            if (direction == PXNavigationDirectionPush) {
+                [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) + 50.0, 8.0)];
+            }
+            else {
+                [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) - 50.0, 8.0)];
+            }
             [titleView setAlphaValue:0.0];
             [self addSubview:titleView];
             [[titleView animator] setAlphaValue:1.0];
+            [[titleView animator] setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0), 8.0)];
         }
         else {
+            [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0), 8.0)];
             [titleView setAlphaValue:1.0];
             [self addSubview:titleView];
         }
         
         // Center
-        NSLayoutConstraint *centeringConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
-        [centeringConstraint setPriority:750];
-        [constraints addObject:centeringConstraint];
-        
+//        NSLayoutConstraint *centeringConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
+//        [centeringConstraint setPriority:750];
+//        [constraints addObject:centeringConstraint];
+//        
 //        // Leading
 //        if (backButton != nil) {
 //            NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:backButton attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:8.0];
@@ -181,24 +188,24 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
 //            NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:5.0];
 //            [constraints addObject:trailingConstraint];
 //        }
-        
-        // Top
-        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:8.0];
-        [constraints addObject:topConstraint];
+//        
+//        // Top
+//        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:8.0];
+//        [constraints addObject:topConstraint];
     }
     
-    [self addConstraints:constraints];
-    _constraints = constraints;
+//    [self addConstraints:constraints];
+//    _constraints = constraints;
     
     [NSAnimationContext endGrouping];
 }
 
 - (void)performDisappearanceAnimationsForNavigationItem:(PXNavigationItem *)navigationItem backItem:(PXNavigationItem *)backItem direction:(PXNavigationDirection)direction animated:(BOOL)isAnimated {
-    //NSRect bounds = [self bounds];
+    NSRect bounds = [self bounds];
     
     [NSAnimationContext beginGrouping];
     
-    NSArray *constraints = _constraints;
+//    NSArray *constraints = _constraints;
     
     // Items
     NSButton *backButton = [backItem backButton];
@@ -219,10 +226,10 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
     context.duration = 0.3;
     context.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     context.completionHandler = ^{
-        if (_constraints != nil) {
-            // Remove layout constraints before animating
-            [self removeConstraints:constraints];
-        }
+//        if (_constraints != nil) {
+//            // Remove layout constraints before animating
+//            [self removeConstraints:constraints];
+//        }
         
         [backButton removeFromSuperview];
         [rightButton removeFromSuperview];
@@ -251,6 +258,12 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
     
     // Title view
     if (isAnimated) {
+        if (direction == PXNavigationDirectionPop) {
+            [[titleView animator] setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) + 50.0, 8.0)];
+        }
+        else {
+            [[titleView animator] setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) - 50.0, 8.0)];
+        }
         [[titleView animator] setAlphaValue:0.0];
     }
     

@@ -51,12 +51,12 @@
         [[self view] setWantsLayer:YES];
         
         NSRect bounds = [[self view] bounds];
-        _navigationBar = [[PXNavigationBar alloc] initWithFrame:NSMakeRect(0.0, NSMaxY(bounds) - 30.0, NSWidth(bounds), 30.0)];
+        _navigationBar = [[PXNavigationBar alloc] initWithFrame:NSMakeRect(0.0, NSMaxY(bounds) - 32.0, NSWidth(bounds), 32.0)];
         _navigationBar.autoresizingMask = (NSViewWidthSizable|NSViewMinYMargin);
         _navigationBar.delegate = self;
         [[self view] addSubview:_navigationBar];
         
-        _containerView = [[NSView alloc] initWithFrame:NSMakeRect(0.0, 0.0, NSWidth(bounds), NSHeight(bounds) - 30.0)];
+        _containerView = [[NSView alloc] initWithFrame:NSMakeRect(0.0, 0.0, NSWidth(bounds), NSHeight(bounds) - 32.0)];
         _containerView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
         [[self view] addSubview:_containerView];
     }
