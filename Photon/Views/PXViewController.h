@@ -86,7 +86,7 @@
  * 
  * @result A PXViewController object
  */
-@property (readonly) PXViewController *parentViewController;
+@property (nonatomic, weak) PXViewController *parentViewController;
 
 
 /*!

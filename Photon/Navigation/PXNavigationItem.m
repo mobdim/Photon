@@ -7,6 +7,7 @@
 //
 
 #import "PXNavigationItem.h"
+#import "PXNavigationBackButtonCell.h"
 
 
 @implementation PXNavigationItem {
@@ -29,7 +30,7 @@
 - (NSTextField *)titleField {
     if (_titleField == nil) {
         _titleField = [[NSTextField alloc] initWithFrame:NSMakeRect(0.0, 0.0, 100.0, 22.0)];
-        [_titleField setTranslatesAutoresizingMaskIntoConstraints:NO];
+//        [_titleField setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_titleField setBordered:NO];
         [_titleField setBezeled:NO];
         [_titleField setEditable:NO];
@@ -43,7 +44,9 @@
 - (NSButton *)backButton {
     if (_backButton == nil) {
         _backButton = [[NSButton alloc] initWithFrame:NSMakeRect(0.0, 0.0, 32.0, 22.0)];
-        [_backButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+        PXNavigationBackButtonCell *cell = [[PXNavigationBackButtonCell alloc] initTextCell:@""];
+        [_backButton setCell:cell];
+//        [_backButton setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_backButton setBezelStyle:NSTexturedRoundedBezelStyle];
         [_backButton setButtonType:NSMomentaryPushInButton];
         [_backButton setFont:[NSFont controlContentFontOfSize:11.0]];
@@ -56,7 +59,7 @@
 - (NSButton *)rightButton {
     if (_rightButton == nil) {
         _rightButton = [[NSButton alloc] initWithFrame:NSMakeRect(0.0, 0.0, 32.0, 22.0)];
-        [_rightButton setTranslatesAutoresizingMaskIntoConstraints:NO];
+//        [_rightButton setTranslatesAutoresizingMaskIntoConstraints:NO];
         [_rightButton setBezelStyle:NSTexturedRoundedBezelStyle];
         [_rightButton setButtonType:NSMomentaryPushInButton];
         [_rightButton setImagePosition:NSImageLeft];

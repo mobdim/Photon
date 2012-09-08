@@ -10,9 +10,18 @@
 #import "PXNavigationItem_Private.h"
 #import "PXBarButtonItem.h"
 
+#import <QuartzCore/QuartzCore.h>
+
+
+typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
+    PXNavigationDirectionPush = 0,
+    PXNavigationDirectionPop,
+};
+
 
 @implementation PXNavigationBar {
     NSMutableArray *_items;
+    NSMutableArray *_constraints;
 }
 
 - (id)initWithFrame:(NSRect)frameRect {
@@ -49,38 +58,47 @@
 #pragma mark -
 #pragma mark Layout
 
-+ (BOOL)requiresConstraintBasedLayout {
-    return YES;
-}
-
-- (void)positionViewsAnimated:(BOOL)isAnimated {
-    for (NSView *view in [[self subviews] copy]) {
-        [view removeFromSuperview];
-    }
-    [self removeConstraints:[self constraints]];
-    
-    
-    PXNavigationItem *backItem = [self backItem];
-    PXNavigationItem *navigationItem = [self topItem];
+- (void)performAppearanceAnimationsForNavigationItem:(PXNavigationItem *)navigationItem backItem:(PXNavigationItem *)backItem direction:(PXNavigationDirection)direction animated:(BOOL)isAnimated {
     NSRect bounds = [self bounds];
     
+    [NSAnimationContext beginGrouping];
+    
+    NSMutableArray *constraints = [NSMutableArray array];
+    
+    NSAnimationContext *context = [NSAnimationContext currentContext];
+    context.duration = 0.3;
+    context.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     
     // Back button
     NSButton *backButton = [backItem backButton];
     if (backButton != nil) {
         [backButton sizeToFit];
+        backButton.autoresizingMask = (NSViewMaxXMargin|NSViewMinYMargin);
         
         [backButton setTarget:self];
         [backButton setAction:@selector(popAction:)];
         
-        [backButton setFrameOrigin:NSMakePoint(6.0, 2.0)];
         [backButton setContentCompressionResistancePriority:750.0 forOrientation:NSLayoutConstraintOrientationHorizontal];
-        [self addSubview:backButton];
         
-        [self addConstraints:@[
-         [NSLayoutConstraint constraintWithItem:backButton attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:2.0],
-         [NSLayoutConstraint constraintWithItem:backButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:2.0],
-        ]];
+        if (isAnimated) {
+            if (direction == PXNavigationDirectionPush) {
+                [backButton setFrameOrigin:NSMakePoint(5.0 + backButton.frame.size.width, 5.0)];
+            }
+            else {
+                [backButton setFrameOrigin:NSMakePoint(5.0 - backButton.frame.size.width, 5.0)];
+            }
+            [backButton setAlphaValue:0.0];
+            
+            [self addSubview:backButton];
+            
+            [[backButton animator] setFrameOrigin:NSMakePoint(5.0, 5.0)];
+            [[backButton animator] setAlphaValue:1.0];
+        }
+        else {
+            [backButton setAlphaValue:1.0];
+            [backButton setFrameOrigin:NSMakePoint(5.0, 5.0)];
+            [self addSubview:backButton];
+        }
     }
     
     // Right accessory view
@@ -90,22 +108,27 @@
         rightButton = [navigationItem rightButton];
         if (rightButton != nil) {
             [rightButton sizeToFit];
+            rightButton.autoresizingMask = (NSViewMinXMargin|NSViewMinYMargin);
             
             [rightButton setTarget:[rightBarButtonItem target]];
             [rightButton setAction:[rightBarButtonItem action]];
             
-            [rightButton setFrameOrigin:NSMakePoint(NSMaxX(bounds) - ([rightButton frame].size.width + 6.0), 2.0)];
+            [rightButton setFrameOrigin:NSMakePoint(NSMaxX(bounds) - ([rightButton frame].size.width + 5.0), 5.0)];
             [rightButton setContentCompressionResistancePriority:750.0 forOrientation:NSLayoutConstraintOrientationHorizontal];
-            [self addSubview:rightButton];
             
-            [self addConstraints:@[
-             [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:rightButton attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:2.0],
-             [NSLayoutConstraint constraintWithItem:rightButton attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:2.0],
-             ]];
+            if (isAnimated) {
+                [rightButton setAlphaValue:0.0];
+                [self addSubview:rightButton];
+                [[rightButton animator] setAlphaValue:1.0];
+            }
+            else {
+                [rightButton setAlphaValue:1.0];
+                [self addSubview:rightButton];
+            }
         }
     }
     
-    // Title View
+    // Title view
     id titleView = [navigationItem titleView];
     if (titleView == nil) {
         titleView = [navigationItem titleField];
@@ -116,43 +139,122 @@
         [[titleView cell] setLineBreakMode:NSLineBreakByTruncatingMiddle];
     }
     
-    if ([titleView respondsToSelector:@selector(sizeToFit)]) {
-        [titleView sizeToFit];
+    {
+        [titleView setTranslatesAutoresizingMaskIntoConstraints:NO];
+        if ([titleView respondsToSelector:@selector(sizeToFit)]) {
+            [titleView sizeToFit];
+        }
+        
+        [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0), 8.0)];
+        
+        if (isAnimated) {
+            [titleView setAlphaValue:0.0];
+            [self addSubview:titleView];
+            [[titleView animator] setAlphaValue:1.0];
+        }
+        else {
+            [titleView setAlphaValue:1.0];
+            [self addSubview:titleView];
+        }
+        
+        // Center
+        NSLayoutConstraint *centeringConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
+        [centeringConstraint setPriority:750];
+        [constraints addObject:centeringConstraint];
+        
+//        // Leading
+//        if (backButton != nil) {
+//            NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:backButton attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:8.0];
+//            [constraints addObject:leadingConstraint];
+//        }
+//        else {
+//            NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:5.0];
+//            [constraints addObject:leadingConstraint];
+//        }
+//        
+//        // Trailing
+//        if (rightButton != nil) {
+//            NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem:rightButton attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:titleView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:8.0];
+//            [constraints addObject:trailingConstraint];
+//        }
+//        else {
+//            NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:5.0];
+//            [constraints addObject:trailingConstraint];
+//        }
+        
+        // Top
+        NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:8.0];
+        [constraints addObject:topConstraint];
     }
     
-    NSMutableArray *constraints = [NSMutableArray array];
-    
-    // Center
-    NSLayoutConstraint *centeringConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:titleView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
-    [centeringConstraint setPriority:750];
-    [constraints addObject:centeringConstraint];
-    
-    // Leading
-    if (backButton != nil) {
-        NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:backButton attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:8.0];
-        [constraints addObject:leadingConstraint];
-    }
-    else {
-        NSLayoutConstraint *leadingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeLeading multiplier:1.0 constant:2.0];
-        [constraints addObject:leadingConstraint];
-    }
-    
-    // Trailing
-    if (rightButton != nil) {
-        NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem:rightButton attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:titleView attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:8.0];
-        [constraints addObject:trailingConstraint];
-    }
-    else {
-        NSLayoutConstraint *trailingConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationGreaterThanOrEqual toItem:self attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:2.0];
-        [constraints addObject:trailingConstraint];
-    }
-    
-    // Top
-    NSLayoutConstraint *topConstraint = [NSLayoutConstraint constraintWithItem:titleView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeTop multiplier:1.0 constant:5.0];
-    [constraints addObject:topConstraint];
-    
-    [self addSubview:titleView];
     [self addConstraints:constraints];
+    _constraints = constraints;
+    
+    [NSAnimationContext endGrouping];
+}
+
+- (void)performDisappearanceAnimationsForNavigationItem:(PXNavigationItem *)navigationItem backItem:(PXNavigationItem *)backItem direction:(PXNavigationDirection)direction animated:(BOOL)isAnimated {
+    //NSRect bounds = [self bounds];
+    
+    [NSAnimationContext beginGrouping];
+    
+    NSArray *constraints = _constraints;
+    
+    // Items
+    NSButton *backButton = [backItem backButton];
+    
+    PXBarButtonItem *rightBarButtonItem = [navigationItem rightBarButtonItem];
+    NSButton *rightButton = nil;
+    if (rightBarButtonItem != nil) {
+        rightButton = [navigationItem rightButton];
+    }
+    
+    id titleView = [navigationItem titleView];
+    if (titleView == nil) {
+        titleView = [navigationItem titleField];
+    }
+    
+    // Animation
+    NSAnimationContext *context = [NSAnimationContext currentContext];
+    context.duration = 0.3;
+    context.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    context.completionHandler = ^{
+        if (_constraints != nil) {
+            // Remove layout constraints before animating
+            [self removeConstraints:constraints];
+        }
+        
+        [backButton removeFromSuperview];
+        [rightButton removeFromSuperview];
+        [titleView removeFromSuperview];
+    };
+    
+    // Back button
+    if (backButton != nil) {
+        if (isAnimated) {
+            if (direction == PXNavigationDirectionPop) {
+                [[backButton animator] setFrameOrigin:NSMakePoint(5.0 + backButton.frame.size.width, 5.0)];
+            }
+            else {
+                [[backButton animator] setFrameOrigin:NSMakePoint(5.0 - backButton.frame.size.width, 5.0)];
+            }
+            [[backButton animator] setAlphaValue:0.0];
+        }
+    }
+    
+    // Right accessory view
+    if (rightButton != nil) {
+        if (isAnimated) {
+            [[rightButton animator] setAlphaValue:0.0];
+        }
+    }
+    
+    // Title view
+    if (isAnimated) {
+        [[titleView animator] setAlphaValue:0.0];
+    }
+    
+    [NSAnimationContext endGrouping];
 }
 
 - (BOOL)isFlipped {
@@ -197,8 +299,12 @@
 - (void)setItems:(NSArray *)items animated:(BOOL)isAnimated {
     if (![_items isEqualToArray:items]) {
         PXNavigationItem *newItem = [items lastObject];
+        PXNavigationItem *newBackItem = ([items count] > 2 ? [items objectAtIndex:([items count] - 2)] : nil);
+        
         BOOL shouldPop = (newItem != nil ? [_items containsObject:newItem] : YES);
+        
         PXNavigationItem *currentItem = [self topItem];
+        PXNavigationItem *backItem = [self backItem];
         
         if (shouldPop) {
             if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopItem:)]) {
@@ -219,7 +325,13 @@
         [_items setArray:items];
         [self didChangeValueForKey:@"items"];
         
-        [self positionViewsAnimated:isAnimated];
+        if (currentItem != nil) {
+            [self performDisappearanceAnimationsForNavigationItem:currentItem backItem:backItem direction:(shouldPop ? PXNavigationDirectionPop : PXNavigationDirectionPush) animated:isAnimated];
+        }
+        
+        if (newItem != nil) {
+            [self performAppearanceAnimationsForNavigationItem:newItem backItem:newBackItem direction:(shouldPop ? PXNavigationDirectionPop : PXNavigationDirectionPush) animated:isAnimated];
+        }
         
         if (shouldPop) {
             if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
@@ -241,13 +353,22 @@
         }
     }
     
+    PXNavigationItem *currentItem = [self topItem];
+    PXNavigationItem *backItem = [self backItem];
+    
     NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange([_items count], 1)];
     [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"items"];
     [_items addObject:item];
     [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"items"];
     
-    [self positionViewsAnimated:isAnimated];
+    if (currentItem != nil) {
+        [self performDisappearanceAnimationsForNavigationItem:currentItem backItem:backItem direction:PXNavigationDirectionPush animated:isAnimated];
+    }
     
+    if (item != nil) {
+        [self performAppearanceAnimationsForNavigationItem:item backItem:currentItem direction:PXNavigationDirectionPush animated:isAnimated];
+    }
+        
     if ([[self delegate] respondsToSelector:@selector(navigationBar:didPushItem:)]) {
         [[self delegate] navigationBar:self didPushItem:item];
     }
@@ -257,6 +378,9 @@
     NSUInteger index = [_items indexOfObjectIdenticalTo:item];
     if ([_items count] > 1 && index < [_items count]-1) {
         PXNavigationItem *currentItem = [self topItem];
+        PXNavigationItem *backItem = [self backItem];
+        
+        PXNavigationItem *newBackItem = (index > 0 ? [_items objectAtIndex:(index - 1)] : nil);
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopItem:)]) {
             if (![[self delegate] navigationBar:self shouldPopItem:currentItem]) {
@@ -269,7 +393,13 @@
         [_items removeObjectsInRange:NSMakeRange(index+1, [_items count]-(index+1))];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         
-        [self positionViewsAnimated:isAnimated];
+        if (currentItem != nil) {
+            [self performDisappearanceAnimationsForNavigationItem:currentItem backItem:backItem direction:PXNavigationDirectionPop animated:isAnimated];
+        }
+        
+        if (item != nil) {
+            [self performAppearanceAnimationsForNavigationItem:item backItem:newBackItem direction:PXNavigationDirectionPop animated:isAnimated];
+        }
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
             [[self delegate] navigationBar:self didPopItem:currentItem];
@@ -280,6 +410,9 @@
 - (void)popToRootNavigationItemAnimated:(BOOL)isAnimated {
     if ([_items count] > 1) {
         PXNavigationItem *currentItem = [self topItem];
+        PXNavigationItem *backItem = [self backItem];
+        
+        PXNavigationItem *newItem = [_items objectAtIndex:0];
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopItem:)]) {
             if (![[self delegate] navigationBar:self shouldPopItem:currentItem]) {
@@ -292,7 +425,13 @@
         [_items removeObjectsInRange:NSMakeRange(1, [_items count]-2)];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         
-        [self positionViewsAnimated:isAnimated];
+        if (currentItem != nil) {
+            [self performDisappearanceAnimationsForNavigationItem:currentItem backItem:backItem direction:PXNavigationDirectionPop animated:isAnimated];
+        }
+        
+        if (newItem != nil) {
+            [self performAppearanceAnimationsForNavigationItem:newItem backItem:nil direction:PXNavigationDirectionPop animated:isAnimated];
+        }
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
             [[self delegate] navigationBar:self didPopItem:currentItem];
@@ -303,6 +442,9 @@
 - (void)popNavigationItemAnimated:(BOOL)isAnimated {
     if ([_items count] > 1) {
         PXNavigationItem *currentItem = [self topItem];
+        PXNavigationItem *backItem = [self backItem];
+        NSUInteger index = [_items indexOfObjectIdenticalTo:backItem];
+        PXNavigationItem *newBackItem = (index > 0 ? [_items objectAtIndex:(index - 1)] : nil);
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:shouldPopItem:)]) {
             if (![[self delegate] navigationBar:self shouldPopItem:currentItem]) {
@@ -315,7 +457,13 @@
         [_items removeObjectAtIndex:[_items count]-1];
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"items"];
         
-        [self positionViewsAnimated:isAnimated];
+        if (currentItem != nil) {
+            [self performDisappearanceAnimationsForNavigationItem:currentItem backItem:backItem direction:PXNavigationDirectionPop animated:isAnimated];
+        }
+        
+        if (backItem != nil) {
+            [self performAppearanceAnimationsForNavigationItem:backItem backItem:newBackItem direction:PXNavigationDirectionPop animated:isAnimated];
+        }
         
         if ([[self delegate] respondsToSelector:@selector(navigationBar:didPopItem:)]) {
             [[self delegate] navigationBar:self didPopItem:currentItem];

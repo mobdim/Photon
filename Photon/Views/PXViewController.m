@@ -15,7 +15,7 @@
 
 @implementation PXViewController {
     BOOL _viewLoaded;
-    PXViewController *_parentViewController;
+    __weak PXViewController *_parentViewController;
     
     PXTabBarController *_tabBarController;
     PXTabBarItem *_tabBarItem;

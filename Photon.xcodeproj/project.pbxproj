@@ -69,6 +69,8 @@
 		EA9C52F515211DC400F767C9 /* PXColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52F115211DC400F767C9 /* PXColorWell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA9C52F615211DC400F767C9 /* PXColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52F215211DC400F767C9 /* PXColorWell.m */; };
 		EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EAB804C215FAF18600E3BE96 /* PXNavigationBackButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB804C015FAF18600E3BE96 /* PXNavigationBackButtonCell.h */; };
+		EAB804C315FAF18600E3BE96 /* PXNavigationBackButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB804C115FAF18600E3BE96 /* PXNavigationBackButtonCell.m */; };
 		EACC7CC01510446300072989 /* PXTabBarController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CBF1510446200072989 /* PXTabBarController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EACC7CC31510447D00072989 /* PXTabBar_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CC21510447D00072989 /* PXTabBar_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADFB0E1151FC6C500019165 /* PXFormatBar.h in Headers */ = {isa = PBXBuildFile; fileRef = EADFB0DF151FC6C500019165 /* PXFormatBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -148,6 +150,8 @@
 		EA9C52F115211DC400F767C9 /* PXColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXColorWell.h; sourceTree = "<group>"; };
 		EA9C52F215211DC400F767C9 /* PXColorWell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXColorWell.m; sourceTree = "<group>"; };
 		EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencesController_Private.h; sourceTree = "<group>"; };
+		EAB804C015FAF18600E3BE96 /* PXNavigationBackButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationBackButtonCell.h; sourceTree = "<group>"; };
+		EAB804C115FAF18600E3BE96 /* PXNavigationBackButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXNavigationBackButtonCell.m; sourceTree = "<group>"; };
 		EACC7CBF1510446200072989 /* PXTabBarController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBarController_Private.h; sourceTree = "<group>"; };
 		EACC7CC21510447D00072989 /* PXTabBar_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBar_Private.h; sourceTree = "<group>"; };
 		EADFB0DF151FC6C500019165 /* PXFormatBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBar.h; sourceTree = "<group>"; };
@@ -313,6 +317,8 @@
 				EA44B2CD149B254F00C5D440 /* PXNavigationItem.h */,
 				021B1DCD15FA98FB0086B303 /* PXNavigationItem_Private.h */,
 				EA44B2CE149B254F00C5D440 /* PXNavigationItem.m */,
+				EAB804C015FAF18600E3BE96 /* PXNavigationBackButtonCell.h */,
+				EAB804C115FAF18600E3BE96 /* PXNavigationBackButtonCell.m */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 				024C649315F961A60064D8DF /* PXSwitch.h in Headers */,
 				021B1DCE15FA98FB0086B303 /* PXNavigationItem_Private.h in Headers */,
 				021B1DD215FAA74A0086B303 /* PXBarButtonItem.h in Headers */,
+				EAB804C215FAF18600E3BE96 /* PXNavigationBackButtonCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +537,7 @@
 				02714F7515AA31BE001FA6A1 /* PXTreeNode.m in Sources */,
 				024C649415F961A60064D8DF /* PXSwitch.m in Sources */,
 				021B1DD315FAA74A0086B303 /* PXBarButtonItem.m in Sources */,
+				EAB804C315FAF18600E3BE96 /* PXNavigationBackButtonCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
