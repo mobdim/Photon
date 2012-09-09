@@ -63,7 +63,7 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
     
     [NSAnimationContext beginGrouping];
     
-    NSMutableArray *constraints = [NSMutableArray array];
+//    NSMutableArray *constraints = [NSMutableArray array];
     
     NSAnimationContext *context = [NSAnimationContext currentContext];
     context.duration = 0.3;
