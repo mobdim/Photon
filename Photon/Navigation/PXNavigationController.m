@@ -69,6 +69,13 @@
         viewController.navigationController = self;
         [_viewControllers addObject:viewController];
         
+        NSSize requiredContentSize = [[viewController view] frame].size;
+        
+        CGFloat barHeight = [_navigationBar frame].size.height;
+        requiredContentSize.height += barHeight;
+        
+        [[self view] setFrameSize:requiredContentSize];
+        
         [_navigationBar pushNavigationItem:[viewController navigationItem] animated:NO];
         
         NSView *newView = [viewController view];
