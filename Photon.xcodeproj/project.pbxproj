@@ -14,6 +14,8 @@
 		024C649415F961A60064D8DF /* PXSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 024C649215F961A60064D8DF /* PXSwitch.m */; };
 		02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 02714F7215AA31BE001FA6A1 /* PXTreeNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02714F7515AA31BE001FA6A1 /* PXTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 02714F7315AA31BE001FA6A1 /* PXTreeNode.m */; };
+		02BF11C91600FC7E00AD782D /* NSColor+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02BF11CA1600FC7E00AD782D /* NSColor+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA30301814FFFA6A0062D399 /* PXTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301614FFFA6A0062D399 /* PXTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA30301914FFFA6A0062D399 /* PXTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30301714FFFA6A0062D399 /* PXTableViewCell.m */; };
 		EA30302315001F5A0062D399 /* PXAnchoredButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301B15001F5A0062D399 /* PXAnchoredButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,6 +91,8 @@
 		024C649215F961A60064D8DF /* PXSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSwitch.m; sourceTree = "<group>"; };
 		02714F7215AA31BE001FA6A1 /* PXTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTreeNode.h; sourceTree = "<group>"; };
 		02714F7315AA31BE001FA6A1 /* PXTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTreeNode.m; sourceTree = "<group>"; };
+		02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+PhotonAdditions.h"; sourceTree = "<group>"; };
+		02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+PhotonAdditions.m"; sourceTree = "<group>"; };
 		EA30301614FFFA6A0062D399 /* PXTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTableViewCell.h; sourceTree = "<group>"; };
 		EA30301714FFFA6A0062D399 /* PXTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTableViewCell.m; sourceTree = "<group>"; };
 		EA30301B15001F5A0062D399 /* PXAnchoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAnchoredButton.h; sourceTree = "<group>"; };
@@ -336,6 +340,8 @@
 		EA44B2EF149B2A2200C5D440 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */,
+				02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */,
 				EA55FA54151D37800088F053 /* NSValue+PhotonAdditions.h */,
 				EA55FA55151D37800088F053 /* NSValue+PhotonAdditions.m */,
 			);
@@ -440,6 +446,7 @@
 				021B1DCE15FA98FB0086B303 /* PXNavigationItem_Private.h in Headers */,
 				021B1DD215FAA74A0086B303 /* PXBarButtonItem.h in Headers */,
 				EAB804C215FAF18600E3BE96 /* PXNavigationBackButtonCell.h in Headers */,
+				02BF11C91600FC7E00AD782D /* NSColor+PhotonAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,6 +545,7 @@
 				024C649415F961A60064D8DF /* PXSwitch.m in Sources */,
 				021B1DD315FAA74A0086B303 /* PXBarButtonItem.m in Sources */,
 				EAB804C315FAF18600E3BE96 /* PXNavigationBackButtonCell.m in Sources */,
+				02BF11CA1600FC7E00AD782D /* NSColor+PhotonAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
