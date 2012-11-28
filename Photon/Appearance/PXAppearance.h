@@ -1,3 +1,4 @@
+
 //
 //  PXAppearance.h
 //  Photon
@@ -8,9 +9,6 @@
 
 #import <Foundation/Foundation.h>
 #import <Photon/PhotonDefines.h>
-
-
-@class PXResizableImage;
 
 
 /*!
@@ -26,12 +24,10 @@
  */
 typedef PHOTON_ENUM(NSUInteger, PXAppearanceBorder) {
     PXAppearanceBorderNone = 0,
-    
     PXAppearanceBorderTop = (1 << 0),
     PXAppearanceBorderBottom = (1 << 1),
     PXAppearanceBorderLeft = (1 << 2),
     PXAppearanceBorderRight = (1 << 3),
-    
     PXAppearanceBorderAll = (PXAppearanceBorderTop|PXAppearanceBorderBottom|PXAppearanceBorderLeft|PXAppearanceBorderRight),
 };
 
@@ -48,7 +44,6 @@ typedef PHOTON_ENUM(NSUInteger, PXAppearanceBorder) {
  */
 typedef PHOTON_ENUM(NSUInteger, PXAppearanceState) {
     PXAppearanceStateNormal = 0,
-    
     PXAppearanceStateHighlighted = (1 << 0),
     PXAppearanceStateDisabled = (1 << 1),
     PXAppearanceStateSelected = (1 << 2),
@@ -57,9 +52,31 @@ typedef PHOTON_ENUM(NSUInteger, PXAppearanceState) {
 
 
 /*!
+ * @constant PX_APPEARANCE_SELECTOR
+ * @abstract Marks a method that participates in the appearance proxy API
+ */
+#define PX_APPEARANCE_SELECTOR
+
+
+/*!
+ * @protocol PXAppearanceContainer <NSObject>
+ * @abstract Implemented by objects adopting the appearance customization API.
+ */
+@protocol PXAppearanceContainer <NSObject> @end
+
+
+/*!
  * @protocol PXAppearance
  * @abstract Implemented by objects that can customize their appearance
  */
 @protocol PXAppearance <NSObject>
+
++ (id)appearance;
++ (id)appearanceWhenContainedIn:(Class <PXAppearanceContainer>)containerClass, ... NS_REQUIRES_NIL_TERMINATION;
+
+@end
+
+
+@interface NSView (PXAppearance) <PXAppearance>
 
 @end
