@@ -1,5 +1,5 @@
 //
-//  PXAppearance.h
+//  PXGeometry.h
 //  Photon
 //
 //  Created by Logan Collins on 8/14/12.

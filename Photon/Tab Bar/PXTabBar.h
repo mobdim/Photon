@@ -21,7 +21,7 @@ typedef PHOTON_ENUM(NSUInteger, PXTabBarStyle) {
 @protocol PXTabBarDelegate;
 
 
-@interface PXTabBar : NSView <PXAppearance>
+@interface PXTabBar : NSView
 
 @property (nonatomic, weak) id <PXTabBarDelegate> delegate;
 

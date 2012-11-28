@@ -14,6 +14,8 @@
 		024C649415F961A60064D8DF /* PXSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 024C649215F961A60064D8DF /* PXSwitch.m */; };
 		02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */ = {isa = PBXBuildFile; fileRef = 02714F7215AA31BE001FA6A1 /* PXTreeNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02714F7515AA31BE001FA6A1 /* PXTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 02714F7315AA31BE001FA6A1 /* PXTreeNode.m */; };
+		027E7A1E16669AE2005DD0F6 /* PXPreferencePane.h in Headers */ = {isa = PBXBuildFile; fileRef = 027E7A1C16669AE2005DD0F6 /* PXPreferencePane.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		027E7A1F16669AE2005DD0F6 /* PXPreferencePane.m in Sources */ = {isa = PBXBuildFile; fileRef = 027E7A1D16669AE2005DD0F6 /* PXPreferencePane.m */; };
 		02BF11C91600FC7E00AD782D /* NSColor+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02BF11CA1600FC7E00AD782D /* NSColor+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA30301814FFFA6A0062D399 /* PXTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301614FFFA6A0062D399 /* PXTableViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -92,6 +94,8 @@
 		024C649215F961A60064D8DF /* PXSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXSwitch.m; sourceTree = "<group>"; };
 		02714F7215AA31BE001FA6A1 /* PXTreeNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTreeNode.h; sourceTree = "<group>"; };
 		02714F7315AA31BE001FA6A1 /* PXTreeNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTreeNode.m; sourceTree = "<group>"; };
+		027E7A1C16669AE2005DD0F6 /* PXPreferencePane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencePane.h; sourceTree = "<group>"; };
+		027E7A1D16669AE2005DD0F6 /* PXPreferencePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPreferencePane.m; sourceTree = "<group>"; };
 		02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+PhotonAdditions.h"; sourceTree = "<group>"; };
 		02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+PhotonAdditions.m"; sourceTree = "<group>"; };
 		EA30301614FFFA6A0062D399 /* PXTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTableViewCell.h; sourceTree = "<group>"; };
@@ -335,6 +339,8 @@
 				EA44B2E1149B255500C5D440 /* PXPreferencesController.h */,
 				EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */,
 				EA44B2E2149B255500C5D440 /* PXPreferencesController.m */,
+				027E7A1C16669AE2005DD0F6 /* PXPreferencePane.h */,
+				027E7A1D16669AE2005DD0F6 /* PXPreferencePane.m */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -450,6 +456,7 @@
 				021B1DD215FAA74A0086B303 /* PXBarButtonItem.h in Headers */,
 				EAB804C215FAF18600E3BE96 /* PXNavigationBackButtonCell.h in Headers */,
 				02BF11C91600FC7E00AD782D /* NSColor+PhotonAdditions.h in Headers */,
+				027E7A1E16669AE2005DD0F6 /* PXPreferencePane.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +557,7 @@
 				EAB804C315FAF18600E3BE96 /* PXNavigationBackButtonCell.m in Sources */,
 				02BF11CA1600FC7E00AD782D /* NSColor+PhotonAdditions.m in Sources */,
 				EA94C7081665D9E200222A9D /* PXAppearance.m in Sources */,
+				027E7A1F16669AE2005DD0F6 /* PXPreferencePane.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

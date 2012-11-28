@@ -9,9 +9,8 @@
 #import "PXViewController.h"
 
 
-@interface PXViewController ()
+@interface NSViewController (PXViewControllerPrivate)
 
-- (void)setParentViewController:(PXViewController *)aViewController;
-- (void)setTabBarController:(PXTabBarController *)controller;
+- (void)setParentViewController:(NSViewController *)aViewController;
 
 @end

@@ -21,7 +21,7 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationBarStyle) {
 @protocol PXNavigationBarDelegate;
 
 
-@interface PXNavigationBar : NSView <PXAppearance>
+@interface PXNavigationBar : NSView
 
 @property (nonatomic, weak) id <PXNavigationBarDelegate> delegate;
 

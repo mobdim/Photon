@@ -9,77 +9,28 @@
 #import "PXViewController.h"
 #import "PXViewController_Private.h"
 
-#import "PXNavigationItem.h"
-#import "PXTabBarItem.h"
+#import <objc/runtime.h>
 
 
-@implementation PXViewController {
-    BOOL _viewLoaded;
-    __weak PXViewController *_parentViewController;
-    
-    PXTabBarController *_tabBarController;
-    PXTabBarItem *_tabBarItem;
-}
+@interface NSView (PXViewControllerPrivate)
 
-@dynamic title;
+@property (nonatomic, weak) NSViewController *viewController;
 
-- (id)init {
-    return [self initWithView:[[NSView alloc] initWithFrame:NSMakeRect(0.0, 0.0, 100.0, 100.0)]];
-}
+@end
 
-- (id)initWithView:(NSView *)aView {
-    self = [self initWithNibName:nil bundle:nil];
-    if (self) {
-        [self setView:aView];
+
+@implementation NSViewController (PXViewController)
+
++ (void)px_installViewControllerSupport {
+    if (self == [NSViewController class]) {
+        Method oldMethod = class_getInstanceMethod([NSView class], @selector(forwardingTargetForSelector:));
+        Method newMethod = class_getInstanceMethod([NSView class], @selector(px_forwardingTargetForSelector:));
+        method_exchangeImplementations(oldMethod, newMethod);
     }
-    return self;
 }
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
-    return self;
-}
-
-- (void)dealloc {
-    [self viewDidUnload];
-}
-
 
 #pragma mark -
-#pragma mark Overrides
-
-- (NSView *)view {
-    NSView *view = [super view];
-    if (!_viewLoaded) {
-        _viewLoaded = YES;
-        [self viewDidLoad];
-    }
-    return view;
-}
-
-- (void)loadView {
-    [super loadView];
-    
-    // Insert us into the responder chain
-    NSView *view = [self view];
-    NSResponder *responder = [[self view] nextResponder];
-    [view setNextResponder:self];
-    [self setNextResponder:responder];
-    
-    _viewLoaded = YES;
-    [self viewDidLoad];
-}
-
-- (void)viewDidLoad {
-    // Overridden by subclasses
-}
-
-- (void)viewDidUnload {
-    // Overridden by subclasses
-}
+#pragma mark Appearance / Disappearance
 
 - (void)viewWillAppear {
     // Overridden by subclasses
@@ -101,47 +52,49 @@
 #pragma mark -
 #pragma mark Accessors
 
-- (PXViewController *)parentViewController {
-    return _parentViewController;
+static NSString * const PXViewControllerParentViewControllerKey = @"PXViewControllerParentViewController";
+
+- (NSViewController *)parentViewController {
+    return objc_getAssociatedObject(self, (__bridge void *)PXViewControllerParentViewControllerKey);
 }
 
-- (void)setParentViewController:(PXViewController *)aViewController {
-    if (_parentViewController != aViewController) {
-        [self willChangeValueForKey:@"parentViewController"];
-        [self setNextResponder:nil];
-        _parentViewController = aViewController;
-        [self setNextResponder:_parentViewController];
-        [self didChangeValueForKey:@"parentViewController"];
+- (void)setParentViewController:(NSViewController *)aViewController {
+    NSViewController *currentController = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerParentViewControllerKey);
+    if (currentController != aViewController) {
+        objc_setAssociatedObject(self, (__bridge void *)PXViewControllerParentViewControllerKey, aViewController, OBJC_ASSOCIATION_ASSIGN);
     }
 }
 
-- (PXTabBarController *)tabBarController {
-    PXTabBarController *controller = _tabBarController;
-    if (controller == nil) {
-        PXViewController *parent = self.parentViewController;
-        while (parent != nil && controller == nil) {
-            controller = parent.tabBarController;
-        }
-    }
-    return controller;
+@end
+
+
+@implementation NSView (PXViewController)
+
+#pragma mark -
+#pragma mark Accessors
+
+static NSString * const PXViewControllerKey = @"PXViewController";
+
+- (NSViewController *)viewController {
+    return objc_getAssociatedObject(self, (__bridge void *)PXViewControllerKey);
 }
 
-- (void)setTabBarController:(PXTabBarController *)controller {
-    if (_tabBarController != controller) {
-        [self willChangeValueForKey:@"tabBarController"];
-        _tabBarController = controller;
-        [self didChangeValueForKey:@"tabBarController"];
+- (void)setViewController:(NSViewController *)viewController {
+    NSViewController *currentController = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerKey);
+    if (currentController != viewController) {
+        objc_setAssociatedObject(self, (__bridge void *)PXViewControllerKey, viewController, OBJC_ASSOCIATION_ASSIGN);
     }
 }
 
-- (PXTabBarItem *)tabBarItem {
-    if (_tabBarItem == nil) {
-        _tabBarItem = [[PXTabBarItem alloc] init];
-        [_tabBarItem bind:NSTitleBinding toObject:self withKeyPath:@"title" options:nil];
-        [_tabBarItem bind:NSImageBinding toObject:self withKeyPath:@"image" options:nil];
-        [_tabBarItem setRepresentedObject:self];
+
+#pragma mark -
+#pragma mark Events
+
+- (id)px_forwardingTargetForSelector:(SEL)aSelector {
+    if ([self.viewController respondsToSelector:aSelector]) {
+        return self.viewController;
     }
-    return _tabBarItem;
+    return [self px_forwardingTargetForSelector:aSelector];
 }
 
 @end

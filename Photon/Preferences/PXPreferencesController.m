@@ -18,7 +18,7 @@
     NSMutableDictionary *preferencePanes;
     NSMutableDictionary *toolbarItems;
     
-    PXViewController *currentPane;
+    PXPreferencePane *currentPane;
     
     NSToolbar *toolbar;
 }
@@ -109,15 +109,15 @@
     return [preferencePanes objectsForKeys:preferencePaneIdentifiers notFoundMarker:[NSNull null]];
 }
 
-- (PXViewController *)currentPreferencePane {
+- (PXPreferencePane *)currentPreferencePane {
     return currentPane;
 }
 
-- (void)addPreferencePane:(PXViewController *)preferencePane {
+- (void)addPreferencePane:(PXPreferencePane *)preferencePane {
     [self insertPreferencePane:preferencePane atIndex:[preferencePaneIdentifiers count]];
 }
 
-- (void)insertPreferencePane:(PXViewController *)preferencePane atIndex:(NSUInteger)index {
+- (void)insertPreferencePane:(PXPreferencePane *)preferencePane atIndex:(NSUInteger)index {
     NSString *identifier = [preferencePane identifier];
     
     if (![preferencePaneIdentifiers containsObject:identifier]) {
@@ -157,17 +157,17 @@
     }
 }
 
-- (void)removePreferencePane:(PXViewController *)preferencePane {
+- (void)removePreferencePane:(PXPreferencePane *)preferencePane {
     NSString *identifier = [preferencePane identifier];
     NSUInteger index = [preferencePaneIdentifiers indexOfObjectIdenticalTo:identifier];
     [self removePreferencePaneAtIndex:index];
 }
 
-- (PXViewController *)preferencePaneWithIdentifier:(NSString *)identifier {
+- (PXPreferencePane *)preferencePaneWithIdentifier:(NSString *)identifier {
     return [preferencePanes objectForKey:identifier];
 }
 
-- (PXViewController *)preferencePaneAtIndex:(NSUInteger)index {
+- (PXPreferencePane *)preferencePaneAtIndex:(NSUInteger)index {
     return [preferencePanes objectForKey:[preferencePaneIdentifiers objectAtIndex:index]];
 }
 
@@ -186,8 +186,8 @@
 
 - (void)toggleActivePreferenceView:(NSToolbarItem *)item {
     NSString *identifier = [item itemIdentifier];
-    PXViewController *oldPane = currentPane;
-    PXViewController *newPane = [preferencePanes objectForKey:identifier];
+    PXPreferencePane *oldPane = currentPane;
+    PXPreferencePane *newPane = [preferencePanes objectForKey:identifier];
     [toolbar setSelectedItemIdentifier:[currentPane identifier]];
     if (oldPane != newPane) {
         [self showPreferencePaneWithIdentifier:identifier animate:YES];
@@ -207,7 +207,7 @@
     }
 }
 
-- (void)pane:(PXViewController *)pane didCommit:(BOOL)didCommit contextInfo:(void *)contextInfo {
+- (void)pane:(PXPreferencePane *)pane didCommit:(BOOL)didCommit contextInfo:(void *)contextInfo {
     NSDictionary *dictionary = (__bridge_transfer NSDictionary *)contextInfo;
     if (didCommit) {
         NSString *identifier = [dictionary objectForKey:@"identifier"];
@@ -222,8 +222,8 @@
 - (void)confirmedShowPreferencePaneWithIdentifier:(NSString *)identifier animate:(BOOL)shouldAnimate {
     [self willChangeValueForKey:@"currentPane"];
     
-    PXViewController *oldPane = currentPane;
-    PXViewController *newPane = [preferencePanes objectForKey:identifier];
+    PXPreferencePane *oldPane = currentPane;
+    PXPreferencePane *newPane = [preferencePanes objectForKey:identifier];
     
     [currentPane removeObserver:self forKeyPath:@"view"];
     
@@ -351,7 +351,7 @@
     return YES;
 }
 
-- (void)pane:(PXViewController *)pane didCommitForClose:(BOOL)didCommit contextInfo:(void *)contextInfo {
+- (void)pane:(PXPreferencePane *)pane didCommitForClose:(BOOL)didCommit contextInfo:(void *)contextInfo {
     if (didCommit) {
         [self close];
     }

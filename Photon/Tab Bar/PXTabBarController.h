@@ -20,7 +20,7 @@
  * @class PXTabBarController
  * @abstract Coordinates a tabbed set of view controllers
  */
-@interface PXTabBarController : PXViewController <PXTabBarDelegate>
+@interface PXTabBarController : NSViewController <PXTabBarDelegate>
 
 @property IBOutlet PXTabBar *tabBar;
 @property IBOutlet NSView *containerView;
@@ -29,7 +29,7 @@
 
 @property (nonatomic) NSArray *viewControllers;
 
-@property (nonatomic, strong) PXViewController *selectedViewController;
+@property (nonatomic, strong) NSViewController *selectedViewController;
 @property (nonatomic) NSUInteger selectedIndex;
 
 @property (nonatomic) BOOL animates;
@@ -41,8 +41,29 @@
 
 @optional
 
-- (BOOL)tabBarController:(PXTabBarController *)aTabBarController shouldSelectViewController:(PXViewController *)viewController;
-- (void)tabBarController:(PXTabBarController *)aTabBarController willSelectViewController:(PXViewController *)viewController;
-- (void)tabBarController:(PXTabBarController *)aTabBarController didSelectViewController:(PXViewController *)viewController;
+- (BOOL)tabBarController:(PXTabBarController *)aTabBarController shouldSelectViewController:(NSViewController *)viewController;
+- (void)tabBarController:(PXTabBarController *)aTabBarController willSelectViewController:(NSViewController *)viewController;
+- (void)tabBarController:(PXTabBarController *)aTabBarController didSelectViewController:(NSViewController *)viewController;
+
+@end
+
+
+@interface NSViewController (PXTabBarController)
+
+/*!
+ * @property tabBarController
+ * @abstract Gets the tab bar controller containing the receiver
+ *
+ * @result A PXTabBarController object
+ */
+@property (strong, readonly) PXTabBarController *tabBarController;
+
+/*!
+ * @property tabBarItem
+ * @abstract Gets the tab bar item representing the receiver
+ *
+ * @result A PXTabBarItem object
+ */
+@property (strong, readonly) PXTabBarItem *tabBarItem;
 
 @end

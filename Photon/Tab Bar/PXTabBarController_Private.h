@@ -11,14 +11,14 @@
 
 @interface PXTabBarController () <NSAnimationDelegate>
 
-- (void)addViewController:(PXViewController *)viewController;
-- (void)insertViewController:(PXViewController *)viewController atIndex:(NSUInteger)index;
-- (void)removeViewController:(PXViewController *)viewController;
+- (void)addViewController:(NSViewController *)viewController;
+- (void)insertViewController:(NSViewController *)viewController atIndex:(NSUInteger)index;
+- (void)removeViewController:(NSViewController *)viewController;
 - (void)removeViewControllerAtIndex:(NSUInteger)index;
-- (PXViewController *)viewControllerAtIndex:(NSUInteger)index;
-- (NSUInteger)indexOfViewController:(PXViewController *)viewController;
+- (NSViewController *)viewControllerAtIndex:(NSUInteger)index;
+- (NSUInteger)indexOfViewController:(NSViewController *)viewController;
 
-- (void)selectViewController:(PXViewController *)viewController;
+- (void)selectViewController:(NSViewController *)viewController;
 - (void)selectViewControllerAtIndex:(NSUInteger)index;
 
 - (void)replaceView:(NSView *)oldView withView:(NSView *)newView push:(BOOL)shouldPush animated:(BOOL)isAnimated;

@@ -7,9 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-
-@class PXViewController;
+#import <Photon/PXPreferencePane.h>
 
 
 /*!
@@ -31,7 +29,7 @@
 
 /*!
  * @property autosaveIdentifier
- * @abstract Gets the autosave identifier for the preference pane
+ * @abstract Gets the autosave identifier for the preferences controller
  * 
  * @result An NSString object
  */
@@ -44,7 +42,7 @@
  * @discussion
  * Observable via KVO.
  * 
- * @result An NSArray of PXViewController objects
+ * @result An NSArray of PXPreferencePane objects
  */
 @property (strong, readonly) NSArray *preferencePanes;
 
@@ -55,9 +53,9 @@
  * @discussion
  * Observable via KVO.
  * 
- * @result A PXViewController object
+ * @result A PXPreferencePane object
  */
-@property (strong, readonly) PXViewController *currentPreferencePane;
+@property (strong, readonly) PXPreferencePane *currentPreferencePane;
 
 /*!
  * @method preferencePaneWithIdentifier:
@@ -66,9 +64,9 @@
  * @param identifier
  * The identifier of the preference pane to get
  * 
- * @result A PXViewController object
+ * @result A PXPreferencePane object
  */
-- (PXViewController *)preferencePaneWithIdentifier:(NSString *)identifier;
+- (PXPreferencePane *)preferencePaneWithIdentifier:(NSString *)identifier;
 
 /*!
  * @method preferencePaneAtIndex:
@@ -77,9 +75,9 @@
  * @param index
  * The index of the preference pane to get
  * 
- * @result A PXViewController object
+ * @result A PXPreferencePane object
  */
-- (PXViewController *)preferencePaneAtIndex:(NSUInteger)index;
+- (PXPreferencePane *)preferencePaneAtIndex:(NSUInteger)index;
 
 /*!
  * @method addPreferencePane:
@@ -88,7 +86,7 @@
  * @param preferencePane
  * The preference pane to add
  */
-- (void)addPreferencePane:(PXViewController *)preferencePane;
+- (void)addPreferencePane:(PXPreferencePane *)preferencePane;
 
 /*!
  * @method insertPreferencePane:atIndex:
@@ -100,7 +98,7 @@
  * @param index
  * The index at which to insert the preference pane
  */
-- (void)insertPreferencePane:(PXViewController *)preferencePane atIndex:(NSUInteger)index;
+- (void)insertPreferencePane:(PXPreferencePane *)preferencePane atIndex:(NSUInteger)index;
 
 /*!
  * @method removePreferencePaneAtIndex:
@@ -118,7 +116,7 @@
  * @param preferencePane
  * The preference pane to remove
  */
-- (void)removePreferencePane:(PXViewController *)preferencePane;
+- (void)removePreferencePane:(PXPreferencePane *)preferencePane;
 
 /*!
  * @method showPreferencePaneWithIdentifier:
