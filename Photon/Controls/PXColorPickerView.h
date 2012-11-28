@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 
-
 typedef struct {
     NSInteger x;
     NSInteger y;

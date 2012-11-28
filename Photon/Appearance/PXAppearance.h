@@ -87,21 +87,3 @@ typedef PHOTON_ENUM(NSUInteger, PXAppearanceBorder) {
     PXAppearanceBorderAll = (PXAppearanceBorderTop|PXAppearanceBorderBottom|PXAppearanceBorderLeft|PXAppearanceBorderRight),
 };
 
-
-/*!
- * @enum PXAppearanceState
- * @abstract Bitmask values for control state
- *
- * @constant PXAppearanceStateNormal        The UI element is in its default state, enabled but not selected in any way
- * @constant PXAppearanceStateHighlighted   The UI element is highlighted (through a click, tap or tracking)
- * @constant PXAppearanceStateDisabled      The UI element is disabled
- * @constant PXAppearanceStateSelected      The UI element is selected (as in a selected segmented control segment)
- * @constant PXAppearanceStateHovered       The UI element is hovered (through a mouse hover or drag hover)
- */
-typedef PHOTON_ENUM(NSUInteger, PXAppearanceState) {
-    PXAppearanceStateNormal = 0,
-    PXAppearanceStateHighlighted = (1 << 0),
-    PXAppearanceStateDisabled = (1 << 1),
-    PXAppearanceStateSelected = (1 << 2),
-    PXAppearanceStateHovered = (1 << 3),
-};
