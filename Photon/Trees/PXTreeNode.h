@@ -17,18 +17,18 @@
 
 @required
 
-@property (copy, readonly) NSString *title;                 /* The title of the item */
-@property (copy, readonly) NSImage *image;                  /* The image of the item */
-@property (readonly) NSUInteger order;                      /* The order of the item, 0 is lowest */
-@property (copy, readonly) NSSet *children;                 /* The set of child items */
+- (NSString *)title;    /* The title of the item */
+- (NSImage *)image;     /* The image of the item */
+- (NSUInteger)order;    /* The order of the item, 0 is lowest */
+- (NSSet *)children;    /* The set of child items */
 
-@property (readonly, getter=isSelectable) BOOL selectable;  /* If the item is selectable by the user */
-@property (readonly, getter=isEditable) BOOL editable;      /* If the item is editable by the user */
-@property (readonly, getter=isGroupItem) BOOL groupItem;    /* If the item is a group heading */
+- (BOOL)isSelectable;   /* If the item is selectable by the user */
+- (BOOL)isEditable;     /* If the item is editable by the user */
+- (BOOL)isGroupItem;    /* If the item is a group heading */
 
 @optional
 
-@property (copy, readonly) NSString *persistenceIdentifier; /* A unique string representation of the receiver, or nil */
+- (NSString *)persistenceIdentifier; /* A unique string representation of the receiver, or nil */
 
 @end
 
