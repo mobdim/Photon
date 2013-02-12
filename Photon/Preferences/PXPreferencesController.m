@@ -89,10 +89,14 @@
         if ([self autosaveIdentifier] != nil) {
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             identifier = [defaults stringForKey:[self autosaveIdentifier]];
+            if ([self preferencePaneWithIdentifier:identifier] == nil) {
+                identifier = nil;
+            }
         }
         if (identifier == nil) {
             identifier= [preferencePaneIdentifiers objectAtIndex:0];
         }
+        
         [[[self window] toolbar] setSelectedItemIdentifier:identifier];
         [self showPreferencePaneWithIdentifier:identifier animate:NO];
     }
@@ -254,7 +258,12 @@
             [NSAnimationContext endGrouping];
         }
         else {
-            [[[self window] contentView] setSubviews:[NSArray arrayWithObject:newView]];
+            if (newView != nil) {
+                [[[self window] contentView] setSubviews:[NSArray arrayWithObject:newView]];
+            }
+            else {
+                [[[self window] contentView] setSubviews:[NSArray array]];
+            }
             [[self window] setFrame:[self frameForView:newView] display:YES];
         }
         
