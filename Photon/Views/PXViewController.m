@@ -23,9 +23,15 @@
 
 + (void)px_installViewControllerSupport {
     if (self == [NSViewController class]) {
-        Method oldMethod = class_getInstanceMethod([NSView class], @selector(forwardingTargetForSelector:));
-        Method newMethod = class_getInstanceMethod([NSView class], @selector(px_forwardingTargetForSelector:));
-        method_exchangeImplementations(oldMethod, newMethod);
+        // NSView
+//        Method oldMethod = class_getInstanceMethod([NSView class], @selector(nextResponder));
+//        Method newMethod = class_getInstanceMethod([NSView class], @selector(px_nextResponder));
+//        if (oldMethod != NULL) {
+//            method_exchangeImplementations(oldMethod, newMethod);
+//        }
+//        else {
+//            class_addMethod([NSView class], @selector(nextResponder), method_getImplementation(newMethod), method_getTypeEncoding(newMethod));
+//        }
     }
 }
 
@@ -82,7 +88,18 @@ static NSString * const PXViewControllerKey = @"PXViewController";
 - (void)setViewController:(NSViewController *)viewController {
     NSViewController *currentController = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerKey);
     if (currentController != viewController) {
+        NSResponder *originalResponder = nil;
+        if (currentController != nil) {
+            originalResponder = [currentController nextResponder];
+        }
+        else {
+            originalResponder = [self nextResponder];
+        }
+        
         objc_setAssociatedObject(self, (__bridge void *)PXViewControllerKey, viewController, OBJC_ASSOCIATION_ASSIGN);
+        [self setNextResponder:viewController];
+        
+        [viewController setNextResponder:originalResponder];
     }
 }
 
@@ -90,11 +107,13 @@ static NSString * const PXViewControllerKey = @"PXViewController";
 #pragma mark -
 #pragma mark Events
 
-- (id)px_forwardingTargetForSelector:(SEL)aSelector {
-    if ([self.viewController respondsToSelector:aSelector]) {
-        return self.viewController;
-    }
-    return [self px_forwardingTargetForSelector:aSelector];
-}
+//- (NSResponder *)px_nextResponder {
+//    if (self.viewController != nil) {
+//        return self.viewController;
+//    }
+//    else {
+//        return [super nextResponder];
+//    }
+//}
 
 @end
