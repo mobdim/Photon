@@ -12,9 +12,6 @@
 @interface PXPreferencePane : NSViewController <NSUserInterfaceItemIdentification>
 
 @property (copy) NSString *identifier;
-
-@property (copy) NSString *title;
-
 @property (copy) NSImage *image;
 
 @end

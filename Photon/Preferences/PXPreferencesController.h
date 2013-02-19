@@ -17,7 +17,7 @@
  * @discussion
  * The controller manages a series of panes that are displayed as a preferences window.
  */
-@interface PXPreferencesController : NSWindowController
+@interface PXPreferencesController : NSResponder
 
 /*!
  * @method sharedController
@@ -27,20 +27,27 @@
  */
 + (PXPreferencesController *)defaultController;
 
+
 /*!
  * @property autosaveIdentifier
- * @abstract Gets the autosave identifier for the preferences controller
+ * @abstract The preferences controller autosave identifier
  * 
  * @result An NSString object
  */
 @property (copy) NSString *autosaveIdentifier;
 
 /*!
+ * @property window
+ * @abstract The preferences controller window
+ *
+ * @result An NSWindow object
+ */
+@property (strong, readonly) NSWindow *window;
+
+
+/*!
  * @property preferencePanes
  * @abstract Gets the array of preference panes.
- * 
- * @discussion
- * Observable via KVO.
  * 
  * @result An NSArray of PXPreferencePane objects
  */
@@ -49,9 +56,6 @@
 /*!
  * @property currentPreferencePane
  * @abstract Gets the current preference pane.
- * 
- * @discussion
- * Observable via KVO.
  * 
  * @result A PXPreferencePane object
  */
@@ -118,6 +122,7 @@
  */
 - (void)removePreferencePane:(PXPreferencePane *)preferencePane;
 
+
 /*!
  * @method showPreferencePaneWithIdentifier:
  * @abstract Switch to the preference pane with a specified identifier
@@ -126,5 +131,15 @@
  * The identifier of the pane to which to switch
  */
 - (void)showPreferencePaneWithIdentifier:(NSString *)identifier;
+
+
+/*!
+ * @method showWindow:
+ * @abstract Shows the receiver's window
+ *
+ * @param sender
+ * The action sender
+ */
+- (IBAction)showWindow:(id)sender;
 
 @end

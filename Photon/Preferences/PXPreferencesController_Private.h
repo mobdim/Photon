@@ -17,3 +17,8 @@
 - (NSRect)frameForView:(NSView *)view;
 
 @end
+
+
+@interface PXPreferencesWindow : NSWindow
+
+@end

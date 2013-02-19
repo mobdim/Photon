@@ -11,16 +11,4 @@
 
 @implementation PXPreferencePane
 
-@dynamic title;
-@synthesize identifier=_identifier;
-@synthesize image=_image;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        
-    }
-    return self;
-}
-
 @end
