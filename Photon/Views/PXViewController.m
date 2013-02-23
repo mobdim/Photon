@@ -9,12 +9,13 @@
 #import "PXViewController.h"
 #import "PXViewController_Private.h"
 
+#import "NSObject+PhotonAdditions.h"
 #import <objc/runtime.h>
 
 
-@interface NSView (PXViewControllerPrivate)
+@interface PXViewControllerProxy : NSObject
 
-@property (nonatomic, weak) NSViewController *viewController;
+@property (nonatomic, weak) id object;
 
 @end
 
@@ -23,17 +24,67 @@
 
 + (void)px_installViewControllerSupport {
     if (self == [NSViewController class]) {
-        // NSView
-//        Method oldMethod = class_getInstanceMethod([NSView class], @selector(nextResponder));
-//        Method newMethod = class_getInstanceMethod([NSView class], @selector(px_nextResponder));
-//        if (oldMethod != NULL) {
-//            method_exchangeImplementations(oldMethod, newMethod);
-//        }
-//        else {
-//            class_addMethod([NSView class], @selector(nextResponder), method_getImplementation(newMethod), method_getTypeEncoding(newMethod));
-//        }
+        [NSView px_installViewControllerSupport];
+        [NSPopover px_installViewControllerSupport];
+        
+        [self px_exchangeInstanceMethodForSelector:@selector(setView:) withSelector:@selector(px_setView:)];
     }
 }
+
+
+#pragma mark -
+#pragma mark Accessors
+
+- (void)px_setView:(NSView *)aView {
+    [self px_setView:aView];
+    if (aView != nil) {
+        [aView px_setViewController:self];
+    }
+}
+
+static NSString * const PXViewControllerParentViewControllerKey = @"PXViewControllerParentViewController";
+
+- (NSViewController *)parentViewController {
+    PXViewControllerProxy *proxy = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerParentViewControllerKey);
+    return proxy.object;
+}
+
+- (void)setParentViewController:(NSViewController *)aViewController {
+    NSViewController *currentController = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerParentViewControllerKey);
+    if (currentController != aViewController) {
+        PXViewControllerProxy *proxy = [[PXViewControllerProxy alloc] init];
+        proxy.object = aViewController;
+        objc_setAssociatedObject(self, (__bridge void *)PXViewControllerParentViewControllerKey, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+}
+
+static NSString * const PXViewControllerContentSizeForViewInPopoverKey = @"PXViewControllerContentSizeForViewInPopover";
+
+- (NSSize)contentSizeForViewInPopover {
+    NSValue *value = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerContentSizeForViewInPopoverKey);
+    if (value != nil) {
+        return [value sizeValue];
+    }
+    return NSMakeSize(320.0, 480.0);
+}
+
+- (void)setContentSizeForViewInPopover:(NSSize)contentSizeForViewInPopover {
+    objc_setAssociatedObject(self, (__bridge void *)PXViewControllerContentSizeForViewInPopoverKey, [NSValue valueWithSize:contentSizeForViewInPopover], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+static NSString * const PXViewControllerPopoverKey = @"PXViewControllerPopover";
+
+- (NSPopover *)popover {
+    PXViewControllerProxy *proxy = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerPopoverKey);
+    return proxy.object;
+}
+
+- (void)setPopover:(NSPopover *)popover {
+    PXViewControllerProxy *proxy = [[PXViewControllerProxy alloc] init];
+    proxy.object = popover;
+    objc_setAssociatedObject(self, (__bridge void *)PXViewControllerPopoverKey, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 
 #pragma mark -
 #pragma mark Appearance / Disappearance
@@ -54,66 +105,78 @@
     // Overridden by subclasses
 }
 
-
-#pragma mark -
-#pragma mark Accessors
-
-static NSString * const PXViewControllerParentViewControllerKey = @"PXViewControllerParentViewController";
-
-- (NSViewController *)parentViewController {
-    return objc_getAssociatedObject(self, (__bridge void *)PXViewControllerParentViewControllerKey);
-}
-
-- (void)setParentViewController:(NSViewController *)aViewController {
-    NSViewController *currentController = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerParentViewControllerKey);
-    if (currentController != aViewController) {
-        objc_setAssociatedObject(self, (__bridge void *)PXViewControllerParentViewControllerKey, aViewController, OBJC_ASSOCIATION_ASSIGN);
-    }
-}
-
 @end
 
 
 @implementation NSView (PXViewController)
+
++ (void)px_installViewControllerSupport {
+    if (self == [NSView class]) {
+        [self px_exchangeInstanceMethodForSelector:@selector(setNextResponder:) withSelector:@selector(px_setNextResponder:)];
+    }
+}
+
 
 #pragma mark -
 #pragma mark Accessors
 
 static NSString * const PXViewControllerKey = @"PXViewController";
 
-- (NSViewController *)viewController {
-    return objc_getAssociatedObject(self, (__bridge void *)PXViewControllerKey);
+- (NSViewController *)px_viewController {
+    PXViewControllerProxy *proxy = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerKey);
+    return proxy.object;
 }
 
-- (void)setViewController:(NSViewController *)viewController {
+- (void)px_setViewController:(NSViewController *)viewController {
     NSViewController *currentController = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerKey);
     if (currentController != viewController) {
-        NSResponder *originalResponder = nil;
         if (currentController != nil) {
-            originalResponder = [currentController nextResponder];
-        }
-        else {
-            originalResponder = [self nextResponder];
+            NSResponder *nextResponder = [currentController nextResponder];
+            [self px_setNextResponder:nextResponder];
+            [currentController setNextResponder:nil];
         }
         
-        objc_setAssociatedObject(self, (__bridge void *)PXViewControllerKey, viewController, OBJC_ASSOCIATION_ASSIGN);
-        [self setNextResponder:viewController];
+        PXViewControllerProxy *proxy = [[PXViewControllerProxy alloc] init];
+        proxy.object = viewController;
+        objc_setAssociatedObject(self, (__bridge void *)PXViewControllerKey, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
-        [viewController setNextResponder:originalResponder];
+        if (viewController != nil) {
+            NSResponder *nextResponder = [self nextResponder];
+            [self px_setNextResponder:viewController];
+            [viewController setNextResponder:nextResponder];
+        }
     }
 }
 
+- (void)px_setNextResponder:(NSResponder *)responder {
+    if ([self px_viewController] != nil) {
+        [[self px_viewController] setNextResponder:responder];
+    }
+    else {
+        [self px_setNextResponder:responder];
+    }
+}
 
-#pragma mark -
-#pragma mark Events
+@end
 
-//- (NSResponder *)px_nextResponder {
-//    if (self.viewController != nil) {
-//        return self.viewController;
-//    }
-//    else {
-//        return [super nextResponder];
-//    }
-//}
+
+@implementation NSPopover (PXViewController)
+
++ (void)px_installViewControllerSupport {
+    if (self == [NSPopover class]) {
+        [self px_exchangeInstanceMethodForSelector:@selector(setContentViewController:) withSelector:@selector(px_setContentViewController:)];
+    }
+}
+
+- (void)px_setContentViewController:(NSViewController *)viewController {
+    self.contentViewController.popover = nil;
+    [self px_setContentViewController:viewController];
+    viewController.popover = self;
+}
+
+@end
+
+
+@implementation PXViewControllerProxy
 
 @end

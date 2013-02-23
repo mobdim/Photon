@@ -40,8 +40,6 @@ typedef PHOTON_ENUM(NSUInteger, PXTabBarStyle) {
 
 @optional
 
-- (BOOL)tabBar:(PXTabBar *)aTabBar shouldSelectItem:(PXTabBarItem *)item;
-- (void)tabBar:(PXTabBar *)aTabBar willSelectItem:(PXTabBarItem *)item;
 - (void)tabBar:(PXTabBar *)aTabBar didSelectItem:(PXTabBarItem *)item;
 
 @end

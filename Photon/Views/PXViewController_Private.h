@@ -11,6 +11,30 @@
 
 @interface NSViewController (PXViewControllerPrivate)
 
-- (void)setParentViewController:(NSViewController *)aViewController;
+- (void)px_setView:(NSView *)aView;
+
+@property (nonatomic, weak, readwrite) NSViewController *parentViewController;
+@property (nonatomic, weak) NSPopover *popover;
+
+@end
+
+
+@interface NSView (PXViewController)
+
++ (void)px_installViewControllerSupport;
+
+- (NSViewController *)px_viewController;
+- (void)px_setViewController:(NSViewController *)viewController;
+
+- (void)px_setNextResponder:(NSResponder *)responder;
+
+@end
+
+
+@interface NSPopover (PXViewController)
+
++ (void)px_installViewControllerSupport;
+
+- (void)px_setContentViewController:(NSViewController *)viewController;
 
 @end

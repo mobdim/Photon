@@ -52,11 +52,6 @@
 - (void)navigationController:(PXNavigationController *)aNavigationController willShowViewController:(NSViewController *)viewController animated:(BOOL)isAnimated;
 - (void)navigationController:(PXNavigationController *)aNavigationController didShowViewController:(NSViewController *)viewController animated:(BOOL)isAnimated;
 
-- (void)navigationController:(PXNavigationController *)aNavigationController willPushViewController:(NSViewController *)viewController animated:(BOOL)isAnimated;
-- (void)navigationController:(PXNavigationController *)aNavigationController didPushViewController:(NSViewController *)viewController animated:(BOOL)isAnimated;
-- (void)navigationController:(PXNavigationController *)aNavigationController willPopViewController:(NSViewController *)viewController animated:(BOOL)isAnimated;
-- (void)navigationController:(PXNavigationController *)aNavigationController didPopViewController:(NSViewController *)viewController animated:(BOOL)isAnimated;
-
 @end
 
 

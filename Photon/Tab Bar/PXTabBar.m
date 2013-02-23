@@ -674,16 +674,6 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 }
 
 - (void)selectItem:(PXTabBarItem *)item {
-    if ([[self delegate] respondsToSelector:@selector(tabBar:shouldSelectItem:)]) {
-        if (![[self delegate] tabBar:self shouldSelectItem:item]) {
-            return;
-        }
-    }
-    
-    if ([[self delegate] respondsToSelector:@selector(tabBar:willSelectItem:)]) {
-        [[self delegate] tabBar:self willSelectItem:item];
-    }
-    
     [self setSelectedItem:item];
     [self update];
     

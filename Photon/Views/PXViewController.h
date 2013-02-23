@@ -32,11 +32,22 @@
 
 /*!
  * @property parentViewController
- * @abstract Gets the parent of the view controller
+ * @abstract The parent of the view controller
  * 
  * @result An NSViewController object
  */
-@property (nonatomic, weak) NSViewController *parentViewController;
+@property (nonatomic, weak, readonly) NSViewController *parentViewController;
+
+/*!
+ * @property contentSizeForViewInPopover
+ * @abstract The size required to display the receiver's content in a popover
+ * 
+ * @discussion
+ * By default, this is set to 320.0 x 480.0.
+ *
+ * @result An NSSize value
+ */
+@property (nonatomic) NSSize contentSizeForViewInPopover;
 
 
 /*!

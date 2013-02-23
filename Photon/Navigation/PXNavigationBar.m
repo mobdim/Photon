@@ -146,20 +146,21 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
             [titleView sizeToFit];
         }
         
+        CGFloat yPos = round((self.bounds.size.height - [titleView frame].size.height) / 2.0);
         if (isAnimated) {
             if (direction == PXNavigationDirectionPush) {
-                [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) + 50.0, 8.0)];
+                [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) + 50.0, yPos)];
             }
             else {
-                [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) - 50.0, 8.0)];
+                [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) - 50.0, yPos)];
             }
             [titleView setAlphaValue:0.0];
             [self addSubview:titleView];
             [[titleView animator] setAlphaValue:1.0];
-            [[titleView animator] setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0), 8.0)];
+            [[titleView animator] setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0), yPos)];
         }
         else {
-            [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0), 8.0)];
+            [titleView setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0), yPos)];
             [titleView setAlphaValue:1.0];
             [self addSubview:titleView];
         }

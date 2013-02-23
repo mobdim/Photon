@@ -342,10 +342,6 @@
 }
 
 - (void)pushViewController:(NSViewController *)viewController animated:(BOOL)isAnimated {
-    if ([[self delegate] respondsToSelector:@selector(navigationController:willPushViewController:animated:)]) {
-        [[self delegate] navigationController:self willPushViewController:viewController animated:isAnimated];
-    }
-    
     [self willChangeValueForKey:@"viewControllers"];
     
     NSViewController *currentViewController = [self topViewController];
@@ -369,10 +365,6 @@
     [viewController viewDidAppear];
     
     [self didChangeValueForKey:@"viewControllers"];
-    
-    if ([[self delegate] respondsToSelector:@selector(navigationController:didPushViewController:animated:)]) {
-        [[self delegate] navigationController:self didPushViewController:viewController animated:isAnimated];
-    }
 }
 
 - (void)popViewControllerAnimated:(BOOL)isAnimated {
@@ -380,10 +372,6 @@
         NSViewController *nextController = [_viewControllers objectAtIndex:[_viewControllers count]-2];
         
         NSViewController *topController = [self topViewController];
-        
-        if ([[self delegate] respondsToSelector:@selector(navigationController:willPopViewController:animated:)]) {
-            [[self delegate] navigationController:self willPopViewController:topController animated:isAnimated];
-        }
         
         if ([[self delegate] respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
             [[self delegate] navigationController:self willShowViewController:nextController animated:isAnimated];
@@ -410,10 +398,6 @@
         
         [self didChangeValueForKey:@"viewControllers"];
         
-        if ([[self delegate] respondsToSelector:@selector(navigationController:didPopViewController:animated:)]) {
-            [[self delegate] navigationController:self didPopViewController:topController animated:isAnimated];
-        }
-        
         if ([[self delegate] respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
             [[self delegate] navigationController:self didShowViewController:nextController animated:isAnimated];
         }
@@ -426,12 +410,6 @@
     
     if (rootController != nil && rootController != topController) {
         NSArray *viewControllersToPop = [_viewControllers subarrayWithRange:NSMakeRange(1, [_viewControllers count]-1)];
-        for (NSViewController *viewController in viewControllersToPop) {
-            if ([[self delegate] respondsToSelector:@selector(navigationController:willPopViewController:animated:)]) {
-                [[self delegate] navigationController:self willPopViewController:viewController animated:isAnimated];
-            }
-        }
-        
         if ([[self delegate] respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
             [[self delegate] navigationController:self willShowViewController:rootController animated:isAnimated];
         }
@@ -459,12 +437,6 @@
         
         [self didChangeValueForKey:@"viewControllers"];
         
-        for (NSViewController *viewController in viewControllersToPop) {
-            if ([[self delegate] respondsToSelector:@selector(navigationController:didPopViewController:animated:)]) {
-                [[self delegate] navigationController:self didPopViewController:viewController animated:isAnimated];
-            }
-        }
-        
         if ([[self delegate] respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
             [[self delegate] navigationController:self didShowViewController:rootController animated:isAnimated];
         }
@@ -477,11 +449,6 @@
     NSInteger index = [_viewControllers indexOfObjectIdenticalTo:viewController];
     if (index != NSNotFound && viewController != nil && viewController != topController) {
         NSArray *viewControllersToPop = [_viewControllers subarrayWithRange:NSMakeRange(index+1, [_viewControllers count]-(index+1))];
-        for (NSViewController *viewController in viewControllersToPop) {
-            if ([[self delegate] respondsToSelector:@selector(navigationController:willPopViewController:animated:)]) {
-                [[self delegate] navigationController:self willPopViewController:viewController animated:isAnimated];
-            }
-        }
         
         if ([[self delegate] respondsToSelector:@selector(navigationController:willShowViewController:animated:)]) {
             [[self delegate] navigationController:self willShowViewController:viewController animated:isAnimated];
@@ -511,12 +478,6 @@
         [viewController viewDidAppear];
         
         [self didChangeValueForKey:@"viewControllers"];
-        
-        for (NSViewController *viewController in viewControllersToPop) {
-            if ([[self delegate] respondsToSelector:@selector(navigationController:didPopViewController:animated:)]) {
-                [[self delegate] navigationController:self didPopViewController:viewController animated:isAnimated];
-            }
-        }
         
         if ([[self delegate] respondsToSelector:@selector(navigationController:didShowViewController:animated:)]) {
             [[self delegate] navigationController:self didShowViewController:viewController animated:isAnimated];

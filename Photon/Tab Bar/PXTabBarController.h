@@ -22,8 +22,7 @@
  */
 @interface PXTabBarController : NSViewController <PXTabBarDelegate>
 
-@property IBOutlet PXTabBar *tabBar;
-@property IBOutlet NSView *containerView;
+@property (nonatomic, readonly) PXTabBar *tabBar;
 
 @property (nonatomic, weak) id <PXTabBarControllerDelegate> delegate;
 
@@ -32,7 +31,7 @@
 @property (nonatomic, strong) NSViewController *selectedViewController;
 @property (nonatomic) NSUInteger selectedIndex;
 
-@property (nonatomic) BOOL animates;
+@property (nonatomic) BOOL animatesViewTransition;
 
 @end
 

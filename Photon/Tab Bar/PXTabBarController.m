@@ -18,16 +18,6 @@
 #import <objc/runtime.h>
 
 
-NSString * const PXTabBarControllerWillAddViewControllerNotification = @"PXTabBarControllerWillAddViewController";
-NSString * const PXTabBarControllerDidAddViewControllerNotification = @"PXTabBarControllerDidAddViewController";
-
-NSString * const PXTabBarControllerWillRemoveViewControllerNotification = @"PXTabBarControllerWillRemoveViewController";
-NSString * const PXTabBarControllerDidRemoveViewControllerNotification = @"PXTabBarControllerDidRemoveViewController";
-
-NSString * const PXTabBarControllerWillSelectViewControllerNotification = @"PXTabBarControllerWillSelectViewController";
-NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTabBarControllerDidSelectViewController";
-
-
 @interface NSViewController (PXTabBarControllerPrivate)
 
 - (void)setTabBarController:(PXTabBarController *)tabBarController;
@@ -36,17 +26,14 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 
 
 @implementation PXTabBarController {
-    NSMutableArray *viewControllers;
-    PXTabBar *tabBar;
-    NSView *disappearingView;
-    NSAnimation *currentAnimation;
-    NSUInteger selectedIndex;
-    NSViewController *selectedViewController;
+    NSMutableArray *_viewControllers;
+    PXTabBar *_tabBar;
+    NSView *_containerView;
+    NSView *_disappearingView;
+    NSAnimation *_currentAnimation;
+    NSUInteger _selectedIndex;
+    NSViewController *_selectedViewController;
 }
-
-@synthesize delegate;
-@synthesize containerView;
-@synthesize animates;
 
 + (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
     NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
@@ -60,54 +47,32 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 }
 
 - (id)init {
-    self = [self initWithNibName:@"TabBarView" bundle:[NSBundle bundleForClass:[PXTabBarController class]]];
+    self = [self initWithNibName:nil bundle:nil];
     if (self) {
+        NSView *view = [[NSView alloc] initWithFrame:NSMakeRect(0.0, 0.0, 100.0, 100.0)];
+        [self setView:view];
         
+        _viewControllers = [NSMutableArray array];
+        _selectedIndex = NSNotFound;
+        
+        [[self view] setFrameSize:NSMakeSize(280.0, 360.0)];
+        [[self view] setWantsLayer:YES];
+        
+        NSRect bounds = [[self view] bounds];
+        _tabBar = [[PXTabBar alloc] initWithFrame:NSMakeRect(0.0, NSMaxY(bounds) - 32.0, NSWidth(bounds), 32.0)];
+        _tabBar.autoresizingMask = (NSViewWidthSizable|NSViewMinYMargin);
+        _tabBar.delegate = self;
+        [[self view] addSubview:_tabBar];
+        
+        _containerView = [[NSView alloc] initWithFrame:NSMakeRect(0.0, 0.0, NSWidth(bounds), NSHeight(bounds) - 32.0)];
+        _containerView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+        [[self view] addSubview:_containerView];
     }
     return self;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        viewControllers = [[NSMutableArray alloc] init];
-        selectedIndex = NSNotFound;
-    }
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        viewControllers = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-- (void)loadView {
-    [super loadView];
-    
-    // Set up tab bar
-    [tabBar setDelegate:self];
-    
-    // Set up views
-    [tabBar setFrameOrigin:NSMakePoint(0.0, [[self view] bounds].size.height - [tabBar bounds].size.height)];
-    [containerView setFrame:NSMakeRect(0.0, 0.0, [[self view] bounds].size.width, [[self view] bounds].size.height - [tabBar bounds].size.height)];
 }
 
 - (PXTabBar *)tabBar {
-    if (tabBar == nil) {
-        [self view];
-    }
-    return tabBar;
-}
-
-- (void)setTabBar:(PXTabBar *)newTabBar {
-    if (tabBar != newTabBar) {
-        [self willChangeValueForKey:@"tabBar"];
-        tabBar = newTabBar;
-        [self didChangeValueForKey:@"tabBar"];
-    }
+    return _tabBar;
 }
 
 
@@ -115,11 +80,11 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 #pragma mark View Controllers
 
 - (NSViewController *)selectedViewController {
-    return selectedViewController;
+    return _selectedViewController;
 }
 
 - (void)setSelectedViewController:(NSViewController *)viewController {
-    [self setSelectedIndex:[viewControllers indexOfObjectIdenticalTo:viewController]];
+    [self setSelectedIndex:[_viewControllers indexOfObjectIdenticalTo:viewController]];
 }
 
 + (NSSet *)keyPathsForValuesAffectingSelectedIndex {
@@ -127,7 +92,7 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 }
 
 - (NSUInteger)selectedIndex {
-    return selectedIndex;
+    return _selectedIndex;
 }
 
 - (void)setSelectedIndex:(NSUInteger)index {
@@ -135,12 +100,12 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 }
 
 - (NSArray *)viewControllers {
-    return [viewControllers copy];
+    return [_viewControllers copy];
 }
 
 - (void)setViewControllers:(NSArray *)array {
-    if (![viewControllers isEqualToArray:array]) {
-        while ([viewControllers count] > 0) {
+    if (![_viewControllers isEqualToArray:array]) {
+        while ([_viewControllers count] > 0) {
             [self removeViewControllerAtIndex:0];
         }
         
@@ -151,47 +116,36 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 }
 
 - (void)addViewController:(NSViewController *)viewController {
-    [self insertViewController:viewController atIndex:[viewControllers count]];
+    [self insertViewController:viewController atIndex:[_viewControllers count]];
 }
 
 - (void)insertViewController:(NSViewController *)viewController atIndex:(NSUInteger)index {
-    if (![viewControllers containsObject:viewController]) {
-        // Post notification
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:viewController, @"viewController", nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:PXTabBarControllerWillAddViewControllerNotification object:self userInfo:userInfo];
-        
+    if (![_viewControllers containsObject:viewController]) {
         // Start KVO notification
-        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange([viewControllers count], 1)];
+        NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange([_viewControllers count], 1)];
         [self willChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"viewControllers"];
         
         // Add item
         [viewController setTabBarController:self];
         [viewController setParentViewController:self];
-        [viewControllers insertObject:viewController atIndex:index];
+        [_viewControllers insertObject:viewController atIndex:index];
         
         // Add item to tab bar
         PXTabBarItem *item = [viewController tabBarItem];
         [[self tabBar] insertItem:item atIndex:index];
         
-        if ([viewControllers count] == 1) {
+        if ([_viewControllers count] == 1) {
             [self selectViewControllerAtIndex:index];
         }
         
         // Finish KVO notification
         [self didChange:NSKeyValueChangeInsertion valuesAtIndexes:indexes forKey:@"viewControllers"];
-        
-        // Post notification
-        [[NSNotificationCenter defaultCenter] postNotificationName:PXTabBarControllerDidAddViewControllerNotification object:self userInfo:userInfo];
     }
 }
 
 - (void)removeViewControllerAtIndex:(NSUInteger)index {
     if (index != NSNotFound) {
-        NSViewController *viewController = [viewControllers objectAtIndex:index];
-        
-        // Post notification
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:viewController, @"viewController", nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:PXTabBarControllerWillRemoveViewControllerNotification object:self userInfo:userInfo];
+        NSViewController *viewController = [_viewControllers objectAtIndex:index];
         
         // Start KVO notification
         NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(index, 1)];
@@ -199,13 +153,13 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
         
         NSViewController *nextController = nil;
         NSUInteger nextIndex = NSNotFound;
-        if (index < [viewControllers count]-1) {
-            nextIndex = [viewControllers count]-(index+1);
-            nextController = [viewControllers objectAtIndex:nextIndex];
+        if (index < [_viewControllers count]-1) {
+            nextIndex = [_viewControllers count]-(index+1);
+            nextController = [_viewControllers objectAtIndex:nextIndex];
         }
         else if (index > 0) {
             nextIndex = index-1;
-            nextController = [viewControllers objectAtIndex:nextIndex];
+            nextController = [_viewControllers objectAtIndex:nextIndex];
         }
         
         [viewController viewWillDisappear];
@@ -214,17 +168,17 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
         NSView *aView = [nextController view];
         if (aView) {
             [aView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
-            [aView setFrame:[containerView bounds]];
-            [containerView setSubviews:[NSArray arrayWithObject:aView]];
+            [aView setFrame:[_containerView bounds]];
+            [_containerView setSubviews:[NSArray arrayWithObject:aView]];
         }
         else {
-            [containerView setSubviews:[NSArray array]];
+            [_containerView setSubviews:[NSArray array]];
         }
         
         [self setSelectedIndex:nextIndex];
         
         // Remove item
-        [viewControllers removeObjectAtIndex:index];
+        [_viewControllers removeObjectAtIndex:index];
         [viewController setTabBarController:nil];
         [viewController setParentViewController:nil];
         [[self tabBar] removeItemAtIndex:index];
@@ -234,27 +188,24 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
         
         // Finish KVO notification
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"viewControllers"];
-        
-        // Post notification
-        [[NSNotificationCenter defaultCenter] postNotificationName:PXTabBarControllerDidRemoveViewControllerNotification object:self userInfo:userInfo];
     }
 }
 
 - (void)removeViewController:(NSViewController *)viewController {
-    NSUInteger index = [viewControllers indexOfObjectIdenticalTo:viewController];
+    NSUInteger index = [_viewControllers indexOfObjectIdenticalTo:viewController];
     [self removeViewControllerAtIndex:index];
 }
 
 - (NSViewController *)viewControllerAtIndex:(NSUInteger)index {
-    return [viewControllers objectAtIndex:index];
+    return [_viewControllers objectAtIndex:index];
 }
 
 - (NSUInteger)indexOfViewController:(NSViewController *)viewController {
-    return [viewControllers indexOfObjectIdenticalTo:viewController];
+    return [_viewControllers indexOfObjectIdenticalTo:viewController];
 }
 
 - (void)selectViewController:(NSViewController *)viewController {
-    NSUInteger index = [viewControllers indexOfObjectIdenticalTo:viewController];
+    NSUInteger index = [_viewControllers indexOfObjectIdenticalTo:viewController];
     [self selectViewControllerAtIndex:index];
 }
 
@@ -265,16 +216,13 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
     
     if (index != NSNotFound) {
         NSViewController *oldController = [self selectedViewController];
-        NSViewController *viewController = [viewControllers objectAtIndex:index];
+        NSViewController *viewController = [_viewControllers objectAtIndex:index];
         
         [self willChangeValueForKey:@"selectedViewController"];
         
         if ([[self delegate] respondsToSelector:@selector(tabBarController:willSelectViewController:)]) {
             [[self delegate] tabBarController:self willSelectViewController:viewController];
         }
-        
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:viewController, @"viewController", nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:PXTabBarControllerWillSelectViewControllerNotification object:self userInfo:userInfo];
         
         [oldController viewWillDisappear];
         [viewController viewWillAppear];
@@ -283,25 +231,25 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
             NSView *aView = [viewController view];
             if (aView) {
                 [aView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
-                [aView setFrame:[containerView bounds]];
-                [containerView setSubviews:[NSArray arrayWithObject:aView]];
+                [aView setFrame:[_containerView bounds]];
+                [_containerView setSubviews:[NSArray arrayWithObject:aView]];
             }
             else {
-                [containerView setSubviews:[NSArray array]];
+                [_containerView setSubviews:[NSArray array]];
             }
         }
         else {
             BOOL shouldPush = NO;
-            NSUInteger oldIndex = [viewControllers indexOfObjectIdenticalTo:oldController];
+            NSUInteger oldIndex = [_viewControllers indexOfObjectIdenticalTo:oldController];
             if (oldIndex < index) {
                 shouldPush = YES;
             }
-            [self replaceView:[oldController view] withView:[viewController view] push:shouldPush animated:[self animates]];
+            [self replaceView:[oldController view] withView:[viewController view] push:shouldPush animated:[self animatesViewTransition]];
         }
         
         [[self tabBar] setSelectedItem:[viewController tabBarItem]];
-        selectedIndex = index;
-        selectedViewController = viewController;
+        _selectedIndex = index;
+        _selectedViewController = viewController;
         
         [oldController viewDidDisappear];
         [viewController viewDidAppear];
@@ -309,8 +257,6 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
         if ([[self delegate] respondsToSelector:@selector(tabBarController:didSelectViewController:)]) {
             [[self delegate] tabBarController:self didSelectViewController:viewController];
         }
-        
-        [[NSNotificationCenter defaultCenter] postNotificationName:PXTabBarControllerDidSelectViewControllerNotification object:self userInfo:userInfo];
         
         [self didChangeValueForKey:@"selectedViewController"];
     }
@@ -322,7 +268,7 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
     }
     
     if (isAnimated) {
-        disappearingView = oldView;
+        _disappearingView = oldView;
         
         NSRect oldViewFrameResult = [oldView frame];
         if (shouldPush) {
@@ -342,7 +288,7 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
         }
         [newView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
         [newView setFrame:newViewTempRect];
-        [containerView addSubview:newView];
+        [_containerView addSubview:newView];
         
         
         NSDictionary *oldViewDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -361,31 +307,31 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
         
         NSArray *animations = [NSArray arrayWithObjects:oldViewDictionary, newViewDictionary, nil];
         
-        currentAnimation = [[NSViewAnimation alloc] initWithViewAnimations:animations];
-        [currentAnimation setDelegate:self];
-        [currentAnimation setAnimationBlockingMode:NSAnimationBlocking];
-        [currentAnimation setDuration:0.25];
-        [currentAnimation setAnimationCurve:NSAnimationEaseInOut];
-        [currentAnimation startAnimation];
+        _currentAnimation = [[NSViewAnimation alloc] initWithViewAnimations:animations];
+        [_currentAnimation setDelegate:self];
+        [_currentAnimation setAnimationBlockingMode:NSAnimationBlocking];
+        [_currentAnimation setDuration:0.25];
+        [_currentAnimation setAnimationCurve:NSAnimationEaseInOut];
+        [_currentAnimation startAnimation];
     }
     else {
         [newView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
         [newView setFrame:[oldView frame]];
         [oldView removeFromSuperview];
-        [containerView addSubview:newView];
+        [_containerView addSubview:newView];
     }
 }
 
 - (void)animationDidStop:(NSAnimation *)animation {
-    [disappearingView removeFromSuperview];
-    disappearingView = nil;
-    currentAnimation = nil;
+    [_disappearingView removeFromSuperview];
+    _disappearingView = nil;
+    _currentAnimation = nil;
 }
 
 - (void)animationDidEnd:(NSAnimation*)animation {
-    [disappearingView removeFromSuperview];
-    disappearingView = nil;
-    currentAnimation = nil;
+    [_disappearingView removeFromSuperview];
+    _disappearingView = nil;
+    _currentAnimation = nil;
 }
 
 
@@ -405,7 +351,7 @@ NSString * const PXTabBarControllerDidSelectViewControllerNotification = @"PXTab
 
 - (void)tabBar:(PXTabBar *)aTabBarController didSelectItem:(PXTabBarItem *)item {
     NSViewController *viewController = [item representedObject];
-    NSUInteger index = [viewControllers indexOfObjectIdenticalTo:viewController];
+    NSUInteger index = [_viewControllers indexOfObjectIdenticalTo:viewController];
     [self selectViewControllerAtIndex:index];
 }
 
