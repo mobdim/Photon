@@ -248,9 +248,6 @@
     _currentPane = newPane;
     
     if (![newView isEqualTo:oldView]) {
-        [oldPane viewWillDisappear];
-        [newPane viewWillAppear];
-        
         [newView setFrame:[newView bounds]];
         
         [oldView setAutoresizingMask:(NSViewMaxYMargin)];
@@ -281,9 +278,6 @@
                 [[[self window] contentView] setSubviews:[NSArray array]];
             }
             [[self window] setFrame:[self frameForView:newView] display:YES];
-            
-            [oldPane viewDidDisappear];
-            [newPane viewDidAppear];
         }
     }
     
@@ -315,9 +309,6 @@
         [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
         [[[self window] contentView] setNeedsDisplay:YES];
     }
-    
-    [_disappearingPane viewDidDisappear];
-    [_currentPane viewDidAppear];
 }
 
 - (NSRect)frameForView:(NSView *)view {

@@ -35,9 +35,9 @@
 
 + (void)px_installAppearanceMethods {
     // Replace some methods on NSView to support appearance proxies
-    Method originalMethod = class_getInstanceMethod(self, @selector(viewWillMoveToSuperview:));
-    Method newMethod = class_getInstanceMethod(self, @selector(px_viewWillMoveToSuperview:));
-    method_exchangeImplementations(originalMethod, newMethod);
+//    Method originalMethod = class_getInstanceMethod(self, @selector(viewWillMoveToSuperview:));
+//    Method newMethod = class_getInstanceMethod(self, @selector(px_viewWillMoveToSuperview:));
+//    method_exchangeImplementations(originalMethod, newMethod);
 }
 
 + (id)px_appearance {
@@ -67,15 +67,15 @@
     return [PXAppearanceProxy proxyWithTargetClass:self containerClasses:containerClasses];
 }
 
-- (void)px_viewWillMoveToSuperview:(NSView *)newSuperview {
-    // Invoke appearance customization methods
-    NSArray *invocations = [[PXAppearanceCoordinator sharedCoordinator] invocationsForView:self];
-    for (NSInvocation *invocation in invocations) {
-        [invocation invokeWithTarget:self];
-    }
-    
-    [self px_viewWillMoveToSuperview:newSuperview];
-}
+//- (void)px_viewWillMoveToSuperview:(NSView *)newSuperview {
+//    // Invoke appearance customization methods
+//    NSArray *invocations = [[PXAppearanceCoordinator sharedCoordinator] invocationsForView:self];
+//    for (NSInvocation *invocation in invocations) {
+//        [invocation invokeWithTarget:self];
+//    }
+//    
+//    [self px_viewWillMoveToSuperview:newSuperview];
+//}
 
 @end
 

@@ -127,7 +127,7 @@
         
         // Add item
         [viewController setTabBarController:self];
-        [viewController setParentViewController:self];
+        [self addChildViewController:viewController];
         [_viewControllers insertObject:viewController atIndex:index];
         
         // Add item to tab bar
@@ -162,9 +162,6 @@
             nextController = [_viewControllers objectAtIndex:nextIndex];
         }
         
-        [viewController viewWillDisappear];
-        [nextController viewWillAppear];
-        
         NSView *aView = [nextController view];
         if (aView) {
             [aView setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
@@ -179,12 +176,14 @@
         
         // Remove item
         [_viewControllers removeObjectAtIndex:index];
-        [viewController setTabBarController:nil];
-        [viewController setParentViewController:nil];
-        [[self tabBar] removeItemAtIndex:index];
         
-        [viewController viewDidDisappear];
-        [nextController viewDidAppear];
+        [viewController setTabBarController:nil];
+        
+        [viewController willMoveToParentViewController:nil];
+        [viewController removeFromParentViewController];
+        [viewController didMoveToParentViewController:nil];
+        
+        [[self tabBar] removeItemAtIndex:index];
         
         // Finish KVO notification
         [self didChange:NSKeyValueChangeRemoval valuesAtIndexes:indexes forKey:@"viewControllers"];
@@ -224,9 +223,6 @@
             [[self delegate] tabBarController:self willSelectViewController:viewController];
         }
         
-        [oldController viewWillDisappear];
-        [viewController viewWillAppear];
-        
         if (oldController == nil || viewController == nil || [[self view] window] == nil) {
             NSView *aView = [viewController view];
             if (aView) {
@@ -250,9 +246,6 @@
         [[self tabBar] setSelectedItem:[viewController tabBarItem]];
         _selectedIndex = index;
         _selectedViewController = viewController;
-        
-        [oldController viewDidDisappear];
-        [viewController viewDidAppear];
         
         if ([[self delegate] respondsToSelector:@selector(tabBarController:didSelectViewController:)]) {
             [[self delegate] tabBarController:self didSelectViewController:viewController];

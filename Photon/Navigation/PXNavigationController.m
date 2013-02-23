@@ -122,22 +122,6 @@
 #pragma mark -
 #pragma mark Overrides
 
-- (void)viewWillAppear {
-    [[self topViewController] viewWillAppear];
-}
-
-- (void)viewDidAppear {
-    [[self topViewController] viewDidAppear];
-}
-
-- (void)viewWillDisappear {
-    [[self topViewController] viewWillDisappear];
-}
-
-- (void)viewDidDisappear {
-    [[self topViewController] viewDidDisappear];
-}
-
 - (PXNavigationController *)navigationController {
     return self;
 }
@@ -232,9 +216,6 @@
         NSViewController *currentTopController = [_viewControllers lastObject];
         NSViewController *newTopController = [array lastObject];
         
-        [currentTopController viewWillDisappear];
-        [newTopController viewWillAppear];
-        
         [self adjustNavigationBarPositionAnimated:isAnimated];
         
         if (currentTopController != nil && newTopController != nil) {
@@ -260,7 +241,10 @@
         
         for (NSViewController *controller in _viewControllers) {
             [controller setNavigationController:nil];
-            [controller setParentViewController:nil];
+            
+            [controller willMoveToParentViewController:nil];
+            [controller removeFromParentViewController];
+            [controller didMoveToParentViewController:nil];
         }
         
         [_viewControllers removeAllObjects];
@@ -268,7 +252,7 @@
         
         for (NSViewController *controller in _viewControllers) {
             [controller setNavigationController:self];
-            [controller setParentViewController:self];
+            [self addChildViewController:controller];
         }
         
         NSMutableArray *navigationBarItems = [NSMutableArray array];
@@ -276,9 +260,6 @@
             [navigationBarItems addObject:[viewController navigationItem]];
         }
         [_navigationBar setItems:navigationBarItems];
-        
-        [currentTopController viewDidDisappear];
-        [newTopController viewDidAppear];
         
         [self didChangeValueForKey:@"viewControllers"];
     }
@@ -344,15 +325,10 @@
 - (void)pushViewController:(NSViewController *)viewController animated:(BOOL)isAnimated {
     [self willChangeValueForKey:@"viewControllers"];
     
-    NSViewController *currentViewController = [self topViewController];
-    
-    [currentViewController viewWillDisappear];
-    [viewController viewWillAppear];
-    
     [_viewControllers addObject:viewController];
     
     [viewController setNavigationController:self];
-    [viewController setParentViewController:self];
+    [self addChildViewController:viewController];
     
     [_navigationBar pushNavigationItem:[viewController navigationItem] animated:isAnimated];
     
@@ -360,9 +336,6 @@
     
     NSView *oldView = [[_containerView subviews] lastObject];
     [self replaceView:oldView withView:[viewController view] push:YES animated:isAnimated];
-    
-    [currentViewController viewDidDisappear];
-    [viewController viewDidAppear];
     
     [self didChangeValueForKey:@"viewControllers"];
 }
@@ -379,11 +352,11 @@
         
         [self willChangeValueForKey:@"viewControllers"];
         
-        [topController viewWillDisappear];
-        [nextController viewWillAppear];
-        
         [topController setNavigationController:nil];
-        [topController setParentViewController:nil];
+        
+        [topController willMoveToParentViewController:nil];
+        [topController removeFromParentViewController];
+        [topController didMoveToParentViewController:nil];
         
         [_viewControllers removeObjectAtIndex:[_viewControllers count]-1];
         
@@ -392,9 +365,6 @@
         [self replaceView:[topController view] withView:[nextController view] push:NO animated:isAnimated];
         
         [_navigationBar popNavigationItemAnimated:isAnimated];
-        
-        [topController viewDidDisappear];
-        [nextController viewDidAppear];
         
         [self didChangeValueForKey:@"viewControllers"];
         
@@ -416,12 +386,12 @@
         
         [self willChangeValueForKey:@"viewControllers"];
         
-        [topController viewWillDisappear];
-        [rootController viewWillAppear];
-        
         for (NSViewController *viewController in viewControllersToPop) {
             [viewController setNavigationController:nil];
-            [viewController setParentViewController:nil];
+            
+            [viewController willMoveToParentViewController:nil];
+            [viewController removeFromParentViewController];
+            [viewController didMoveToParentViewController:nil];
         }
         
         [_viewControllers removeObjectsInRange:NSMakeRange(1, [_viewControllers count]-1)];
@@ -431,9 +401,6 @@
         [_navigationBar popToRootNavigationItemAnimated:isAnimated];
         
         [self adjustNavigationBarPositionAnimated:isAnimated];
-        
-        [topController viewDidDisappear];
-        [rootController viewDidAppear];
         
         [self didChangeValueForKey:@"viewControllers"];
         
@@ -456,12 +423,12 @@
         
         [self willChangeValueForKey:@"viewControllers"];
         
-        [topController viewWillDisappear];
-        [viewController viewWillAppear];
-        
         for (NSViewController *viewController in viewControllersToPop) {
             [viewController setNavigationController:nil];
-            [viewController setParentViewController:nil];
+            
+            [viewController willMoveToParentViewController:nil];
+            [viewController removeFromParentViewController];
+            [viewController didMoveToParentViewController:nil];
         }
         
         [_viewControllers removeObjectsInRange:NSMakeRange(index+1, [_viewControllers count]-(index+1))];
@@ -473,9 +440,6 @@
         }
         
         [self adjustNavigationBarPositionAnimated:isAnimated];
-        
-        [topController viewDidDisappear];
-        [viewController viewDidAppear];
         
         [self didChangeValueForKey:@"viewControllers"];
         
