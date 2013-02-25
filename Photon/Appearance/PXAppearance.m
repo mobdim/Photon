@@ -25,7 +25,7 @@
 
 + (id)proxyWithTargetClass:(Class)targetClass containerClasses:(NSArray *)containerClasses;
 
-@property (nonatomic, unsafe_unretained) Class targetClass;
+@property (nonatomic, weak) Class targetClass;
 @property (nonatomic, strong) NSArray *containerClasses;
 
 @end
