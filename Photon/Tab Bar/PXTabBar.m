@@ -44,7 +44,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
     if (self) {
         _items = [NSMutableArray array];
         _accessibilityItems = [NSMutableArray array];
-        _itemsToAccessibilityItems = [NSMapTable mapTableWithStrongToStrongObjects];
+        _itemsToAccessibilityItems = [NSMapTable strongToStrongObjectsMapTable];
         
         [self setPostsFrameChangedNotifications:YES];
         

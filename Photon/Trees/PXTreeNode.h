@@ -39,18 +39,18 @@
  */
 @interface PXTreeNode : NSObject <PXTreeNode>
 
-@property (copy) NSString *title;
-@property (copy) NSImage *image;
-@property NSUInteger order;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSImage *image;
+@property (nonatomic) NSUInteger order;
 
-@property (copy) NSSet *children;
+@property (nonatomic, copy) NSSet *children;
 - (void)addChild:(id <PXTreeNode>)child;
 - (void)removeChild:(id <PXTreeNode>)child;
 
-@property (getter=isSelectable) BOOL selectable;
-@property (getter=isEditable) BOOL editable;
-@property (getter=isGroupItem) BOOL groupItem;
+@property (nonatomic, getter=isSelectable) BOOL selectable;
+@property (nonatomic, getter=isEditable) BOOL editable;
+@property (nonatomic, getter=isGroupItem) BOOL groupItem;
 
-@property (copy) NSString *persistenceIdentifier;
+@property (nonatomic, copy) NSString *persistenceIdentifier;
 
 @end

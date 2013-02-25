@@ -105,7 +105,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        _invocations = [NSMapTable mapTableWithStrongToStrongObjects];
+        _invocations = [NSMapTable strongToStrongObjectsMapTable];
     }
     return self;
 }
