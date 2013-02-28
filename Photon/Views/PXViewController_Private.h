@@ -9,12 +9,18 @@
 #import "PXViewController.h"
 
 
+@interface PXViewControllerProxy : NSObject
+
+@property (nonatomic, weak) id object;
+
+@end
+
+
 @interface NSViewController (PXViewControllerPrivate)
 
 - (void)px_setView:(NSView *)aView;
 
 @property (nonatomic, weak, readwrite) NSViewController *parentViewController;
-@property (nonatomic, weak) NSPopover *popover;
 
 @end
 

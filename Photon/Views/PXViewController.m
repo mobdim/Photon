@@ -13,19 +13,11 @@
 #import <objc/runtime.h>
 
 
-@interface PXViewControllerProxy : NSObject
-
-@property (nonatomic, weak) id object;
-
-@end
-
-
 @implementation NSViewController (PXViewController)
 
 + (void)px_installViewControllerSupport {
     if (self == [NSViewController class]) {
         [NSView px_installViewControllerSupport];
-        [NSPopover px_installViewControllerSupport];
         
         [self px_exchangeInstanceMethodForSelector:@selector(setView:) withSelector:@selector(px_setView:)];
     }
@@ -122,37 +114,6 @@ static NSString * const PXViewControllerChildViewControllersKey = @"PXViewContro
     
 }
 
-
-#pragma mark -
-#pragma mark Popovers
-
-static NSString * const PXViewControllerContentSizeForViewInPopoverKey = @"PXViewControllerContentSizeForViewInPopover";
-
-- (NSSize)contentSizeForViewInPopover {
-    NSValue *value = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerContentSizeForViewInPopoverKey);
-    if (value != nil) {
-        return [value sizeValue];
-    }
-    return NSMakeSize(320.0, 480.0);
-}
-
-- (void)setContentSizeForViewInPopover:(NSSize)contentSizeForViewInPopover {
-    objc_setAssociatedObject(self, (__bridge void *)PXViewControllerContentSizeForViewInPopoverKey, [NSValue valueWithSize:contentSizeForViewInPopover], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-static NSString * const PXViewControllerPopoverKey = @"PXViewControllerPopover";
-
-- (NSPopover *)popover {
-    PXViewControllerProxy *proxy = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerPopoverKey);
-    return proxy.object;
-}
-
-- (void)setPopover:(NSPopover *)popover {
-    PXViewControllerProxy *proxy = [[PXViewControllerProxy alloc] init];
-    proxy.object = popover;
-    objc_setAssociatedObject(self, (__bridge void *)PXViewControllerPopoverKey, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 @end
 
 
@@ -247,23 +208,6 @@ static NSString * const PXViewControllerKey = @"PXViewController";
     else {
         [self px_setNextResponder:responder];
     }
-}
-
-@end
-
-
-@implementation NSPopover (PXViewController)
-
-+ (void)px_installViewControllerSupport {
-    if (self == [NSPopover class]) {
-        [self px_exchangeInstanceMethodForSelector:@selector(setContentViewController:) withSelector:@selector(px_setContentViewController:)];
-    }
-}
-
-- (void)px_setContentViewController:(NSViewController *)viewController {
-    self.contentViewController.popover = nil;
-    [self px_setContentViewController:viewController];
-    viewController.popover = self;
 }
 
 @end

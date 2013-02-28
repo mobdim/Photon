@@ -14,4 +14,8 @@
 @property (copy) NSString *identifier;
 @property (copy) NSImage *image;
 
+@property (getter=isResizable) BOOL resizable;
+@property NSSize minSize;
+@property NSSize maxSize;
+
 @end

@@ -139,16 +139,4 @@
  */
 - (void)didMoveToParentViewController:(NSViewController *)parent;
 
-
-/*!
- * @property contentSizeForViewInPopover
- * @abstract The size required to display the receiver's content in a popover
- *
- * @discussion
- * By default, this is set to 320.0 x 480.0.
- *
- * @result An NSSize value
- */
-@property (nonatomic) NSSize contentSizeForViewInPopover;
-
 @end

@@ -10,6 +10,9 @@
 		021B1DCE15FA98FB0086B303 /* PXNavigationItem_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 021B1DCD15FA98FB0086B303 /* PXNavigationItem_Private.h */; };
 		021B1DD215FAA74A0086B303 /* PXBarButtonItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 021B1DD015FAA74A0086B303 /* PXBarButtonItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		021B1DD315FAA74A0086B303 /* PXBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 021B1DD115FAA74A0086B303 /* PXBarButtonItem.m */; };
+		0239E99516DEB3BC0041E56D /* PXPopover.h in Headers */ = {isa = PBXBuildFile; fileRef = 0239E99316DEB3BC0041E56D /* PXPopover.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0239E99616DEB3BC0041E56D /* PXPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0239E99416DEB3BC0041E56D /* PXPopover.m */; };
+		0239E99816DEB8FB0041E56D /* PXPopover_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0239E99716DEB8FB0041E56D /* PXPopover_Private.h */; settings = {ATTRIBUTES = (); }; };
 		0246DDA616D836DD00A63752 /* NSObject+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 0246DDA416D836DD00A63752 /* NSObject+PhotonAdditions.h */; };
 		0246DDA716D836DD00A63752 /* NSObject+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 0246DDA516D836DD00A63752 /* NSObject+PhotonAdditions.m */; };
 		024C649315F961A60064D8DF /* PXSwitch.h in Headers */ = {isa = PBXBuildFile; fileRef = 024C649115F961A60064D8DF /* PXSwitch.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,6 +92,9 @@
 		021B1DCD15FA98FB0086B303 /* PXNavigationItem_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationItem_Private.h; sourceTree = "<group>"; };
 		021B1DD015FAA74A0086B303 /* PXBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXBarButtonItem.h; sourceTree = "<group>"; };
 		021B1DD115FAA74A0086B303 /* PXBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXBarButtonItem.m; sourceTree = "<group>"; };
+		0239E99316DEB3BC0041E56D /* PXPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPopover.h; sourceTree = "<group>"; };
+		0239E99416DEB3BC0041E56D /* PXPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPopover.m; sourceTree = "<group>"; };
+		0239E99716DEB8FB0041E56D /* PXPopover_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPopover_Private.h; sourceTree = "<group>"; };
 		0246DDA416D836DD00A63752 /* NSObject+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PhotonAdditions.h"; sourceTree = "<group>"; };
 		0246DDA516D836DD00A63752 /* NSObject+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PhotonAdditions.m"; sourceTree = "<group>"; };
 		024C649115F961A60064D8DF /* PXSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXSwitch.h; sourceTree = "<group>"; };
@@ -183,6 +189,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0239E99216DEB3A50041E56D /* Popovers */ = {
+			isa = PBXGroup;
+			children = (
+				0239E99316DEB3BC0041E56D /* PXPopover.h */,
+				0239E99716DEB8FB0041E56D /* PXPopover_Private.h */,
+				0239E99416DEB3BC0041E56D /* PXPopover.m */,
+			);
+			path = Popovers;
+			sourceTree = "<group>";
+		};
 		02714F7015AA3171001FA6A1 /* Trees */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +272,7 @@
 				EA44B2AD149B222E00C5D440 /* PhotonDefines.h */,
 				EA76D4CD151D32810049443D /* Appearance */,
 				EA44B2B0149B22E800C5D440 /* Views */,
+				0239E99216DEB3A50041E56D /* Popovers */,
 				EA44B2B7149B23AD00C5D440 /* Tab Bar */,
 				EA44B2C6149B251300C5D440 /* Navigation */,
 				EA44B2C7149B251E00C5D440 /* Preferences */,
@@ -446,6 +463,8 @@
 				02BF11C91600FC7E00AD782D /* NSColor+PhotonAdditions.h in Headers */,
 				027E7A1E16669AE2005DD0F6 /* PXPreferencePane.h in Headers */,
 				0246DDA616D836DD00A63752 /* NSObject+PhotonAdditions.h in Headers */,
+				0239E99516DEB3BC0041E56D /* PXPopover.h in Headers */,
+				0239E99816DEB8FB0041E56D /* PXPopover_Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +565,7 @@
 				EA94C7081665D9E200222A9D /* PXAppearance.m in Sources */,
 				027E7A1F16669AE2005DD0F6 /* PXPreferencePane.m in Sources */,
 				0246DDA716D836DD00A63752 /* NSObject+PhotonAdditions.m in Sources */,
+				0239E99616DEB3BC0041E56D /* PXPopover.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

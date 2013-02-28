@@ -61,11 +61,19 @@
 
 - (void)dealloc {
     [_currentPane removeObserver:self forKeyPath:@"view"];
+    [_currentPane removeObserver:self forKeyPath:@"resizable"];
+    [_currentPane removeObserver:self forKeyPath:@"minSize"];
+    [_currentPane removeObserver:self forKeyPath:@"maxSize"];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"view"]) {
+    if (object == _currentPane && [keyPath isEqualToString:@"view"]) {
         [self showPreferencePaneWithIdentifier:[_currentPane identifier]];
+    }
+    else if ((object == _currentPane && [keyPath isEqualToString:@"resizable"])
+             || (object == _currentPane && [keyPath isEqualToString:@"minSize"])
+             || (object == _currentPane && [keyPath isEqualToString:@"maxSize"])) {
+        [self adjustWindowResizing];
     }
     else [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
@@ -112,6 +120,32 @@
     
     if (_currentPane != nil) {
         [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
+    }
+}
+
+- (void)adjustWindowResizing {
+    BOOL resizable = _currentPane.resizable;
+    if (resizable) {
+        [self.window setStyleMask:(NSTitledWindowMask|NSClosableWindowMask|NSResizableWindowMask)];
+        
+        NSSize minSize = _currentPane.minSize;
+        if (minSize.width == 0 || minSize.height == 0) {
+            minSize = [_currentPane.view frame].size;
+        }
+        
+        NSSize maxSize = _currentPane.maxSize;
+        if (maxSize.width == 0 || maxSize.height == 0) {
+            maxSize = [_currentPane.view frame].size;
+        }
+        
+        [self.window setContentMinSize:minSize];
+        [self.window setContentMaxSize:maxSize];
+    }
+    else {
+        [self.window setStyleMask:(NSTitledWindowMask|NSClosableWindowMask)];
+        
+        [self.window setContentMinSize:NSZeroSize];
+        [self.window setContentMaxSize:NSZeroSize];
     }
 }
 
@@ -240,6 +274,12 @@
     PXPreferencePane *newPane = [_preferencePanes objectForKey:identifier];
     
     [_currentPane removeObserver:self forKeyPath:@"view"];
+    [_currentPane removeObserver:self forKeyPath:@"resizable"];
+    [_currentPane removeObserver:self forKeyPath:@"minSize"];
+    [_currentPane removeObserver:self forKeyPath:@"maxSize"];
+    
+    [self.window setContentMinSize:NSZeroSize];
+    [self.window setContentMaxSize:NSZeroSize];
     
     NSView *newView = [[_preferencePanes objectForKey:identifier] view];
     NSView *oldView = [[[[self window] contentView] subviews] lastObject];
@@ -285,6 +325,9 @@
     [_toolbar setSelectedItemIdentifier:[_currentPane identifier]];
     
     [_currentPane addObserver:self forKeyPath:@"view" options:(NSKeyValueObservingOptionNew) context:nil];
+    [_currentPane addObserver:self forKeyPath:@"resizable" options:(NSKeyValueObservingOptionNew) context:nil];
+    [_currentPane addObserver:self forKeyPath:@"minSize" options:(NSKeyValueObservingOptionNew) context:nil];
+    [_currentPane addObserver:self forKeyPath:@"maxSize" options:(NSKeyValueObservingOptionNew) context:nil];
     
     if ([self autosaveIdentifier] != nil) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -305,6 +348,10 @@
             [subview removeFromSuperviewWithoutNeedingDisplay];
             [subview setAlphaValue:1.0];
         }
+        
+        _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+        
+        [self adjustWindowResizing];
         
         [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
         [[[self window] contentView] setNeedsDisplay:YES];
