@@ -12,8 +12,17 @@
 
 @interface PXPopover ()
 
+@property (nonatomic, readwrite, getter=isShown) BOOL shown;
+@property (nonatomic, readwrite) PXPopoverArrowDirection arrowDirection;
+
 - (PXPopoverBackgroundView *)backgroundView;
 - (NSView *)positioningView;
+- (NSWindow *)window;
+
+@end
+
+
+@interface PXPopoverWindow : NSPanel
 
 @end
 
@@ -34,5 +43,15 @@
 
 - (PXPopover *)px_popover;
 - (void)px_setPopover:(PXPopover *)popover;
+
+@end
+
+
+@interface NSWindow (PXPopover)
+
+- (BOOL)px_hasKeyAppearance;
+
+- (PXPopover *)px_presentedPopover;
+- (void)px_setPresentedPopover:(PXPopover *)popover;
 
 @end

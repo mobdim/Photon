@@ -78,6 +78,8 @@
 		EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EAB804C215FAF18600E3BE96 /* PXNavigationBackButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB804C015FAF18600E3BE96 /* PXNavigationBackButtonCell.h */; };
 		EAB804C315FAF18600E3BE96 /* PXNavigationBackButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB804C115FAF18600E3BE96 /* PXNavigationBackButtonCell.m */; };
+		EACC146516DF124900023E13 /* PXAccessibility.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC146316DF124900023E13 /* PXAccessibility.h */; settings = {ATTRIBUTES = (); }; };
+		EACC146616DF124900023E13 /* PXAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = EACC146416DF124900023E13 /* PXAccessibility.m */; };
 		EACC7CC01510446300072989 /* PXTabBarController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CBF1510446200072989 /* PXTabBarController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EACC7CC31510447D00072989 /* PXTabBar_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC7CC21510447D00072989 /* PXTabBar_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADFB0E1151FC6C500019165 /* PXFormatBar.h in Headers */ = {isa = PBXBuildFile; fileRef = EADFB0DF151FC6C500019165 /* PXFormatBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -166,6 +168,8 @@
 		EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencesController_Private.h; sourceTree = "<group>"; };
 		EAB804C015FAF18600E3BE96 /* PXNavigationBackButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXNavigationBackButtonCell.h; sourceTree = "<group>"; };
 		EAB804C115FAF18600E3BE96 /* PXNavigationBackButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXNavigationBackButtonCell.m; sourceTree = "<group>"; };
+		EACC146316DF124900023E13 /* PXAccessibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAccessibility.h; sourceTree = "<group>"; };
+		EACC146416DF124900023E13 /* PXAccessibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAccessibility.m; sourceTree = "<group>"; };
 		EACC7CBF1510446200072989 /* PXTabBarController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBarController_Private.h; sourceTree = "<group>"; };
 		EACC7CC21510447D00072989 /* PXTabBar_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBar_Private.h; sourceTree = "<group>"; };
 		EADFB0DF151FC6C500019165 /* PXFormatBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBar.h; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 				EA44B2AD149B222E00C5D440 /* PhotonDefines.h */,
 				EA76D4CD151D32810049443D /* Appearance */,
 				EA44B2B0149B22E800C5D440 /* Views */,
+				EACC146216DF122800023E13 /* Accessibility */,
 				0239E99216DEB3A50041E56D /* Popovers */,
 				EA44B2B7149B23AD00C5D440 /* Tab Bar */,
 				EA44B2C6149B251300C5D440 /* Navigation */,
@@ -403,6 +408,15 @@
 			path = Controls;
 			sourceTree = "<group>";
 		};
+		EACC146216DF122800023E13 /* Accessibility */ = {
+			isa = PBXGroup;
+			children = (
+				EACC146316DF124900023E13 /* PXAccessibility.h */,
+				EACC146416DF124900023E13 /* PXAccessibility.m */,
+			);
+			path = Accessibility;
+			sourceTree = "<group>";
+		};
 		EADFB0DD151FC69200019165 /* Format Bars */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +479,7 @@
 				0246DDA616D836DD00A63752 /* NSObject+PhotonAdditions.h in Headers */,
 				0239E99516DEB3BC0041E56D /* PXPopover.h in Headers */,
 				0239E99816DEB8FB0041E56D /* PXPopover_Private.h in Headers */,
+				EACC146516DF124900023E13 /* PXAccessibility.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +581,7 @@
 				027E7A1F16669AE2005DD0F6 /* PXPreferencePane.m in Sources */,
 				0246DDA716D836DD00A63752 /* NSObject+PhotonAdditions.m in Sources */,
 				0239E99616DEB3BC0041E56D /* PXPopover.m in Sources */,
+				EACC146616DF124900023E13 /* PXAccessibility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

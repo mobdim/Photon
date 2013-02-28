@@ -37,9 +37,10 @@ typedef PHOTON_OPTIONS(NSUInteger, PXPopoverArrowDirection) {
 @property (nonatomic, weak) id <PXPopoverDelegate> delegate;
 
 - (void)showRelativeToRect:(NSRect)rect ofView:(NSView *)view permittedArrowDirections:(PXPopoverArrowDirection)arrowDirection animated:(BOOL)animated;
+- (void)makeKeyAndShowRelativeToRect:(NSRect)rect ofView:(NSView *)view permittedArrowDirections:(PXPopoverArrowDirection)arrowDirection animated:(BOOL)animated;
 - (void)dismissAnimated:(BOOL)animated;
 
-@property (nonatomic, readonly, getter=isVisible) BOOL visible;
+@property (nonatomic, readonly, getter=isShown) BOOL shown;
 @property (nonatomic, readonly) PXPopoverArrowDirection arrowDirection;
 
 @property (nonatomic, assign) Class backgroundViewClass;
@@ -50,6 +51,7 @@ typedef PHOTON_OPTIONS(NSUInteger, PXPopoverArrowDirection) {
 @protocol PXPopoverDelegate <NSObject>
 
 @optional
+- (void)popoverDidDismiss:(PXPopover *)popover;
 
 @end
 

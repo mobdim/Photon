@@ -10,10 +10,17 @@
 #import "PXPopover_Private.h"
 
 #import "PXViewController_Private.h"
+#import "PXAccessibility.h"
 #import "NSObject+PhotonAdditions.h"
 #import <objc/runtime.h>
 
 
+NSString * const PXPopoverWillShowNotification = @"PXPopoverWillShowNotification";
+NSString * const PXPopoverDidShowNotification = @"PXPopoverDidShowNotification";
+NSString * const PXPopoverWillDismissNotification = @"PXPopoverWillDismissNotification";
+NSString * const PXPopoverDidDismissNotification = @"PXPopoverDidDismissNotification";
+
+    
 @implementation PXPopover {
     NSViewController *_contentViewController;
     NSSize _contentSize;
@@ -21,20 +28,28 @@
     NSView *_positioningView;
     NSRect _positioningRect;
     
-    NSWindow *_popoverWindow;
+    PXPopoverWindow *_popoverWindow;
     PXPopoverBackgroundView *_backgroundView;
 }
 
 + (void)initialize {
     if (self == [PXPopover class]) {
-//        [NSView px_exchangeInstanceMethodForSelector:@selector(accessibilityAttributeValue:) withSelector:@selector(px_popover_accessibilityAttributeValue:)];
+        [NSWindow px_exchangeInstanceMethodForSelector:@selector(hasKeyAppearance) withSelector:@selector(px_hasKeyAppearance)];
     }
 }
 
 - (id)initWithContentViewController:(NSViewController *)viewController {
-    self = [super init];
+    self = [self init];
     if (self) {
         self.contentViewController = viewController;
+    }
+    return self;
+}
+
+- (id)init {
+    self = [super init];
+    if (self) {
+        self.arrowDirection = PXPopoverArrowDirectionUnknown;
     }
     return self;
 }
@@ -80,22 +95,40 @@
     return _positioningView;
 }
 
+- (NSWindow *)window {
+    return _popoverWindow;
+}
+
 
 #pragma mark -
 #pragma mark Presentation
 
+- (void)makeKeyAndShowRelativeToRect:(NSRect)rect ofView:(NSView *)view permittedArrowDirections:(PXPopoverArrowDirection)arrowDirection animated:(BOOL)animated {
+    [self showRelativeToRect:rect ofView:view permittedArrowDirections:arrowDirection animated:animated makeKey:YES];
+}
+
 - (void)showRelativeToRect:(NSRect)rect ofView:(NSView *)view permittedArrowDirections:(PXPopoverArrowDirection)arrowDirection animated:(BOOL)animated {
+    [self showRelativeToRect:rect ofView:view permittedArrowDirections:arrowDirection animated:animated makeKey:NO];
+}
+
+- (void)showRelativeToRect:(NSRect)rect ofView:(NSView *)view permittedArrowDirections:(PXPopoverArrowDirection)arrowDirection animated:(BOOL)animated makeKey:(BOOL)makeKey {
     NSParameterAssert(self.contentViewController != nil);
     NSParameterAssert(view != nil);
     NSParameterAssert(arrowDirection != PXPopoverArrowDirectionUnknown);
+    
+    if ([view isHiddenOrHasHiddenAncestor]) {
+        return;
+    }
     
     if (NSEqualRects(rect, NSZeroRect)) {
         rect = [view bounds];
     }
     
-    
     _positioningView = view;
     _positioningRect = rect;
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PXPopoverWillShowNotification object:self];
     
     
     Class backgroundViewClass = self.backgroundViewClass;
@@ -159,8 +192,12 @@
     else {
         [self.contentViewController px_setPopover:self];
         
-        NSArray *accessibilityChildren = [_positioningView accessibilityAttributeValue:NSAccessibilityChildrenAttribute];
-        [_positioningView accessibilitySetOverrideValue:(accessibilityChildren != nil ? [accessibilityChildren arrayByAddingObject:_backgroundView] : @[_backgroundView]) forAttribute:NSAccessibilityChildrenAttribute];
+        id accessibilityTarget = [_positioningView px_accessibilityOverrideTargetForAttribute:NSAccessibilityChildrenAttribute];
+        NSArray *accessibilityChildren = nil;
+        if ([[accessibilityTarget accessibilityAttributeNames] containsObject:NSAccessibilityChildrenAttribute]) {
+            accessibilityChildren = [_positioningView accessibilityAttributeValue:NSAccessibilityChildrenAttribute];
+        }
+        [accessibilityTarget accessibilitySetOverrideValue:(accessibilityChildren != nil ? [accessibilityChildren arrayByAddingObject:_backgroundView] : @[_backgroundView]) forAttribute:NSAccessibilityChildrenAttribute];
         
         NSWindow *parentWindow = [view window];
         
@@ -176,27 +213,86 @@
         
         CGRect windowRect = NSMakeRect(originPoint.x, originPoint.y, backgroundSize.width, backgroundSize.height);
         
-        _popoverWindow = [[NSWindow alloc] initWithContentRect:windowRect styleMask:(NSBorderlessWindowMask) backing:NSBackingStoreBuffered defer:YES];
+        _popoverWindow = [[PXPopoverWindow alloc] initWithContentRect:windowRect styleMask:(NSBorderlessWindowMask|NSNonactivatingPanelMask) backing:NSBackingStoreBuffered defer:YES];
         [_popoverWindow setContentView:_backgroundView];
         [_popoverWindow setHasShadow:YES];
         [_popoverWindow setOpaque:NO];
         [_popoverWindow setBackgroundColor:[NSColor clearColor]];
         
+        [parentWindow px_setPresentedPopover:self];
+        
+        if (animated) {
+            [_popoverWindow setAlphaValue:0.0];
+        }
+        
         [parentWindow addChildWindow:_popoverWindow ordered:NSWindowAbove];
-        [_popoverWindow orderFront:nil];
+        if (makeKey) {
+            [_popoverWindow makeKeyWindow];
+        }
+        
+        if (animated) {
+            [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+                context.duration = 0.2;
+                [[_popoverWindow animator] setAlphaValue:1.0];
+            } completionHandler:^{
+                self.shown = YES;
+                self.arrowDirection = chosenArrowDirection;
+                
+                [[NSNotificationCenter defaultCenter] postNotificationName:PXPopoverDidShowNotification object:self];
+            }];
+        }
+        else {
+            self.shown = YES;
+            self.arrowDirection = chosenArrowDirection;
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:PXPopoverDidShowNotification object:self];
+        }
     }
 }
 
 - (void)dismissAnimated:(BOOL)animated {
-    [self.contentViewController px_setPopover:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PXPopoverWillDismissNotification object:self];
     
-    [_popoverWindow orderOut:nil];
-    [[_popoverWindow parentWindow] removeChildWindow:_popoverWindow];
-    _popoverWindow = nil;
+    void (^handler)(void) = ^{
+        [self.contentViewController px_setPopover:nil];
+        [_popoverWindow orderOut:nil];
+        [[_popoverWindow parentWindow] px_setPresentedPopover:nil];
+        [[_popoverWindow parentWindow] removeChildWindow:_popoverWindow];
+        _popoverWindow = nil;
+        
+        id accessibilityTarget = [_positioningView px_accessibilityOverrideTargetForAttribute:NSAccessibilityChildrenAttribute];
+        [accessibilityTarget accessibilitySetOverrideValue:nil forAttribute:NSAccessibilityChildrenAttribute];
+        
+        _backgroundView = nil;
+        
+        self.shown = NO;
+        self.arrowDirection = PXPopoverArrowDirectionUnknown;
+        
+        if ([self.delegate respondsToSelector:@selector(popoverDidDismiss:)]) {
+            [self.delegate popoverDidDismiss:self];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:PXPopoverDidDismissNotification object:self];
+    };
     
-    [_positioningView accessibilitySetOverrideValue:nil forAttribute:NSAccessibilityChildrenAttribute];
-    
-    _backgroundView = nil;
+    if (animated) {
+        [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+            context.duration = 0.2;
+            [[_popoverWindow animator] setAlphaValue:0.0];
+        } completionHandler:handler];
+    }
+    else {
+        handler();
+    }
+}
+
+@end
+
+
+@implementation PXPopoverWindow
+
+- (BOOL)canBecomeKeyWindow {
+    return YES;
 }
 
 @end
@@ -245,7 +341,7 @@
         return NSAccessibilityPopoverRole;
     }
     else if ([attribute isEqualToString:NSAccessibilityParentAttribute]) {
-        return [[self popover] positioningView];
+        return [[[self popover] positioningView] px_accessibilityOverrideTargetForAttribute:NSAccessibilityChildrenAttribute];
     }
     return [super accessibilityAttributeValue:attribute];
 }
@@ -421,6 +517,33 @@ static NSString * const PXViewControllerPopoverKey = @"PXViewControllerPopover";
     PXViewControllerProxy *proxy = [[PXViewControllerProxy alloc] init];
     proxy.object = popover;
     objc_setAssociatedObject(self, (__bridge void *)PXViewControllerPopoverKey, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+@end
+
+
+@implementation NSWindow (PXPopover)
+
+- (BOOL)px_hasKeyAppearance {
+    if ([self px_presentedPopover] != nil) {
+        if ([[[self px_presentedPopover] window] isKeyWindow]) {
+            return YES;
+        }
+    }
+    return [self px_hasKeyAppearance];
+}
+
+static NSString * const PXWindowPresentedPopoverKey = @"PXWindowPresentedPopover";
+
+- (PXPopover *)px_presentedPopover {
+    PXViewControllerProxy *proxy = objc_getAssociatedObject(self, (__bridge void *)PXWindowPresentedPopoverKey);
+    return proxy.object;
+}
+
+- (void)px_setPresentedPopover:(PXPopover *)popover {
+    PXViewControllerProxy *proxy = [[PXViewControllerProxy alloc] init];
+    proxy.object = popover;
+    objc_setAssociatedObject(self, (__bridge void *)PXWindowPresentedPopoverKey, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
