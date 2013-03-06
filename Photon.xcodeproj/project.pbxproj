@@ -57,6 +57,8 @@
 		EA44B2E9149B277700C5D440 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA44B2E8149B277700C5D440 /* QuartzCore.framework */; };
 		EA55FA56151D37800088F053 /* NSValue+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA55FA54151D37800088F053 /* NSValue+PhotonAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA55FA57151D37800088F053 /* NSValue+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA55FA55151D37800088F053 /* NSValue+PhotonAdditions.m */; };
+		EA68A30416E71E2A00417D0B /* PXLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA68A30216E71E2A00417D0B /* PXLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA68A30516E71E2A00417D0B /* PXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA68A30316E71E2A00417D0B /* PXLabel.m */; };
 		EA76D4D0151D32930049443D /* PXAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4CF151D32930049443D /* PXAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA76D4D7151D33070049443D /* PXGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4D5151D33070049443D /* PXGeometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA76D4D8151D33070049443D /* PXGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D4D6151D33070049443D /* PXGeometry.m */; };
@@ -147,6 +149,8 @@
 		EA44B2E8149B277700C5D440 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EA55FA54151D37800088F053 /* NSValue+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+PhotonAdditions.h"; sourceTree = "<group>"; };
 		EA55FA55151D37800088F053 /* NSValue+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+PhotonAdditions.m"; sourceTree = "<group>"; };
+		EA68A30216E71E2A00417D0B /* PXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXLabel.h; sourceTree = "<group>"; };
+		EA68A30316E71E2A00417D0B /* PXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXLabel.m; sourceTree = "<group>"; };
 		EA76D4CF151D32930049443D /* PXAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAppearance.h; sourceTree = "<group>"; };
 		EA76D4D5151D33070049443D /* PXGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGeometry.h; sourceTree = "<group>"; };
 		EA76D4D6151D33070049443D /* PXGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGeometry.m; sourceTree = "<group>"; };
@@ -398,6 +402,8 @@
 		EA9C52EE15211DB700F767C9 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				EA68A30216E71E2A00417D0B /* PXLabel.h */,
+				EA68A30316E71E2A00417D0B /* PXLabel.m */,
 				EA9C52F115211DC400F767C9 /* PXColorWell.h */,
 				EA9C52F215211DC400F767C9 /* PXColorWell.m */,
 				EA9C52EF15211DC400F767C9 /* PXColorPickerView.h */,
@@ -480,6 +486,7 @@
 				0239E99516DEB3BC0041E56D /* PXPopover.h in Headers */,
 				0239E99816DEB8FB0041E56D /* PXPopover_Private.h in Headers */,
 				EACC146516DF124900023E13 /* PXAccessibility.h in Headers */,
+				EA68A30416E71E2A00417D0B /* PXLabel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +589,7 @@
 				0246DDA716D836DD00A63752 /* NSObject+PhotonAdditions.m in Sources */,
 				0239E99616DEB3BC0041E56D /* PXPopover.m in Sources */,
 				EACC146616DF124900023E13 /* PXAccessibility.m in Sources */,
+				EA68A30516E71E2A00417D0B /* PXLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

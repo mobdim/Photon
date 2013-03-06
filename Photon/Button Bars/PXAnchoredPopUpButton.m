@@ -126,12 +126,12 @@
                                                                      [NSColor colorWithCalibratedWhite:0.5 alpha:1.0],
                                                                      [NSColor colorWithCalibratedWhite:0.5 alpha:0.0],
                                                                      nil]];
-    if ([controlView autoresizingMask] & NSViewMaxXMargin) {
+//    if ([controlView autoresizingMask] & NSViewMaxXMargin) {
         [borderGradient drawInRect:NSMakeRect(cellFrame.size.width - 1.0, 2.0, 1.0, cellFrame.size.height - 4.0) angle:90.0];
-    }
-    else if ([controlView autoresizingMask] & NSViewMinXMargin) {
-        [borderGradient drawInRect:NSMakeRect(0.0, 2.0, 1.0, cellFrame.size.height - 4.0) angle:90.0];
-    }
+//    }
+//    else if ([controlView autoresizingMask] & NSViewMinXMargin) {
+//        [borderGradient drawInRect:NSMakeRect(0.0, 2.0, 1.0, cellFrame.size.height - 4.0) angle:90.0];
+//    }
     
     [[NSColor colorWithCalibratedWhite:1.0 alpha:0.2] set];
     [NSBezierPath strokeLineFromPoint:NSMakePoint(cellFrame.origin.x + 1.0, cellFrame.origin.y + cellFrame.size.height - 2.5) toPoint:NSMakePoint(cellFrame.origin.x + cellFrame.size.width - 1.0, cellFrame.origin.y + cellFrame.size.height - 2.5)];
