@@ -389,9 +389,15 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
         if (self.style == PXTabBarStyleLight) {
             itemAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                               [NSFont boldSystemFontOfSize:9.0], NSFontAttributeName,
-                              [NSColor colorWithCalibratedWhite:0.4 alpha:1.0], NSForegroundColorAttributeName,
+                              [NSColor colorWithCalibratedWhite:0.3 alpha:1.0], NSForegroundColorAttributeName,
                               para, NSParagraphStyleAttributeName,
                               nil];
+            
+            NSShadow *shadow = [[NSShadow alloc] init];
+            [shadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.6]];
+            [shadow setShadowBlurRadius:0.0];
+            [shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
+            [itemAttributes setObject:shadow forKey:NSShadowAttributeName];
             
             // Draw selection
             if (isSelected) {
@@ -405,6 +411,12 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                               para, NSParagraphStyleAttributeName,
                               nil];
             
+            NSShadow *shadow = [[NSShadow alloc] init];
+            [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.0 alpha:0.6]];
+            [shadow setShadowBlurRadius:0.0];
+            [shadow setShadowOffset:NSMakeSize(0.0, 1.0)];
+            [itemAttributes setObject:shadow forKey:NSShadowAttributeName];
+            
             // Draw selection
             if (isSelected) {
                 [itemAttributes setObject:[NSColor colorWithCalibratedWhite:1.0 alpha:1.0] forKey:NSForegroundColorAttributeName];
@@ -412,19 +424,6 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
         }
         
         [[NSGraphicsContext currentContext] saveGraphicsState];
-        
-        NSShadow *shadow = [[NSShadow alloc] init];
-        if (self.style == PXTabBarStyleLight) {
-            [shadow setShadowColor:[NSColor colorWithCalibratedWhite:1.0 alpha:0.6]];
-            [shadow setShadowBlurRadius:0.0];
-            [shadow setShadowOffset:NSMakeSize(0.0, -1.0)];
-        }
-        else if (self.style == PXTabBarStyleDark) {
-            [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.0 alpha:0.6]];
-            [shadow setShadowBlurRadius:0.0];
-            [shadow setShadowOffset:NSMakeSize(0.0, 1.0)];
-        }
-        [shadow set];
         
         NSString *text = [item title];
         NSSize textSize = [text sizeWithAttributes:itemAttributes];
