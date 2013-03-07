@@ -291,4 +291,30 @@ static NSSet *__layoutKeyPaths = nil;
     [self setBoundsSize:[self sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)]];
 }
 
+
+#pragma mark -
+#pragma mark Accessibility
+
+- (BOOL)accessibilityIsIgnored {
+    return NO;
+}
+
+- (NSArray *)accessibilityAttributeNames {
+    NSArray *attributeNames = [super accessibilityAttributeNames];
+    attributeNames = [attributeNames arrayByAddingObjectsFromArray:[NSArray arrayWithObjects:
+                                                                    NSAccessibilityValueAttribute,
+                                                                    nil]];
+    return attributeNames;
+}
+
+- (id)accessibilityAttributeValue:(NSString *)attribute {
+    if ([attribute isEqualToString:NSAccessibilityRoleAttribute]) {
+        return NSAccessibilityStaticTextRole;
+    }
+    else if ([attribute isEqualToString:NSAccessibilityValueAttribute]) {
+        return self.text;
+    }
+    return [super accessibilityAttributeValue:attribute];
+}
+
 @end
