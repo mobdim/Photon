@@ -36,6 +36,12 @@
 
 
 /*!
+ * @method viewDidLoad
+ * @abstract Invoked when the view controller's view hiearchy is loaded into memory
+ */
+- (void)viewDidLoad;
+
+/*!
  * @method viewWillAppear:
  * @abstract Notifies the view controller that its view is about to be added to a view hierarchy
  * 
@@ -138,5 +144,12 @@
  * controller to be added as a child before adding it.
  */
 - (void)didMoveToParentViewController:(NSViewController *)parent;
+
+@end
+
+
+@interface NSWindow (PXViewController)
+
+@property (nonatomic, strong) NSViewController *rootViewController;
 
 @end

@@ -19,7 +19,9 @@
     if (self == [NSViewController class]) {
         [NSView px_installViewControllerSupport];
         
+        [self px_exchangeInstanceMethodForSelector:@selector(view) withSelector:@selector(px_view)];
         [self px_exchangeInstanceMethodForSelector:@selector(setView:) withSelector:@selector(px_setView:)];
+        [self px_exchangeInstanceMethodForSelector:@selector(loadView) withSelector:@selector(px_loadView)];
     }
 }
 
@@ -27,11 +29,37 @@
 #pragma mark -
 #pragma mark Accessors
 
+static NSString * const PXViewDidLoadInvokedKey = @"PXViewDidLoadInvoked";
+
+- (NSView *)px_view {
+    NSView *value = [self px_view];
+    NSNumber *viewDidLoadInvoked = objc_getAssociatedObject(self, (__bridge void *)PXViewDidLoadInvokedKey);
+    if (viewDidLoadInvoked == nil) {
+        objc_setAssociatedObject(self, (__bridge void *)PXViewDidLoadInvokedKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [self viewDidLoad];
+    }
+    return value;
+}
+
 - (void)px_setView:(NSView *)aView {
     [self px_setView:aView];
     if (aView != nil) {
         [aView px_setViewController:self];
     }
+}
+
+- (void)px_loadView {
+    NSString *nibName = [self nibName];
+    if (nibName == nil) {
+        self.view = [[NSView alloc] initWithFrame:NSMakeRect(0.0, 0.0, 100.0, 100.0)];
+    }
+    else {
+        [self px_loadView];
+    }
+}
+
+- (void)viewDidLoad {
+    
 }
 
 
@@ -94,7 +122,6 @@ static NSString * const PXViewControllerChildViewControllersKey = @"PXViewContro
     [childController willMoveToParentViewController:self];
     [[self px_childViewControllers] addObject:childController];
     childController.parentViewController = self;
-    [childController didMoveToParentViewController:self];
 }
 
 - (void)removeChildViewController:(NSViewController *)childController {
@@ -104,14 +131,27 @@ static NSString * const PXViewControllerChildViewControllersKey = @"PXViewContro
 
 - (void)removeFromParentViewController {
     [self.parentViewController removeChildViewController:self];
+    [self didMoveToParentViewController:nil];
 }
 
 - (void)willMoveToParentViewController:(NSViewController *)parent {
-    
+//    BOOL animated = [[self view] window] != nil;
+//    if (parent != nil) {
+//        [self viewWillAppear:animated];
+//    }
+//    else {
+//        [self viewWillDisappear:animated];
+//    }
 }
 
 - (void)didMoveToParentViewController:(NSViewController *)parent {
-    
+//    BOOL animated = [[self view] window] != nil;
+//    if (parent != nil) {
+//        [self viewDidAppear:animated];
+//    }
+//    else {
+//        [self viewDidDisappear:animated];
+//    }
 }
 
 @end
@@ -214,5 +254,46 @@ static NSString * const PXViewControllerKey = @"PXViewController";
 
 
 @implementation PXViewControllerProxy
+
+@end
+
+
+@implementation NSWindow (PXViewController)
+
+static NSString * const PXRootViewControllerKey = @"PXRootViewController";
+
+- (NSViewController *)rootViewController {
+    return objc_getAssociatedObject(self, (__bridge void *)PXRootViewControllerKey);
+}
+
+- (void)setRootViewController:(NSViewController *)rootViewController {
+    NSViewController *currentController = objc_getAssociatedObject(self, (__bridge void *)PXRootViewControllerKey);
+    if (currentController != rootViewController) {
+        BOOL animated = [self isVisible];
+        
+        if (currentController != nil) {
+            [rootViewController viewWillDisappear:animated];
+            
+            [[currentController view] removeFromSuperview];
+            [currentController setNextResponder:nil];
+            
+            [rootViewController viewDidDisappear:animated];
+        }
+        
+        objc_setAssociatedObject(self, (__bridge void *)PXRootViewControllerKey, rootViewController, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        if (rootViewController != nil) {;
+            [rootViewController setNextResponder:self];
+            
+            [rootViewController viewWillAppear:animated];
+            
+            NSView *view = [rootViewController view];
+            view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+            [self.contentView setSubviews:@[view]];
+            
+            [rootViewController viewDidAppear:animated];
+        }
+    }
+}
 
 @end
