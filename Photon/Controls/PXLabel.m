@@ -261,9 +261,9 @@ static NSSet *__layoutKeyPaths = nil;
     CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
     if (self.backgroundColor != nil) {
         [self.backgroundColor set];
-        CGContextFillRect(ctx, [self bounds]);
+        CGContextFillRect(ctx, self.bounds);
     }
-    [self drawTextInRect:[self bounds]];
+    [self drawTextInRect:self.bounds];
 }
 
 - (void)drawTextInRect:(CGRect)rect {
@@ -279,7 +279,7 @@ static NSSet *__layoutKeyPaths = nil;
 #pragma mark Metrics
 
 - (NSSize)intrinsicContentSize {
-    return [self sizeThatFits:[self bounds].size];
+    return [self sizeThatFits:self.bounds.size];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -289,6 +289,11 @@ static NSSet *__layoutKeyPaths = nil;
 
 - (void)sizeToFit {
     [self setBoundsSize:[self sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)]];
+}
+
+- (CGFloat)baselineOffsetFromBottom {
+    CGRect boundingRect = [_attributedText boundingRectWithSize:self.bounds.size options:0];
+    return self.bounds.size.height - boundingRect.origin.y;
 }
 
 
