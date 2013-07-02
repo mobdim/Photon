@@ -142,11 +142,11 @@ NSString * const PXPopoverDidDismissNotification = @"PXPopoverDidDismissNotifica
     }
     
     
-    NSScreen *screen = nil;
+//    NSScreen *screen = nil;
     NSRect windowRect = [view convertRect:rect toView:nil];
     NSRect screenRect = [[view window] convertRectToScreen:windowRect];
     
-    NSSize requiredSize = NSMakeSize(_contentSize.width + [backgroundViewClass arrowHeight], _contentSize.height + [backgroundViewClass arrowHeight]);
+//    NSSize requiredSize = NSMakeSize(_contentSize.width + [backgroundViewClass arrowHeight], _contentSize.height + [backgroundViewClass arrowHeight]);
     PXEdgeInsets contentViewInsets = [backgroundViewClass contentViewInsets];
     
     PXPopoverArrowDirection chosenArrowDirection = PXPopoverArrowDirectionUnknown;

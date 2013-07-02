@@ -82,21 +82,21 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
         
         if (isAnimated) {
             if (direction == PXNavigationDirectionPush) {
-                [backButton setFrameOrigin:NSMakePoint(5.0 + backButton.frame.size.width, 5.0)];
+                [backButton setFrameOrigin:NSMakePoint(5.0 + backButton.frame.size.width, 4.0)];
             }
             else {
-                [backButton setFrameOrigin:NSMakePoint(5.0 - backButton.frame.size.width, 5.0)];
+                [backButton setFrameOrigin:NSMakePoint(5.0 - backButton.frame.size.width, 4.0)];
             }
             [backButton setAlphaValue:0.0];
             
             [self addSubview:backButton];
             
-            [[backButton animator] setFrameOrigin:NSMakePoint(5.0, 5.0)];
+            [[backButton animator] setFrameOrigin:NSMakePoint(5.0, 4.0)];
             [[backButton animator] setAlphaValue:1.0];
         }
         else {
             [backButton setAlphaValue:1.0];
-            [backButton setFrameOrigin:NSMakePoint(5.0, 5.0)];
+            [backButton setFrameOrigin:NSMakePoint(5.0, 4.0)];
             [self addSubview:backButton];
         }
     }
@@ -113,7 +113,7 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
             [rightButton setTarget:[rightBarButtonItem target]];
             [rightButton setAction:[rightBarButtonItem action]];
             
-            [rightButton setFrameOrigin:NSMakePoint(NSMaxX(bounds) - ([rightButton frame].size.width + 5.0), 5.0)];
+            [rightButton setFrameOrigin:NSMakePoint(NSMaxX(bounds) - ([rightButton frame].size.width + 5.0), 4.0)];
             [rightButton setContentCompressionResistancePriority:750.0 forOrientation:NSLayoutConstraintOrientationHorizontal];
             
             if (isAnimated) {
@@ -133,8 +133,9 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
     if (titleView == nil) {
         titleView = [navigationItem titleField];
         [titleView setFont:[NSFont systemFontOfSize:12.0]];
-        [titleView setTextColor:[NSColor colorWithCalibratedWhite:0.5 alpha:1.0]];
+        [titleView setTextColor:[NSColor colorWithCalibratedWhite:0.3 alpha:1.0]];
         [titleView setAlignment:NSCenterTextAlignment];
+        [[titleView cell] setBackgroundStyle:NSBackgroundStyleRaised];
         [titleView setContentCompressionResistancePriority:250.0 forOrientation:NSLayoutConstraintOrientationHorizontal];
         [[titleView cell] setLineBreakMode:NSLineBreakByTruncatingMiddle];
     }
@@ -241,10 +242,10 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
     if (backButton != nil) {
         if (isAnimated) {
             if (direction == PXNavigationDirectionPop) {
-                [[backButton animator] setFrameOrigin:NSMakePoint(5.0 + backButton.frame.size.width, 5.0)];
+                [[backButton animator] setFrameOrigin:NSMakePoint(5.0 + backButton.frame.size.width, 4.0)];
             }
             else {
-                [[backButton animator] setFrameOrigin:NSMakePoint(5.0 - backButton.frame.size.width, 5.0)];
+                [[backButton animator] setFrameOrigin:NSMakePoint(5.0 - backButton.frame.size.width, 4.0)];
             }
             [[backButton animator] setAlphaValue:0.0];
         }
@@ -259,11 +260,12 @@ typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
     
     // Title view
     if (isAnimated) {
+        CGFloat yPos = round((self.bounds.size.height - [titleView frame].size.height) / 2.0);
         if (direction == PXNavigationDirectionPop) {
-            [[titleView animator] setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) + 50.0, 8.0)];
+            [[titleView animator] setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) + 50.0, yPos)];
         }
         else {
-            [[titleView animator] setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) - 50.0, 8.0)];
+            [[titleView animator] setFrameOrigin:NSMakePoint(round((bounds.size.width - [titleView frame].size.width) / 2.0) - 50.0, yPos)];
         }
         [[titleView animator] setAlphaValue:0.0];
     }
