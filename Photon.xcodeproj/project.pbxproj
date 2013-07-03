@@ -77,8 +77,8 @@
 		EAA7F7D3149C0387001DB483 /* PXPreferencesController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA7F7D2149C0387001DB483 /* PXPreferencesController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EAB804C215FAF18600E3BE96 /* PXNavigationBackButtonCell.h in Headers */ = {isa = PBXBuildFile; fileRef = EAB804C015FAF18600E3BE96 /* PXNavigationBackButtonCell.h */; };
 		EAB804C315FAF18600E3BE96 /* PXNavigationBackButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB804C115FAF18600E3BE96 /* PXNavigationBackButtonCell.m */; };
-		EABAAF33178276B6004B6CF8 /* PXPopover.h in Headers */ = {isa = PBXBuildFile; fileRef = 0239E99316DEB3BC0041E56D /* PXPopover.h */; };
-		EABAAF34178276B6004B6CF8 /* PXPopover_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0239E99716DEB8FB0041E56D /* PXPopover_Private.h */; };
+		EABAAF33178276B6004B6CF8 /* PXPopover.h in Headers */ = {isa = PBXBuildFile; fileRef = 0239E99316DEB3BC0041E56D /* PXPopover.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EABAAF34178276B6004B6CF8 /* PXPopover_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 0239E99716DEB8FB0041E56D /* PXPopover_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EABAAF35178276B6004B6CF8 /* PXPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 0239E99416DEB3BC0041E56D /* PXPopover.m */; };
 		EACC146516DF124900023E13 /* PXAccessibility.h in Headers */ = {isa = PBXBuildFile; fileRef = EACC146316DF124900023E13 /* PXAccessibility.h */; settings = {ATTRIBUTES = (); }; };
 		EACC146616DF124900023E13 /* PXAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = EACC146416DF124900023E13 /* PXAccessibility.m */; };
