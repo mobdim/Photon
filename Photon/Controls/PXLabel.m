@@ -209,7 +209,7 @@ static NSSet *__layoutKeyPaths = nil;
         if (_shadow == nil) {
             _shadow = [[NSShadow alloc] init];
             _shadow.shadowBlurRadius = 0.0;
-            _shadow.shadowOffset = CGSizeMake(0.0, 1.0);
+            _shadow.shadowOffset = NSMakeSize(0.0, 1.0);
         }
         _shadow.shadowColor = shadowColor;
         [_attributedText addAttribute:NSShadowAttributeName value:_shadow range:NSMakeRange(0, [_attributedText length])];
