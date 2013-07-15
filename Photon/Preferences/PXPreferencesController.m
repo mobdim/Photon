@@ -10,8 +10,6 @@
 #import "PXPreferencesController_Private.h"
 #import "PXViewController.h"
 
-#import <QuartzCore/QuartzCore.h>
-
 
 @implementation PXPreferencesController {
     PXPreferencesWindow *_window;
@@ -49,12 +47,6 @@
         _preferencePaneIdentifiers = [[NSMutableArray alloc] init];
         _preferencePanes = [[NSMutableDictionary alloc] init];
         _toolbarItems = [[NSMutableDictionary alloc] init];
-        
-        CAAnimation *animation = [CABasicAnimation animation];
-        animation.duration = 0.2;
-        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        [animation setDelegate:self];
-        [_window setAnimations:[NSDictionary dictionaryWithObject:animation forKey:@"frame"]];
     }
     return self;
 }
@@ -281,43 +273,52 @@
     [self.window setContentMinSize:NSZeroSize];
     [self.window setContentMaxSize:NSZeroSize];
     
-    NSView *newView = [[_preferencePanes objectForKey:identifier] view];
-    NSView *oldView = [[[[self window] contentView] subviews] lastObject];
-    
     _disappearingPane = oldPane;
     _currentPane = newPane;
     
-    if (![newView isEqualTo:oldView]) {
-        [newView setFrame:[newView bounds]];
+    NSView *newView = [newPane view];
+    NSView *oldView = [oldPane view];
+    
+    if (![newView isEqual:oldView]) {
+        [newView setFrameOrigin:NSZeroPoint];
         
-        [oldView setAutoresizingMask:(NSViewMaxYMargin)];
-        [newView setAutoresizingMask:(NSViewMaxYMargin)];
+        [oldView setAutoresizingMask:(NSViewMaxYMargin|NSViewWidthSizable)];
+        [newView setAutoresizingMask:(NSViewMaxYMargin|NSViewWidthSizable)];
         
         [oldPane setNextResponder:nil];
         [newPane setNextResponder:_window];
         
+        NSRect newFrame = [self frameForView:newView];
+        
         if (shouldAnimate) {
+            [newView setAlphaValue:0.0];
             [[[self window] contentView] addSubview:newView];
             
-            [newView setAlphaValue:0.0];
-            
-            [NSAnimationContext beginGrouping];
-            [[NSAnimationContext currentContext] setDuration:0.25];
-            
-            [[[self window] animator] setFrame:[self frameForView:newView] display:YES];
-            [[oldView animator] setAlphaValue:0.0];
-            [[newView animator] setAlphaValue:1.0];
-            
-            [NSAnimationContext endGrouping];
+            [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+                [context setDuration:0.25];
+                
+                [[[self window] animator] setFrame:newFrame display:YES];
+                [[oldView animator] setAlphaValue:0.0];
+                [[newView animator] setAlphaValue:1.0];
+            } completionHandler:^{
+                [oldView removeFromSuperview];
+                [oldView setAlphaValue:1.0];
+                
+                _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+                
+                [self adjustWindowResizing];
+                
+                [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
+            }];
         }
         else {
             if (newView != nil) {
-                [[[self window] contentView] setSubviews:[NSArray arrayWithObject:newView]];
+                [[[self window] contentView] setSubviews:@[newView]];
             }
             else {
-                [[[self window] contentView] setSubviews:[NSArray array]];
+                [[[self window] contentView] setSubviews:@[]];
             }
-            [[self window] setFrame:[self frameForView:newView] display:YES];
+            [[self window] setFrame:newFrame display:YES];
         }
     }
     
@@ -335,27 +336,6 @@
     }
     
     [self didChangeValueForKey:@"currentPane"];
-}
-
-- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag {
-    if ([[[[self window] contentView] subviews] count] > 1) {
-        NSView *subview = nil;
-        
-        NSEnumerator *subviewsEnum = [[[[self window] contentView] subviews] reverseObjectEnumerator];
-        [subviewsEnum nextObject];
-        
-        while ((subview = [subviewsEnum nextObject]) != nil) {
-            [subview removeFromSuperviewWithoutNeedingDisplay];
-            [subview setAlphaValue:1.0];
-        }
-        
-        _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
-        
-        [self adjustWindowResizing];
-        
-        [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
-        [[[self window] contentView] setNeedsDisplay:YES];
-    }
 }
 
 - (NSRect)frameForView:(NSView *)view {

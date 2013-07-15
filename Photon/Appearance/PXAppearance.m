@@ -113,10 +113,9 @@
 - (void)registerInvocation:(NSInvocation *)invocation targetClass:(Class)targetClass containerClasses:(NSArray *)containerClasses {
     NSMutableArray *targetClassInvocations = [_invocations objectForKey:targetClass];
     if (targetClassInvocations == nil) {
-        targetClass = [NSMutableArray array];
+        targetClassInvocations = [NSMutableArray array];
         [_invocations setObject:targetClassInvocations forKey:targetClass];
     }
-    
     
 }
 
