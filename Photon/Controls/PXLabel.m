@@ -279,7 +279,7 @@ static NSSet *__layoutKeyPaths = nil;
 #pragma mark Metrics
 
 - (NSSize)intrinsicContentSize {
-    return [self sizeThatFits:self.bounds.size];
+    return [self sizeThatFits:self.frame.size];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -288,12 +288,12 @@ static NSSet *__layoutKeyPaths = nil;
 }
 
 - (void)sizeToFit {
-    [self setBoundsSize:[self sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)]];
+    [self setFrameSize:[self sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)]];
 }
 
 - (CGFloat)baselineOffsetFromBottom {
-    CGRect boundingRect = [_attributedText boundingRectWithSize:self.bounds.size options:0];
-    return self.bounds.size.height - boundingRect.origin.y;
+    CGRect boundingRect = [_attributedText boundingRectWithSize:self.frame.size options:0];
+    return self.frame.size.height - boundingRect.origin.y;
 }
 
 
