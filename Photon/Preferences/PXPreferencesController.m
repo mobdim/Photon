@@ -276,8 +276,8 @@
     _disappearingPane = oldPane;
     _currentPane = newPane;
     
-    NSView *newView = [newPane view];
-    NSView *oldView = [oldPane view];
+    NSView *newView = [[_preferencePanes objectForKey:identifier] view];
+    NSView *oldView = [[[[self window] contentView] subviews] lastObject];
     
     if (![newView isEqual:oldView]) {
         [newView setFrameOrigin:NSZeroPoint];
