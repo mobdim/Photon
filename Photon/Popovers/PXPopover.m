@@ -34,7 +34,10 @@ NSString * const PXPopoverDidDismissNotification = @"PXPopoverDidDismissNotifica
 
 + (void)initialize {
     if (self == [PXPopover class]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wundeclared-selector"
         [NSWindow px_exchangeInstanceMethodForSelector:@selector(hasKeyAppearance) withSelector:@selector(px_hasKeyAppearance)];
+#pragma clang diagnostic pop
     }
 }
 
