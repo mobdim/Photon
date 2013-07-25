@@ -21,9 +21,8 @@
 @property (nonatomic) NSTextAlignment textAlignment;
 @property (nonatomic) NSLineBreakMode lineBreakMode;
 
-@property (nonatomic, copy) NSAttributedString *attributedText;
-
 @property (nonatomic, strong) NSColor *highlightedTextColor;
+@property (nonatomic, strong) NSColor *highlightedBackgroundColor;
 @property (nonatomic, getter=isHighlighted) BOOL highlighted;
 
 - (CGSize)sizeThatFits:(CGSize)size;
