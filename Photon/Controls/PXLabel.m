@@ -33,7 +33,7 @@ static NSSet *__layoutKeyPaths = nil;
     if (self) {
         self.font = [NSFont fontWithName:@"Helvetica" size:11.0];
         self.textColor = [NSColor blackColor];
-        self.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        self.lineBreakMode = NSLineBreakByTruncatingTail;
         self.textAlignment = NSLeftTextAlignment;
         
         for (NSString *keyPath in __redrawKeyPaths) {
