@@ -20,6 +20,8 @@
 		027E7A1F16669AE2005DD0F6 /* PXPreferencePane.m in Sources */ = {isa = PBXBuildFile; fileRef = 027E7A1D16669AE2005DD0F6 /* PXPreferencePane.m */; };
 		02BF11C91600FC7E00AD782D /* NSColor+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02BF11CA1600FC7E00AD782D /* NSColor+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		EA05512F17D507E400B8A084 /* PXView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA05512D17D507E400B8A084 /* PXView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA05513017D507E400B8A084 /* PXView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA05512E17D507E400B8A084 /* PXView.m */; };
 		EA30302315001F5A0062D399 /* PXAnchoredButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301B15001F5A0062D399 /* PXAnchoredButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA30302415001F5A0062D399 /* PXAnchoredButton.m in Sources */ = {isa = PBXBuildFile; fileRef = EA30301C15001F5A0062D399 /* PXAnchoredButton.m */; };
 		EA30302515001F5A0062D399 /* PXAnchoredButtonBar.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301D15001F5A0062D399 /* PXAnchoredButtonBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -109,6 +111,10 @@
 		027E7A1D16669AE2005DD0F6 /* PXPreferencePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPreferencePane.m; sourceTree = "<group>"; };
 		02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+PhotonAdditions.h"; sourceTree = "<group>"; };
 		02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+PhotonAdditions.m"; sourceTree = "<group>"; };
+		EA05512917D5030400B8A084 /* PXControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXControl.h; sourceTree = "<group>"; };
+		EA05512A17D5030400B8A084 /* PXControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXControl.m; sourceTree = "<group>"; };
+		EA05512D17D507E400B8A084 /* PXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXView.h; sourceTree = "<group>"; };
+		EA05512E17D507E400B8A084 /* PXView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXView.m; sourceTree = "<group>"; };
 		EA30301B15001F5A0062D399 /* PXAnchoredButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAnchoredButton.h; sourceTree = "<group>"; };
 		EA30301C15001F5A0062D399 /* PXAnchoredButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAnchoredButton.m; sourceTree = "<group>"; };
 		EA30301D15001F5A0062D399 /* PXAnchoredButtonBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAnchoredButtonBar.h; sourceTree = "<group>"; };
@@ -311,6 +317,8 @@
 				EA44B2B2149B22F800C5D440 /* PXViewController.h */,
 				EA44B2B1149B22F800C5D440 /* PXViewController_Private.h */,
 				EA44B2B3149B22F800C5D440 /* PXViewController.m */,
+				EA05512D17D507E400B8A084 /* PXView.h */,
+				EA05512E17D507E400B8A084 /* PXView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -402,6 +410,8 @@
 		EA9C52EE15211DB700F767C9 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				EA05512917D5030400B8A084 /* PXControl.h */,
+				EA05512A17D5030400B8A084 /* PXControl.m */,
 				EA68A30216E71E2A00417D0B /* PXLabel.h */,
 				EA68A30316E71E2A00417D0B /* PXLabel.m */,
 				EA9C52F115211DC400F767C9 /* PXColorWell.h */,
@@ -448,6 +458,7 @@
 				EA44B2AF149B22A700C5D440 /* Photon.h in Headers */,
 				EA44B2B4149B22F800C5D440 /* PXViewController_Private.h in Headers */,
 				EA44B2B5149B22F800C5D440 /* PXViewController.h in Headers */,
+				EA05512F17D507E400B8A084 /* PXView.h in Headers */,
 				EA44B2BF149B23C300C5D440 /* PXTabBar.h in Headers */,
 				EA44B2C1149B23C300C5D440 /* PXTabBarController.h in Headers */,
 				EA44B2C3149B23C300C5D440 /* PXTabBarItem.h in Headers */,
@@ -558,6 +569,7 @@
 			files = (
 				EA44B2A3149B21FF00C5D440 /* Photon.m in Sources */,
 				EA44B2B6149B22F800C5D440 /* PXViewController.m in Sources */,
+				EA05513017D507E400B8A084 /* PXView.m in Sources */,
 				EA44B2C0149B23C300C5D440 /* PXTabBar.m in Sources */,
 				EA44B2C2149B23C300C5D440 /* PXTabBarController.m in Sources */,
 				EA44B2C4149B23C300C5D440 /* PXTabBarItem.m in Sources */,

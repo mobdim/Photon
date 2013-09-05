@@ -11,7 +11,7 @@
 #import <Photon/PXAppearance.h>
 
 
-typedef PHOTON_ENUM(NSUInteger, PXTabBarStyle) {
+typedef NS_ENUM(NSUInteger, PXTabBarStyle) {
     PXTabBarStyleLight = 0,
     PXTabBarStyleDark,
 };

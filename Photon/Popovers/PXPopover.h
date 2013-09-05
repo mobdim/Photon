@@ -11,7 +11,7 @@
 #import <Photon/PXGeometry.h>
 
 
-typedef PHOTON_OPTIONS(NSUInteger, PXPopoverArrowDirection) {
+typedef NS_OPTIONS(NSUInteger, PXPopoverArrowDirection) {
     PXPopoverArrowDirectionUp = (1 << 0),
     PXPopoverArrowDirectionDown = (1 << 1),
     PXPopoverArrowDirectionLeft = (1 << 2),

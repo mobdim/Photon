@@ -13,7 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-typedef PHOTON_ENUM(NSUInteger, PXNavigationDirection) {
+typedef NS_ENUM(NSUInteger, PXNavigationDirection) {
     PXNavigationDirectionPush = 0,
     PXNavigationDirectionPop,
 };

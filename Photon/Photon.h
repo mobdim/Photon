@@ -15,6 +15,7 @@
 #import <Photon/PXAppearance.h>
 #import <Photon/PXBarButtonItem.h>
 #import <Photon/PXColorWell.h>
+//#import <Photon/PXControl.h>
 #import <Photon/PXFormatBar.h>
 #import <Photon/PXFormatBarItem.h>
 #import <Photon/PXFormatBarColorWell.h>
@@ -34,6 +35,7 @@
 #import <Photon/PXTabBarController.h>
 #import <Photon/PXTabBarItem.h>
 #import <Photon/PXTreeNode.h>
+#import <Photon/PXView.h>
 #import <Photon/PXViewController.h>
 
 #import <Photon/NSColor+PhotonAdditions.h>

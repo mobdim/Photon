@@ -280,10 +280,10 @@
     NSView *oldView = [[[[self window] contentView] subviews] lastObject];
     
     if (![newView isEqual:oldView]) {
-        [newView setFrameOrigin:NSZeroPoint];
+        [newView setFrameOrigin:NSMakePoint(0.0, [[self.window contentView] bounds].size.height - [newView bounds].size.height)];
         
-        [oldView setAutoresizingMask:(NSViewMaxYMargin|NSViewWidthSizable)];
-        [newView setAutoresizingMask:(NSViewMaxYMargin|NSViewWidthSizable)];
+        [oldView setAutoresizingMask:(NSViewMinYMargin|NSViewWidthSizable)];
+        [newView setAutoresizingMask:(NSViewMinYMargin|NSViewWidthSizable)];
         
         [oldPane setNextResponder:nil];
         [newPane setNextResponder:_window];
@@ -297,14 +297,15 @@
             [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
                 [context setDuration:0.25];
                 
-                [[[self window] animator] setFrame:newFrame display:YES];
                 [[oldView animator] setAlphaValue:0.0];
                 [[newView animator] setAlphaValue:1.0];
+                
+                [[[self window] animator] setFrame:newFrame display:YES];
             } completionHandler:^{
                 [oldView removeFromSuperview];
                 [oldView setAlphaValue:1.0];
                 
-                _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+                [_currentPane.view setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
                 
                 [self adjustWindowResizing];
                 

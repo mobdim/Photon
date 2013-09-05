@@ -6,12 +6,10 @@
 //  Copyright (c) 2013 Sunflower Softworks. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Photon/PXView.h>
 
 
-@interface PXLabel : NSView
-
-@property (nonatomic, copy) NSColor *backgroundColor;
+@interface PXLabel : PXView
 
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, strong) NSFont *font;

@@ -78,7 +78,7 @@
  * @constant PXAppearanceBorderRight     Right border
  * @constant PXAppearanceBorderAll       All borders
  */
-typedef PHOTON_ENUM(NSUInteger, PXAppearanceBorder) {
+typedef NS_ENUM(NSUInteger, PXAppearanceBorder) {
     PXAppearanceBorderNone = 0,
     PXAppearanceBorderTop = (1 << 0),
     PXAppearanceBorderBottom = (1 << 1),
