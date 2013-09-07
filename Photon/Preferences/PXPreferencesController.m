@@ -11,8 +11,15 @@
 #import "PXViewController.h"
 
 
+@interface PXPreferencesContainerView : NSView
+
+@end
+
+
 @implementation PXPreferencesController {
     PXPreferencesWindow *_window;
+    PXPreferencesContainerView *_containerView;
+    
     NSMutableArray *_preferencePaneIdentifiers;
     NSMutableDictionary *_preferencePanes;
     NSMutableDictionary *_toolbarItems;
@@ -42,6 +49,12 @@
         [_window setReleasedWhenClosed:NO];
         [_window setNextResponder:self];
         [self setNextResponder:[NSApplication sharedApplication]];
+        
+        _containerView = [[PXPreferencesContainerView alloc] initWithFrame:[[_window contentView] bounds]];
+        _containerView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+        [_containerView setWantsLayer:YES];
+        
+        [[_window contentView] addSubview:_containerView];
         
         _currentPane = nil;
         _preferencePaneIdentifiers = [[NSMutableArray alloc] init];
@@ -277,13 +290,13 @@
     _currentPane = newPane;
     
     NSView *newView = [[_preferencePanes objectForKey:identifier] view];
-    NSView *oldView = [[[[self window] contentView] subviews] lastObject];
+    NSView *oldView = [[_containerView subviews] lastObject];
     
     if (![newView isEqual:oldView]) {
-        [newView setFrameOrigin:NSMakePoint(0.0, [[self.window contentView] bounds].size.height - [newView bounds].size.height)];
+        newView.frame = NSMakeRect(0.0, [_containerView bounds].size.height - [newView bounds].size.height, newView.frame.size.width, newView.frame.size.height);
         
-        [oldView setAutoresizingMask:(NSViewMinYMargin|NSViewWidthSizable)];
-        [newView setAutoresizingMask:(NSViewMinYMargin|NSViewWidthSizable)];
+        oldView.autoresizingMask = (NSViewMinYMargin|NSViewWidthSizable);
+        newView.autoresizingMask = (NSViewMinYMargin|NSViewWidthSizable);
         
         [oldPane setNextResponder:nil];
         [newPane setNextResponder:_window];
@@ -291,21 +304,22 @@
         NSRect newFrame = [self frameForView:newView];
         
         if (shouldAnimate) {
-            [newView setAlphaValue:0.0];
-            [[[self window] contentView] addSubview:newView];
+            newView.alphaValue = 0.0;
+            [_containerView addSubview:newView];
             
             [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-                [context setDuration:0.25];
+                context.duration = 0.25;
+                context.allowsImplicitAnimation = YES;
                 
-                [[oldView animator] setAlphaValue:0.0];
-                [[newView animator] setAlphaValue:1.0];
+                oldView.alphaValue = 0.0;
+                newView.alphaValue = 1.0;
                 
-                [[[self window] animator] setFrame:newFrame display:YES];
+                [[self window] setFrame:newFrame display:YES];
             } completionHandler:^{
                 [oldView removeFromSuperview];
-                [oldView setAlphaValue:1.0];
+                oldView.alphaValue = 1.0;
                 
-                [_currentPane.view setAutoresizingMask:(NSViewWidthSizable|NSViewHeightSizable)];
+                newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
                 
                 [self adjustWindowResizing];
                 
@@ -314,12 +328,13 @@
         }
         else {
             if (newView != nil) {
-                [[[self window] contentView] setSubviews:@[newView]];
+                [_containerView setSubviews:@[newView]];
             }
             else {
-                [[[self window] contentView] setSubviews:@[]];
+                [_containerView setSubviews:@[]];
             }
             [[self window] setFrame:newFrame display:YES];
+            newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
         }
     }
     
@@ -403,6 +418,24 @@
 
 - (void)cancelOperation:(id)sender {
     [self close];
+}
+
+@end
+
+
+@implementation PXPreferencesContainerView
+
+- (BOOL)isOpaque {
+    return YES;
+}
+
+- (void)drawRect:(NSRect)dirtyRect {
+    [[NSColor windowBackgroundColor] set];
+    NSRectFillUsingOperation([self bounds], NSCompositeSourceOver);
+}
+
+- (BOOL)isFlipped {
+    return YES;
 }
 
 @end
