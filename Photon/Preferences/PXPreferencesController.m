@@ -52,7 +52,6 @@
         
         _containerView = [[PXPreferencesContainerView alloc] initWithFrame:[[_window contentView] bounds]];
         _containerView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
-        [_containerView setWantsLayer:YES];
         
         [[_window contentView] addSubview:_containerView];
         
@@ -303,40 +302,43 @@
         
         NSRect newFrame = [self frameForView:newView];
         
-        if (shouldAnimate) {
-            newView.alphaValue = 0.0;
-            [_containerView addSubview:newView];
-            
-            [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-                context.duration = 0.25;
-                context.allowsImplicitAnimation = YES;
-                
-                oldView.alphaValue = 0.0;
-                newView.alphaValue = 1.0;
-                
-                [[self window] setFrame:newFrame display:YES];
-            } completionHandler:^{
-                [oldView removeFromSuperview];
-                oldView.alphaValue = 1.0;
-                
-                newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
-                
-                [self adjustWindowResizing];
-                
-                [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
-            }];
-        }
-        else {
+//        if (shouldAnimate) {
+//            newView.alphaValue = 0.0;
+//            [_containerView addSubview:newView];
+//            
+//            [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//                context.duration = 0.25;
+//                context.allowsImplicitAnimation = YES;
+//                
+//                oldView.alphaValue = 0.0;
+//                newView.alphaValue = 1.0;
+//                
+//                [[self window] setFrame:newFrame display:YES];
+//            } completionHandler:^{
+//                [oldView removeFromSuperview];
+//                oldView.alphaValue = 1.0;
+//                
+//                newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+//                
+//                [self adjustWindowResizing];
+//                
+//                [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
+//            }];
+//        }
+//        else {
             if (newView != nil) {
                 [_containerView setSubviews:@[newView]];
             }
             else {
                 [_containerView setSubviews:@[]];
             }
-            [[self window] setFrame:newFrame display:YES];
+            [[self window] setFrame:newFrame display:YES animate:shouldAnimate];
             newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
-        }
+            [self adjustWindowResizing];
+            [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
+//        }
     }
+    
     
     [[self window] setTitle:[[_toolbarItems objectForKey:identifier] label]];
     [_toolbar setSelectedItemIdentifier:[_currentPane identifier]];
