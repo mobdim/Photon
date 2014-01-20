@@ -15,7 +15,6 @@
 @property (nonatomic, readwrite, getter=isShown) BOOL shown;
 @property (nonatomic, readwrite) PXPopoverArrowDirection arrowDirection;
 
-- (PXPopoverBackgroundView *)backgroundView;
 - (NSView *)positioningView;
 - (NSWindow *)window;
 

@@ -294,8 +294,8 @@
     if (![newView isEqual:oldView]) {
         newView.frame = NSMakeRect(0.0, [_containerView bounds].size.height - [newView bounds].size.height, newView.frame.size.width, newView.frame.size.height);
         
-        oldView.autoresizingMask = (NSViewMinYMargin|NSViewWidthSizable);
-        newView.autoresizingMask = (NSViewMinYMargin|NSViewWidthSizable);
+        oldView.autoresizingMask = (NSViewMinYMargin|NSViewMinXMargin);
+        newView.autoresizingMask = (NSViewMinYMargin|NSViewMinXMargin);
         
         [oldPane setNextResponder:nil];
         [newPane setNextResponder:_window];
@@ -333,7 +333,7 @@
                 [_containerView setSubviews:@[]];
             }
             [[self window] setFrame:newFrame display:YES animate:shouldAnimate];
-            newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+//            newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
             [self adjustWindowResizing];
             [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
 //        }

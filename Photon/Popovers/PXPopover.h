@@ -21,6 +21,7 @@ typedef NS_OPTIONS(NSUInteger, PXPopoverArrowDirection) {
 };
 
 
+@class PXPopoverBackgroundView;
 @protocol PXPopoverDelegate;
 
 
@@ -44,6 +45,7 @@ typedef NS_OPTIONS(NSUInteger, PXPopoverArrowDirection) {
 @property (nonatomic, readonly) PXPopoverArrowDirection arrowDirection;
 
 @property (nonatomic, assign) Class backgroundViewClass;
+@property (nonatomic, readonly) PXPopoverBackgroundView *backgroundView;
 
 @end
 
@@ -51,6 +53,10 @@ typedef NS_OPTIONS(NSUInteger, PXPopoverArrowDirection) {
 @protocol PXPopoverDelegate <NSObject>
 
 @optional
+- (void)popoverWillShow:(PXPopover *)popover;
+- (void)popoverDidShow:(PXPopover *)popover;
+
+- (void)popoverWillDismiss:(PXPopover *)popover;
 - (void)popoverDidDismiss:(PXPopover *)popover;
 
 @end
@@ -74,3 +80,4 @@ PHOTON_EXTERN NSString * const PXPopoverDidShowNotification;
 
 PHOTON_EXTERN NSString * const PXPopoverWillDismissNotification;
 PHOTON_EXTERN NSString * const PXPopoverDidDismissNotification;
+
