@@ -10,6 +10,8 @@
 #import "PXPreferencesController_Private.h"
 #import "PXViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 
 @interface PXPreferencesContainerView : NSView
 
@@ -59,6 +61,12 @@
         _preferencePaneIdentifiers = [[NSMutableArray alloc] init];
         _preferencePanes = [[NSMutableDictionary alloc] init];
         _toolbarItems = [[NSMutableDictionary alloc] init];
+        
+        CAAnimation *animation = [CABasicAnimation animation];
+        animation.duration = 0.2;
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        [animation setDelegate:self];
+        [_window setAnimations:[NSDictionary dictionaryWithObject:animation forKey:@"frame"]];
     }
     return self;
 }
@@ -292,53 +300,44 @@
     NSView *oldView = [[_containerView subviews] lastObject];
     
     if (![newView isEqual:oldView]) {
-        newView.frame = NSMakeRect(0.0, [_containerView bounds].size.height - [newView bounds].size.height, newView.frame.size.width, newView.frame.size.height);
+        newView.frame = newView.bounds;
         
-        oldView.autoresizingMask = (NSViewMinYMargin|NSViewMinXMargin);
-        newView.autoresizingMask = (NSViewMinYMargin|NSViewMinXMargin);
+        oldView.autoresizingMask = (NSViewMaxYMargin|NSViewMaxXMargin);
+        newView.autoresizingMask = (NSViewMaxYMargin|NSViewMaxXMargin);
         
         [oldPane setNextResponder:nil];
         [newPane setNextResponder:_window];
         
         NSRect newFrame = [self frameForView:newView];
         
-//        if (shouldAnimate) {
-//            newView.alphaValue = 0.0;
-//            [_containerView addSubview:newView];
-//            
-//            [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//                context.duration = 0.25;
-//                context.allowsImplicitAnimation = YES;
-//                
-//                oldView.alphaValue = 0.0;
-//                newView.alphaValue = 1.0;
-//                
-//                [[self window] setFrame:newFrame display:YES];
-//            } completionHandler:^{
-//                [oldView removeFromSuperview];
-//                oldView.alphaValue = 1.0;
-//                
-//                newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
-//                
-//                [self adjustWindowResizing];
-//                
-//                [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
-//            }];
-//        }
-//        else {
+        if (shouldAnimate) {
+            [_containerView addSubview:newView];
+            
+            [newView setAlphaValue:0.0];
+            
+            [NSAnimationContext beginGrouping];
+            [[NSAnimationContext currentContext] setDuration:0.25];
+            
+            [[[self window] animator] setFrame:[self frameForView:newView] display:YES];
+            [[oldView animator] setAlphaValue:0.0];
+            [[newView animator] setAlphaValue:1.0];
+            
+            [NSAnimationContext endGrouping];
+        }
+        else {
             if (newView != nil) {
                 [_containerView setSubviews:@[newView]];
             }
             else {
                 [_containerView setSubviews:@[]];
             }
-            [[self window] setFrame:newFrame display:YES animate:shouldAnimate];
-//            newView.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+            [[self window] setFrame:newFrame display:YES animate:NO];
+            
             [self adjustWindowResizing];
-            [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
-//        }
+            
+            [[self window] makeFirstResponder:[[_currentPane view] nextKeyView]];
+        }
     }
-    
     
     [[self window] setTitle:[[_toolbarItems objectForKey:identifier] label]];
     [_toolbar setSelectedItemIdentifier:[_currentPane identifier]];
@@ -354,6 +353,27 @@
     }
     
     [self didChangeValueForKey:@"currentPane"];
+}
+
+- (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag {
+    if ([[[[self window] contentView] subviews] count] > 1) {
+        NSView *subview = nil;
+        
+        NSEnumerator *subviewsEnum = [[[[self window] contentView] subviews] reverseObjectEnumerator];
+        [subviewsEnum nextObject];
+        
+        while ((subview = [subviewsEnum nextObject]) != nil) {
+            [subview removeFromSuperviewWithoutNeedingDisplay];
+            [subview setAlphaValue:1.0];
+        }
+        
+        _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+        
+        [self adjustWindowResizing];
+        
+        [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
+        [_containerView setNeedsDisplay:YES];
+    }
 }
 
 - (NSRect)frameForView:(NSView *)view {
@@ -434,10 +454,6 @@
 - (void)drawRect:(NSRect)dirtyRect {
     [[NSColor windowBackgroundColor] set];
     NSRectFillUsingOperation([self bounds], NSCompositeSourceOver);
-}
-
-- (BOOL)isFlipped {
-    return YES;
 }
 
 @end
