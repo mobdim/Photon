@@ -23,6 +23,9 @@
 #import <Photon/PXFormatBarPopUpButton.h>
 #import <Photon/PXFormatBarSegmentedControl.h>
 #import <Photon/PXGeometry.h>
+#import <Photon/PXKeyCombination.h>
+#import <Photon/PXKeyCombinationField.h>
+#import <Photon/PXKeyCommand.h>
 #import <Photon/PXLabel.h>
 #import <Photon/PXNavigationBar.h>
 #import <Photon/PXNavigationController.h>

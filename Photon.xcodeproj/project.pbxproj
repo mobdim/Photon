@@ -20,6 +20,13 @@
 		027E7A1F16669AE2005DD0F6 /* PXPreferencePane.m in Sources */ = {isa = PBXBuildFile; fileRef = 027E7A1D16669AE2005DD0F6 /* PXPreferencePane.m */; };
 		02BF11C91600FC7E00AD782D /* NSColor+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02BF11CA1600FC7E00AD782D /* NSColor+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		02EEABED1894526900AF103E /* PXKeyCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 02EEABDF1894526900AF103E /* PXKeyCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02EEABEE1894526900AF103E /* PXKeyCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EEABE01894526900AF103E /* PXKeyCommand.m */; };
+		02EEABF31894526900AF103E /* PXKeyCombination.h in Headers */ = {isa = PBXBuildFile; fileRef = 02EEABE51894526900AF103E /* PXKeyCombination.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02EEABF41894526900AF103E /* PXKeyCombination.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EEABE61894526900AF103E /* PXKeyCombination.m */; };
+		02EEABF51894526900AF103E /* PXKeyCombinationField.h in Headers */ = {isa = PBXBuildFile; fileRef = 02EEABE71894526900AF103E /* PXKeyCombinationField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02EEABF61894526900AF103E /* PXKeyCombinationField.m in Sources */ = {isa = PBXBuildFile; fileRef = 02EEABE81894526900AF103E /* PXKeyCombinationField.m */; };
+		02EEABFC1895955500AF103E /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02EEABFB1895955500AF103E /* Carbon.framework */; };
 		EA05512F17D507E400B8A084 /* PXView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA05512D17D507E400B8A084 /* PXView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA05513017D507E400B8A084 /* PXView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA05512E17D507E400B8A084 /* PXView.m */; };
 		EA30302315001F5A0062D399 /* PXAnchoredButton.h in Headers */ = {isa = PBXBuildFile; fileRef = EA30301B15001F5A0062D399 /* PXAnchoredButton.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -111,6 +118,15 @@
 		027E7A1D16669AE2005DD0F6 /* PXPreferencePane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPreferencePane.m; sourceTree = "<group>"; };
 		02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+PhotonAdditions.h"; sourceTree = "<group>"; };
 		02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+PhotonAdditions.m"; sourceTree = "<group>"; };
+		02EEABDF1894526900AF103E /* PXKeyCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXKeyCommand.h; sourceTree = "<group>"; };
+		02EEABE01894526900AF103E /* PXKeyCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXKeyCommand.m; sourceTree = "<group>"; };
+		02EEABE51894526900AF103E /* PXKeyCombination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXKeyCombination.h; sourceTree = "<group>"; };
+		02EEABE61894526900AF103E /* PXKeyCombination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXKeyCombination.m; sourceTree = "<group>"; };
+		02EEABE71894526900AF103E /* PXKeyCombinationField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXKeyCombinationField.h; sourceTree = "<group>"; };
+		02EEABE81894526900AF103E /* PXKeyCombinationField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXKeyCombinationField.m; sourceTree = "<group>"; };
+		02EEABE91894526900AF103E /* PXKeyCombinationFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXKeyCombinationFieldCell.h; sourceTree = "<group>"; };
+		02EEABEA1894526900AF103E /* PXKeyCombinationFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXKeyCombinationFieldCell.m; sourceTree = "<group>"; };
+		02EEABFB1895955500AF103E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		EA05512917D5030400B8A084 /* PXControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXControl.h; sourceTree = "<group>"; };
 		EA05512A17D5030400B8A084 /* PXControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXControl.m; sourceTree = "<group>"; };
 		EA05512D17D507E400B8A084 /* PXView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXView.h; sourceTree = "<group>"; };
@@ -197,6 +213,7 @@
 			files = (
 				EA44B295149B21FF00C5D440 /* Cocoa.framework in Frameworks */,
 				EA44B2E9149B277700C5D440 /* QuartzCore.framework in Frameworks */,
+				02EEABFC1895955500AF103E /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +237,21 @@
 				02714F7315AA31BE001FA6A1 /* PXTreeNode.m */,
 			);
 			path = Trees;
+			sourceTree = "<group>";
+		};
+		02EEABDE1894524900AF103E /* Key Combinations */ = {
+			isa = PBXGroup;
+			children = (
+				02EEABDF1894526900AF103E /* PXKeyCommand.h */,
+				02EEABE01894526900AF103E /* PXKeyCommand.m */,
+				02EEABE51894526900AF103E /* PXKeyCombination.h */,
+				02EEABE61894526900AF103E /* PXKeyCombination.m */,
+				02EEABE71894526900AF103E /* PXKeyCombinationField.h */,
+				02EEABE81894526900AF103E /* PXKeyCombinationField.m */,
+				02EEABE91894526900AF103E /* PXKeyCombinationFieldCell.h */,
+				02EEABEA1894526900AF103E /* PXKeyCombinationFieldCell.m */,
+			);
+			path = "Key Combinations";
 			sourceTree = "<group>";
 		};
 		EA30301A15001F360062D399 /* Button Bars */ = {
@@ -263,6 +295,7 @@
 			children = (
 				EA44B294149B21FF00C5D440 /* Cocoa.framework */,
 				EA44B2E8149B277700C5D440 /* QuartzCore.framework */,
+				02EEABFB1895955500AF103E /* Carbon.framework */,
 				EA44B296149B21FF00C5D440 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -292,6 +325,7 @@
 				EA44B2C6149B251300C5D440 /* Navigation */,
 				EA44B2C7149B251E00C5D440 /* Preferences */,
 				EA9C52EE15211DB700F767C9 /* Controls */,
+				02EEABDE1894524900AF103E /* Key Combinations */,
 				EA30301A15001F360062D399 /* Button Bars */,
 				EADFB0DD151FC69200019165 /* Format Bars */,
 				02714F7015AA3171001FA6A1 /* Trees */,
@@ -487,15 +521,18 @@
 				EA9C52F315211DC400F767C9 /* PXColorPickerView.h in Headers */,
 				EA9C52F515211DC400F767C9 /* PXColorWell.h in Headers */,
 				02714F7415AA31BE001FA6A1 /* PXTreeNode.h in Headers */,
+				02EEABED1894526900AF103E /* PXKeyCommand.h in Headers */,
 				024C649315F961A60064D8DF /* PXSwitch.h in Headers */,
 				021B1DCE15FA98FB0086B303 /* PXNavigationItem_Private.h in Headers */,
 				021B1DD215FAA74A0086B303 /* PXBarButtonItem.h in Headers */,
+				02EEABF51894526900AF103E /* PXKeyCombinationField.h in Headers */,
 				EAB804C215FAF18600E3BE96 /* PXNavigationBackButtonCell.h in Headers */,
 				02BF11C91600FC7E00AD782D /* NSColor+PhotonAdditions.h in Headers */,
 				027E7A1E16669AE2005DD0F6 /* PXPreferencePane.h in Headers */,
 				0246DDA616D836DD00A63752 /* NSObject+PhotonAdditions.h in Headers */,
 				EACC146516DF124900023E13 /* PXAccessibility.h in Headers */,
 				EA68A30416E71E2A00417D0B /* PXLabel.h in Headers */,
+				02EEABF31894526900AF103E /* PXKeyCombination.h in Headers */,
 				EABAAF33178276B6004B6CF8 /* PXPopover.h in Headers */,
 				EABAAF34178276B6004B6CF8 /* PXPopover_Private.h in Headers */,
 			);
@@ -568,13 +605,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA44B2A3149B21FF00C5D440 /* Photon.m in Sources */,
+				02EEABEE1894526900AF103E /* PXKeyCommand.m in Sources */,
 				EA44B2B6149B22F800C5D440 /* PXViewController.m in Sources */,
+				02EEABF41894526900AF103E /* PXKeyCombination.m in Sources */,
 				EA05513017D507E400B8A084 /* PXView.m in Sources */,
 				EA44B2C0149B23C300C5D440 /* PXTabBar.m in Sources */,
 				EA44B2C2149B23C300C5D440 /* PXTabBarController.m in Sources */,
 				EA44B2C4149B23C300C5D440 /* PXTabBarItem.m in Sources */,
 				EA44B2DA149B254F00C5D440 /* PXNavigationItem.m in Sources */,
 				EA44B2DC149B254F00C5D440 /* PXNavigationBar.m in Sources */,
+				02EEABF61894526900AF103E /* PXKeyCombinationField.m in Sources */,
 				EA44B2DE149B254F00C5D440 /* PXNavigationController.m in Sources */,
 				EA44B2E6149B255500C5D440 /* PXPreferencesController.m in Sources */,
 				EA30302415001F5A0062D399 /* PXAnchoredButton.m in Sources */,
