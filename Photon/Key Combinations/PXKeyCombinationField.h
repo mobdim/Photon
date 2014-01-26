@@ -33,6 +33,6 @@
 
 @optional
 
-- (void)keyCombinationFieldDidChange:(PXKeyCombinationField *)aField;
+- (void)keyCombinationFieldDidChange:(PXKeyCombinationField *)field;
 
 @end

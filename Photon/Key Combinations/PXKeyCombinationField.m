@@ -47,26 +47,12 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(systemColorsDidChange:) name:NSSystemColorsDidChangeNotification object:nil];
         
         [self updateTrackingAreas];
-        
-        [self addObserver:self forKeyPath:@"keyCombination" options:(NSKeyValueObservingOptionNew) context:nil];
 	}
 	return self;
 }
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSSystemColorsDidChangeNotification object:nil];
-    [self removeObserver:self forKeyPath:@"keyCombination"];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (object == self && [keyPath isEqualToString:@"keyCombination"]) {
-		if ([self.delegate respondsToSelector:@selector(keyCombinationFieldDidChange:)]) {
-			[self.delegate keyCombinationFieldDidChange:self];
-        }
-	}
-	else {
-		[super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
-	}
 }
 
 - (void)systemColorsDidChange:(NSNotification *)notification {
@@ -594,6 +580,9 @@
             if (self.action != NULL) {
                 [[NSApplication sharedApplication] sendAction:self.action to:self.target from:self];
             }
+            if ([self.delegate respondsToSelector:@selector(keyCombinationFieldDidChange:)]) {
+                [self.delegate keyCombinationFieldDidChange:self];
+            }
         }
     }
     else if ([self mouse:thePoint inRect:[self bounds]] && !_recording) {
@@ -719,6 +708,9 @@
                         if (self.action != NULL) {
                             [[NSApplication sharedApplication] sendAction:self.action to:self.target from:self];
                         }
+                        if ([self.delegate respondsToSelector:@selector(keyCombinationFieldDidChange:)]) {
+                            [self.delegate keyCombinationFieldDidChange:self];
+                        }
                         return YES;
                         
                     default:
@@ -773,6 +765,9 @@
                             self.keyCombination = combination;
                             if (self.action != NULL) {
                                 [[NSApplication sharedApplication] sendAction:self.action to:self.target from:self];
+                            }
+                            if ([self.delegate respondsToSelector:@selector(keyCombinationFieldDidChange:)]) {
+                                [self.delegate keyCombinationFieldDidChange:self];
                             }
                         }
                     }

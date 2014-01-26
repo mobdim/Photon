@@ -91,6 +91,8 @@ static NSString * const PXKeyCommandIDAssociationKey = @"PXKeyCommandIDAssociati
     
     pointerValue = [NSValue valueWithPointer:carbonHotKey];
     
+    [__keyCommandsByID setObject:keyCommand forKey:[NSNumber numberWithInteger:hotKeyID.id]];
+    
     objc_setAssociatedObject(keyCommand, (__bridge void *)PXKeyCommandCarbonHotKeyAssociationKey, pointerValue, OBJC_ASSOCIATION_RETAIN);
     objc_setAssociatedObject(keyCommand, (__bridge void *)PXKeyCommandIDAssociationKey, [NSNumber numberWithInteger:hotKeyID.id], OBJC_ASSOCIATION_RETAIN);
     
@@ -230,6 +232,7 @@ static OSStatus PXKeyCommandHotKeyEventHandler(EventHandlerCallRef inHandlerRef,
             array = [NSMutableArray array];
             [_targetsToActions setObject:array forKey:target];
         }
+        [array addObject:NSStringFromSelector(action)];
     }
     else {
         [_responderChainActions addObject:NSStringFromSelector(action)];
