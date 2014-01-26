@@ -591,6 +591,9 @@
         else {
             // Mouse was over the remove image, reset all
             [self setKeyCombination:nil];
+            if (self.action != NULL) {
+                [[NSApplication sharedApplication] sendAction:self.action to:self.target from:self];
+            }
         }
     }
     else if ([self mouse:thePoint inRect:[self bounds]] && !_recording) {
@@ -713,6 +716,9 @@
                     case 0x7F:   // left delete
                     case 0xF728: // right delete
                         [self setKeyCombination:nil];
+                        if (self.action != NULL) {
+                            [[NSApplication sharedApplication] sendAction:self.action to:self.target from:self];
+                        }
                         return YES;
                         
                     default:
@@ -765,6 +771,9 @@
                         else {
                             // All ok, set new combination
                             self.keyCombination = combination;
+                            if (self.action != NULL) {
+                                [[NSApplication sharedApplication] sendAction:self.action to:self.target from:self];
+                            }
                         }
                     }
                     else {
