@@ -558,12 +558,21 @@
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
+    NSPoint thePoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+	NSRect trackingRect = [self removeButtonRectForFrame:[self bounds]];
+    
     _mouseDown = YES;
+    _mouseInsideTrackingArea = [self mouse:thePoint inRect:trackingRect];
     
     [self setNeedsDisplay:YES];
 }
 
 - (void)mouseDragged:(NSEvent *)theEvent {
+    NSPoint thePoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+	NSRect trackingRect = [self removeButtonRectForFrame:[self bounds]];
+    
+    _mouseInsideTrackingArea = [self mouse:thePoint inRect:trackingRect];
+    
     [self setNeedsDisplay:YES];
 }
 

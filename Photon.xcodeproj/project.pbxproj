@@ -124,8 +124,6 @@
 		02EEABE61894526900AF103E /* PXKeyCombination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXKeyCombination.m; sourceTree = "<group>"; };
 		02EEABE71894526900AF103E /* PXKeyCombinationField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXKeyCombinationField.h; sourceTree = "<group>"; };
 		02EEABE81894526900AF103E /* PXKeyCombinationField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXKeyCombinationField.m; sourceTree = "<group>"; };
-		02EEABE91894526900AF103E /* PXKeyCombinationFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXKeyCombinationFieldCell.h; sourceTree = "<group>"; };
-		02EEABEA1894526900AF103E /* PXKeyCombinationFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXKeyCombinationFieldCell.m; sourceTree = "<group>"; };
 		02EEABFB1895955500AF103E /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		EA05512917D5030400B8A084 /* PXControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXControl.h; sourceTree = "<group>"; };
 		EA05512A17D5030400B8A084 /* PXControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXControl.m; sourceTree = "<group>"; };
@@ -248,8 +246,6 @@
 				02EEABE61894526900AF103E /* PXKeyCombination.m */,
 				02EEABE71894526900AF103E /* PXKeyCombinationField.h */,
 				02EEABE81894526900AF103E /* PXKeyCombinationField.m */,
-				02EEABE91894526900AF103E /* PXKeyCombinationFieldCell.h */,
-				02EEABEA1894526900AF103E /* PXKeyCombinationFieldCell.m */,
 			);
 			path = "Key Combinations";
 			sourceTree = "<group>";
