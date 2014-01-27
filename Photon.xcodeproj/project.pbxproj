@@ -18,6 +18,8 @@
 		02714F7515AA31BE001FA6A1 /* PXTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 02714F7315AA31BE001FA6A1 /* PXTreeNode.m */; };
 		027E7A1E16669AE2005DD0F6 /* PXPreferencePane.h in Headers */ = {isa = PBXBuildFile; fileRef = 027E7A1C16669AE2005DD0F6 /* PXPreferencePane.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		027E7A1F16669AE2005DD0F6 /* PXPreferencePane.m in Sources */ = {isa = PBXBuildFile; fileRef = 027E7A1D16669AE2005DD0F6 /* PXPreferencePane.m */; };
+		02B283E71895EB12002ED057 /* PXFormatBar-DoubleArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EA9C52DA15211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf */; };
+		02B283E81895EB12002ED057 /* PXFormatBar-SingleArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EA9C52DB15211D3100F767C9 /* PXFormatBar-SingleArrow.pdf */; };
 		02BF11C91600FC7E00AD782D /* NSColor+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02BF11CA1600FC7E00AD782D /* NSColor+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		02EEABED1894526900AF103E /* PXKeyCommand.h in Headers */ = {isa = PBXBuildFile; fileRef = 02EEABDF1894526900AF103E /* PXKeyCommand.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -69,8 +71,6 @@
 		EA76D4D7151D33070049443D /* PXGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4D5151D33070049443D /* PXGeometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA76D4D8151D33070049443D /* PXGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D4D6151D33070049443D /* PXGeometry.m */; };
 		EA94C7081665D9E200222A9D /* PXAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = EA94C7071665D9E200222A9D /* PXAppearance.m */; };
-		EA9C52E415211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EA9C52DA15211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf */; };
-		EA9C52E515211D3100F767C9 /* PXFormatBar-SingleArrow.pdf in Resources */ = {isa = PBXBuildFile; fileRef = EA9C52DB15211D3100F767C9 /* PXFormatBar-SingleArrow.pdf */; };
 		EA9C52E615211D3100F767C9 /* PXFormatBarColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52DC15211D3100F767C9 /* PXFormatBarColorWell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA9C52E715211D3100F767C9 /* PXFormatBarColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52DD15211D3100F767C9 /* PXFormatBarColorWell.m */; };
 		EA9C52E815211D3100F767C9 /* PXFormatBarComboBox.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52DE15211D3100F767C9 /* PXFormatBarComboBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -587,9 +587,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA44B29F149B21FF00C5D440 /* InfoPlist.strings in Resources */,
+				02B283E71895EB12002ED057 /* PXFormatBar-DoubleArrow.pdf in Resources */,
 				EA41D8111506882700C48503 /* PXAnchoredPopUpButtonPullDownArrow.pdf in Resources */,
-				EA9C52E415211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf in Resources */,
-				EA9C52E515211D3100F767C9 /* PXFormatBar-SingleArrow.pdf in Resources */,
+				02B283E81895EB12002ED057 /* PXFormatBar-SingleArrow.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
