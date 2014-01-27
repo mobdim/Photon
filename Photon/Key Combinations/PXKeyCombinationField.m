@@ -31,6 +31,8 @@
 - (id)initWithFrame:(NSRect)frameRect {
 	self = [super initWithFrame:frameRect];
 	if (self) {
+        self.enabled = YES;
+        
         // Initialize the validator object
         _validator = [[PXKeyCombinationValidator alloc] init];
         
@@ -79,7 +81,7 @@
         CGKeyCode keyCode = [[self keyCombination] keyCode];
         PXKeyModifierFlags flags = [[self keyCombination] modifierFlags];
 		PXKeyCombination *combination = [[PXKeyCombination alloc] initWithKeyCode:keyCode modifierFlags:[self filteredModifierFlags:flags]];
-		[self setKeyCombination:combination];
+		self.keyCombination = combination;
 	}
 }
 
@@ -99,7 +101,7 @@
         CGKeyCode keyCode = [[self keyCombination] keyCode];
         PXKeyModifierFlags flags = [[self keyCombination] modifierFlags];
 		PXKeyCombination *combination = [[PXKeyCombination alloc] initWithKeyCode:keyCode modifierFlags:[self filteredModifierFlags:flags]];
-		[self setKeyCombination:combination];
+		self.keyCombination = combination;
 	}
 }
 
@@ -576,13 +578,14 @@
         }
         else {
             // Mouse was over the remove image, reset all
-            [self setKeyCombination:nil];
+            self.keyCombination = nil;
             if (self.action != NULL) {
                 [[NSApplication sharedApplication] sendAction:self.action to:self.target from:self];
             }
             if ([self.delegate respondsToSelector:@selector(keyCombinationFieldDidChange:)]) {
                 [self.delegate keyCombinationFieldDidChange:self];
             }
+            NSAccessibilityPostNotification(self, NSAccessibilityValueChangedNotification);
         }
     }
     else if ([self mouse:thePoint inRect:[self bounds]] && !_recording) {
@@ -704,13 +707,14 @@
                         
                     case 0x7F:   // left delete
                     case 0xF728: // right delete
-                        [self setKeyCombination:nil];
+                        self.keyCombination = nil;
                         if (self.action != NULL) {
                             [[NSApplication sharedApplication] sendAction:self.action to:self.target from:self];
                         }
                         if ([self.delegate respondsToSelector:@selector(keyCombinationFieldDidChange:)]) {
                             [self.delegate keyCombinationFieldDidChange:self];
                         }
+                        NSAccessibilityPostNotification(self, NSAccessibilityValueChangedNotification);
                         return YES;
                         
                     default:
@@ -769,6 +773,7 @@
                             if ([self.delegate respondsToSelector:@selector(keyCombinationFieldDidChange:)]) {
                                 [self.delegate keyCombinationFieldDidChange:self];
                             }
+                            NSAccessibilityPostNotification(self, NSAccessibilityValueChangedNotification);
                         }
                     }
                     else {
@@ -785,6 +790,7 @@
                 if ([self.delegate respondsToSelector:@selector(keyCombinationFieldDidChange:)]) {
                     [self.delegate keyCombinationFieldDidChange:self];
                 }
+                NSAccessibilityPostNotification(self, NSAccessibilityValueChangedNotification);
             }
             
             // Reset values and redisplay
@@ -827,10 +833,78 @@
 }
 
 - (void)keyDown:(NSEvent *)theEvent {
-	if ([[self cell] performKeyEquivalent:theEvent]) {
+	if ([self performKeyEquivalent:theEvent]) {
         return;
     }
     [super keyDown:theEvent];
+}
+
+
+#pragma mark -
+#pragma mark Accessibility
+
+- (BOOL)accessibilityIsIgnored {
+    return NO;
+}
+
+- (NSArray *)accessibilityAttributeNames {
+    NSMutableArray *attributeNames = [[super accessibilityAttributeNames] mutableCopy];
+    [attributeNames addObject:NSAccessibilityEnabledAttribute];
+    return attributeNames;
+}
+
+- (id)accessibilityAttributeValue:(NSString *)attribute {
+    if ([attribute isEqualToString:NSAccessibilityRoleAttribute]) {
+        return NSAccessibilityTextFieldRole;
+    }
+    else if ([attribute isEqualToString:NSAccessibilityValueAttribute]) {
+        if (self.keyCombination != nil) {
+            return [PXKeyCombination stringForKeyCode:self.keyCombination.keyCode modifierFlags:self.keyCombination.modifierFlags];
+        }
+        else {
+            return nil;
+        }
+    }
+    else if ([attribute isEqualToString:NSAccessibilityEnabledAttribute]) {
+        return @(self.enabled);
+    }
+    return [super accessibilityAttributeValue:attribute];
+}
+
+- (NSArray *)accessibilityActionNames {
+    if (_recording) {
+        return [NSArray arrayWithObjects:NSAccessibilityCancelAction, NSAccessibilityDeleteAction, nil];
+    }
+    else {
+        return [NSArray arrayWithObjects:NSAccessibilityPressAction, nil];
+    }
+}
+
+- (void)accessibilityPerformAction:(NSString *)action {
+    if ([action isEqualToString:NSAccessibilityPressAction]) {
+        if (self.enabled) {
+            [[self window] makeFirstResponder:self];
+            [self startRecording];
+        }
+    }
+    else if ([action isEqualToString:NSAccessibilityCancelAction]) {
+        if (self.enabled) {
+            _recordingModifierFlags = 0;
+            [self endRecording];
+        }
+    }
+    else if ([action isEqualToString:NSAccessibilityDeleteAction]) {
+        if (self.enabled) {
+            self.keyCombination = nil;
+            if (self.action != NULL) {
+                [[NSApplication sharedApplication] sendAction:self.action to:self.target from:self];
+            }
+            if ([self.delegate respondsToSelector:@selector(keyCombinationFieldDidChange:)]) {
+                [self.delegate keyCombinationFieldDidChange:self];
+            }
+            NSAccessibilityPostNotification(self, NSAccessibilityValueChangedNotification);
+        }
+    }
 }
 
 @end

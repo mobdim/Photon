@@ -13,11 +13,16 @@
 @protocol PXKeyCombinationFieldDelegate;
 
 
-@interface PXKeyCombinationField : NSControl
+@interface PXKeyCombinationField : NSView
 
 @property (weak) IBOutlet id <PXKeyCombinationFieldDelegate> delegate;
 
 @property (copy) PXKeyCombination *keyCombination;
+
+@property (getter=isEnabled) BOOL enabled;
+
+@property (weak) id target;
+@property (assign) SEL action;
 
 @property PXKeyModifierFlags allowedModifierFlags;	/* Set the allowed modifiers */
 @property PXKeyModifierFlags requiredModifierFlags;	/* Set the required modifiers */
