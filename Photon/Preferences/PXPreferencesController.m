@@ -101,14 +101,19 @@
     }
     
     if (_toolbar == nil) {
-        _toolbar = [[NSToolbar alloc] initWithIdentifier:nil];
+        NSString *autosaveIdentifier = self.autosaveIdentifier;
+        
+        NSString *toolbarIdentifier = autosaveIdentifier;
+        if (toolbarIdentifier == nil) {
+            toolbarIdentifier = [[NSUUID UUID] UUIDString];
+        }
+        _toolbar = [[NSToolbar alloc] initWithIdentifier:toolbarIdentifier];
         [_toolbar setDelegate:self];
         [_toolbar setAllowsUserCustomization:NO];
         [_toolbar setAutosavesConfiguration:NO];
         [_window setToolbar:_toolbar];
         
         NSString *identifier = nil;
-        NSString *autosaveIdentifier = self.autosaveIdentifier;
         if (autosaveIdentifier != nil) {
             NSString *selectedPanePreferenceKey = [NSString stringWithFormat:@"%@:SelectedPaneIdentifier", autosaveIdentifier];
             identifier = [[NSUserDefaults standardUserDefaults] stringForKey:selectedPanePreferenceKey];
