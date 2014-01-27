@@ -101,19 +101,17 @@
     }
     
     if (_toolbar == nil) {
-        if (self.autosaveIdentifier == nil) {
-            self.autosaveIdentifier = @"PXPreferencesToolbar";
-        }
-        _toolbar = [[NSToolbar alloc] initWithIdentifier:self.autosaveIdentifier];
+        _toolbar = [[NSToolbar alloc] initWithIdentifier:nil];
         [_toolbar setDelegate:self];
         [_toolbar setAllowsUserCustomization:NO];
         [_toolbar setAutosavesConfiguration:NO];
         [_window setToolbar:_toolbar];
         
         NSString *identifier = nil;
-        if ([self autosaveIdentifier] != nil) {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            identifier = [defaults stringForKey:[self autosaveIdentifier]];
+        NSString *autosaveIdentifier = self.autosaveIdentifier;
+        if (autosaveIdentifier != nil) {
+            NSString *selectedPanePreferenceKey = [NSString stringWithFormat:@"%@:SelectedPaneIdentifier", autosaveIdentifier];
+            identifier = [[NSUserDefaults standardUserDefaults] stringForKey:selectedPanePreferenceKey];
             if ([self preferencePaneWithIdentifier:identifier] == nil) {
                 identifier = nil;
             }
@@ -347,9 +345,10 @@
     [_currentPane addObserver:self forKeyPath:@"minSize" options:(NSKeyValueObservingOptionNew) context:nil];
     [_currentPane addObserver:self forKeyPath:@"maxSize" options:(NSKeyValueObservingOptionNew) context:nil];
     
-    if ([self autosaveIdentifier] != nil) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:identifier forKey:[self autosaveIdentifier]];
+    NSString *autosaveIdentifier = self.autosaveIdentifier;
+    if (autosaveIdentifier != nil) {
+        NSString *selectedPanePreferenceKey = [NSString stringWithFormat:@"%@:SelectedPaneIdentifier", autosaveIdentifier];
+        [[NSUserDefaults standardUserDefaults] setObject:identifier forKey:selectedPanePreferenceKey];
     }
     
     [self didChangeValueForKey:@"currentPane"];
