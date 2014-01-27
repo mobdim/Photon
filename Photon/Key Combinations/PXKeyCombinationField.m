@@ -372,7 +372,7 @@
                                         textShadow, NSShadowAttributeName,
                                         nil];
         
-        NSString *text = NSLocalizedStringFromTable(@"Type a new shortcut", @"KeyCombinations", nil);
+        NSString *text = NSLocalizedStringFromTable(@"No shortcut chosen", @"KeyCombinations", nil);
         NSSize textSize = [text sizeWithAttributes:textAttributes];
         [text drawInRect:NSMakeRect(10.0, round(([self bounds].size.height - textSize.height) / 2.0), textSize.width, textSize.height) withAttributes:textAttributes];
     }
@@ -775,6 +775,15 @@
                         // Invalid character
                         NSBeep();
                     }
+                }
+            }
+            else if ([theEvent keyCode] == kVK_Delete) {
+                self.keyCombination = nil;
+                if (self.action != NULL) {
+                    [[NSApplication sharedApplication] sendAction:self.action to:self.target from:self];
+                }
+                if ([self.delegate respondsToSelector:@selector(keyCombinationFieldDidChange:)]) {
+                    [self.delegate keyCombinationFieldDidChange:self];
                 }
             }
             
