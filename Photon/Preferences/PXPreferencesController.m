@@ -302,6 +302,9 @@
     NSView *newView = [[_preferencePanes objectForKey:identifier] view];
     NSView *oldView = [[_containerView subviews] lastObject];
     
+    [_disappearingPane viewWillDisappear:shouldAnimate];
+    [_currentPane viewWillAppear:shouldAnimate];
+    
     if (![newView isEqual:oldView]) {
         newView.frame = newView.bounds;
         
@@ -339,6 +342,9 @@
             [self adjustWindowResizing];
             
             [[self window] makeFirstResponder:[[_currentPane view] nextKeyView]];
+            
+            [_disappearingPane viewDidDisappear:shouldAnimate];
+            [_currentPane viewDidAppear:shouldAnimate];
         }
     }
     
@@ -360,10 +366,10 @@
 }
 
 - (void)animationDidStop:(CAAnimation *)animation finished:(BOOL)flag {
-    if ([[[[self window] contentView] subviews] count] > 1) {
+    if ([[_containerView subviews] count] > 1) {
         NSView *subview = nil;
         
-        NSEnumerator *subviewsEnum = [[[[self window] contentView] subviews] reverseObjectEnumerator];
+        NSEnumerator *subviewsEnum = [[_containerView subviews] reverseObjectEnumerator];
         [subviewsEnum nextObject];
         
         while ((subview = [subviewsEnum nextObject]) != nil) {
@@ -374,6 +380,9 @@
         _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
         
         [self adjustWindowResizing];
+        
+        [_disappearingPane viewDidDisappear:YES];
+        [_currentPane viewDidAppear:YES];
         
         [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
         [_containerView setNeedsDisplay:YES];

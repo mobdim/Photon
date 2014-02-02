@@ -162,8 +162,8 @@ static NSString * const PXViewControllerChildViewControllersKey = @"PXViewContro
 + (void)px_installViewControllerSupport {
     if (self == [NSView class]) {
         [self px_exchangeInstanceMethodForSelector:@selector(setNextResponder:) withSelector:@selector(px_setNextResponder:)];
-        [self px_exchangeInstanceMethodForSelector:@selector(viewWillMoveToWindow:) withSelector:@selector(px_viewWillMoveToWindow:)];
-        [self px_exchangeInstanceMethodForSelector:@selector(viewDidMoveToWindow) withSelector:@selector(px_viewDidMoveToWindow)];
+//        [self px_exchangeInstanceMethodForSelector:@selector(viewWillMoveToWindow:) withSelector:@selector(px_viewWillMoveToWindow:)];
+//        [self px_exchangeInstanceMethodForSelector:@selector(viewDidMoveToWindow) withSelector:@selector(px_viewDidMoveToWindow)];
     }
 }
 
@@ -171,42 +171,42 @@ static NSString * const PXViewControllerChildViewControllersKey = @"PXViewContro
 #pragma mark -
 #pragma mark View Hierarchy
 
-static NSString * const PXViewIsAppearingKey = @"PXViewIsAppearing";
-static NSString * const PXViewIsDisappearingKey = @"PXViewIsDisappearing";
-
-- (void)px_viewWillMoveToWindow:(NSWindow *)window {
-    if ([self window] != nil && window == nil) {
-        [[self px_viewController] viewWillDisappear:YES];
-        objc_setAssociatedObject(self, (__bridge void *)PXViewIsDisappearingKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    else {
-        objc_setAssociatedObject(self, (__bridge void *)PXViewIsDisappearingKey, @NO, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    
-    if ([self window] == nil && window != nil) {
-        [[self px_viewController] viewWillAppear:YES];
-        objc_setAssociatedObject(self, (__bridge void *)PXViewIsAppearingKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    else {
-        objc_setAssociatedObject(self, (__bridge void *)PXViewIsAppearingKey, @NO, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    }
-    
-    [self px_viewWillMoveToWindow:window];
-}
-
-- (void)px_viewDidMoveToWindow {
-    [self px_viewDidMoveToWindow];
-    
-    if ([objc_getAssociatedObject(self, (__bridge void *)PXViewIsDisappearingKey) boolValue]) {
-        [[self px_viewController] viewDidDisappear:YES];
-    }
-    if ([objc_getAssociatedObject(self, (__bridge void *)PXViewIsAppearingKey) boolValue]) {
-        [[self px_viewController] viewDidAppear:YES];
-    }
-    
-    objc_setAssociatedObject(self, (__bridge void *)PXViewIsDisappearingKey, @NO, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    objc_setAssociatedObject(self, (__bridge void *)PXViewIsAppearingKey, @NO, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
+//static NSString * const PXViewIsAppearingKey = @"PXViewIsAppearing";
+//static NSString * const PXViewIsDisappearingKey = @"PXViewIsDisappearing";
+//
+//- (void)px_viewWillMoveToWindow:(NSWindow *)window {
+//    if ([self window] != nil && window == nil) {
+//        [[self px_viewController] viewWillDisappear:YES];
+//        objc_setAssociatedObject(self, (__bridge void *)PXViewIsDisappearingKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//    }
+//    else {
+//        objc_setAssociatedObject(self, (__bridge void *)PXViewIsDisappearingKey, @NO, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//    }
+//    
+//    if ([self window] == nil && window != nil) {
+//        [[self px_viewController] viewWillAppear:YES];
+//        objc_setAssociatedObject(self, (__bridge void *)PXViewIsAppearingKey, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//    }
+//    else {
+//        objc_setAssociatedObject(self, (__bridge void *)PXViewIsAppearingKey, @NO, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//    }
+//    
+//    [self px_viewWillMoveToWindow:window];
+//}
+//
+//- (void)px_viewDidMoveToWindow {
+//    [self px_viewDidMoveToWindow];
+//    
+//    if ([objc_getAssociatedObject(self, (__bridge void *)PXViewIsDisappearingKey) boolValue]) {
+//        [[self px_viewController] viewDidDisappear:YES];
+//    }
+//    if ([objc_getAssociatedObject(self, (__bridge void *)PXViewIsAppearingKey) boolValue]) {
+//        [[self px_viewController] viewDidAppear:YES];
+//    }
+//    
+//    objc_setAssociatedObject(self, (__bridge void *)PXViewIsDisappearingKey, @NO, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//    objc_setAssociatedObject(self, (__bridge void *)PXViewIsAppearingKey, @NO, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//}
 
 
 #pragma mark -
