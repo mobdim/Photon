@@ -28,6 +28,7 @@
     
     PXPreferencePane *_currentPane;
     PXPreferencePane *_disappearingPane;
+    BOOL _animating;
     
     NSToolbar *_toolbar;
 }
@@ -248,6 +249,10 @@
 #pragma mark Animation
 
 - (void)toggleActivePreferenceView:(NSToolbarItem *)item {
+    if (_animating) {
+        [_toolbar setSelectedItemIdentifier:_currentPane.identifier];
+        return;
+    }
     NSString *identifier = [item itemIdentifier];
     PXPreferencePane *oldPane = _currentPane;
     PXPreferencePane *newPane = [_preferencePanes objectForKey:identifier];
@@ -321,9 +326,12 @@
             
             [newView setAlphaValue:0.0];
             
+            _animating = YES;
+            
             [NSAnimationContext beginGrouping];
             [[NSAnimationContext currentContext] setDuration:0.25];
             
+//            [[self window] setFrame:newFrame display:YES animate:YES];
             [[[self window] animator] setFrame:newFrame display:YES];
             [[oldView animator] setAlphaValue:0.0];
             [[newView animator] setAlphaValue:1.0];
@@ -381,6 +389,7 @@
         [_currentPane viewDidAppear:YES];
         
         if (flag) {
+            _animating = NO;
             [self adjustWindowResizing];
             _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
             [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
@@ -390,15 +399,10 @@
 }
 
 - (NSRect)frameForView:(NSView *)view {
-    NSRect windowFrame = [[self window] frame];
-    NSRect contentRect = [[self window] contentRectForFrameRect:windowFrame];
-    CGFloat windowTitleAndToolbarHeight = NSHeight(windowFrame) - NSHeight(contentRect);
-    
-    windowFrame.size.height = NSHeight([view frame]) + windowTitleAndToolbarHeight;
-    windowFrame.size.width = NSWidth([view frame]);
-    windowFrame.origin.y = NSMaxY([[self window] frame]) - NSHeight(windowFrame);
-    
-    return windowFrame;
+    NSRect frameRect = [[self window] frameRectForContentRect:[view bounds]];
+    frameRect.origin.x = [[self window] frame].origin.x;
+    frameRect.origin.y = NSMaxY([[self window] frame]) - NSHeight(frameRect);
+    return frameRect;
 }
 
 
