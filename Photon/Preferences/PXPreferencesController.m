@@ -324,7 +324,7 @@
             [NSAnimationContext beginGrouping];
             [[NSAnimationContext currentContext] setDuration:0.25];
             
-            [[[self window] animator] setFrame:[self frameForView:newView] display:YES];
+            [[[self window] animator] setFrame:newFrame display:YES];
             [[oldView animator] setAlphaValue:0.0];
             [[newView animator] setAlphaValue:1.0];
             
@@ -337,10 +337,10 @@
             else {
                 [_containerView setSubviews:@[]];
             }
-            [[self window] setFrame:newFrame display:YES animate:NO];
+            [[self window] setFrame:newFrame display:YES];
             
             [self adjustWindowResizing];
-            
+            _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
             [[self window] makeFirstResponder:[[_currentPane view] nextKeyView]];
             
             [_disappearingPane viewDidDisappear:shouldAnimate];
@@ -377,15 +377,15 @@
             [subview setAlphaValue:1.0];
         }
         
-        _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
-        
-        [self adjustWindowResizing];
-        
         [_disappearingPane viewDidDisappear:YES];
         [_currentPane viewDidAppear:YES];
         
-        [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
-        [_containerView setNeedsDisplay:YES];
+        if (flag) {
+            [self adjustWindowResizing];
+            _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
+            [[self window] makeFirstResponder:_currentPane.view.nextKeyView];
+            [_containerView setNeedsDisplay:YES];
+        }
     }
 }
 
