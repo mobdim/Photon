@@ -288,10 +288,14 @@
 }
 
 - (void)confirmedShowPreferencePaneWithIdentifier:(NSString *)identifier animate:(BOOL)shouldAnimate {
-    [self willChangeValueForKey:@"currentPane"];
-    
     PXPreferencePane *oldPane = _currentPane;
     PXPreferencePane *newPane = [_preferencePanes objectForKey:identifier];
+    
+    if (oldPane == newPane) {
+        return;
+    }
+    
+    [self willChangeValueForKey:@"currentPane"];
     
     [_currentPane removeObserver:self forKeyPath:@"view"];
     [_currentPane removeObserver:self forKeyPath:@"resizable"];
