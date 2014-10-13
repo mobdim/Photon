@@ -390,7 +390,8 @@ NSString * const PXColorWellCellWillPopUpColorPickerNotification = @"PXColorWell
     }
     
     NSWindow *parentWindow = [[self controlView] window];
-    NSPoint origin = [parentWindow convertBaseToScreen:[controlView convertPoint:NSMakePoint(cellFrame.origin.x, cellFrame.origin.y + cellFrame.size.height + 2.0) toView:nil]];
+    NSPoint origin = [controlView convertPoint:NSMakePoint(cellFrame.origin.x, cellFrame.origin.y + cellFrame.size.height + 2.0) toView:nil];
+    origin = [parentWindow convertRectToScreen:CGRectMake(origin.x, origin.y, 0.0, 0.0)].origin;
     origin.x -= round(fabs((cellFrame.size.width - [_popupWindow frame].size.width)) / 2.0);
     origin.y -= round(cellFrame.size.height * 0.75);
     

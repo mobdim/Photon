@@ -10,9 +10,6 @@
 #import "PXNavigationBar.h"
 #import "PXNavigationItem.h"
 
-#import "PXViewController.h"
-#import "PXViewController_Private.h"
-
 #import <objc/runtime.h>
 #import <QuartzCore/QuartzCore.h>
 
@@ -242,9 +239,7 @@
         for (NSViewController *controller in _viewControllers) {
             [controller setNavigationController:nil];
             
-            [controller willMoveToParentViewController:nil];
             [controller removeFromParentViewController];
-            [controller didMoveToParentViewController:nil];
         }
         
         [_viewControllers removeAllObjects];
@@ -354,9 +349,7 @@
         
         [topController setNavigationController:nil];
         
-        [topController willMoveToParentViewController:nil];
         [topController removeFromParentViewController];
-        [topController didMoveToParentViewController:nil];
         
         [_viewControllers removeObjectAtIndex:[_viewControllers count]-1];
         
@@ -389,9 +382,7 @@
         for (NSViewController *viewController in viewControllersToPop) {
             [viewController setNavigationController:nil];
             
-            [viewController willMoveToParentViewController:nil];
             [viewController removeFromParentViewController];
-            [viewController didMoveToParentViewController:nil];
         }
         
         [_viewControllers removeObjectsInRange:NSMakeRange(1, [_viewControllers count]-1)];
@@ -426,9 +417,7 @@
         for (NSViewController *viewController in viewControllersToPop) {
             [viewController setNavigationController:nil];
             
-            [viewController willMoveToParentViewController:nil];
             [viewController removeFromParentViewController];
-            [viewController didMoveToParentViewController:nil];
         }
         
         [_viewControllers removeObjectsInRange:NSMakeRange(index+1, [_viewControllers count]-(index+1))];

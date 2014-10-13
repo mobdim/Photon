@@ -7,7 +7,6 @@
 //
 
 #import "PXPopover.h"
-#import "PXViewController_Private.h"
 
 
 @interface PXPopover ()

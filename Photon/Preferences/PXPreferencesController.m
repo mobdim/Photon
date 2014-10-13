@@ -8,7 +8,6 @@
 
 #import "PXPreferencesController.h"
 #import "PXPreferencesController_Private.h"
-#import "PXViewController.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -311,8 +310,8 @@
     NSView *newView = [[_preferencePanes objectForKey:identifier] view];
     NSView *oldView = [[_containerView subviews] lastObject];
     
-    [_disappearingPane viewWillDisappear:shouldAnimate];
-    [_currentPane viewWillAppear:shouldAnimate];
+//    [_disappearingPane viewWillDisappear:shouldAnimate];
+//    [_currentPane viewWillAppear:shouldAnimate];
     
     if (![newView isEqual:oldView]) {
         newView.frame = newView.bounds;
@@ -355,8 +354,8 @@
             _currentPane.view.autoresizingMask = (NSViewWidthSizable|NSViewHeightSizable);
             [[self window] makeFirstResponder:[[_currentPane view] nextKeyView]];
             
-            [_disappearingPane viewDidDisappear:shouldAnimate];
-            [_currentPane viewDidAppear:shouldAnimate];
+//            [_disappearingPane viewDidDisappear:shouldAnimate];
+//            [_currentPane viewDidAppear:shouldAnimate];
         }
     }
     
@@ -389,8 +388,8 @@
             [subview setAlphaValue:1.0];
         }
         
-        [_disappearingPane viewDidDisappear:YES];
-        [_currentPane viewDidAppear:YES];
+//        [_disappearingPane viewDidDisappear:YES];
+//        [_currentPane viewDidAppear:YES];
         
         if (flag) {
             _animating = NO;

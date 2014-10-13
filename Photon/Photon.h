@@ -22,7 +22,6 @@
 #import <Photon/PXFormatBarComboBox.h>
 #import <Photon/PXFormatBarPopUpButton.h>
 #import <Photon/PXFormatBarSegmentedControl.h>
-#import <Photon/PXGeometry.h>
 #import <Photon/PXKeyCombination.h>
 #import <Photon/PXKeyCombinationField.h>
 #import <Photon/PXKeyCommand.h>
@@ -39,7 +38,5 @@
 #import <Photon/PXTabBarItem.h>
 #import <Photon/PXTreeNode.h>
 #import <Photon/PXView.h>
-#import <Photon/PXViewController.h>
 
 #import <Photon/NSColor+PhotonAdditions.h>
-#import <Photon/NSValue+PhotonAdditions.h>

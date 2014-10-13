@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Photon/PhotonDefines.h>
-#import <Photon/PXGeometry.h>
 
 
 typedef NS_OPTIONS(NSUInteger, PXPopoverArrowDirection) {
@@ -64,7 +63,7 @@ typedef NS_OPTIONS(NSUInteger, PXPopoverArrowDirection) {
 
 @interface PXPopoverBackgroundView : NSView
 
-+ (PXEdgeInsets)contentViewInsets;
++ (NSEdgeInsets)contentViewInsets;
 
 + (CGFloat)arrowHeight;
 + (CGFloat)arrowBase;

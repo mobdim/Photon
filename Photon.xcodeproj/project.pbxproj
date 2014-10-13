@@ -45,9 +45,6 @@
 		EA44B2A3149B21FF00C5D440 /* Photon.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2A2149B21FF00C5D440 /* Photon.m */; };
 		EA44B2AE149B222E00C5D440 /* PhotonDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2AD149B222E00C5D440 /* PhotonDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2AF149B22A700C5D440 /* Photon.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2A1149B21FF00C5D440 /* Photon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA44B2B4149B22F800C5D440 /* PXViewController_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2B1149B22F800C5D440 /* PXViewController_Private.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EA44B2B5149B22F800C5D440 /* PXViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2B2149B22F800C5D440 /* PXViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA44B2B6149B22F800C5D440 /* PXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2B3149B22F800C5D440 /* PXViewController.m */; };
 		EA44B2BF149B23C300C5D440 /* PXTabBar.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2B8149B23C300C5D440 /* PXTabBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2C0149B23C300C5D440 /* PXTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2B9149B23C300C5D440 /* PXTabBar.m */; };
 		EA44B2C1149B23C300C5D440 /* PXTabBarController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2BA149B23C300C5D440 /* PXTabBarController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -63,14 +60,8 @@
 		EA44B2E5149B255500C5D440 /* PXPreferencesController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA44B2E1149B255500C5D440 /* PXPreferencesController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA44B2E6149B255500C5D440 /* PXPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA44B2E2149B255500C5D440 /* PXPreferencesController.m */; };
 		EA44B2E9149B277700C5D440 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA44B2E8149B277700C5D440 /* QuartzCore.framework */; };
-		EA55FA56151D37800088F053 /* NSValue+PhotonAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = EA55FA54151D37800088F053 /* NSValue+PhotonAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA55FA57151D37800088F053 /* NSValue+PhotonAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = EA55FA55151D37800088F053 /* NSValue+PhotonAdditions.m */; };
 		EA68A30416E71E2A00417D0B /* PXLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA68A30216E71E2A00417D0B /* PXLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA68A30516E71E2A00417D0B /* PXLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA68A30316E71E2A00417D0B /* PXLabel.m */; };
-		EA76D4D0151D32930049443D /* PXAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4CF151D32930049443D /* PXAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA76D4D7151D33070049443D /* PXGeometry.h in Headers */ = {isa = PBXBuildFile; fileRef = EA76D4D5151D33070049443D /* PXGeometry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA76D4D8151D33070049443D /* PXGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = EA76D4D6151D33070049443D /* PXGeometry.m */; };
-		EA94C7081665D9E200222A9D /* PXAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = EA94C7071665D9E200222A9D /* PXAppearance.m */; };
 		EA9C52E615211D3100F767C9 /* PXFormatBarColorWell.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52DC15211D3100F767C9 /* PXFormatBarColorWell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA9C52E715211D3100F767C9 /* PXFormatBarColorWell.m in Sources */ = {isa = PBXBuildFile; fileRef = EA9C52DD15211D3100F767C9 /* PXFormatBarColorWell.m */; };
 		EA9C52E815211D3100F767C9 /* PXFormatBarComboBox.h in Headers */ = {isa = PBXBuildFile; fileRef = EA9C52DE15211D3100F767C9 /* PXFormatBarComboBox.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -149,9 +140,6 @@
 		EA44B2A1149B21FF00C5D440 /* Photon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Photon.h; sourceTree = "<group>"; };
 		EA44B2A2149B21FF00C5D440 /* Photon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Photon.m; sourceTree = "<group>"; };
 		EA44B2AD149B222E00C5D440 /* PhotonDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotonDefines.h; sourceTree = "<group>"; };
-		EA44B2B1149B22F800C5D440 /* PXViewController_Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXViewController_Private.h; sourceTree = "<group>"; };
-		EA44B2B2149B22F800C5D440 /* PXViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXViewController.h; sourceTree = "<group>"; };
-		EA44B2B3149B22F800C5D440 /* PXViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXViewController.m; sourceTree = "<group>"; };
 		EA44B2B8149B23C300C5D440 /* PXTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBar.h; sourceTree = "<group>"; };
 		EA44B2B9149B23C300C5D440 /* PXTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXTabBar.m; sourceTree = "<group>"; };
 		EA44B2BA149B23C300C5D440 /* PXTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXTabBarController.h; sourceTree = "<group>"; };
@@ -167,14 +155,8 @@
 		EA44B2E1149B255500C5D440 /* PXPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXPreferencesController.h; sourceTree = "<group>"; };
 		EA44B2E2149B255500C5D440 /* PXPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXPreferencesController.m; sourceTree = "<group>"; };
 		EA44B2E8149B277700C5D440 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		EA55FA54151D37800088F053 /* NSValue+PhotonAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+PhotonAdditions.h"; sourceTree = "<group>"; };
-		EA55FA55151D37800088F053 /* NSValue+PhotonAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+PhotonAdditions.m"; sourceTree = "<group>"; };
 		EA68A30216E71E2A00417D0B /* PXLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXLabel.h; sourceTree = "<group>"; };
 		EA68A30316E71E2A00417D0B /* PXLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXLabel.m; sourceTree = "<group>"; };
-		EA76D4CF151D32930049443D /* PXAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXAppearance.h; sourceTree = "<group>"; };
-		EA76D4D5151D33070049443D /* PXGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXGeometry.h; sourceTree = "<group>"; };
-		EA76D4D6151D33070049443D /* PXGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXGeometry.m; sourceTree = "<group>"; };
-		EA94C7071665D9E200222A9D /* PXAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXAppearance.m; sourceTree = "<group>"; };
 		EA9C52DA15211D3100F767C9 /* PXFormatBar-DoubleArrow.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "PXFormatBar-DoubleArrow.pdf"; sourceTree = "<group>"; };
 		EA9C52DB15211D3100F767C9 /* PXFormatBar-SingleArrow.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "PXFormatBar-SingleArrow.pdf"; sourceTree = "<group>"; };
 		EA9C52DC15211D3100F767C9 /* PXFormatBarColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PXFormatBarColorWell.h; sourceTree = "<group>"; };
@@ -313,7 +295,6 @@
 				EA44B2A1149B21FF00C5D440 /* Photon.h */,
 				EA44B2A2149B21FF00C5D440 /* Photon.m */,
 				EA44B2AD149B222E00C5D440 /* PhotonDefines.h */,
-				EA76D4CD151D32810049443D /* Appearance */,
 				EA44B2B0149B22E800C5D440 /* Views */,
 				EACC146216DF122800023E13 /* Accessibility */,
 				0239E99216DEB3A50041E56D /* Popovers */,
@@ -344,9 +325,6 @@
 		EA44B2B0149B22E800C5D440 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EA44B2B2149B22F800C5D440 /* PXViewController.h */,
-				EA44B2B1149B22F800C5D440 /* PXViewController_Private.h */,
-				EA44B2B3149B22F800C5D440 /* PXViewController.m */,
 				EA05512D17D507E400B8A084 /* PXView.h */,
 				EA05512E17D507E400B8A084 /* PXView.m */,
 			);
@@ -403,21 +381,8 @@
 				0246DDA516D836DD00A63752 /* NSObject+PhotonAdditions.m */,
 				02BF11C71600FC7E00AD782D /* NSColor+PhotonAdditions.h */,
 				02BF11C81600FC7E00AD782D /* NSColor+PhotonAdditions.m */,
-				EA55FA54151D37800088F053 /* NSValue+PhotonAdditions.h */,
-				EA55FA55151D37800088F053 /* NSValue+PhotonAdditions.m */,
 			);
 			path = Categories;
-			sourceTree = "<group>";
-		};
-		EA76D4CD151D32810049443D /* Appearance */ = {
-			isa = PBXGroup;
-			children = (
-				EA76D4CF151D32930049443D /* PXAppearance.h */,
-				EA94C7071665D9E200222A9D /* PXAppearance.m */,
-				EA76D4D5151D33070049443D /* PXGeometry.h */,
-				EA76D4D6151D33070049443D /* PXGeometry.m */,
-			);
-			path = Appearance;
 			sourceTree = "<group>";
 		};
 		EA9C52D815211D1F00F767C9 /* Controls */ = {
@@ -486,8 +451,6 @@
 			files = (
 				EA44B2AE149B222E00C5D440 /* PhotonDefines.h in Headers */,
 				EA44B2AF149B22A700C5D440 /* Photon.h in Headers */,
-				EA44B2B4149B22F800C5D440 /* PXViewController_Private.h in Headers */,
-				EA44B2B5149B22F800C5D440 /* PXViewController.h in Headers */,
 				EA05512F17D507E400B8A084 /* PXView.h in Headers */,
 				EA44B2BF149B23C300C5D440 /* PXTabBar.h in Headers */,
 				EA44B2C1149B23C300C5D440 /* PXTabBarController.h in Headers */,
@@ -503,9 +466,6 @@
 				EA30302915001F5A0062D399 /* PXAnchoredPopUpButton.h in Headers */,
 				EACC7CC01510446300072989 /* PXTabBarController_Private.h in Headers */,
 				EACC7CC31510447D00072989 /* PXTabBar_Private.h in Headers */,
-				EA76D4D0151D32930049443D /* PXAppearance.h in Headers */,
-				EA76D4D7151D33070049443D /* PXGeometry.h in Headers */,
-				EA55FA56151D37800088F053 /* NSValue+PhotonAdditions.h in Headers */,
 				EADFB0E1151FC6C500019165 /* PXFormatBar.h in Headers */,
 				EADFB0E5151FC7D200019165 /* PXFormatBarItem.h in Headers */,
 				EADFB0E8151FC82900019165 /* PXFormatBarItem_Private.h in Headers */,
@@ -561,7 +521,7 @@
 		EA44B287149B21FF00C5D440 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Sunflower Softworks";
 			};
 			buildConfigurationList = EA44B28A149B21FF00C5D440 /* Build configuration list for PBXProject "Photon" */;
@@ -602,7 +562,6 @@
 			files = (
 				EA44B2A3149B21FF00C5D440 /* Photon.m in Sources */,
 				02EEABEE1894526900AF103E /* PXKeyCommand.m in Sources */,
-				EA44B2B6149B22F800C5D440 /* PXViewController.m in Sources */,
 				02EEABF41894526900AF103E /* PXKeyCombination.m in Sources */,
 				EA05513017D507E400B8A084 /* PXView.m in Sources */,
 				EA44B2C0149B23C300C5D440 /* PXTabBar.m in Sources */,
@@ -617,8 +576,6 @@
 				EA30302615001F5A0062D399 /* PXAnchoredButtonBar.m in Sources */,
 				EA30302815001F5A0062D399 /* PXAnchoredMenuButtonCell.m in Sources */,
 				EA30302A15001F5A0062D399 /* PXAnchoredPopUpButton.m in Sources */,
-				EA76D4D8151D33070049443D /* PXGeometry.m in Sources */,
-				EA55FA57151D37800088F053 /* NSValue+PhotonAdditions.m in Sources */,
 				EADFB0E2151FC6C500019165 /* PXFormatBar.m in Sources */,
 				EADFB0E6151FC7D200019165 /* PXFormatBarItem.m in Sources */,
 				EA9C52E715211D3100F767C9 /* PXFormatBarColorWell.m in Sources */,
@@ -632,7 +589,6 @@
 				021B1DD315FAA74A0086B303 /* PXBarButtonItem.m in Sources */,
 				EAB804C315FAF18600E3BE96 /* PXNavigationBackButtonCell.m in Sources */,
 				02BF11CA1600FC7E00AD782D /* NSColor+PhotonAdditions.m in Sources */,
-				EA94C7081665D9E200222A9D /* PXAppearance.m in Sources */,
 				027E7A1F16669AE2005DD0F6 /* PXPreferencePane.m in Sources */,
 				0246DDA716D836DD00A63752 /* NSObject+PhotonAdditions.m in Sources */,
 				EACC146616DF124900023E13 /* PXAccessibility.m in Sources */,
@@ -659,7 +615,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -668,8 +623,10 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -687,7 +644,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -697,7 +654,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -706,8 +662,10 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -718,7 +676,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
 			};
 			name = Release;

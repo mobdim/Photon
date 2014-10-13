@@ -12,9 +12,6 @@
 #import "PXTabBar_Private.h"
 #import "PXTabBarItem.h"
 
-#import "PXViewController.h"
-#import "PXViewController_Private.h"
-
 #import <objc/runtime.h>
 
 
@@ -179,9 +176,7 @@
         
         [viewController setTabBarController:nil];
         
-        [viewController willMoveToParentViewController:nil];
         [viewController removeFromParentViewController];
-        [viewController didMoveToParentViewController:nil];
         
         [[self tabBar] removeItemAtIndex:index];
         

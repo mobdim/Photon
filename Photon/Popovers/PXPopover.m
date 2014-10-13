@@ -9,7 +9,6 @@
 #import "PXPopover.h"
 #import "PXPopover_Private.h"
 
-#import "PXViewController_Private.h"
 #import "PXAccessibility.h"
 #import "NSObject+PhotonAdditions.h"
 #import <objc/runtime.h>
@@ -146,7 +145,7 @@ NSString * const PXPopoverDidDismissNotification = @"PXPopoverDidDismissNotifica
     NSRect screenRect = [[view window] convertRectToScreen:[view convertRect:rect toView:nil]];
     
 //    NSSize requiredSize = NSMakeSize(_contentSize.width + [backgroundViewClass arrowHeight], _contentSize.height + [backgroundViewClass arrowHeight]);
-    PXEdgeInsets contentViewInsets = [backgroundViewClass contentViewInsets];
+    NSEdgeInsets contentViewInsets = [backgroundViewClass contentViewInsets];
     
     PXPopoverArrowDirection chosenArrowDirection = PXPopoverArrowDirectionUnknown;
     if (arrowDirection & PXPopoverArrowDirectionUp) {
@@ -326,7 +325,7 @@ NSString * const PXPopoverDidDismissNotification = @"PXPopoverDidDismissNotifica
 
 @implementation PXPopoverBackgroundView
 
-+ (PXEdgeInsets)contentViewInsets {
++ (NSEdgeInsets)contentViewInsets {
     @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"Subclasses must override %@", NSStringFromSelector(_cmd)] userInfo:nil];
 }
 
@@ -380,8 +379,8 @@ NSString * const PXPopoverDidDismissNotification = @"PXPopoverDidDismissNotifica
     PXPopoverArrowDirection _arrowDirection;
 }
 
-+ (PXEdgeInsets)contentViewInsets {
-    return PXEdgeInsetsMake(3.0, 3.0, 3.0, 3.0);
++ (NSEdgeInsets)contentViewInsets {
+    return NSEdgeInsetsMake(3.0, 3.0, 3.0, 3.0);
 }
 
 + (CGFloat)arrowHeight {
@@ -535,14 +534,11 @@ NSString * const PXPopoverDidDismissNotification = @"PXPopoverDidDismissNotifica
 static NSString * const PXViewControllerPopoverKey = @"PXViewControllerPopover";
 
 - (PXPopover *)px_popover {
-    PXViewControllerProxy *proxy = objc_getAssociatedObject(self, (__bridge void *)PXViewControllerPopoverKey);
-    return proxy.object;
+    return objc_getAssociatedObject(self, (__bridge void *)PXViewControllerPopoverKey);
 }
 
 - (void)px_setPopover:(PXPopover *)popover {
-    PXViewControllerProxy *proxy = [[PXViewControllerProxy alloc] init];
-    proxy.object = popover;
-    objc_setAssociatedObject(self, (__bridge void *)PXViewControllerPopoverKey, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, (__bridge void *)PXViewControllerPopoverKey, popover, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end
@@ -562,14 +558,11 @@ static NSString * const PXViewControllerPopoverKey = @"PXViewControllerPopover";
 static NSString * const PXWindowPresentedPopoverKey = @"PXWindowPresentedPopover";
 
 - (PXPopover *)px_presentedPopover {
-    PXViewControllerProxy *proxy = objc_getAssociatedObject(self, (__bridge void *)PXWindowPresentedPopoverKey);
-    return proxy.object;
+    return objc_getAssociatedObject(self, (__bridge void *)PXWindowPresentedPopoverKey);
 }
 
 - (void)px_setPresentedPopover:(PXPopover *)popover {
-    PXViewControllerProxy *proxy = [[PXViewControllerProxy alloc] init];
-    proxy.object = popover;
-    objc_setAssociatedObject(self, (__bridge void *)PXWindowPresentedPopoverKey, proxy, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, (__bridge void *)PXWindowPresentedPopoverKey, popover, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

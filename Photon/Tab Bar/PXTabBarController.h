@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Photon/PhotonDefines.h>
-#import <Photon/PXViewController.h>
 #import <Photon/PXTabBar.h>
 
 
