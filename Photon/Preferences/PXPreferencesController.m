@@ -449,6 +449,7 @@
 
 - (void)pane:(PXPreferencePane *)pane didCommitForClose:(BOOL)didCommit contextInfo:(void *)contextInfo {
     if (didCommit) {
+        [_currentPane viewWillDisappear:YES];
         [_window close];
     }
 }
