@@ -141,19 +141,19 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
 
 - (NSRect)borderRect {
     NSRect borderRect = NSInsetRect([self bounds], -0.5, -0.5);
-    if (self.border != PXAppearanceBorderNone) {
-        if (self.border & PXAppearanceBorderLeft) {
+    if (self.border != PXTabBarBorderNone) {
+        if (self.border & PXTabBarBorderLeft) {
             borderRect.size.width -= 1.0;
             borderRect.origin.x += 1.0;
         }
-        if (self.border & PXAppearanceBorderRight) {
+        if (self.border & PXTabBarBorderRight) {
             borderRect.size.width -= 1.0;
         }
-        if (self.border & PXAppearanceBorderTop) {
+        if (self.border & PXTabBarBorderTop) {
             borderRect.size.height -= 1.0;
             borderRect.origin.y += 1.0;
         }
-        if (self.border & PXAppearanceBorderBottom) {
+        if (self.border & PXTabBarBorderBottom) {
             borderRect.size.height -= 1.0;
         }
     }
@@ -179,7 +179,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                                                                  endingColor:[NSColor colorWithCalibratedWhite:0.8 alpha:1.0]];
             [gradient drawInRect:[self bounds] angle:90.0];
             
-            if (self.border != PXAppearanceBorderNone) {
+            if (self.border != PXTabBarBorderNone) {
                 [[NSGraphicsContext currentContext] saveGraphicsState];
                 
                 [strokeShadow set];
@@ -196,7 +196,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                                                                  endingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]];
             [gradient drawInRect:[self bounds] angle:90.0];
             
-            if (self.border != PXAppearanceBorderNone) {
+            if (self.border != PXTabBarBorderNone) {
                 [[NSGraphicsContext currentContext] saveGraphicsState];
                 
                 [strokeShadow set];
@@ -214,7 +214,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                                                              endingColor:[NSColor colorWithCalibratedWhite:0.15 alpha:1.0]];
         [gradient drawInRect:[self bounds] angle:90.0];
         
-        if (self.border != PXAppearanceBorderNone) {
+        if (self.border != PXTabBarBorderNone) {
             [[NSColor colorWithCalibratedWhite:0.0 alpha:0.2] set];
             NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
             [bezierPath stroke];
@@ -270,7 +270,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                                                                          endingColor:[NSColor colorWithCalibratedWhite:0.9 alpha:1.0]];
                     [gradient drawInRect:itemRect angle:90.0];
                     
-                    if (self.border != PXAppearanceBorderNone) {
+                    if (self.border != PXTabBarBorderNone) {
                         [[NSGraphicsContext currentContext] saveGraphicsState];
                         
                         [strokeShadow set];
@@ -287,7 +287,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                                                                          endingColor:[NSColor colorWithCalibratedWhite:1.0 alpha:1.0]];
                     [gradient drawInRect:itemRect angle:90.0];
                     
-                    if (self.border != PXAppearanceBorderNone) {
+                    if (self.border != PXTabBarBorderNone) {
                         [[NSGraphicsContext currentContext] saveGraphicsState];
                         
                         [strokeShadow set];
@@ -305,7 +305,7 @@ NSString * const PXTabBarItemPropertyObservationContext = @"PXTabBarItemProperty
                                                                      endingColor:[NSColor colorWithCalibratedWhite:0.25 alpha:1.0]];
                 [gradient drawInRect:itemRect angle:90.0];
                 
-                if (self.border != PXAppearanceBorderNone) {
+                if (self.border != PXTabBarBorderNone) {
                     [[NSColor colorWithCalibratedWhite:0.0 alpha:0.3] set];
                     NSBezierPath *bezierPath = [NSBezierPath bezierPathWithRoundedRect:borderRect xRadius:self.cornerRadius yRadius:self.cornerRadius];
                     [bezierPath stroke];

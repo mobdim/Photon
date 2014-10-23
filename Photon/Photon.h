@@ -12,7 +12,6 @@
 #import <Photon/PXAnchoredButtonBar.h>
 #import <Photon/PXAnchoredMenuButtonCell.h>
 #import <Photon/PXAnchoredPopUpButton.h>
-#import <Photon/PXAppearance.h>
 #import <Photon/PXBarButtonItem.h>
 #import <Photon/PXColorWell.h>
 //#import <Photon/PXControl.h>

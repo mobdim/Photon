@@ -8,12 +8,20 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Photon/PhotonDefines.h>
-#import <Photon/PXAppearance.h>
 
 
 typedef NS_ENUM(NSUInteger, PXTabBarStyle) {
     PXTabBarStyleLight = 0,
     PXTabBarStyleDark,
+};
+
+
+typedef NS_OPTIONS(NSUInteger, PXTabBarBorder) {
+    PXTabBarBorderNone = 0,
+    PXTabBarBorderLeft = (1 << 0),
+    PXTabBarBorderTop = (1 << 1),
+    PXTabBarBorderRight = (1 << 2),
+    PXTabBarBorderBottom = (1 << 3),
 };
 
 
@@ -27,7 +35,7 @@ typedef NS_ENUM(NSUInteger, PXTabBarStyle) {
 
 @property (nonatomic) PXTabBarStyle style;
 @property (nonatomic) CGFloat cornerRadius;
-@property (nonatomic) PXAppearanceBorder border;
+@property (nonatomic) PXTabBarBorder border;
 
 @property (nonatomic, copy) NSArray *items;
 @property (nonatomic, strong) PXTabBarItem *selectedItem;

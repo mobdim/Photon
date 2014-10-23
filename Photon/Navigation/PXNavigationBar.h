@@ -8,7 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Photon/PhotonDefines.h>
-#import <Photon/PXAppearance.h>
 
 
 typedef NS_ENUM(NSUInteger, PXNavigationBarStyle) {
