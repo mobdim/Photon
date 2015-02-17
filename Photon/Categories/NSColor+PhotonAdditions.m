@@ -16,7 +16,12 @@
 	NSUInteger componentCount = CGColorGetNumberOfComponents(cgColor);
 	const CGFloat *components = CGColorGetComponents(cgColor);
 	
-	NSColorSpace *newColorSpace = [[[NSColorSpace alloc] initWithCGColorSpace:colorSpace] autorelease];
+	NSColorSpace *newColorSpace = nil;
+#if ! __has_feature(objc_arc)
+    newColorSpace = [[[NSColorSpace alloc] initWithCGColorSpace:colorSpace] autorelease];
+#else
+    newColorSpace = [[NSColorSpace alloc] initWithCGColorSpace:colorSpace];
+#endif
 	NSColor *color = [NSColor colorWithColorSpace:newColorSpace components:components count:componentCount];
 	
 	return color;
@@ -32,7 +37,15 @@
 	
 	free(components);
 	
-	return (CGColorRef)[(id)cgColor autorelease];
+	CGColorRef result = nil;
+    
+#if ! __has_feature(objc_arc)
+    result = (CGColorRef)[(id)cgColor autorelease];
+#else
+    result = (CGColorRef)CFAutorelease(cgColor);
+#endif
+
+   return result;
 }
 
 @end
